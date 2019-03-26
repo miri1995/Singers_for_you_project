@@ -22,6 +22,26 @@ public class SingersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.singer_choice);
 
+        Connector connector;
+        connector = new Connector();
+        // connecting
+        if (!connector.openConnection())
+            return;
+        //System.out.print(filters.getGenre());
+        // executeQuery
+        connector.ExecuteQuery();
+        // close the connection
+        connector.closeConnection();
+      /*  try {
+            Thread.sleep(1500);
+        } catch(InterruptedException e) {
+            System.out.println("got interrupted!");
+        }*/
+//        System.out.println("Done :)");
+
+
+
+
         //spinner1
         List<String> genres = new ArrayList<String>(Arrays.asList("select","g1","g2", "g3","g4","g5","g6","g7"));
         spinner1 = findViewById(R.id.spinner);
@@ -98,6 +118,9 @@ public class SingersActivity extends AppCompatActivity {
 
 
             filters = new Filters(genre2, target_Audience2, beat2, location2);
+
+
+
 
             Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
             intent1.putExtra("com.example.myapplicationtest.Filters", filters);
