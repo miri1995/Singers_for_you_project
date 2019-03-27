@@ -31,10 +31,10 @@ public class SingersActivity extends AppCompatActivity {
       //  connector = new Connector();
 
         Connection con = DBConnection.getInstance().getConnection(); // DB connection
-
+       List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
         // connecting
-        if (!Connector.getConnection())
-            return;
+        //if (!Connector.getConnection())
+       //     return;
         //System.out.print(filters.getGenre());
         // executeQuery
         //connector.ExecuteQuery();

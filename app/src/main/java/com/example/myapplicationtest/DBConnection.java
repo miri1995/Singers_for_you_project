@@ -87,9 +87,6 @@ public class DBConnection {
                         artists.add(rs.getString("artist_name"));
                     }
 
-                    // Solution.getInstance(artists);
-
-
                 } catch (SQLException e) {
                     System.out.println("ERROR executeQuery - " + e.getMessage());
                 }
@@ -107,6 +104,10 @@ public class DBConnection {
         t.start();
         System.out.println(artists);
         return true;
+    }
+
+    public List<String> getArtists(){
+        return artists;
     }
 
     /**
