@@ -15,16 +15,55 @@ import java.util.List;
  */
 public class Connector {
     public static int counter;
-    Connection conn; // DB connection
+    //Connection conn; // DB connection
     List<String> artists = new ArrayList<String>();
 
 
     /**
      * Empty constructor
      */
-    public Connector() {
+ /*   public Connector() {
         this.conn = null;
+    }*/
+
+
+    static Connection conn=null;
+    public static boolean getConnection()
+    {
+        if (conn != null) return true;
+
+        String host = "35.225.34.63";
+        String port = "3306";
+        String schema = "dbProject";
+        String user = "root";
+        String password = "0542015460mb";
+        // get db, user, pass from settings file
+        return getConnection(schema, user, password);
     }
+
+    private static boolean getConnection(String db_name,String user_name,String password)
+    {
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn=DriverManager.getConnection("jdbc:mysql://localhost/"+db_name+"?user="+user_name+"&password="+password);
+            return true;
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
+        //return conn;
+    }
+
+
+
+
+
+
+
 
     /**
      * opens the connection with mysql.
@@ -57,14 +96,18 @@ public class Connector {
                 System.out.println("Error in closing the BufferedReader");
             }
         }*/
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
+       try {
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema, user, password);
         } catch (SQLException e) {
             System.out.println("Unable to connect - " + e.getMessage());
             conn = null;
             return false;
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
             e.printStackTrace();
         }
         System.out.println("Connected!");

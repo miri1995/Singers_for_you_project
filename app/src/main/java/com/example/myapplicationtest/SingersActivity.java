@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,16 +23,19 @@ public class SingersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.singer_choice);
 
-        Connector connector;
-        connector = new Connector();
+      //  Connector connector;
+      //  connector = new Connector();
+
+        Connection con = DBConnection.getInstance().getConnection(); // DB connection
+
         // connecting
-        if (!connector.openConnection())
+        if (!Connector.getConnection())
             return;
         //System.out.print(filters.getGenre());
         // executeQuery
-        connector.ExecuteQuery();
+        //connector.ExecuteQuery();
         // close the connection
-        connector.closeConnection();
+        //connector.closeConnection();
       /*  try {
             Thread.sleep(1500);
         } catch(InterruptedException e) {
