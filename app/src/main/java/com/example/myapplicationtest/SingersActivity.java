@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.myapplicationtest.Logic.Helper;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,8 +32,8 @@ public class SingersActivity extends AppCompatActivity {
       //  Connector connector;
       //  connector = new Connector();
 
-        Connection con = DBConnection.getInstance().getConnection(); // DB connection
-       List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
+       // Connection con = DBConnection.getInstance().getConnection(); // DB connection
+    //   List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
         // connecting
         //if (!Connector.getConnection())
        //     return;
@@ -48,10 +50,11 @@ public class SingersActivity extends AppCompatActivity {
 //        System.out.println("Done :)");
 
 
-
+        Helper helper=new Helper();
+        List<String> genres=helper.ReadFileGenre();
 
         //spinner1
-        List<String> genres = new ArrayList<String>(Arrays.asList("select","g1","g2", "g3","g4","g5","g6","g7"));
+       // List<String> genres = new ArrayList<String>(Arrays.asList("select","g1","g2", "g3","g4","g5","g6","g7"));
         spinner1 = findViewById(R.id.spinner);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genres);
@@ -79,6 +82,10 @@ public class SingersActivity extends AppCompatActivity {
         spinner4.setAdapter(locationAdapter);
 
     }
+
+
+
+
     public void second_click(View view) {
 
         String genre2 =null;
