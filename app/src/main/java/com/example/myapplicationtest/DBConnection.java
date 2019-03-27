@@ -3,6 +3,8 @@ package com.example.myapplicationtest;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class that handles
@@ -12,6 +14,8 @@ public class DBConnection {
 
     private java.sql.Connection conn; // DB connection
     private static DBConnection instance;
+    private final List<String> artists = new ArrayList<String>();
+    private final Object mutex = new Object();
 
     /**
      * constructor
@@ -22,6 +26,7 @@ public class DBConnection {
      * singleton function
      * @return the instance of DBconnection
      */
+
     public static DBConnection getInstance() {
         if (instance == null) {
             instance = new DBConnection();
@@ -35,6 +40,11 @@ public class DBConnection {
      * @return connection to sql object
      */
     public java.sql.Connection getConnection() {
+        try {
+            synchronized (mutex) {
+                mutex.wait();
+            }
+        } catch (Exception ex) {}
         return conn;
     }
     /**
@@ -59,20 +69,43 @@ public class DBConnection {
         }*/
         // creating the connection. Parameters should be taken from config file.
 
-        String host = "35.225.34.63";
-        String port = "3306";
-        String schema = "dbProject";
-        String user = "root";
-        String password = "0542015460mb";
+        final String host = "35.225.34.63";
+        final String port = "3306";
+        final String schema = "dbProject";
+        final String user = "root";
+        final String password = "0542015460mb";
 
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema, user, password);
-        } catch (SQLException e) {
-            System.out.println("Unable to connect - " + e.getMessage());
-            conn = null;
-            return false;
-        }
-        System.out.println("Connected!");
+        Thread t = new Thread( () -> {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
+                String q3="select * from artists";
+
+                try (Statement stmt = conn.createStatement();
+                     ResultSet rs = stmt.executeQuery(q3);) {
+                    while (rs.next() == true) {
+                        artists.add(rs.getString("artist_name"));
+                    }
+
+                    // Solution.getInstance(artists);
+
+
+                } catch (SQLException e) {
+                    System.out.println("ERROR executeQuery - " + e.getMessage());
+                }
+            } catch (SQLException e) {
+                System.out.println("Unable to connect - " + e.getMessage());
+                conn = null;
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Connected!");
+            synchronized (mutex) {
+                mutex.notifyAll();
+            }
+        });
+        t.start();
+        System.out.println(artists);
         return true;
     }
 
