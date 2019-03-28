@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.myapplicationtest.Logic.Filters;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

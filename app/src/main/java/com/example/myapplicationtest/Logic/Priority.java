@@ -18,9 +18,9 @@ public class Priority implements Serializable {
     }
 
     public Priority() {
-        this.prioGenre = prioGenre;
+       /* this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
-        this.priotempo = priotempo;
+        this.priotempo = priotempo;*/
     }
 
     /**

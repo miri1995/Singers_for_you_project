@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.myapplicationtest.Logic.Filters;
 import com.example.myapplicationtest.Logic.Helper;
 
 import java.io.BufferedReader;
@@ -165,7 +166,7 @@ public class SingersActivity extends AppCompatActivity {
 
 
             Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
-            intent1.putExtra("com.example.myapplicationtest.Filters", filters);
+            intent1.putExtra("com.example.myapplicationtest.Logic.Filters", filters);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
 

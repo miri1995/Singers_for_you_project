@@ -1,6 +1,4 @@
-package com.example.myapplicationtest;
-
-import com.example.myapplicationtest.Logic.Priority;
+package com.example.myapplicationtest.Logic;
 
 import java.io.Serializable;
 

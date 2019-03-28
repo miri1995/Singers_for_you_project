@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.myapplicationtest.Logic.Filters;
 import com.example.myapplicationtest.Logic.Priority;
 
 import java.sql.Connection;
@@ -19,10 +20,29 @@ import java.util.List;
 
 public class SulationSinger  extends AppCompatActivity {
     Filters filters=new Filters();
-    Priority priority;
+    Priority priority=new Priority();
     List<String> artists = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.solution_singers);
+
+
+
+        Intent intent1 = getIntent();
+     //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
+            filters = (Filters) intent1.getSerializableExtra("com.example.myapplicationtest.Logic.Filters");
+     //   }
+        Intent intent2 = getIntent();
+       // if (intent2.hasExtra("com.example.myapplicationtest.Priority")) {
+            priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.Logic.Priority");
+       // }
+
+
         Query query =new Query();
         String q3= query.UserInput(filters.getGenre(),filters.getLoudness(),priority.getPrioLoudness(),filters.getTempo(),priority.getPrioTempo());
         Connection con = DBConnection.getInstance().getConnection(); // DB connection
@@ -47,18 +67,6 @@ public class SulationSinger  extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.solution_singers);
-
-
-
-        Intent intent1 = getIntent();
-        if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
-            filters = (Filters) intent1.getSerializableExtra("com.example.myapplicationtest.Filters");
-        }
 
         List<String> resultArray = artists;
         //ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
