@@ -20,31 +20,29 @@ import java.util.List;
 
 public class SulationSinger  extends AppCompatActivity {
 
-    Priority priority=new Priority();
+    Priority priority = new Priority();
     List<String> artists = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers);
 
 
-
-
-     //   }
+        //   }
         Intent intent2 = getIntent();
-       // if (intent2.hasExtra("com.example.myapplicationtest.Priority")) {
-            priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.Logic.Priority");
-       // }
+        // if (intent2.hasExtra("com.example.myapplicationtest.Priority")) {
+        priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.Logic.Priority");
+        // }
 
 
-        Query query =new Query();
-        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getPrioLoudness(),priority.getFilters().getTempo(),priority.getPrioTempo());
+        Query query = new Query();
+        String q3 = query.UserInput("hip_hop", "Normal", priority.getPrioLoudness(), "Medium", priority.getPrioTempo());
+        //String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getPrioLoudness(),priority.getFilters().getTempo(),priority.getPrioTempo());
         Connection con = DBConnection.getInstance().getConnection(); // DB connection
-        Thread t = new Thread( () -> {
+        Thread t = new Thread(() -> {
             artists.clear();
 //mnk
             try (Statement stmt = con.createStatement();
@@ -79,12 +77,6 @@ public class SulationSinger  extends AppCompatActivity {
             public void onClick (View v){
                 setContentView(R.layout.solution_singers);
             }
-        });*/
-
-    }
-
-    public void back_click(View view) {
-        Intent intent = new Intent(SulationSinger.this, ParioritySingers.class);
-        startActivity(intent);
+            */
     }
 }

@@ -27,7 +27,7 @@ public class ParioritySingers extends AppCompatActivity {
         setContentView(R.layout.praiority_singers);
 
         //spinner1
-        List<String> genresP = new ArrayList<String>(Arrays.asList("select","high","middle","low"));
+        List<String> genresP = new ArrayList<String>(Arrays.asList("select","high","medium","low"));
         spinner1 = findViewById(R.id.spinner);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genresP);
