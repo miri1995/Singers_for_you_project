@@ -38,7 +38,7 @@ public class SingersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.singer_choice);
-
+//lko
       //  Connector connector;
       //  connector = new Connector();
 
