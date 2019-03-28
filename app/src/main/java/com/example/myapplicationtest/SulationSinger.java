@@ -48,7 +48,7 @@ public class SulationSinger  extends AppCompatActivity {
         Connection con = DBConnection.getInstance().getConnection(); // DB connection
         Thread t = new Thread( () -> {
             artists.clear();
-
+//mnk
             try (Statement stmt = con.createStatement();
                  ResultSet rs = stmt.executeQuery(q3);) {
                 while (rs.next() == true) {
