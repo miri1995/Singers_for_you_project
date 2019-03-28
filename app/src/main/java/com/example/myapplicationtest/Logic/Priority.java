@@ -7,12 +7,14 @@ public class Priority implements Serializable {
     private String prioGenre;
     private String prioloudness;
     private String priotempo;
+    private Filters filters;
     // private Filters filters = new Filters("genre","loudness","tempo");
 
-    public Priority(String prioGenre, String prioloudness, String priotempo) {
+    public Priority(String prioGenre, String prioloudness, String priotempo,Filters filters) {
         this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
         this.priotempo = priotempo;
+        this.filters=filters;
         //initialize();
 
     }
@@ -21,6 +23,10 @@ public class Priority implements Serializable {
        /* this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
         this.priotempo = priotempo;*/
+    }
+
+    public Filters getFilters(){
+        return this.filters;
     }
 
     /**

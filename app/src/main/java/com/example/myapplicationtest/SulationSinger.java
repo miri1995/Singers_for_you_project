@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SulationSinger  extends AppCompatActivity {
-    Filters filters=new Filters();
+
     Priority priority=new Priority();
     List<String> artists = new ArrayList<String>();
     @Override
@@ -33,9 +33,7 @@ public class SulationSinger  extends AppCompatActivity {
 
 
 
-        Intent intent1 = getIntent();
-     //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
-            filters = (Filters) intent1.getSerializableExtra("com.example.myapplicationtest.Logic.Filters");
+
      //   }
         Intent intent2 = getIntent();
        // if (intent2.hasExtra("com.example.myapplicationtest.Priority")) {
@@ -44,7 +42,7 @@ public class SulationSinger  extends AppCompatActivity {
 
 
         Query query =new Query();
-        String q3= query.UserInput(filters.getGenre(),filters.getLoudness(),priority.getPrioLoudness(),filters.getTempo(),priority.getPrioTempo());
+        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getPrioLoudness(),priority.getFilters().getTempo(),priority.getPrioTempo());
         Connection con = DBConnection.getInstance().getConnection(); // DB connection
         Thread t = new Thread( () -> {
             artists.clear();

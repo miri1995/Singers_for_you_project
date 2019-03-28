@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.example.myapplicationtest.Logic.Filters;
 import com.example.myapplicationtest.Logic.Priority;
 
 import java.util.ArrayList;
@@ -99,8 +100,10 @@ public class ParioritySingers extends AppCompatActivity {
             dialog.show();
         }else { //only if all filter selected
 
-
-            priority = new Priority(genreP2, loudnessP2, beatP2);
+            Intent intent = getIntent();
+            //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
+            Filters filters = (Filters) intent.getSerializableExtra("com.example.myapplicationtest.Logic.Filters");
+            priority = new Priority(genreP2, loudnessP2, beatP2,filters);
 
             Intent intent1 = new Intent(ParioritySingers.this, SulationSinger.class);
             intent1.putExtra("com.example.myapplicationtest.Logic.Priority", priority);
