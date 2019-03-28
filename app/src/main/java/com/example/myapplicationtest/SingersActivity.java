@@ -164,7 +164,7 @@ public class SingersActivity extends AppCompatActivity {
 
             filters = new Filters(genre2, loudness2, beat2);
 
-
+            //blabka
             Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
             intent1.putExtra("ccom.example.myapplicationtest.Logic.Filters", filters);
             setResult(Activity.RESULT_OK, intent1);
