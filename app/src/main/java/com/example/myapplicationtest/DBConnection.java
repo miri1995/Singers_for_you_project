@@ -79,17 +79,7 @@ public class DBConnection {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
-                String q3="select * from artists";
 
-                try (Statement stmt = conn.createStatement();
-                     ResultSet rs = stmt.executeQuery(q3);) {
-                    while (rs.next() == true) {
-                        artists.add(rs.getString("artist_name"));
-                    }
-
-                } catch (SQLException e) {
-                    System.out.println("ERROR executeQuery - " + e.getMessage());
-                }
             } catch (SQLException e) {
                 System.out.println("Unable to connect - " + e.getMessage());
                 conn = null;

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,10 @@ import android.widget.Spinner;
 
 import com.example.myapplicationtest.Logic.Helper;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +28,7 @@ import java.util.List;
 public class SingersActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
-    List<String> artists = new ArrayList<String>();
+    List<String> genres = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +37,22 @@ public class SingersActivity extends AppCompatActivity {
       //  Connector connector;
       //  connector = new Connector();
 
-       // Connection con = DBConnection.getInstance().getConnection(); // DB connection
+        Connection con = DBConnection.getInstance().getConnection(); // DB connection
+        Thread t = new Thread( () -> {
+        String q3="select genre from genre";
+
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(q3);) {
+            while (rs.next() == true) {
+                genres.add(rs.getString("genre"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+        }
+        });
+        t.start();
+        System.out.println(genres);
     //   List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
         // connecting
         //if (!Connector.getConnection())
@@ -50,25 +70,29 @@ public class SingersActivity extends AppCompatActivity {
 //        System.out.println("Done :)");
 
 
-        Helper helper=new Helper();
-        List<String> genres=helper.ReadFileGenre();
+     //  Helper helper=new Helper();
+      //  List<String> genres=helper.ReadFileGenre();
+
+
+
+
 
         //spinner1
-       // List<String> genres = new ArrayList<String>(Arrays.asList("select","g1","g2", "g3","g4","g5","g6","g7"));
+        genres.add(0,"select");
         spinner1 = findViewById(R.id.spinner);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genres);
         spinner1.setAdapter(generesAdapter);
 
         //spinner2
-        List<String> audience = new ArrayList<String>(Arrays.asList("select","a1","a2", "a3","a4","a5","a6","a7"));
+        List<String> loudness = new ArrayList<String>(Arrays.asList("select","Weak","Normal","Strong"));
         spinner2 = findViewById(R.id.spinner2);
 
-        ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,audience);
-        spinner2.setAdapter(AudienceAdapter);
+        ArrayAdapter<String> LoudnessAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudness);
+        spinner2.setAdapter(LoudnessAdapter);
 
         //spinner3
-        List<String> beat = new ArrayList<String>(Arrays.asList("select","b1","b2", "b3","b4","b5","b6","b7"));
+        List<String> beat = new ArrayList<String>(Arrays.asList("select","Slow","Medium","Fast"));
         spinner3 = findViewById(R.id.spinner3);
 
         ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beat);
