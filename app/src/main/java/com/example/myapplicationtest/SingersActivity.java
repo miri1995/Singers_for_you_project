@@ -28,7 +28,9 @@ import java.util.List;
 public class SingersActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
-    List<String> genres = new ArrayList<String>();
+    final List<String> genres = new ArrayList<String>();
+
+
 
 
     @Override
@@ -39,7 +41,7 @@ public class SingersActivity extends AppCompatActivity {
       //  Connector connector;
       //  connector = new Connector();
 
-        Connection con = DBConnection.getInstance().getConnection(); // DB connection
+        Connection con=DBConnection.getInstance().getConnection(); // DB connection
         Thread t = new Thread( () -> {
         String q3="select genre from genre";
 
@@ -55,11 +57,7 @@ public class SingersActivity extends AppCompatActivity {
         });
         t.start();
         System.out.println(genres);
-        try {
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
         //   List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
         // connecting
         //if (!Connector.getConnection())

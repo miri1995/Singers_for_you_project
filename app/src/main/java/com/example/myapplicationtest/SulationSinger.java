@@ -18,18 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SulationSinger  extends AppCompatActivity {
-    Filters filters;
+    Filters filters=new Filters();
     Priority priority;
     List<String> artists = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
+        Query query =new Query();
+        String q3= query.UserInput(filters.getGenre(),filters.getLoudness(),priority.getPrioLoudness(),filters.getTempo(),priority.getPrioTempo());
         Connection con = DBConnection.getInstance().getConnection(); // DB connection
         Thread t = new Thread( () -> {
             artists.clear();
-            Query query =new Query();
-            String q3= query.UserInput(filters.getGenre(),filters.getLoudness(),priority.getPrioLoudness(),filters.getTempo(),priority.getPrioTempo());
 
             try (Statement stmt = con.createStatement();
                  ResultSet rs = stmt.executeQuery(q3);) {
