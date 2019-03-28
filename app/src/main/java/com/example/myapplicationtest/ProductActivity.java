@@ -69,7 +69,7 @@ public class ProductActivity extends AppCompatActivity {
             location2 =spinner4.getSelectedItem().toString();
         }
 
-        filters = new Filters(genre2,target_Audience2,beat2,location2);
+        filters = new Filters(genre2,target_Audience2,beat2);
 
         Intent intent1 = new Intent(ProductActivity.this, ParioritySingers.class);
         intent1.putExtra("com.example.myapplicationtest.Filters", filters);

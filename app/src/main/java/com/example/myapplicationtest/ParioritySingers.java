@@ -11,12 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.example.myapplicationtest.Logic.Priority;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ParioritySingers extends AppCompatActivity {
-    Filters filters;
+    Priority priority;
     Spinner spinner1, spinner2, spinner3, spinner4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,57 +26,57 @@ public class ParioritySingers extends AppCompatActivity {
         setContentView(R.layout.praiority_singers);
 
         //spinner1
-        List<String> genres = new ArrayList<String>(Arrays.asList("select","g1","g2", "g3","g4","g5","g6","g7"));
+        List<String> genresP = new ArrayList<String>(Arrays.asList("select","high","middle","low"));
         spinner1 = findViewById(R.id.spinner);
 
-        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genres);
+        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genresP);
         spinner1.setAdapter(generesAdapter);
 
         //spinner2
-        List<String> audience = new ArrayList<String>(Arrays.asList("select","a1","a2", "a3","a4","a5","a6","a7"));
+        List<String> loudnessP = new ArrayList<String>(Arrays.asList("select","high","middle","low"));
         spinner2 = findViewById(R.id.spinner2);
 
-        ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,audience);
+        ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudnessP);
         spinner2.setAdapter(AudienceAdapter);
 
         //spinner3
-        List<String> beat = new ArrayList<String>(Arrays.asList("select","b1","b2", "b3","b4","b5","b6","b7"));
+        List<String> beatP = new ArrayList<String>(Arrays.asList("select","high","middle","low"));
         spinner3 = findViewById(R.id.spinner3);
 
-        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beat);
+        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beatP);
         spinner3.setAdapter(beatAdapter);
 
         //spinner4
-        List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
-        spinner4 = findViewById(R.id.spinner4);
+     //   List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
+      //  spinner4 = findViewById(R.id.spinner4);
 
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
-        spinner4.setAdapter(locationAdapter);
+     //   ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
+      //  spinner4.setAdapter(locationAdapter);
 
     }
     public void second_click(View view) {
 
-        String genre2 =null;
-        String target_Audience2 = null;
-        String beat2=null;
-        String location2=null;
+        String genreP2 =null;
+        String loudnessP2 = null;
+        String beatP2=null;
+     //   String location2=null;
 
         if(spinner1.getSelectedItem()!=null){
-            genre2 =spinner1.getSelectedItem().toString();
+            genreP2 =spinner1.getSelectedItem().toString();
         }
         if(spinner2.getSelectedItem()!=null){
-            target_Audience2 =spinner2.getSelectedItem().toString();
+            loudnessP2 =spinner2.getSelectedItem().toString();
         }
         if(spinner3.getSelectedItem()!=null){
-            beat2 =spinner3.getSelectedItem().toString();
+            beatP2 =spinner3.getSelectedItem().toString();
         }
-        if(spinner4.getSelectedItem()!=null){
+      /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
-        }
+        }*/
 
-        if(genre2==null || target_Audience2==null || beat2==null || location2==null||
-                genre2.equals("select") || target_Audience2.equals("select") ||
-                beat2.equals("select") || location2.equals("select")){
+        if(genreP2==null || loudnessP2==null || beatP2==null ||
+                genreP2.equals("select") || loudnessP2.equals("select") ||
+                beatP2.equals("select") ){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Error Choose");
@@ -98,10 +100,10 @@ public class ParioritySingers extends AppCompatActivity {
         }else { //only if all filter selected
 
 
-            filters = new Filters(genre2, target_Audience2, beat2, location2);
+            priority = new Priority(genreP2, loudnessP2, beatP2);
 
             Intent intent1 = new Intent(ParioritySingers.this, SulationSinger.class);
-            intent1.putExtra("com.example.myapplicationtest.Filters", filters);
+            intent1.putExtra("com.example.myapplicationtest.Logic.Priority", priority);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
 

@@ -1,58 +1,60 @@
 package com.example.myapplicationtest.Logic;
 
 
+import java.io.Serializable;
 
-public class Priority {
-    private String prioGenre="low";
-    private String prioloudness="high";
-    private String priotempo="medium";
-   // private Filters filters = new Filters("genre","loudness","tempo");
+public class Priority implements Serializable {
+    private String prioGenre;
+    private String prioloudness;
+    private String priotempo;
+    // private Filters filters = new Filters("genre","loudness","tempo");
 
-    public Priority(String prioGenre, String prioloudness, String priotempo)
-    {
-        this.prioGenre=prioGenre;
+    public Priority(String prioGenre, String prioloudness, String priotempo) {
+        this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
-        this.priotempo= priotempo;
+        this.priotempo = priotempo;
         //initialize();
 
     }
 
-    public Priority(){
-        this.prioGenre=prioGenre;
+    public Priority() {
+        this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
-        this.priotempo= priotempo;
+        this.priotempo = priotempo;
     }
 
     /**
      * @return genre = chosen genre
      */
-    public String getGenre() {
+    public String getPrioGenre() {
         return prioGenre;
     }
+
     /**
      * @return loudness = chosen loudness
      */
-    public String getLoudness() {
+    public String getPrioLoudness() {
         return prioloudness;
     }
+
     /**
      * @return tempo = chosen tempo
      */
-    public String getTempo() {
+    public String getPrioTempo() {
         return priotempo;
     }
     /**
      * connect
      */
-       public void getCon(Filters filters,Priority priority) {
+      /* public void getCon(Filters filters,Priority priority) {
         if (filters.getGenre() != null) {
             //StartConnector m = new StartConnector();
            // m.initialize(filters,priority);
         }
-    }
+    }*/
 
-        public void initialize(Filters filters){
+     /*   public void initialize(Filters filters){
             getCon(filters,this);
-        }
-    }
+        }*/
 
+}

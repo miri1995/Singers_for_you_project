@@ -8,11 +8,49 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
-public class SulationSinger  extends AppCompatActivity {
-    Filters filter;
+import com.example.myapplicationtest.Logic.Priority;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SulationSinger  extends AppCompatActivity {
+    Filters filters;
+    Priority priority;
+    List<String> artists = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        Connection con = DBConnection.getInstance().getConnection(); // DB connection
+        Thread t = new Thread( () -> {
+            artists.clear();
+            Query query =new Query();
+            String q3= query.UserInput(filters.getGenre(),filters.getLoudness(),priority.getPrioLoudness(),filters.getTempo(),priority.getPrioTempo());
+
+            try (Statement stmt = con.createStatement();
+                 ResultSet rs = stmt.executeQuery(q3);) {
+                while (rs.next() == true) {
+                    artists.add(rs.getString("genre"));
+                }
+
+            } catch (SQLException e) {
+                System.out.println("ERROR executeQuery - " + e.getMessage());
+            }
+        });
+        t.start();
+        System.out.println(artists);
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers);
@@ -21,11 +59,10 @@ public class SulationSinger  extends AppCompatActivity {
 
         Intent intent1 = getIntent();
         if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
-            filter = (Filters) intent1.getSerializableExtra("com.example.myapplicationtest.Filters");
+            filters = (Filters) intent1.getSerializableExtra("com.example.myapplicationtest.Filters");
         }
 
-        String[] resultArray = {"result1","result2","result3","result4",
-                "result5"};
+        List<String> resultArray = artists;
         //ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.activity_list_item, android.R.id.text1, resultArray);

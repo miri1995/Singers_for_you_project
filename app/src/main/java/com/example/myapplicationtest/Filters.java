@@ -1,53 +1,59 @@
 package com.example.myapplicationtest;
 
+import com.example.myapplicationtest.Logic.Priority;
+
 import java.io.Serializable;
 
 public class Filters implements Serializable {
 
     private String genre;
-    private String target_Audience;
-    private String beat;
-    private String location;
+    private String loudness;
+    private String tempo;
+    //  private Priority priority = new Priority("high","medium","low");
 
-    public Filters(String Genre1, String Target_Audience1, String Beat1, String Location1) {
-        this.genre = Genre1;
-        this.target_Audience = Target_Audience1;
-        this.beat = Beat1;
-        this.location = Location1;
+    public Filters(String genre, String loudness, String tempo)
+    {
+        this.genre=genre;
+        this.loudness = loudness;
+        this.tempo = tempo;
+        //getConPrio(this);
     }
 
-    public Filters() {
+    public Filters(){
+        genre=getGenre();
+        loudness=getLoudness();
+        tempo=getTempo();
     }
 
-    public String getBeat() {
-        return beat;
-    }
-
+    /**
+     * @return genre = chosen genre
+     */
     public String getGenre() {
         return genre;
     }
-
-    public String getLocation() {
-        return location;
+    /**
+     * @return loudness = chosen loudness
+     */
+    public String getLoudness() {
+        return loudness;
     }
-
-    public String getTarget_Audience() {
-        return target_Audience;
+    /**
+     * @return tempo = chosen tempo
+     */
+    public String getTempo() {
+        return tempo;
     }
+    /**
+     * connect
+     */
+  /*  public void getConPrio(com.example.myapplicationtest.Logic.Filters filters){
+        if (genre!=null){
+            Priority m=new Priority();
+            m.initialize(filters);
+        }
+    }*/
 
-    public void setBeat(String beat) {
-        this.beat = beat;
-    }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
 
-    public void setTarget_Audience(String target_Audience) {
-        this.target_Audience = target_Audience;
-    }
 }

@@ -29,6 +29,8 @@ public class SingersActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
     List<String> genres = new ArrayList<String>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +55,12 @@ public class SingersActivity extends AppCompatActivity {
         });
         t.start();
         System.out.println(genres);
-    //   List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //   List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
         // connecting
         //if (!Connector.getConnection())
        //     return;
@@ -67,7 +74,7 @@ public class SingersActivity extends AppCompatActivity {
         } catch(InterruptedException e) {
             System.out.println("got interrupted!");
         }*/
-//        System.out.println("Done :)");
+      // System.out.println("Done :)");
 
 
      //  Helper helper=new Helper();
@@ -99,40 +106,40 @@ public class SingersActivity extends AppCompatActivity {
         spinner3.setAdapter(beatAdapter);
 
         //spinner4
-        List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
-        spinner4 = findViewById(R.id.spinner4);
+     //   List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
+     //   spinner4 = findViewById(R.id.spinner4);
 
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
-        spinner4.setAdapter(locationAdapter);
+     //   ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
+     //   spinner4.setAdapter(locationAdapter);
 
     }
 
 
 
 
-    public void second_click(View view) {
+    public void filters_click(View view) {
 
         String genre2 =null;
-        String target_Audience2 = null;
+        String loudness2 = null;
         String beat2=null;
-        String location2=null;
+       // String location2=null;
 
         if(spinner1.getSelectedItem()!=null){
             genre2 =spinner1.getSelectedItem().toString();
         }
         if(spinner2.getSelectedItem()!=null){
-            target_Audience2 =spinner2.getSelectedItem().toString();
+            loudness2 =spinner2.getSelectedItem().toString();
         }
         if(spinner3.getSelectedItem()!=null){
             beat2 =spinner3.getSelectedItem().toString();
         }
-        if(spinner4.getSelectedItem()!=null){
+      /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
-        }
+        }*/
 
-        if(genre2==null || target_Audience2==null || beat2==null || location2==null||
-                genre2.equals("select") || target_Audience2.equals("select") ||
-                beat2.equals("select") || location2.equals("select")){
+        if(genre2==null || loudness2==null || beat2==null ||
+                genre2.equals("select") || loudness2.equals("select") ||
+                beat2.equals("select") ){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Error Choose");
@@ -156,9 +163,7 @@ public class SingersActivity extends AppCompatActivity {
         }else { //only if all filter selected
 
 
-            filters = new Filters(genre2, target_Audience2, beat2, location2);
-
-
+            filters = new Filters(genre2, loudness2, beat2);
 
 
             Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
