@@ -166,7 +166,7 @@ public class SingersActivity extends AppCompatActivity {
 
 
             Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
-            intent1.putExtra("com.example.myapplicationtest.Logic.Filters", filters);
+            intent1.putExtra("ccom.example.myapplicationtest.Logic.Filters", filters);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
 

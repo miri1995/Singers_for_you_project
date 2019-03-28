@@ -18,9 +18,9 @@ public class Filters implements Serializable {
     }
 
     public Filters(){
-        genre=getGenre();
+      /*  genre=getGenre();
         loudness=getLoudness();
-        tempo=getTempo();
+        tempo=getTempo();*/
     }
 
     /**
