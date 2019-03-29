@@ -70,7 +70,7 @@ public class SulationSinger  extends AppCompatActivity {
 
 
         List<String> resultArray = artists;
-        //ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
+        ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.activity_list_item, android.R.id.text1, resultArray);
         ListView listView = findViewById(R.id.result_list);
