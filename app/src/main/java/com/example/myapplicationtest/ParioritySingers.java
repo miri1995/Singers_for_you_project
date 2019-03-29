@@ -40,7 +40,7 @@ public class ParioritySingers extends AppCompatActivity {
         ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudnessP);
         spinner2.setAdapter(AudienceAdapter);
 
-        //spinner3
+        //spinner3 b
         List<String> beatP = new ArrayList<String>(Arrays.asList("select","high","medium","low"));
         spinner3 = findViewById(R.id.spinner3);
 
