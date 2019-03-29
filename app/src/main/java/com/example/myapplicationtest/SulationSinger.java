@@ -76,6 +76,9 @@ public class SulationSinger  extends AppCompatActivity {
         ListView listView = findViewById(R.id.result_list);
         listView.setAdapter(adapter);
 
+
+
+
        /* Button button = (Button) findViewById(R.id.allSol_buttom);
         button.setOnClickListener( new View.OnClickListener()
         {

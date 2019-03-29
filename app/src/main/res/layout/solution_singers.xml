@@ -28,8 +28,7 @@
             android:layout_alignEnd="@+id/textView3"
             android:layout_marginTop="26dp"
             android:layout_marginEnd="-8dp"
-            android:textColor="@color/colorAccent"
-            />
+             />
 
         <TextView
             android:id="@+id/textView3"
@@ -55,7 +54,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="130dp"
             android:layout_marginBottom="24dp"
-            android:onClick="back_click"
+
             android:text="@string/back_button" />
 
     </RelativeLayout>

@@ -119,7 +119,42 @@ public class Query {
      */
     public String UserInput(String genre,String loudness,String tempo,String prioLoudness,String prioTempo){
         HashMap<String,Integer> priority = new HashMap<>();
-        if(prioLoudness.equals("high")){
+        switch(prioLoudness){
+            case "high":
+                priority.put(prioLoudness,0);
+                if(prioTempo.equals("medium")){
+                    priority.put(prioTempo,30);
+                    //priority.put(prioGenre,val);
+                }
+                if(prioTempo.equals("low")){
+                    priority.put(prioTempo,60);
+                    //priority.put(prioGenre,val);
+                }
+                break;
+            case "medium":
+                priority.put(prioLoudness,6);
+                if(prioTempo.equals("high")){
+                    priority.put(prioTempo,0);
+                    //priority.put(prioGenre,val);
+                }
+                if(prioTempo.equals("low")){
+                    priority.put(prioTempo,60);
+                    //priority.put(prioGenre,val);
+                }
+                break;
+            case "low":
+                if(prioTempo.equals("high")){
+                    priority.put(prioTempo,0);
+                    //priority.put(prioGenre,val);
+                }
+                if(prioTempo.equals("medium")){
+                    priority.put(prioTempo,30);
+                    //priority.put(prioGenre,val);
+                }
+                break;
+
+        }
+       /* if(prioLoudness.equals("high")){
             priority.put(prioLoudness,0);
             if(prioTempo.equals("medium")){
                 priority.put(prioTempo,30);
@@ -152,7 +187,7 @@ public class Query {
                 //priority.put(prioGenre,val);
             }
 
-        }
+        }*/
         String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo);
         return q;
     }
