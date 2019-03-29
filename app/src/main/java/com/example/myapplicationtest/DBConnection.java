@@ -46,6 +46,7 @@ public class DBConnection {
             }
         } catch (Exception ex) {}
         return conn;
+
     }
     /**
      * Open the connection to the DB
@@ -111,5 +112,23 @@ public class DBConnection {
             System.out.println("Unable to close the connection - " + e.getMessage());
         }
 
+    }
+
+    public void makeQuery(String query,List<String> result,String colName){
+        Thread t = new Thread( () -> {
+            try (Statement stmt = conn.createStatement();
+                 ResultSet rs = stmt.executeQuery(query);) {
+                while (rs.next()) {
+                    result.add(rs.getString(colName));
+                }
+
+            } catch (SQLException e) {
+                System.out.println("ERROR executeQuery - " + e.getMessage());
+            }
+            synchronized (mutex) {
+                mutex.notifyAll();
+            }
+        });
+        t.start();
     }
 }

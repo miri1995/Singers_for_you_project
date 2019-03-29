@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Connector class - responsible for connection creation.
  */
-public class Connector {
+/*public class Connector {
     public static int counter;
     //Connection conn; // DB connection
     List<String> artists = new ArrayList<String>();
@@ -27,7 +27,7 @@ public class Connector {
     }*/
 
 
-    static Connection conn=null;
+    /*static Connection conn=null;
     public static boolean getConnection()
     {
         if (conn != null) return true;
@@ -70,7 +70,7 @@ public class Connector {
      * reads from configuration file the details: schema,user,password.
      * @return true if the connection was successfully set
      */
-    public boolean openConnection() {
+   /* public boolean openConnection() {
         System.out.print("Trying to connect... ");
         String host = "35.225.34.63";
         String port = "3306";
@@ -96,7 +96,7 @@ public class Connector {
                 System.out.println("Error in closing the BufferedReader");
             }
         }*/
-       try {
+    /*   try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema, user, password);
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class Connector {
     /**
      * close the connection with mysql.
      */
-    public void closeConnection() {
+   /* public void closeConnection() {
         try {
             conn.close();
         } catch (SQLException e) {
@@ -151,7 +151,7 @@ public class Connector {
         }
     }*/
 
-     public void ExecuteQuery() {
+    /* public void ExecuteQuery() {
         artists.clear();
         Query query =new Query();
         //String q3= query.UserInput(filters.getGenre(),filters.getLoudness(),priority.getLoudness(),filters.getTempo(),priority.getTempo());
@@ -169,4 +169,4 @@ public class Connector {
             System.out.println("ERROR executeQuery - " + e.getMessage());
         }
     }
-}
+}*/

@@ -1,5 +1,7 @@
 package com.example.myapplicationtest;
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ public class Query {
         int temp=0;
         String q="";
         // the base query which will be the first part of all the quries
-        String mapGenre= "SELECT distinct artists.artist_name\n" +
+        String mapGenre= "#standardSQL\n" + "SELECT distinct artists.artist_name\n" +
                 "from genre\n" +
                 "INNER JOIN genreartists on genre.genre_id = genreartists.genre_id\n" +
                 "INNER JOIN artists on artists.artist_id = genreartists.artist_id\n" +
@@ -53,15 +55,16 @@ public class Query {
                     q= mapGenre+
                             "(Select song_artist_id FROM songs WHERE song_tempo between \""+num_tempo+"\""+ "and \""+num_tempo2+"\"" + "AND song_loudness>\""+num_loudness+"\""+
                             notNull+")";
-                }else
-                    num_tempo = 170 - (int)priority.get(prioTempo);
-                    q= mapGenre+
-                            "(Select song_artist_id FROM songs WHERE song_tempo>\""+num_tempo+"\"" + "AND song_loudness>\""+num_loudness+"\""+
-                            notNull+")";
+                }else {
+                    num_tempo = 170 - (int) priority.get(prioTempo);
+                    q = mapGenre +
+                            "(Select song_artist_id FROM songs WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness>\"" + num_loudness + "\"" +
+                            notNull + ")";
+                }
                 break;
             case "Normal":
-                num_loudness = -32 - (int)priority.get(prioLoudness);
-                int num_loudness2 = -16 + (int)priority.get(prioLoudness);
+                num_loudness = -32 - ((int)priority.get(prioLoudness)/2);
+                int num_loudness2 = -16 + ((int)priority.get(prioLoudness)/2);
                 if(temp==1){
                     num_tempo = 85 + (int)priority.get(prioTempo);
                     q= mapGenre+
@@ -73,11 +76,12 @@ public class Query {
                     q= mapGenre+
                             "(Select song_artist_id FROM songs WHERE song_tempo between \""+num_tempo+"\"" + "and \""+num_tempo2+"\"" + "AND song_loudness BETWEEN \""+num_loudness+"\"" + "and \""+num_loudness2+"\"" +
                             notNull+")";
-                }else
-                    num_tempo = 170 - (int)priority.get(prioTempo);
-                    q= mapGenre+
-                            "(Select song_artist_id FROM songs WHERE song_tempo>\""+num_tempo+"\"" + "AND song_loudness BETWEEN \""+num_loudness+"\"" + "and \""+num_loudness2+"\""+
-                notNull+")";
+                }else {
+                    num_tempo = 170 - (int) priority.get(prioTempo);
+                    q = mapGenre +
+                            "(Select song_artist_id FROM songs WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                            notNull + ")";
+                }
                 break;
             case "Strong":
                 num_loudness = -32 + (int)priority.get(prioLoudness);
@@ -85,18 +89,19 @@ public class Query {
                     num_tempo = 85 + (int)priority.get(prioTempo);
                     q= mapGenre+
                             "(Select song_artist_id FROM songs WHERE song_tempo<\""+num_tempo+"\"" + " AND song_loudness<\""+num_loudness+"\"" +
-                    notNull+")";
+                            notNull+")";
                 }else if(temp==2){
                     num_tempo = 85 - ((int)priority.get(prioTempo)/2);
                     int num_tempo2 = 170 + ((int)priority.get(prioTempo)/2);
                     q= mapGenre+
                             "(Select song_artist_id FROM songs WHERE song_tempo between \""+num_tempo+"\"" + "and \""+num_tempo2+"\"" + "AND song_loudness<\""+num_loudness+"\"" +
-                    notNull+")";
-                }else
-                    num_tempo = 170 - (int)priority.get(prioTempo);
-                    q= mapGenre+
-                            "(Select song_artist_id FROM songs WHERE song_tempo>\""+num_tempo+"\"" + "AND song_loudness<\""+num_loudness+"\"" +
-                notNull+")";
+                            notNull+")";
+                }else {
+                    num_tempo = 170 - (int) priority.get(prioTempo);
+                    q = mapGenre +
+                            "(Select song_artist_id FROM songs WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness<\"" + num_loudness + "\"" +
+                            notNull + ")";
+                }
                 break;
         }
         // sends to a function that is responsible for Concatenation of the strings into final query.
@@ -112,42 +117,9 @@ public class Query {
      * @param tempo = user's choice of tempo.
      * @return q = the matching query
      */
-    public String UserInput(String genre,String loudness,String prioLoudness,String tempo,String prioTempo){
+    public String UserInput(String genre,String loudness,String tempo,String prioLoudness,String prioTempo){
         HashMap<String,Integer> priority = new HashMap<>();
-        switch(prioLoudness){
-            case "high":
-                priority.put(prioLoudness,0);
-                if(prioTempo.equals("medium")){
-                    priority.put(prioTempo,30);
-                    //priority.put(prioGenre,val);
-                }
-                if(prioTempo.equals("low")){
-                    priority.put(prioTempo,60);
-                    //priority.put(prioGenre,val);
-                }
-                break;
-            case "medium":
-                if(prioTempo.equals("high")){
-                    priority.put(prioTempo,0);
-                    //priority.put(prioGenre,val);
-                }
-                if(prioTempo.equals("low")){
-                    priority.put(prioTempo,60);
-                    //priority.put(prioGenre,val);
-                }
-                break;
-            case "low":
-                if(prioTempo.equals("high")){
-                    priority.put(prioTempo,0);
-                    //priority.put(prioGenre,val);
-                }
-                if(prioTempo.equals("medium")){
-                    priority.put(prioTempo,30);
-                    //priority.put(prioGenre,val);
-                }
-                break;
-        }
-       /* if(prioLoudness.equals("high")){
+        if(prioLoudness.equals("high")){
             priority.put(prioLoudness,0);
             if(prioTempo.equals("medium")){
                 priority.put(prioTempo,30);
@@ -159,6 +131,7 @@ public class Query {
             }
         }
         else if (prioLoudness.equals("medium")){
+            priority.put(prioLoudness,6);
             if(prioTempo.equals("high")){
                 priority.put(prioTempo,0);
                 //priority.put(prioGenre,val);
@@ -169,6 +142,7 @@ public class Query {
             }
         }
         else {
+            priority.put(prioLoudness,12);
             if(prioTempo.equals("high")){
                 priority.put(prioTempo,0);
                 //priority.put(prioGenre,val);
@@ -178,7 +152,7 @@ public class Query {
                 //priority.put(prioGenre,val);
             }
 
-        }*/
+        }
         String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo);
         return q;
     }

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.sql.Connection;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         // m.main();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        DBConnection.getInstance().getConnection(); // DB connection
     }
 
     public void find_click(View view) {

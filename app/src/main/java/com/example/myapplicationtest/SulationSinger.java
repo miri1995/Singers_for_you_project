@@ -22,6 +22,7 @@ public class SulationSinger  extends AppCompatActivity {
 
     Priority priority = new Priority();
     List<String> artists = new ArrayList<String>();
+  //  private final Object mutex = new Object();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +40,13 @@ public class SulationSinger  extends AppCompatActivity {
 
 
         Query query = new Query();
-        String q3 = query.UserInput("hip_hop", "Normal", priority.getPrioLoudness(), "Medium", priority.getPrioTempo());
-        //String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getPrioLoudness(),priority.getFilters().getTempo(),priority.getPrioTempo());
-        Connection con = DBConnection.getInstance().getConnection(); // DB connection
-        Thread t = new Thread(() -> {
-            artists.clear();
+      //  String q3 = query.UserInput("hip_hop", "Normal","medium", "high", "medium");
+        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getPrioLoudness(),priority.getPrioTempo());
+       // Connection con = DBConnection.getInstance().getConnection(); // DB connection
+        artists.clear();
+        DBConnection.getInstance().makeQuery(q3,artists,"artist_name");
+     /*   Thread t = new Thread(() -> {
+
 //mnk
             try (Statement stmt = con.createStatement();
                  ResultSet rs = stmt.executeQuery(q3);) {
@@ -54,14 +57,16 @@ public class SulationSinger  extends AppCompatActivity {
             } catch (SQLException e) {
                 System.out.println("ERROR executeQuery - " + e.getMessage());
             }
+
         });
-        t.start();
+        t.start();*/
         System.out.println(artists);
-        try {
+    /*    try {
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+    DBConnection.getInstance().closeConnection();
 
 
         List<String> resultArray = artists;

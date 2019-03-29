@@ -42,9 +42,11 @@ public class SingersActivity extends AppCompatActivity {
       //  Connector connector;
       //  connector = new Connector();
 
-        Connection con=DBConnection.getInstance().getConnection(); // DB connection
-        Thread t = new Thread( () -> {
+      //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
         String q3="select genre from genre";
+        DBConnection.getInstance().makeQuery(q3,genres,"genre");
+        /*Thread t = new Thread( () -> {
+
 
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(q3);) {
@@ -55,8 +57,8 @@ public class SingersActivity extends AppCompatActivity {
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
         }
-        });
-        t.start();
+        });*/
+        //t.start();
         System.out.println(genres);
 
         //   List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
@@ -166,7 +168,7 @@ public class SingersActivity extends AppCompatActivity {
 
             //blabkajj
             Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
-            intent1.putExtra("ccom.example.myapplicationtest.Logic.Filters", filters);
+            intent1.putExtra("com.example.myapplicationtest.Logic.Filters", filters);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
 
