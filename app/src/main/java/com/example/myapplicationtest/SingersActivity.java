@@ -44,7 +44,7 @@ public class SingersActivity extends AppCompatActivity {
 
       //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
         String q3="select genre from genre";
-        DBConnection.getInstance().makeQuery(q3,genres,"genre");
+        DBConnection.getInstance(q3,genres,"genre").getConnection();
         /*Thread t = new Thread( () -> {
 
 

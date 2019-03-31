@@ -24,8 +24,9 @@
             android:id="@+id/result_list"
             android:layout_width="195dp"
             android:layout_height="311dp"
-            android:layout_below="@+id/textView3"
-            android:layout_alignEnd="@+id/textView3"
+
+            android:drawSelectorOnTop="false"
+
             android:layout_marginTop="26dp"
             android:layout_marginEnd="-8dp"
              />

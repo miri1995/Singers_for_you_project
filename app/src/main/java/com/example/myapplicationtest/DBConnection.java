@@ -16,6 +16,7 @@ public class DBConnection {
     private static DBConnection instance;
     private final List<String> artists = new ArrayList<String>();
     private final Object mutex = new Object();
+    private final Object mutex2 = new Object();
 
     /**
      * constructor
@@ -27,10 +28,12 @@ public class DBConnection {
      * @return the instance of DBconnection
      */
 
-    public static DBConnection getInstance() {
+    public static DBConnection getInstance(String query,List<String> result,String colName) {
         if (instance == null) {
             instance = new DBConnection();
             instance.openConnection();
+        }else{
+            instance.makeQuery( query,result, colName);
         }
         return instance;
     }
@@ -44,8 +47,19 @@ public class DBConnection {
             synchronized (mutex) {
                 mutex.wait();
             }
+
         } catch (Exception ex) {}
         return conn;
+
+    }
+    public void getConnection2() {
+        try {
+            synchronized (mutex2) {
+                mutex2.wait();
+            }
+
+        } catch (Exception ex) {}
+        //return conn;
 
     }
     /**
@@ -93,6 +107,7 @@ public class DBConnection {
             }
         });
         t.start();
+
         System.out.println(artists);
         return true;
     }
@@ -125,8 +140,8 @@ public class DBConnection {
             } catch (SQLException e) {
                 System.out.println("ERROR executeQuery - " + e.getMessage());
             }
-            synchronized (mutex) {
-                mutex.notifyAll();
+            synchronized (mutex2) {
+                mutex2.notifyAll();
             }
         });
         t.start();
