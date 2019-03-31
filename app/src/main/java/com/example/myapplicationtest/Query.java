@@ -28,7 +28,7 @@ public class Query {
      * @param tempo = user's choice of tempo.
      * @return sol = the final query
      */
-    public String MapBeat(String genre,String loudness,String tempo,HashMap priority,String prioLoudness,String prioTempo){
+    public String MapBeat(String genre,String loudness,String tempo,HashMap priority,String prioLoudness,String prioTempo,String prioGenre,List<String> otherGenre){
         int temp=0;
         String q="";
         // the base query which will be the first part of all the quries
@@ -116,7 +116,7 @@ public class Query {
                 break;
         }
         // sends to a function that is responsible for Concatenation of the strings into final query.
-        String sol=GetSol(q,genre);
+        String sol=GetSol(q,genre,prioGenre,otherGenre);
         //returns the final query
         return sol;
     }
@@ -129,46 +129,54 @@ public class Query {
      * @param tempo = user's choice of tempo.
      * @return q = the matching query
      */
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public String UserInput(String genre, String loudness, String tempo, String prioLoudness, String prioTempo){
+
+    public String UserInput(String genre, String loudness, String tempo,String prioGenre, String prioLoudness, String prioTempo){
         HashMap<String,Integer> priority = new HashMap<>();
+        List<String> couples=new ArrayList<>();
+        List<String> otherGenre=new ArrayList<>();
         switch(prioLoudness){
             case "high":
                 priority.put(prioLoudness,0);
                 if(prioTempo.equals("medium")){
                     priority.put(prioTempo,30);
-                    orderGenre(20,genre);
+                    couples = orderGenre(genre,prioGenre);
+                    otherGenre = getOtherGenre(couples,genre);
                 }
                 if(prioTempo.equals("low")){
                     priority.put(prioTempo,60);
-                    //priority.put(prioGenre,val);
+                    couples = orderGenre(genre,prioGenre);
+                    otherGenre = getOtherGenre(couples,genre);
                 }
                 break;
             case "medium":
                 priority.put(prioLoudness,6);
                 if(prioTempo.equals("high")){
                     priority.put(prioTempo,0);
-                    //priority.put(prioGenre,val);
+                    couples = orderGenre(genre,prioGenre);
+                    otherGenre = getOtherGenre(couples,genre);
                 }
                 if(prioTempo.equals("low")){
                     priority.put(prioTempo,60);
-                    //priority.put(prioGenre,val);
+                   //probably something else
                 }
                 break;
             case "low":
+                priority.put(prioLoudness,12);
                 if(prioTempo.equals("high")){
                     priority.put(prioTempo,0);
-                    //priority.put(prioGenre,val);
+                    couples = orderGenre(genre,prioGenre);
+                    otherGenre = getOtherGenre(couples,genre);
+
                 }
                 if(prioTempo.equals("medium")){
                     priority.put(prioTempo,30);
-                    //priority.put(prioGenre,val);
+                    //probably something else
                 }
                 break;
 
         }
 
-        String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo);
+        String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo,prioGenre,otherGenre);
         return q;
     }
 
@@ -179,30 +187,50 @@ public class Query {
      * @param genre = user's choice of genre.
      * @return lastQ = the final query
      */
-    public String GetSol(String BeatQ, String genre){
+    public String GetSol(String BeatQ, String genre,String prioGenre,List<String> otherGenre){
         String hotness=" order by artists.artist_hotness DESC";
-        String lastQ=BeatQ+" AND genre.genre=\""+genre+"\""+hotness;
+        StringBuilder quGenre = new StringBuilder();
+        if(prioGenre.equals("medium") || prioGenre.equals("low")) {
+            for (int i = 0; i < otherGenre.size(); i++) {
+               quGenre.append(" OR genre.genre=\"" + otherGenre.get(i) + "\"");
+            }
+
+        }
+        String lastQ=BeatQ+" AND (genre.genre=\""+genre+"\""+quGenre+")"+hotness;
 
         return lastQ;
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public List orderGenre(int prioGenre, String genre){
+
+    public List<String> orderGenre(String genre, String prioGenre){
+        int threshold =20;
         GenreDistance genreDistance = GenreDistance.getInstance();
         Map<String, Integer> map = genreDistance.getMap();
         Map<String, Integer> miniMap = new HashMap<>();
         List<String> couples=new ArrayList<>();
         List<Integer> vals = new ArrayList<>();
-               for (Map.Entry<String, Integer> entry :map.entrySet()) {
-            if(entry.getKey().contains(genre)){
-                if(entry.getValue()>prioGenre){
-                    miniMap.put(entry.getKey(),entry.getValue());
-                    vals.add(entry.getValue());
+        for (Map.Entry<String, Integer> entry :map.entrySet()) {
+            if (entry.getKey().contains(genre)) {
+                switch (prioGenre) {
+                    case "medium":
+                        if (entry.getValue() > threshold) {
+                            miniMap.put(entry.getKey(), entry.getValue());
+                            vals.add(entry.getValue());
+                        }
+                        break;
+                    case "low":
+                        if (entry.getValue() <= threshold) {
+                            miniMap.put(entry.getKey(), entry.getValue());
+                            vals.add(entry.getValue());
+                        }
+                        break;
+
                 }
             }
         }
         Collections.sort(vals);
+        Collections.reverse(vals);
         //int i=0;
         for(int i=0;i<vals.size();i++) {
             for (Map.Entry<String, Integer> entry : miniMap.entrySet()) {
@@ -219,6 +247,21 @@ public class Query {
 
         return couples;
 
+    }
+
+    public List getOtherGenre(List<String> couples,String genre){
+        List <String> secondGenre = new ArrayList<>();
+        for(int i=0;i<couples.size();i++){
+            String[] tokens = couples.get(i).split(",");
+            if(!tokens[0].equals(genre)){
+                secondGenre.add(tokens[0]);
+            }
+            else{
+                secondGenre.add(tokens[1]);
+            }
+
+        }
+        return secondGenre;
     }
 
 
