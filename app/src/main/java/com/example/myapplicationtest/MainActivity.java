@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +21,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DBConnection.getInstance().getConnection(); // DB connection
+        String text="";
+        try {
+            InputStream is = getAssets().open("pair3.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            text = new String(buffer);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        GenreDistance genreDistance = GenreDistance.getInstance();
+        List<List<String>> GenreCouples = new ArrayList<>();
+        try {
+            GenreCouples = genreDistance.ReadFile(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        genreDistance.countPairs(GenreCouples);
+
     }
 
     public void find_click(View view) {

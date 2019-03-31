@@ -2,8 +2,19 @@ package com.example.myapplicationtest;
 
 
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Query class - responsible for making the queries.
@@ -110,6 +121,7 @@ public class Query {
         return sol;
     }
 
+
     /**
      * receives the user's choices and compose from them the matching query.
      * @param genre = user's choice of genre
@@ -117,14 +129,15 @@ public class Query {
      * @param tempo = user's choice of tempo.
      * @return q = the matching query
      */
-    public String UserInput(String genre,String loudness,String tempo,String prioLoudness,String prioTempo){
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public String UserInput(String genre, String loudness, String tempo, String prioLoudness, String prioTempo){
         HashMap<String,Integer> priority = new HashMap<>();
         switch(prioLoudness){
             case "high":
                 priority.put(prioLoudness,0);
                 if(prioTempo.equals("medium")){
                     priority.put(prioTempo,30);
-                    //priority.put(prioGenre,val);
+                    orderGenre(20,genre);
                 }
                 if(prioTempo.equals("low")){
                     priority.put(prioTempo,60);
@@ -154,40 +167,7 @@ public class Query {
                 break;
 
         }
-       /* if(prioLoudness.equals("high")){
-            priority.put(prioLoudness,0);
-            if(prioTempo.equals("medium")){
-                priority.put(prioTempo,30);
-                //priority.put(prioGenre,val);
-            }
-            if(prioTempo.equals("low")){
-                priority.put(prioTempo,60);
-                //priority.put(prioGenre,val);
-            }
-        }
-        else if (prioLoudness.equals("medium")){
-            priority.put(prioLoudness,6);
-            if(prioTempo.equals("high")){
-                priority.put(prioTempo,0);
-                //priority.put(prioGenre,val);
-            }
-            if(prioTempo.equals("low")){
-                priority.put(prioTempo,60);
-                //priority.put(prioGenre,val);
-            }
-        }
-        else {
-            priority.put(prioLoudness,12);
-            if(prioTempo.equals("high")){
-                priority.put(prioTempo,0);
-                //priority.put(prioGenre,val);
-            }
-            if(prioTempo.equals("medium")){
-                priority.put(prioTempo,30);
-                //priority.put(prioGenre,val);
-            }
 
-        }*/
         String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo);
         return q;
     }
@@ -205,5 +185,41 @@ public class Query {
 
         return lastQ;
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public List orderGenre(int prioGenre, String genre){
+        GenreDistance genreDistance = GenreDistance.getInstance();
+        Map<String, Integer> map = genreDistance.getMap();
+        Map<String, Integer> miniMap = new HashMap<>();
+        List<String> couples=new ArrayList<>();
+        List<Integer> vals = new ArrayList<>();
+               for (Map.Entry<String, Integer> entry :map.entrySet()) {
+            if(entry.getKey().contains(genre)){
+                if(entry.getValue()>prioGenre){
+                    miniMap.put(entry.getKey(),entry.getValue());
+                    vals.add(entry.getValue());
+                }
+            }
+        }
+        Collections.sort(vals);
+        //int i=0;
+        for(int i=0;i<vals.size();i++) {
+            for (Map.Entry<String, Integer> entry : miniMap.entrySet()) {
+
+                if (entry.getValue() == vals.get(i)) {
+                    if(!couples.contains(entry.getKey())){
+                        couples.add(entry.getKey());
+                    }
+
+                }
+
+            }
+        }
+
+        return couples;
+
+    }
+
 
 }

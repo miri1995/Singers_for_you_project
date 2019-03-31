@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.example.myapplicationtest.Logic.Filters;
 import com.example.myapplicationtest.Logic.Priority;
+//import assets.pair3.txt;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -37,7 +38,6 @@ public class SulationSinger  extends AppCompatActivity {
         // if (intent2.hasExtra("com.example.myapplicationtest.Priority")) {
         priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.Logic.Priority");
         // }
-
 
         Query query = new Query();
       //  String q3 = query.UserInput("hip_hop", "Normal","medium", "high", "medium");
