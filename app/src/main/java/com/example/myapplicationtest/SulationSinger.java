@@ -26,27 +26,13 @@ import java.util.List;
 
 public class SulationSinger  extends Activity {
 
-    String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry",
-            "WebOS","Ubuntu","Windows7","Max OS X"};
+   
     Priority priority = new Priority();
     List<String> artists = new ArrayList<String>();
   //  private final Object mutex = new Object();
 
 
     @Override
-   /* protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.solution_singers);
-
-        ArrayAdapter adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, mobileArray);
-
-        ListView listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-    }*/
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
 
 

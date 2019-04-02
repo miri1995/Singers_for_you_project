@@ -30,7 +30,7 @@ public class SingersActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
      List<String> genres = new ArrayList<String>();
-
+//b
 
 
 
