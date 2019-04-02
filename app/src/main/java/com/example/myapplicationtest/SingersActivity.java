@@ -29,7 +29,7 @@ import java.util.List;
 public class SingersActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
-    final List<String> genres = new ArrayList<String>();
+     List<String> genres = new ArrayList<String>();
 
 
 
@@ -44,7 +44,7 @@ public class SingersActivity extends AppCompatActivity {
 
       //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
         String q3="select genre from genre";
-        DBConnection.getInstance(q3,genres,"genre").getConnection();
+        DBConnection.getInstance().makeQuery(q3,genres,"genre");
         /*Thread t = new Thread( () -> {
 
 

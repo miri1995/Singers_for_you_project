@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         // m.main();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DBConnection.getInstance(null,null,null).getConnection(); // DB connection
+        DBConnection.getInstance().getConnection(); // DB connection
         String text="";
         try {
             InputStream is = getAssets().open("pair3.txt");

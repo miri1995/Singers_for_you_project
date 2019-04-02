@@ -1,5 +1,7 @@
 package com.example.myapplicationtest;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.*;
@@ -16,7 +18,8 @@ public class DBConnection {
     private static DBConnection instance;
     private final List<String> artists = new ArrayList<String>();
     private final Object mutex = new Object();
-    private final Object mutex2 = new Object();
+   // private final Object mutex2 = new Object();
+    //private  List<String> result;
 
     /**
      * constructor
@@ -28,13 +31,14 @@ public class DBConnection {
      * @return the instance of DBconnection
      */
 
-    public static DBConnection getInstance(String query,List<String> result,String colName) {
+    public static DBConnection getInstance() {
         if (instance == null) {
             instance = new DBConnection();
             instance.openConnection();
-        }else{
-            instance.makeQuery( query,result, colName);
-        }
+        }/*else{
+            Log.d("D","make query begin");
+            instance.makeQuery( query, colName);
+        }*/
         return instance;
     }
 
@@ -45,6 +49,7 @@ public class DBConnection {
     public java.sql.Connection getConnection() {
         try {
             synchronized (mutex) {
+                Log.d("D","mutex");
                 mutex.wait();
             }
 
@@ -52,16 +57,17 @@ public class DBConnection {
         return conn;
 
     }
-    public void getConnection2() {
+   /* public  List<String> getResult() {
         try {
             synchronized (mutex2) {
+                Log.d("D","mutex2");
                 mutex2.wait();
             }
 
         } catch (Exception ex) {}
-        //return conn;
+        return result;
 
-    }
+    }*/
     /**
      * Open the connection to the DB
      * @return true if the connection was successfully set
@@ -103,7 +109,7 @@ public class DBConnection {
             }
             System.out.println("Connected!");
             synchronized (mutex) {
-                mutex.notifyAll();
+                mutex.notify();
             }
         });
         t.start();
@@ -130,20 +136,28 @@ public class DBConnection {
     }
 
     public void makeQuery(String query,List<String> result,String colName){
+        Log.d("D","in make query");
         Thread t = new Thread( () -> {
+            Log.d("D","make query thread begin");
+            Log.d("D",conn.toString());
             try (Statement stmt = conn.createStatement();
                  ResultSet rs = stmt.executeQuery(query);) {
+                Log.d("D",rs.toString());
                 while (rs.next()) {
                     result.add(rs.getString(colName));
                 }
+                Log.d("D","result"+result);
 
             } catch (SQLException e) {
                 System.out.println("ERROR executeQuery - " + e.getMessage());
+                Log.d("D","ERROR executeQuery");
             }
-            synchronized (mutex2) {
-                mutex2.notifyAll();
+            synchronized (mutex) {
+                mutex.notify();
             }
         });
         t.start();
+        //return result;
+       // return result;
     }
 }

@@ -1,12 +1,16 @@
 package com.example.myapplicationtest;
 
+import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
 
 import com.example.myapplicationtest.Logic.Filters;
 import com.example.myapplicationtest.Logic.Priority;
@@ -17,15 +21,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class SulationSinger  extends AppCompatActivity {
+public class SulationSinger  extends Activity {
 
+    String[] mobileArray = {"Android","IPhone","WindowsMobile","Blackberry",
+            "WebOS","Ubuntu","Windows7","Max OS X"};
     Priority priority = new Priority();
     List<String> artists = new ArrayList<String>();
   //  private final Object mutex = new Object();
 
+
     @Override
+   /* protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.solution_singers);
+
+        ArrayAdapter adapter = new ArrayAdapter<String>(this,
+                R.layout.activity_listview, mobileArray);
+
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+    }*/
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
 
 
@@ -44,7 +65,8 @@ public class SulationSinger  extends AppCompatActivity {
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo());
        // Connection con = DBConnection.getInstance().getConnection(); // DB connection
         artists.clear();
-        DBConnection.getInstance(q3,artists,"artist_name").getConnection2();
+       // DBConnection.getInstance().getConnection2();
+        DBConnection.getInstance().makeQuery(q3,artists,"artist_name");
      /*   Thread t = new Thread(() -> {
 
 //mnk
@@ -60,22 +82,24 @@ public class SulationSinger  extends AppCompatActivity {
 
         });
         t.start();*/
-        System.out.println(artists);
+       System.out.println(artists);
     /*    try {
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-    DBConnection.getInstance(null,null,null).closeConnection();
+    DBConnection.getInstance().closeConnection();
 
-
+       // List<String> resultArray = new ArrayList<>();
+      //  resultArray.add("r");
+       // List<String> resultArray = new ArrayList<String>(Arrays.asList("item1", "item2", "item3"));
         List<String> resultArray = artists;
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.activity_list_item,  resultArray);
-        ListView listView = findViewById(R.id.result_list);
+                R.layout.activity_listview,  resultArray);
+        ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
-
+        Log.d("D",listView.toString());
 
 
 
