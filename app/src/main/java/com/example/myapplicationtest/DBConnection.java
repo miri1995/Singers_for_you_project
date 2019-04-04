@@ -100,16 +100,18 @@ public class DBConnection {
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
-
+                Log.d("D","c    "+conn.toString());
             } catch (SQLException e) {
+                Log.d("D",e.getMessage());
                 System.out.println("Unable to connect - " + e.getMessage());
                 conn = null;
             } catch (ClassNotFoundException e) {
+                Log.d("D",e.getMessage());
                 e.printStackTrace();
             }
             System.out.println("Connected!");
             synchronized (mutex) {
-                mutex.notify();
+                mutex.notifyAll();
             }
         });
         t.start();
@@ -153,7 +155,7 @@ public class DBConnection {
                 Log.d("D","ERROR executeQuery");
             }
             synchronized (mutex) {
-                mutex.notify();
+                mutex.notifyAll();
             }
         });
         t.start();

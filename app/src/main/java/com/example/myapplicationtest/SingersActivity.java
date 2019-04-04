@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -29,7 +30,8 @@ import java.util.List;
 public class SingersActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
-     List<String> genres = new ArrayList<String>();
+    public static List<String> geners=new ArrayList<>();
+
 //b
 
 
@@ -44,7 +46,9 @@ public class SingersActivity extends AppCompatActivity {
 
       //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
         String q3="select genre from genre";
-        DBConnection.getInstance().makeQuery(q3,genres,"genre");
+          new Download(SingersActivity.this,q3,"genre","singer").execute(); //async task for getting data from db
+        //geners=new Download(SingersActivity.this,q3,"genre").getList();
+       // DBConnection.getInstance().makeQuery(q3,genres,"genre");
         /*Thread t = new Thread( () -> {
 
 
@@ -59,8 +63,8 @@ public class SingersActivity extends AppCompatActivity {
         }
         });*/
         //t.start();
-        System.out.println(genres);
-
+        System.out.println(geners);
+        Log.d("D","singer activity"+geners);
         //   List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
         // connecting
         //if (!Connector.getConnection())
@@ -86,10 +90,10 @@ public class SingersActivity extends AppCompatActivity {
 
 
         //spinner1
-        genres.add(0,"select");
+        geners.add(0,"select");
         spinner1 = findViewById(R.id.spinner);
 
-        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genres);
+        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
         spinner1.setAdapter(generesAdapter);
 
         //spinner2

@@ -38,8 +38,8 @@
 
         <ListView
             android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_width="249dp"
+            android:layout_height="561dp" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

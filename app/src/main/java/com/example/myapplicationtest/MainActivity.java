@@ -1,6 +1,9 @@
 package com.example.myapplicationtest;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,18 +12,30 @@ import android.widget.Button;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //MainJDBC m=new MainJDBC();
-        // m.main();
+
+         final String host = "35.225.34.63";
+         final String port = "3306";
+         final String schema = "dbProject";
+         final String user = "root";
+         final String password = "0542015460mb";
+         final String url = "jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel";
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DBConnection.getInstance().getConnection(); // DB connection
+       // DBConnection.getInstance().getConnection(); // DB connection
+
         String text="";
         try {
             InputStream is = getAssets().open("pair3.txt");
@@ -56,3 +71,4 @@ public class MainActivity extends AppCompatActivity {
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     }
 }
+

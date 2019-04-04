@@ -23,19 +23,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class SulationSinger  extends Activity {
 
 
     Priority priority = new Priority();
-    List<String> artists = new ArrayList<String>();
+  //  List<String> artists = new ArrayList<String>();
   //  private final Object mutex = new Object();
-
+  public static List<String> artists=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
+        String str_result=null;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers);
         Intent intent2 = getIntent();
@@ -45,21 +46,31 @@ public class SulationSinger  extends Activity {
         Query query = new Query();
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo());
        // Connection con = DBConnection.getInstance().getConnection(); // DB connection
-        artists.clear();
+       // artists.clear();
        // DBConnection.getInstance().getConnection2();
-        DBConnection.getInstance().makeQuery(q3,artists,"artist_name");
+        //DBConnection.getInstance().makeQuery(q3,artists,"artist_name");
+        new Download(SulationSinger.this,q3,"artist_name","sol").execute(); //async task for getting data from db
+       //System.out.println(artists);
+        try {
+             str_result=new Download(SulationSinger.this,q3,"artist_name","sol").execute().get();
+            // Log.d("D","sol re "+str_result);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(str_result!=null) {
+           // Log.d("D", "in sol class: " + artists);
+            // DBConnection.getInstance().closeConnection();
 
-       System.out.println(artists);
-
-        DBConnection.getInstance().closeConnection();
-
-        List<String> resultArray = artists;
-        ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview,  resultArray);
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(adapter);
-        Log.d("D",listView.toString());
+            List<String> resultArray = artists;
+            ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    R.layout.activity_listview, resultArray);
+            ListView listView = findViewById(R.id.listView);
+            listView.setAdapter(adapter);
+           // Log.d("D", "ll" + listView.toString());
+        }
 
     }
 }

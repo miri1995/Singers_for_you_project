@@ -93,7 +93,7 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <Spinner
+        <Switch
             android:id="@+id/spinner4"
             android:layout_width="127dp"
             android:layout_gravity="fill_horizontal" />
@@ -144,5 +144,13 @@
         android:textColor="@color/colorAccent"
         android:textSize="30sp"
         android:textStyle="bold" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:max="3"
+        android:progress="2" />
 
 </RelativeLayout>
