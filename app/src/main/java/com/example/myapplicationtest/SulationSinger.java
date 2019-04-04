@@ -1,27 +1,16 @@
 package com.example.myapplicationtest;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 
-import com.example.myapplicationtest.Logic.Filters;
 import com.example.myapplicationtest.Logic.Priority;
 //import assets.pair3.txt;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -49,10 +38,10 @@ public class SulationSinger  extends Activity {
        // artists.clear();
        // DBConnection.getInstance().getConnection2();
         //DBConnection.getInstance().makeQuery(q3,artists,"artist_name");
-        new Download(SulationSinger.this,q3,"artist_name","sol").execute(); //async task for getting data from db
+        new AsyncHelper(SulationSinger.this,q3,"artist_name","sol").execute(); //async task for getting data from db
        //System.out.println(artists);
         try {
-             str_result=new Download(SulationSinger.this,q3,"artist_name","sol").execute().get();
+             str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","sol").execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
             e.printStackTrace();

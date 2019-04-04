@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,16 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.myapplicationtest.Logic.Filters;
-import com.example.myapplicationtest.Logic.Helper;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,8 +36,8 @@ public class SingersActivity extends AppCompatActivity {
 
       //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
         String q3="select genre from genre";
-          new Download(SingersActivity.this,q3,"genre","singer").execute(); //async task for getting data from db
-        //geners=new Download(SingersActivity.this,q3,"genre").getList();
+          new AsyncHelper(SingersActivity.this,q3,"genre","singer").execute(); //async task for getting data from db
+        //geners=new AsyncHelper(SingersActivity.this,q3,"genre").getList();
        // DBConnection.getInstance().makeQuery(q3,genres,"genre");
         /*Thread t = new Thread( () -> {
 

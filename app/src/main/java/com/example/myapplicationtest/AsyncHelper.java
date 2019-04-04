@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Download extends AsyncTask<Void, Void, String> {
+public class AsyncHelper extends AsyncTask<Void, Void, String> {
     ProgressDialog mProgressDialog;
     Context context;
     private String query;
@@ -22,7 +22,7 @@ public class Download extends AsyncTask<Void, Void, String> {
     private String flag;
 
 
-    public Download(Context context,String query,String colName,String flag) {
+    public AsyncHelper(Context context, String query, String colName, String flag) {
         //Log.d("D",url);
         this.context = context;
         playerList=new ArrayList<>();
