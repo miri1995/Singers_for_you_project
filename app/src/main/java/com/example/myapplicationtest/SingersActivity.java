@@ -37,48 +37,10 @@ public class SingersActivity extends AppCompatActivity {
       //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
         String q3="select genre from genre";
           new AsyncHelper(SingersActivity.this,q3,"genre","singer").execute(); //async task for getting data from db
-        //geners=new AsyncHelper(SingersActivity.this,q3,"genre").getList();
-       // DBConnection.getInstance().makeQuery(q3,genres,"genre");
-        /*Thread t = new Thread( () -> {
 
-
-        try (Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(q3);) {
-            while (rs.next() == true) {
-                genres.add(rs.getString("genre"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println("ERROR executeQuery - " + e.getMessage());
-        }
-        });*/
-        //t.start();
         System.out.println(geners);
         Log.d("D","singer activity"+geners);
-        //   List<String> l= DBConnection.getInstance().getArtists(); //TODO check here
-        // connecting
-        //if (!Connector.getConnection())
-       //     return;
-        //System.out.print(filters.getGenre());
-        // executeQuery
-        //connector.ExecuteQuery();
-        // close the connection
-        //connector.closeConnection();
-      /*  try {
-            Thread.sleep(1500);
-        } catch(InterruptedException e) {
-            System.out.println("got interrupted!");
-        }*/
-      // System.out.println("Done :)");
-
-
-     //  Helper helper=new Helper();
-      //  List<String> genres=helper.ReadFileGenre();
-
-
-
-
-
+       
         //spinner1
         geners.add(0,"select");
         spinner1 = findViewById(R.id.spinner);
