@@ -28,7 +28,9 @@ public class Query {
      * @param tempo = user's choice of tempo.
      * @return sol = the final query
      */
-    public String MapBeat(String genre,String loudness,String tempo,HashMap priority,String prioLoudness,String prioTempo,String prioGenre,List<String> otherGenre){
+    public String MapBeat(String genre,String loudness,String tempo,
+                          HashMap priority,String prioLoudness,String prioTempo,String prioGenre,
+                          List<String> otherGenre,boolean popular){
         int temp=0;
         String q="";
         // the base query which will be the first part of all the quries
@@ -116,7 +118,7 @@ public class Query {
                 break;
         }
         // sends to a function that is responsible for Concatenation of the strings into final query.
-        String sol=GetSol(q,genre,prioGenre,otherGenre);
+        String sol=GetSol(q,genre,prioGenre,otherGenre,popular);
         //returns the final query
         return sol;
     }
@@ -130,7 +132,7 @@ public class Query {
      * @return q = the matching query
      */
 
-    public String UserInput(String genre, String loudness, String tempo,String prioGenre, String prioLoudness, String prioTempo){
+    public String UserInput(String genre, String loudness, String tempo,String prioGenre, String prioLoudness, String prioTempo,boolean popular){
         HashMap<String,Integer> priority = new HashMap<>();
         List<String> couples=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
@@ -176,7 +178,7 @@ public class Query {
 
         }
 
-        String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo,prioGenre,otherGenre);
+        String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo,prioGenre,otherGenre,popular);
         return q;
     }
 
@@ -187,8 +189,14 @@ public class Query {
      * @param genre = user's choice of genre.
      * @return lastQ = the final query
      */
-    public String GetSol(String BeatQ, String genre,String prioGenre,List<String> otherGenre){
-        String hotness=" order by artists.artist_hotness DESC";
+    public String GetSol(String BeatQ, String genre,String prioGenre,List<String> otherGenre,boolean popular){
+        String hotness=null;
+        if(popular){
+             hotness=" order by artists.artist_hotness DESC";
+        }else{
+            hotness=" order by artists.artist_hotness ASC";
+        }
+
         StringBuilder quGenre = new StringBuilder();
         if(prioGenre.equals("medium") || prioGenre.equals("low")) {
             for (int i = 0; i < otherGenre.size(); i++) {

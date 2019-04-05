@@ -18,9 +18,13 @@ public class ChoiceSingerOrProduct extends AppCompatActivity {
                 Intent intent = new Intent(ChoiceSingerOrProduct.this, SingersActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.creator:
+            case R.id.poets:
                 Intent intent2 = new Intent(ChoiceSingerOrProduct.this, ProductActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.composer:
+                Intent intent3 = new Intent(ChoiceSingerOrProduct.this, ProductActivity.class);
+                startActivity(intent3);
                 break;
             default:
                 throw new RuntimeException("Unknow button ID");

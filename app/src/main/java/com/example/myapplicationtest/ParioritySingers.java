@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import com.example.myapplicationtest.Logic.Filters;
 import com.example.myapplicationtest.Logic.Priority;
@@ -21,6 +23,7 @@ import java.util.List;
 public class ParioritySingers extends AppCompatActivity {
     Priority priority;
     Spinner spinner1, spinner2, spinner3, spinner4;
+    Switch swPopular;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,12 +57,20 @@ public class ParioritySingers extends AppCompatActivity {
      //   ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
       //  spinner4.setAdapter(locationAdapter);
 
+        //switch popular
+       // List<String> genresP = new ArrayList<String>(Arrays.asList("select","high","medium","low"));
+        swPopular = findViewById(R.id.swPop);
+
+       /* ArrayAdapter<String> popularAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genresP);
+        swPopular.setAdapter(popularAdapter);*/
+
     }
     public void second_click(View view) {
 
         String genreP2 =null;
         String loudnessP2 = null;
         String beatP2=null;
+        boolean pop;
      //   String location2=null;
 
         if(spinner1.getSelectedItem()!=null){
@@ -70,6 +81,11 @@ public class ParioritySingers extends AppCompatActivity {
         }
         if(spinner3.getSelectedItem()!=null){
             beatP2 =spinner3.getSelectedItem().toString();
+        }
+        if(swPopular.isChecked()){
+            pop=true;
+        }else{
+            pop=false;
         }
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
@@ -103,7 +119,7 @@ public class ParioritySingers extends AppCompatActivity {
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
             Filters filters = (Filters) intent.getSerializableExtra("com.example.myapplicationtest.Logic.Filters");
-            priority = new Priority(genreP2, loudnessP2, beatP2,filters);
+            priority = new Priority(genreP2, loudnessP2, beatP2,filters,pop);
 
             Intent intent1 = new Intent(ParioritySingers.this, SulationSinger.class);
             intent1.putExtra("com.example.myapplicationtest.Logic.Priority", priority);

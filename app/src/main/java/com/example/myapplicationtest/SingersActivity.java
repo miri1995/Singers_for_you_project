@@ -40,7 +40,7 @@ public class SingersActivity extends AppCompatActivity {
 
         System.out.println(geners);
         Log.d("D","singer activity"+geners);
-       
+
         //spinner1
         geners.add(0,"select");
         spinner1 = findViewById(R.id.spinner);

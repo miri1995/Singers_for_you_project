@@ -10,15 +10,18 @@
     <string name="textView19">Loudness:</string>
     <string name="textView38">Beat:</string>
     <string name="textView39">Location:</string>
+    <string name="textViewPop">The most popular?</string>
     <string name="button">find!</string>
 
     <string name="textView3">results</string>
     <string name="back_button">back</string>
     <string name="button2">finish</string>
     <string name="btnSingers">Singers</string>
-    <string name="btnCreator">Creator</string>
+    <string name="btnComposer" translatable="false">Composers</string>
     <string name="btexit">Exit</string>
     <string name="Top5Sol">Top 5 for you:</string>
     <string name="allSol_button">View all solution</string>
+    <string name="btnPoets">Poets</string>
+    <string name="btMoreSolSingers">All Solution</string>
 
 </resources>

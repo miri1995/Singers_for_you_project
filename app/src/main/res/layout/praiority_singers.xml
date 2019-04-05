@@ -10,16 +10,16 @@
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/GridLayout2"
-        android:layout_width="320dp"
-        android:layout_height="240dp"
+        android:layout_width="wrap_content"
+        android:layout_height="323dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="142dp"
+        android:layout_marginBottom="109dp"
         android:columnCount="2"
         android:layoutDirection="ltr"
         android:orientation="horizontal"
-        android:rowCount="4"
+        android:rowCount="5"
         android:useDefaultMargins="true"
 
         tools:context=".ParioritySingers">
@@ -27,8 +27,8 @@
 
         <TextView
             android:id="@+id/textView36"
-            android:layout_width="172dp"
-            android:layout_height="60dp"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:fontFamily="serif-monospace"
@@ -46,8 +46,8 @@
 
         <TextView
             android:id="@+id/textView19"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
+            android:layout_width="172dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:fontFamily="serif-monospace"
             android:text="@string/textView19"
@@ -64,8 +64,8 @@
 
         <TextView
             android:id="@+id/textView38"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
+            android:layout_width="161dp"
+            android:layout_height="40dp"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:fontFamily="serif-monospace"
@@ -95,6 +95,24 @@
 
         <Switch
             android:id="@+id/spinner4"
+            android:layout_width="127dp"
+            android:layout_gravity="fill_horizontal" />
+
+        <TextView
+            android:id="@+id/textViewPop"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:fontFamily="serif-monospace"
+            android:text="@string/textViewPop"
+
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/swPop"
             android:layout_width="127dp"
             android:layout_gravity="fill_horizontal" />
 

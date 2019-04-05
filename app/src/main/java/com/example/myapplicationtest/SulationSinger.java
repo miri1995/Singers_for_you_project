@@ -3,7 +3,9 @@ package com.example.myapplicationtest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 
@@ -33,7 +35,8 @@ public class SulationSinger  extends Activity {
 
 
         Query query = new Query();
-        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo());
+        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),
+                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),priority.getPopular());
        // Connection con = DBConnection.getInstance().getConnection(); // DB connection
        // artists.clear();
        // DBConnection.getInstance().getConnection2();
@@ -52,7 +55,7 @@ public class SulationSinger  extends Activity {
            // Log.d("D", "in sol class: " + artists);
             // DBConnection.getInstance().closeConnection();
 
-            List<String> resultArray = artists;
+            List<String> resultArray = artists.subList(0,10);
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, resultArray);
@@ -61,5 +64,17 @@ public class SulationSinger  extends Activity {
            // Log.d("D", "ll" + listView.toString());
         }
 
+    }
+
+    public void allSol_click(View view) {
+        List<String> resultArray = artists;
+        ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.activity_listview, resultArray);
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+
+        Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
+        allSolButton.setVisibility(View.GONE);
     }
 }

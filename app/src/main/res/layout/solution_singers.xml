@@ -20,6 +20,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
+        <Button
+            android:id="@+id/btAllSolSingers"
+            android:layout_width="188dp"
+            android:layout_height="77dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="67dp"
+            android:background="@android:color/background_light"
+            android:onClick="allSol_click"
+            android:text="@string/btMoreSolSingers"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/txtResults"
             android:layout_width="180dp"
@@ -39,7 +55,9 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="249dp"
-            android:layout_height="561dp" />
+            android:layout_height="561dp"
+            android:layout_marginStart="98dp"
+            android:layout_marginTop="65dp"/>
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

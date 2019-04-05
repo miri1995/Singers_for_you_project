@@ -1,9 +1,10 @@
-package com.example.myapplicationtest.Logic;
+package com.example.myapplicationtest.Composer;
 
+import com.example.myapplicationtest.Logic.Filters;
 
 import java.io.Serializable;
 
-public class Priority implements Serializable {
+public class ComposersPriority implements Serializable {
     private String prioGenre;
     private String prioloudness;
     private String priotempo;
@@ -11,16 +12,17 @@ public class Priority implements Serializable {
     private boolean pop;
     // private Filters filters = new Filters("genre","loudness","tempo");
 
-    public Priority(String prioGenre, String prioloudness, String priotempo,Filters filters, boolean pop) {
+    public ComposersPriority(String prioGenre, String prioloudness, String priotempo,Filters filters, boolean pop) {
         this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
         this.priotempo = priotempo;
         this.filters=filters;
         this.pop=pop;
+        //initialize();
 
     }
 
-    public Priority() {
+    public ComposersPriority() {
 
     }
 
