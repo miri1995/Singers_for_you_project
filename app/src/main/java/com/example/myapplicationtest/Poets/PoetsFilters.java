@@ -5,15 +5,15 @@ import java.io.Serializable;
 public class PoetsFilters implements Serializable {
 
     private String genre;
-    private String loudness;
-    private String tempo;
+    private String subject;
+    private String goal;
     //  private Priority priority = new Priority("high","medium","low");
 
-    public PoetsFilters(String genre, String loudness, String tempo)
+    public PoetsFilters(String genre, String subject, String goal)
     {
         this.genre=genre;
-        this.loudness = loudness;
-        this.tempo = tempo;
+        this.subject = subject;
+        this.goal = goal;
 
     }
 
@@ -28,16 +28,16 @@ public class PoetsFilters implements Serializable {
         return genre;
     }
     /**
-     * @return loudness = chosen loudness
+     * @return subject = chosen subject
      */
-    public String getLoudness() {
-        return loudness;
+    public String getSubject() {
+        return subject;
     }
     /**
-     * @return tempo = chosen tempo
+     * @return goal = chosen goal
      */
-    public String getTempo() {
-        return tempo;
+    public String getGoal() {
+        return goal;
     }
 
 

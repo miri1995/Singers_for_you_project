@@ -8,13 +8,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-import com.example.myapplicationtest.Logic.Filters;
-import com.example.myapplicationtest.Logic.Priority;
+import com.example.myapplicationtest.SingersLogic.Filters;
+import com.example.myapplicationtest.SingersLogic.Priority;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,9 +27,9 @@ public class ParioritySingers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.praiority_singers);
 
-        //spinner1
+        //categorization
         List<String> genresP = new ArrayList<String>(Arrays.asList("select","high","medium","low"));
-        spinner1 = findViewById(R.id.spinner);
+        spinner1 = findViewById(R.id.register_what_you);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genresP);
         spinner1.setAdapter(generesAdapter);
@@ -118,11 +116,11 @@ public class ParioritySingers extends AppCompatActivity {
 
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
-            Filters filters = (Filters) intent.getSerializableExtra("com.example.myapplicationtest.Logic.Filters");
+            Filters filters = (Filters) intent.getSerializableExtra("com.example.myapplicationtest.SingersLogic.Filters");
             priority = new Priority(genreP2, loudnessP2, beatP2,filters,pop);
 
             Intent intent1 = new Intent(ParioritySingers.this, SulationSinger.class);
-            intent1.putExtra("com.example.myapplicationtest.Logic.Priority", priority);
+            intent1.putExtra("com.example.myapplicationtest.SingersLogic.Priority", priority);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
 

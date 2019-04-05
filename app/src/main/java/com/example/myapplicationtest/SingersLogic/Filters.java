@@ -1,4 +1,4 @@
-package com.example.myapplicationtest.Logic;
+package com.example.myapplicationtest.SingersLogic;
 
 import java.io.Serializable;
 

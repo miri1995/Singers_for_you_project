@@ -1,6 +1,6 @@
 package com.example.myapplicationtest.Composer;
 
-import com.example.myapplicationtest.Logic.Filters;
+import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.io.Serializable;
 
@@ -9,13 +9,16 @@ public class ComposersPriority implements Serializable {
     private String prioloudness;
     private String priotempo;
     private Filters filters;
+    private String prioMusical_instrument;
     private boolean pop;
     // private Filters filters = new Filters("genre","loudness","tempo");
 
-    public ComposersPriority(String prioGenre, String prioloudness, String priotempo,Filters filters, boolean pop) {
+    public ComposersPriority(String prioGenre, String prioloudness, String priotempo,String prioMusical_instrument,
+                             Filters filters, boolean pop) {
         this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
         this.priotempo = priotempo;
+        this.prioMusical_instrument=prioMusical_instrument;
         this.filters=filters;
         this.pop=pop;
         //initialize();
@@ -50,6 +53,12 @@ public class ComposersPriority implements Serializable {
     public String getPrioTempo() {
         return priotempo;
     }
+
+    /**
+     *
+     * @return prioMusical_instrument
+     */
+    public String getPrioMusical_instrument(){return  this.prioMusical_instrument;}
 
     public boolean getPopular(){
         return this.pop;

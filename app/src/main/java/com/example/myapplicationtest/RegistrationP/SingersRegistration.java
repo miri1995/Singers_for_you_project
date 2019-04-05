@@ -1,42 +1,39 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.RegistrationP;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.myapplicationtest.AsyncHelper;
+import com.example.myapplicationtest.R;
 import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SingersActivity extends AppCompatActivity {
+public class SingersRegistration extends AppCompatActivity {
     Filters filters;
-    Spinner spinner1, spinner2, spinner3, spinner4;
+    Spinner spinner1, spinner2, spinner3;
+    EditText name_txt;
     public static List<String> geners=new ArrayList<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.singer_choice);
-//lko
-      //  Connector connector;
-      //  connector = new Connector();
+        setContentView(R.layout.singers_registration);
 
-      //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
+
         String q3="select genre from genre";
-          new AsyncHelper(SingersActivity.this,q3,"genre","singer").execute(); //async task for getting data from db
+        new AsyncHelper(SingersRegistration.this,q3,"genre","singer").execute(); //async task for getting data from db
 
         System.out.println(geners);
-        Log.d("D","singer activity"+geners);
 
         //categorization
         geners.add(0,"select");
@@ -60,23 +57,20 @@ public class SingersActivity extends AppCompatActivity {
         spinner3.setAdapter(beatAdapter);
 
         //spinner4
-     //   List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
-     //   spinner4 = findViewById(R.id.spinner4);
 
-     //   ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
-     //   spinner4.setAdapter(locationAdapter);
+           name_txt = findViewById(R.id.nameAdd);
+
 
     }
 
-
-
-
-    public void filters_click(View view) {
+    public void registration_singers_click(View view) {
 
         String genre2 =null;
         String loudness2 = null;
         String beat2=null;
-       // String location2=null;
+        // String location2=null;
+
+        String name = name_txt.getText().toString();
 
         if(spinner1.getSelectedItem()!=null){
             genre2 =spinner1.getSelectedItem().toString();
@@ -87,9 +81,7 @@ public class SingersActivity extends AppCompatActivity {
         if(spinner3.getSelectedItem()!=null){
             beat2 =spinner3.getSelectedItem().toString();
         }
-      /*  if(spinner4.getSelectedItem()!=null){
-            location2 =spinner4.getSelectedItem().toString();
-        }*/
+
 
         if(genre2==null || loudness2==null || beat2==null ||
                 genre2.equals("select") || loudness2.equals("select") ||
@@ -102,7 +94,7 @@ public class SingersActivity extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
+                            dialog.cancel();
                         }
                     });
             builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -116,21 +108,20 @@ public class SingersActivity extends AppCompatActivity {
             dialog.show();
         }else { //only if all filter selected
 
+            String q="";
+            new AsyncHelperRegistration(SingersRegistration.this,q,"register").execute(); //async task for getting data from db
 
-            filters = new Filters(genre2, loudness2, beat2);
+           // filters = new Filters(genre2, loudness2, beat2);
 
             //blabkajj
-            Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
+           /* Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
             intent1.putExtra("com.example.myapplicationtest.SingersLogic.Filters", filters);
             setResult(Activity.RESULT_OK, intent1);
-            startActivity(intent1);
+            startActivity(intent1);*/
 
             finish();
         }
     }
 
-    public void backSingerORProduct_click(View view){
-        Intent intent = new Intent(SingersActivity.this, ChoiceSingerOrProduct.class);
-        startActivity(intent);
-    }
+
 }

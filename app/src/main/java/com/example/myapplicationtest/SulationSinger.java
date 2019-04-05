@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
-import com.example.myapplicationtest.Logic.Priority;
+import com.example.myapplicationtest.SingersLogic.Priority;
 //import assets.pair3.txt;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public class SulationSinger  extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers);
         Intent intent2 = getIntent();
-        priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.Logic.Priority");
+        priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.SingersLogic.Priority");
 
 
         Query query = new Query();
@@ -41,6 +41,7 @@ public class SulationSinger  extends Activity {
        // artists.clear();
        // DBConnection.getInstance().getConnection2();
         //DBConnection.getInstance().makeQuery(q3,artists,"artist_name");
+        artists.clear();
         new AsyncHelper(SulationSinger.this,q3,"artist_name","sol").execute(); //async task for getting data from db
        //System.out.println(artists);
         try {
@@ -76,5 +77,10 @@ public class SulationSinger  extends Activity {
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
         allSolButton.setVisibility(View.GONE);
+    }
+
+    public void back_click(View view){
+        Intent intent = new Intent(SulationSinger.this, SingersActivity.class);
+        startActivity(intent);
     }
 }

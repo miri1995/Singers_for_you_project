@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_red_light">
+    android:background="@android:color/holo_blue_dark">
 
 
     <SeekBar
@@ -29,6 +29,26 @@
         android:rowCount="4"
         android:useDefaultMargins="true"
         tools:context=".GridXMLActivity">
+
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="160dp"
+            android:layout_height="60dp"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            android:fontFamily="serif-monospace"
+            android:text="@string/txtName"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorAccent"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/nameAdd"
+            android:layout_width="127dp"
+            android:layout_gravity="fill_horizontal" />
+
 
 
         <TextView
@@ -86,23 +106,7 @@
             android:layout_width="0dp"
             android:layout_gravity="fill_horizontal" />
 
-        <TextView
-            android:id="@+id/textView39"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:fontFamily="serif-monospace"
-            android:text="@string/textView39"
-            android:textAlignment="viewStart"
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"
-            android:textStyle="bold" />
 
-        <Spinner
-            android:id="@+id/spinner4"
-            android:layout_width="127dp"
-            android:layout_gravity="fill_horizontal" />
 
     </GridLayout>
 
@@ -114,11 +118,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
         android:background="@android:color/background_light"
-        android:onClick="filters_click"
+        android:onClick="registration_singers_click"
         android:text="@string/button"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp"
         android:textStyle="bold" />
 

@@ -1,19 +1,19 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.RegistrationP;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.myapplicationtest.SulationSinger;
+
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class AsyncHelper extends AsyncTask<Void, Void, String> {
+public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
     ProgressDialog mProgressDialog;
     Context context;
     private String query;
@@ -22,7 +22,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
     private String flag;
 
 
-    public AsyncHelper(Context context, String query, String colName, String flag) {
+    public AsyncHelperRegistration(Context context, String query, String flag) {
         //Log.d("D",url);
         this.context = context;
         playerList=new ArrayList<>();
@@ -52,31 +52,16 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
             Log.d("D","in background"+con);
             Log.d("D",query);
             Log.d("D",colName);
-            try (Statement stmt = con.createStatement();
+            int result;
 
-                 ResultSet rs = stmt.executeQuery(query);) {
+            try (Statement stmt = con.createStatement();) {
+                result = stmt.executeUpdate("INSERT INTO artists(artist_id, artist_name,artist_hotness) " + "VALUES('Emma','Stone')");
+                result = stmt.executeUpdate("INSERT INTO genreartists(artist_id, genre_id) " + "VALUES('Ryan','Gosling')");
+                // result = stmt.executeUpdate("DELETE FROM demo");
+                System.out.println("Success - executeUpdate, result = " + result);
 
-                while (rs.next()) {
-                    Log.d("D",flag);
-                    switch (flag){
-                        case "singer":
-                            SingersActivity.geners.add(rs.getString(colName));
-                            break;
-                        case "sol":
-                            SulationSinger.artists.add(rs.getString(colName));
-                            break;
-                        case "poet":
-                            ProductActivity.poets.add(rs.getString(colName));
-                            break;
-                    }
-
-                }
-                Log.d("D","result"+ SulationSinger.artists);
-                con.close();
-                //return "COMPLETE2";
             } catch (SQLException e) {
-                System.out.println("ERROR executeQuery - " + e.getMessage());
-                Log.d("D","ERROR executeQuery");
+                System.out.println("ERROR executeUpdate - " + e.getMessage());
             }
             Log.d("D","in background list"+SulationSinger.artists);
         } catch (SQLException e) {
@@ -86,7 +71,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
             Log.d("D",e.getMessage());
             e.printStackTrace();
         }
-       // Log.d("D",playerList.get(1).toString());
+        // Log.d("D",playerList.get(1).toString());
         return "COMPLETE";
     }
 
@@ -104,4 +89,3 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
 
     }
 }
-

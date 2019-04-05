@@ -135,7 +135,7 @@ import java.util.List;
     /*public void ExecuteQuery(Filters filters, Priority priority) {
         artists.clear();
         Query query =new Query();
-        String q3= query.UserInput(filters.getGenre(),filters.getLoudness(),priority.getLoudness(),filters.getTempo(),priority.getTempo());
+        String q3= query.UserInput(filters.getGenre(),filters.getSubject(),priority.getSubject(),filters.getGoal(),priority.getGoal());
 
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(q3);) {
@@ -154,7 +154,7 @@ import java.util.List;
     /* public void ExecuteQuery() {
         artists.clear();
         Query query =new Query();
-        //String q3= query.UserInput(filters.getGenre(),filters.getLoudness(),priority.getLoudness(),filters.getTempo(),priority.getTempo());
+        //String q3= query.UserInput(filters.getGenre(),filters.getSubject(),priority.getSubject(),filters.getGoal(),priority.getGoal());
          String q3="select * from artists";
         try (Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(q3);) {

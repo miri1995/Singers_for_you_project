@@ -39,7 +39,7 @@
             android:textStyle="bold" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/register_what_you"
             android:layout_width="0dp"
             android:layout_gravity="fill_horizontal"
             android:textSize="36sp" />

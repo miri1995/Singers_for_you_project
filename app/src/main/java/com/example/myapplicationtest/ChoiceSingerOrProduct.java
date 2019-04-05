@@ -26,6 +26,10 @@ public class ChoiceSingerOrProduct extends AppCompatActivity {
                 Intent intent3 = new Intent(ChoiceSingerOrProduct.this, ProductActivity.class);
                 startActivity(intent3);
                 break;
+            case R.id.btregistration:
+                Intent intent4 = new Intent(ChoiceSingerOrProduct.this, Registration.class);
+                startActivity(intent4);
+                break;
             default:
                 throw new RuntimeException("Unknow button ID");
         }

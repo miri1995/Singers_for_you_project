@@ -6,4 +6,7 @@ import com.example.myapplicationtest.IQuery;
 
 public class QueryPoets implements IQuery {
 
+
+
+
 }

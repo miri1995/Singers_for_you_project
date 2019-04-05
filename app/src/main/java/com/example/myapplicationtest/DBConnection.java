@@ -1,3 +1,4 @@
+/*
 package com.example.myapplicationtest;
 
 import android.util.Log;
@@ -8,10 +9,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+*/
 /**
  * A class that handles
  * the connection to DataBase.
- */
+ *//*
+
 public class DBConnection {
 
     private java.sql.Connection conn; // DB connection
@@ -21,31 +24,39 @@ public class DBConnection {
    // private final Object mutex2 = new Object();
     //private  List<String> result;
 
-    /**
+    */
+/**
      * constructor
-     */
+     *//*
+
     private DBConnection() { }
 
-    /**
+    */
+/**
      * singleton function
      * @return the instance of DBconnection
-     */
+     *//*
+
 
     public static DBConnection getInstance() {
         if (instance == null) {
             instance = new DBConnection();
             instance.openConnection();
-        }/*else{
+        }*/
+/*else{
             Log.d("D","make query begin");
             instance.makeQuery( query, colName);
-        }*/
+        }*//*
+
         return instance;
     }
 
-    /**
+    */
+/**
      * return the connection to sql object
      * @return connection to sql object
-     */
+     *//*
+
     public java.sql.Connection getConnection() {
         try {
             synchronized (mutex) {
@@ -57,7 +68,8 @@ public class DBConnection {
         return conn;
 
     }
-   /* public  List<String> getResult() {
+   */
+/* public  List<String> getResult() {
         try {
             synchronized (mutex2) {
                 Log.d("D","mutex2");
@@ -67,18 +79,22 @@ public class DBConnection {
         } catch (Exception ex) {}
         return result;
 
-    }*/
-    /**
+    }*//*
+
+    */
+/**
      * Open the connection to the DB
      * @return true if the connection was successfully set
-     */
+     *//*
+
     public boolean openConnection() {
 
         System.out.print("Trying to connect... ");
         //reading the details of url, username and password of my schema from configuration connection file
 
         BufferedReader br;
-       /* String fileName = "src/DataBase/dbconnectionconfig.txt";
+       */
+/* String fileName = "src/DataBase/dbconnectionconfig.txt";
         try {
             br = new BufferedReader(new FileReader(fileName));
             //the parameters for connection to DB.
@@ -87,7 +103,8 @@ public class DBConnection {
             password = br.readLine().replace("password: ","");
         } catch (Exception e) {
             System.out.println("couldn't read from configuration file - " + e.getMessage());
-        }*/
+        }*//*
+
         // creating the connection. Parameters should be taken from config file.
 
         final String host = "35.225.34.63";
@@ -124,9 +141,11 @@ public class DBConnection {
         return artists;
     }
 
-    /**
+    */
+/**
      * close the connection
-     */
+     *//*
+
     public void closeConnection() {
         // closing the connection
         try {
@@ -163,3 +182,4 @@ public class DBConnection {
        // return result;
     }
 }
+*/

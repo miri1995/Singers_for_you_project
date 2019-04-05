@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.myapplicationtest.Logic.Filters;
+import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,14 +17,21 @@ import java.util.List;
 public class ProductActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
+    public static List<String> poets=new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_choice);
 
-        //spinner1
+        String q3="select * from poets";
+        new AsyncHelper(ProductActivity.this,q3,"poet_name","poet").execute(); //async task for getting data from db
+
+        System.out.println(poets);
+
+        //categorization
         List<String> genres = new ArrayList<String>(Arrays.asList("select","g1","g2", "g3","g4","g5","g6","g7"));
-        spinner1 = findViewById(R.id.spinner);
+        spinner1 = findViewById(R.id.register_what_you);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genres);
         spinner1.setAdapter(generesAdapter);
