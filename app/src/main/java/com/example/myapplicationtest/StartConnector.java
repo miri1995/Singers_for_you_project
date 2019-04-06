@@ -17,7 +17,7 @@ public class StartConnector {
   /*  public void initialize(Filters filters,Priority priority) {
         //ListGenre l=new ListGenre();
         //List<List<String>>lt=l.ReadPairFile();
-        //Map<String,Integer> m= l.countPairs(lt);
+        //Maps<String,Integer> m= l.countPairs(lt);
         Connector connector;
         connector = new Connector();
         // connecting

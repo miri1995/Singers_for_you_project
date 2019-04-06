@@ -25,7 +25,7 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.product_choice);
 
         String q3="select * from poets";
-        new AsyncHelper(ProductActivity.this,q3,"poet_name","poet").execute(); //async task for getting data from db
+       // new AsyncHelper(ProductActivity.this,q3,"poet_name",null,"poet").execute(); //async task for getting data from db
 
         System.out.println(poets);
 

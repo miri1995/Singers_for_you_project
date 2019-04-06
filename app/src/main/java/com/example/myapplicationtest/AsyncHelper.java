@@ -17,17 +17,23 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
     ProgressDialog mProgressDialog;
     Context context;
     private String query;
-    private String colName;
+    private String colName1;
+    private String colName2;
+    private String colName3;
+    private String colName4;
     public List<String> playerList;
     private String flag;
 
 
-    public AsyncHelper(Context context, String query, String colName, String flag) {
+    public AsyncHelper(Context context, String query, String colName1,String colName2,String colName3,String colName4, String flag) {
         //Log.d("D",url);
         this.context = context;
         playerList=new ArrayList<>();
         this.query=query;
-        this.colName=colName;
+        this.colName1=colName1;
+        this.colName2=colName2;
+        this.colName3 = colName3;
+        this.colName4 =colName4;
         this.flag=flag;
         Log.d("D","con"+flag);
     }
@@ -51,7 +57,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
             Log.d("D","in background"+con);
             Log.d("D",query);
-            Log.d("D",colName);
+            Log.d("D",colName1);
             try (Statement stmt = con.createStatement();
 
                  ResultSet rs = stmt.executeQuery(query);) {
@@ -60,14 +66,22 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                     Log.d("D",flag);
                     switch (flag){
                         case "singer":
-                            SingersActivity.geners.add(rs.getString(colName));
+                            SingersActivity.geners.add(rs.getString(colName1));
                             break;
                         case "sol":
-                            SulationSinger.artists.add(rs.getString(colName));
+                            Log.d("D","entered sol");
+                            SulationSinger.artists.add(rs.getString(colName1));
+                            SulationSinger.tempo.add(rs.getString(colName2));
+                            SulationSinger.loudness.add(rs.getString(colName3));
+                            SulationSinger.genres.add(rs.getString(colName4));
                             break;
                         case "poet":
-                            ProductActivity.poets.add(rs.getString(colName));
+                            ProductActivity.poets.add(rs.getString(colName1));
                             break;
+                        /*case "percents":
+                            SulationSinger.tempo.add(rs.getString(colName1));
+                            SulationSinger.loudness.add(rs.getString(colName2));*/
+
                     }
 
                 }

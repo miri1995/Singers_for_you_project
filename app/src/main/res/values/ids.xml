@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="swPop" type="id" />
+    <item name="poets" type="id" />
+    <item name="composer" type="id" />
+    <item name="btregistration" type="id" />
+</resources>

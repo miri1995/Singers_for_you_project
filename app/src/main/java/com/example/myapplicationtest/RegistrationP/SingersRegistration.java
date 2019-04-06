@@ -31,7 +31,7 @@ public class SingersRegistration extends AppCompatActivity {
 
 
         String q3="select genre from genre";
-        new AsyncHelper(SingersRegistration.this,q3,"genre","singer").execute(); //async task for getting data from db
+        //new AsyncHelper(SingersRegistration.this,q3,"genre","singer").execute(); //async task for getting data from db
 
         System.out.println(geners);
 

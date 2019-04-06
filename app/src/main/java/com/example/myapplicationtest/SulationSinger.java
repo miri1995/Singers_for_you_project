@@ -20,9 +20,11 @@ public class SulationSinger  extends Activity {
 
 
     Priority priority = new Priority();
-  //  List<String> artists = new ArrayList<String>();
-  //  private final Object mutex = new Object();
-  public static List<String> artists=new ArrayList<>();
+   public static List<String> artists=new ArrayList<>();
+    //public static List<String> artists_id=new ArrayList<>();
+   public static List<String> genres=new ArrayList<>();
+    public static List<String> tempo=new ArrayList<>();
+    public static List<String> loudness=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +39,13 @@ public class SulationSinger  extends Activity {
         Query query = new Query();
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),
                 priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),priority.getPopular());
-       // Connection con = DBConnection.getInstance().getConnection(); // DB connection
-       // artists.clear();
-       // DBConnection.getInstance().getConnection2();
-        //DBConnection.getInstance().makeQuery(q3,artists,"artist_name");
         artists.clear();
-        new AsyncHelper(SulationSinger.this,q3,"artist_name","sol").execute(); //async task for getting data from db
-       //System.out.println(artists);
+        tempo.clear();
+        loudness.clear();
+       // artists_id.clear();
+       // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
         try {
-             str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","sol").execute().get();
+             str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","song_tempo","song_loudness","genre","sol").execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -53,9 +53,8 @@ public class SulationSinger  extends Activity {
             e.printStackTrace();
         }
         if(str_result!=null) {
-           // Log.d("D", "in sol class: " + artists);
-            // DBConnection.getInstance().closeConnection();
-
+          //  FittingPercents fittingPercents = new FittingPercents(priority);
+           // List<Double> list = fittingPercents.percent();
             List<String> resultArray = artists.subList(0,10);
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,

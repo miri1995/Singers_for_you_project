@@ -34,10 +34,12 @@ public class Query {
         int temp=0;
         String q="";
         // the base query which will be the first part of all the quries
-        String mapGenre= "#standardSQL\n" + "SELECT distinct artists.artist_name\n" +
+        String mapGenre= "#standardSQL\n" + "SELECT distinct artists.artist_name,songs.song_loudness,songs.song_tempo," +
+                "genre.genre\n" +
                 "from genre\n" +
                 "INNER JOIN genreartists on genre.genre_id = genreartists.genre_id\n" +
                 "INNER JOIN artists on artists.artist_id = genreartists.artist_id\n" +
+                "INNER JOIN songs on songs.song_artist_id = artists.artist_id\n" +
                 "WHERE artists.artist_id IN ";
         // check that this features are not null
         String notNull=" AND songs.song_loudness IS NOT NULL AND songs.song_tempo IS NOT NULL";
@@ -133,51 +135,13 @@ public class Query {
      */
 
     public String UserInput(String genre, String loudness, String tempo,String prioGenre, String prioLoudness, String prioTempo,boolean popular){
-        HashMap<String,Integer> priority = new HashMap<>();
+        HashMap<String,Integer> priority = Maps.getInstance().PutInPriority(prioLoudness,prioTempo);
         List<String> couples=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
-        switch(prioLoudness){
-            case "high":
-                priority.put(prioLoudness,0);
-                if(prioTempo.equals("medium")){
-                    priority.put(prioTempo,30);
-                    couples = orderGenre(genre,prioGenre);
-                    otherGenre = getOtherGenre(couples,genre);
-                }
-                if(prioTempo.equals("low")){
-                    priority.put(prioTempo,60);
-                    couples = orderGenre(genre,prioGenre);
-                    otherGenre = getOtherGenre(couples,genre);
-                }
-                break;
-            case "medium":
-                priority.put(prioLoudness,6);
-                if(prioTempo.equals("high")){
-                    priority.put(prioTempo,0);
-                    couples = orderGenre(genre,prioGenre);
-                    otherGenre = getOtherGenre(couples,genre);
-                }
-                if(prioTempo.equals("low")){
-                    priority.put(prioTempo,60);
-                   //probably something else
-                }
-                break;
-            case "low":
-                priority.put(prioLoudness,12);
-                if(prioTempo.equals("high")){
-                    priority.put(prioTempo,0);
-                    couples = orderGenre(genre,prioGenre);
-                    otherGenre = getOtherGenre(couples,genre);
-
-                }
-                if(prioTempo.equals("medium")){
-                    priority.put(prioTempo,30);
-                    //probably something else
-                }
-                break;
-
+        if (prioGenre.equals("medium") || prioGenre.equals("low")){
+            couples = orderGenre(genre,prioGenre);
+            otherGenre = getOtherGenre(couples,genre);
         }
-
         String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo,prioGenre,otherGenre,popular);
         return q;
     }
