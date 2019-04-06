@@ -26,15 +26,15 @@ public class Registration extends AppCompatActivity {
     public void registration_click(View view) {
 
         switch (view.getId()){
-            case R.id.singers:
+            case R.id.singers2:
                 Intent intent = new Intent(Registration.this, SingersRegistration.class);
                 startActivity(intent);
                 break;
-            case R.id.poets:
+            case R.id.poets2:
                 Intent intent2 = new Intent(Registration.this, PoetsRegistration.class);
                 startActivity(intent2);
                 break;
-            case R.id.composer:
+            case R.id.composer2:
                 Intent intent3 = new Intent(Registration.this, ComposerRegistration.class);
                 startActivity(intent3);
                 break;

@@ -22,7 +22,12 @@ public class SingersRegistration extends AppCompatActivity {
     Spinner spinner1, spinner2, spinner3;
     EditText name_txt;
     public static List<String> geners=new ArrayList<>();
+    public static Integer lastID;
 
+    public static String genreChoice =null;
+    public static String loudness2 = null;
+    public static String beat2=null;
+    public static String name=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +37,7 @@ public class SingersRegistration extends AppCompatActivity {
 
         String q3="select genre from genre";
         //new AsyncHelper(SingersRegistration.this,q3,"genre","singer").execute(); //async task for getting data from db
-
+        new AsyncHelperRegistration(SingersRegistration.this,q3,"genre","genre").execute();
         System.out.println(geners);
 
         //categorization
@@ -63,17 +68,25 @@ public class SingersRegistration extends AppCompatActivity {
 
     }
 
+  /*  public String getGenreChoice(){
+        return genreChoice;
+    }
+
+    public String getLoudness2(){
+        return loudness2;
+    }
+
+    public String getBeat2(){
+        return beat2;
+    }*/
+
     public void registration_singers_click(View view) {
 
-        String genre2 =null;
-        String loudness2 = null;
-        String beat2=null;
-        // String location2=null;
 
-        String name = name_txt.getText().toString();
+        name = name_txt.getText().toString();
 
         if(spinner1.getSelectedItem()!=null){
-            genre2 =spinner1.getSelectedItem().toString();
+            genreChoice =spinner1.getSelectedItem().toString();
         }
         if(spinner2.getSelectedItem()!=null){
             loudness2 =spinner2.getSelectedItem().toString();
@@ -83,8 +96,8 @@ public class SingersRegistration extends AppCompatActivity {
         }
 
 
-        if(genre2==null || loudness2==null || beat2==null ||
-                genre2.equals("select") || loudness2.equals("select") ||
+        if(genreChoice==null || loudness2==null || beat2==null ||
+                genreChoice.equals("select") || loudness2.equals("select") ||
                 beat2.equals("select") ){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
@@ -107,10 +120,12 @@ public class SingersRegistration extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }else { //only if all filter selected
-
-            String q="";
-            new AsyncHelperRegistration(SingersRegistration.this,q,"register").execute(); //async task for getting data from db
-
+            String getLastId="select artist_id from artists order by artist_id desc limit 1";
+            //String q="";
+            new AsyncHelperRegistration(SingersRegistration.this,getLastId,"artist_id","lastId").execute(); //async task for getting data from db
+            System.out.println(lastID);
+            new AsyncHelperRegistration(SingersRegistration.this,getLastId,null,"insertSinger").execute(); //async task for getting data from db
+            System.out.println(lastID);
            // filters = new Filters(genre2, loudness2, beat2);
 
             //blabkajj
