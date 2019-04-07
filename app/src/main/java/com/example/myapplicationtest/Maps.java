@@ -10,7 +10,7 @@ import java.util.Map;
 public class Maps {
 
     private static Maps single_instance = null;
-    HashMap<String, Float> priority = new HashMap<>();
+    HashMap<String, Double> priority = new HashMap<>();
     List<String> otherGenre = new ArrayList<>();
 
 
@@ -18,7 +18,7 @@ public class Maps {
 
     }
 
-    public Map<String, Float> getMapPrio() {
+    public Map<String, Double> getMapPrio() {
 
         return priority;
     }
@@ -35,33 +35,33 @@ public class Maps {
         return single_instance;
     }
 
-    public HashMap<String, Float> PutInPriority(String prioLoudness, String prioTempo) {
+    public HashMap<String, Double> PutInPriority(String prioLoudness, String prioTempo) {
         switch (prioLoudness) {
             case "high":
-                priority.put(prioLoudness, (float) 0);
+                priority.put(prioLoudness, (double) 0);
                 if (prioTempo.equals("medium")) {
-                    priority.put(prioTempo, (float) 25);
+                    priority.put(prioTempo, (double) 25);
                 }
                 if (prioTempo.equals("low")) {
-                    priority.put(prioTempo, (float) 50);
+                    priority.put(prioTempo, (double) 50);
                 }
                 break;
             case "medium":
-                priority.put(prioLoudness, (float) 5);
+                priority.put(prioLoudness, (double) 5);
                 if (prioTempo.equals("high")) {
-                    priority.put(prioTempo, (float) 0);
+                    priority.put(prioTempo, (double) 0);
                 }
                 if (prioTempo.equals("low")) {
-                    priority.put(prioTempo, (float) 50);
+                    priority.put(prioTempo, (double) 50);
                 }
                 break;
             case "low":
-                priority.put(prioLoudness, (float) 10);
+                priority.put(prioLoudness, (double) 10);
                 if (prioTempo.equals("high")) {
-                    priority.put(prioTempo, (float) 0);
+                    priority.put(prioTempo, (double) 0);
                 }
                 if (prioTempo.equals("medium")) {
-                    priority.put(prioTempo, (float) 25);
+                    priority.put(prioTempo, (double) 25);
                     //probably something else
                 }
                 break;
@@ -71,8 +71,8 @@ public class Maps {
 
     }
 
-    public float[] PutInloudness(String loudness) {
-        float numLoud[] = new float[2];
+    public double[] PutInloudness(String loudness) {
+        double numLoud[] = new double[2];
         switch (loudness) {
             case "Weak":
                 numLoud[0] = -16;
@@ -87,8 +87,8 @@ public class Maps {
         return numLoud;
     }
 
-    public float[] PutInTempo(String tempo) {
-        float numTempo[] = new float[2];
+    public double[] PutInTempo(String tempo) {
+        double numTempo[] = new double[2];
         switch (tempo) {
             case "Slow":
                 numTempo[0] = 85;
@@ -117,7 +117,9 @@ public class Maps {
     }
 
     public void getFromQuery(List<String>coupleGenre){
-        otherGenre = coupleGenre;
-
+      /*  for(int i=0;i<coupleGenre.size();i++){
+            otherGenre.add(coupleGenre.get(i));
+        }*/
+      otherGenre.addAll(coupleGenre);
     }
 }

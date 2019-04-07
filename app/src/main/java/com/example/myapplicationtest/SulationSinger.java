@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import static java.lang.StrictMath.round;
+
 public class SulationSinger  extends Activity {
 
 
@@ -23,8 +25,8 @@ public class SulationSinger  extends Activity {
    public static List<String> artists=new ArrayList<>();
     //public static List<String> artists_id=new ArrayList<>();
    public static List<String> genres=new ArrayList<>();
-    public static List<String> tempo=new ArrayList<>();
-    public static List<String> loudness=new ArrayList<>();
+    public static List<Double> tempo=new ArrayList<>();
+    public static List<Double> loudness=new ArrayList<>();
     List<Double>grades = new ArrayList<>();
 
     @Override
@@ -56,7 +58,7 @@ public class SulationSinger  extends Activity {
 
         if(str_result!=null) {
             FittingPercents fittingPercents = new FittingPercents(priority);
-            if(!priority.getPrioGenre().equals("high")){
+            if(priority.getPrioGenre().equals("high")){
                 grades = fittingPercents.percentTempoLoudness("both");
             }
             else{
@@ -82,11 +84,16 @@ public class SulationSinger  extends Activity {
 
     public void allSol_click(View view) {
         List<String> resultArray = artists;
-        List<Double> gradesArray = grades;
+        List<String> gradesArray = new ArrayList<>(); /*= grades*/;
+        for(int i=0;i<grades.size();i++){
+          //  DoubleRounder.round(gradesArray.get(i), 2);
+            String rounded = String.format("%.2f", gradesArray.get(i));
+            gradesArray.add(rounded);
+        }
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, resultArray);
-        ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, gradesArray);
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
