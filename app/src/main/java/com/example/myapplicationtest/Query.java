@@ -143,6 +143,8 @@ public class Query {
         if (prioGenre.equals("medium") || prioGenre.equals("low")){
             couples = orderGenre(genre,prioGenre);
             otherGenre = getOtherGenre(couples,genre);
+            Maps.getInstance().getFromQuery(otherGenre);
+
         }
         String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo,prioGenre,otherGenre,popular);
         return q;

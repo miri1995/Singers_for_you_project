@@ -25,6 +25,7 @@ public class SulationSinger  extends Activity {
    public static List<String> genres=new ArrayList<>();
     public static List<String> tempo=new ArrayList<>();
     public static List<String> loudness=new ArrayList<>();
+    List<Double>grades = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +53,28 @@ public class SulationSinger  extends Activity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         if(str_result!=null) {
+            FittingPercents fittingPercents = new FittingPercents(priority);
+            if(!priority.getPrioGenre().equals("high")){
+                grades = fittingPercents.percentTempoLoudness("both");
+            }
+            else{
+                    grades = fittingPercents.percentGenreElse();
+            }
           //  FittingPercents fittingPercents = new FittingPercents(priority);
            // List<Double> list = fittingPercents.percent();
             List<String> resultArray = artists.subList(0,10);
+            List<Double> gradesArray = grades.subList(0,10);
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, resultArray);
+            ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+                    R.layout.activity_listview, gradesArray);
             ListView listView = findViewById(R.id.listView);
+            ListView listView2 = findViewById(R.id.listView2);
             listView.setAdapter(adapter);
+            listView2.setAdapter(adapter2);
            // Log.d("D", "ll" + listView.toString());
         }
 
@@ -68,11 +82,16 @@ public class SulationSinger  extends Activity {
 
     public void allSol_click(View view) {
         List<String> resultArray = artists;
+        List<Double> gradesArray = grades;
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, resultArray);
+        ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+                R.layout.activity_listview, gradesArray);
         ListView listView = findViewById(R.id.listView);
+        ListView listView2 = findViewById(R.id.listView2);
         listView.setAdapter(adapter);
+        listView2.setAdapter(adapter2);
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
         allSolButton.setVisibility(View.GONE);

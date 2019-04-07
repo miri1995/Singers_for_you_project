@@ -2,16 +2,16 @@ package com.example.myapplicationtest;
 
 import com.example.myapplicationtest.SingersLogic.Priority;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Maps {
 
     private static Maps single_instance = null;
     HashMap<String, Float> priority = new HashMap<>();
-  //  HashMap<String, Float> percents = new HashMap<>();
-    //HashMap<String,Integer> loudnessMap = new HashMap<>();
-    //HashMap<String,Integer>tempoMap = new HashMap<>();
+    List<String> otherGenre = new ArrayList<>();
 
 
     private Maps() {
@@ -23,10 +23,10 @@ public class Maps {
         return priority;
     }
 
-   /* public Map<String, Float> getMapPercents() {
+    public List<String> getSecondGenre() {
 
-        return percents;
-    }*/
+        return otherGenre;
+    }
 
     public static Maps getInstance() {
         if (single_instance == null)
@@ -114,5 +114,10 @@ public class Maps {
 
         }
         return whichPercent;
+    }
+
+    public void getFromQuery(List<String>coupleGenre){
+        otherGenre = coupleGenre;
+
     }
 }

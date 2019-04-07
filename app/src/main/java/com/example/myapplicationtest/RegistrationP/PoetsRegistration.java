@@ -1,4 +1,4 @@
-package com.example.myapplicationtest.RegistrationP;
-
-public class PoetsRegistration {
-}
+//package com.example.myapplicationtest.RegistrationP;
+//
+//public class PoetsRegistration {
+//}
