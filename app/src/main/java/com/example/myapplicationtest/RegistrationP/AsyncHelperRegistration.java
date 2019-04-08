@@ -52,25 +52,67 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
             Log.d("D","in background");
             Class.forName("com.mysql.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
-            Log.d("D","in background"+con);
-            Log.d("D",query);
-            Log.d("D",colName);
-            Log.d("P",flag);
+            Log.d("DD","FLAG:"+flag);
             int result;
             switch (flag){
                 case "genre":
+                case "genre_poet":
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                           // Helper.geners.add(rs.getString(colName));
+                                if(flag.equals("genre")) {
+                                    SingersRegistration.geners.add(rs.getString(colName));
+                                } else if(flag.equals("genre_poet")) {
+                                PoetsRegistration.geners.add(rs.getString(colName));
+                            }
+                        }
+                        Log.d("D","result"+ Helper.geners);
+
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
+                    }
+                    break;
                 case "lastId":
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            SingersRegistration.lastID=Integer.parseInt(rs.getString(colName))+1;
+                        }
+                        Log.d("D","result"+ SingersRegistration.lastIDSong);
+
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
+                    }
+                    break;
+                case "lastIdSong":
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+
+                                SingersRegistration.lastIDSong=Integer.parseInt(rs.getString(colName))+1;
+
+                        }
+                        Log.d("D","result"+ SingersRegistration.lastIDSong);
+
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
+                    }
+                    break;
+                case "GenreId":
                     try (Statement stmt = con.createStatement();
                         ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
-                            if(flag.equals("genre")) {
-                                SingersRegistration.geners.add(rs.getString(colName));
-                            }else{ //get last id
-                                SingersRegistration.lastID=Integer.parseInt(rs.getString(colName))+1;
-                            }
+                                SingersRegistration.genreID=Integer.parseInt(rs.getString(colName));
                         }
-                        Log.d("D","result"+ SulationSinger.artists);
-                        con.close();
+                        Log.d("D","result"+ SingersRegistration.lastIDSong);
+
                         //return "COMPLETE2";
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -78,16 +120,16 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                     }
 
                     break;
+
                 case "insertSinger":
                     try (Statement stmt = con.createStatement();) {
-                        Log.d("P",SingersRegistration.name);
-                         result = stmt.executeUpdate("INSERT INTO artists(artist_id, artist_name,artist_hotness) " + "VALUES(\""+SingersRegistration.lastID+"\",\""+SingersRegistration.name+"\",'0')");
-                        //result = stmt.executeUpdate("INSERT INTO genreartists(artist_id, genre_id) " + "VALUES('Ryan','Gosling')");
-                        // result = stmt.executeUpdate("DELETE FROM demo");
+                        Log.d("D","query " + query);
+                         result = stmt.executeUpdate(query);
                         Log.d("D","Success - executeUpdate, result = " + result);
 
                     } catch (SQLException e) {
                         System.out.println("ERROR executeUpdate - " + e.getMessage());
+                        Log.d("D","ERROR executeUpdate - " + e.getMessage());
                     }
                     break;
 
@@ -114,7 +156,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
 
         if (result!=null) {
             mProgressDialog.dismiss();
-            //result= SingersActivity.geners.get(1).toString();
+
         }
 
     }

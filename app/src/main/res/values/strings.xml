@@ -27,5 +27,7 @@
     <string name="btregistration">Registration</string>
     <string name="txtRegistration">Registration</string>
     <string name="txtName">Name</string>
+    <string name="Subject">Subject:</string>
+    <string name="Goal">Goal:</string>
 
 </resources>

@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.myapplicationtest.AsyncHelper;
+import com.example.myapplicationtest.Maps;
 import com.example.myapplicationtest.R;
 import com.example.myapplicationtest.SingersLogic.Filters;
+import com.example.myapplicationtest.Enums.EnumBeat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,11 +25,14 @@ public class SingersRegistration extends AppCompatActivity {
     EditText name_txt;
     public static List<String> geners=new ArrayList<>();
     public static Integer lastID;
-
+    public static Integer lastIDSong;
     public static String genreChoice =null;
-    public static String loudness2 = null;
-    public static String beat2=null;
-    public static String name=null;
+    public static Integer genreID=0;
+    private String loudness2 = null;
+    private String beat2=null;
+    private String name=null;
+
+    private Helper helper=new Helper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +41,10 @@ public class SingersRegistration extends AppCompatActivity {
 
 
         String q3="select genre from genre";
-        //new AsyncHelper(SingersRegistration.this,q3,"genre","singer").execute(); //async task for getting data from db
+
         new AsyncHelperRegistration(SingersRegistration.this,q3,"genre","genre").execute();
+       // helper.GenreQuery();
+       // geners=helper.getGeners();
         System.out.println(geners);
 
         //categorization
@@ -80,6 +87,8 @@ public class SingersRegistration extends AppCompatActivity {
         return beat2;
     }*/
 
+
+
     public void registration_singers_click(View view) {
 
 
@@ -121,11 +130,31 @@ public class SingersRegistration extends AppCompatActivity {
             dialog.show();
         }else { //only if all filter selected
             String getLastId="select artist_id from artists order by artist_id desc limit 1";
-            //String q="";
+            String getLastIdSongs="select song_id from songs order by song_id desc limit 1";
+            String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
+
+            //get id
             new AsyncHelperRegistration(SingersRegistration.this,getLastId,"artist_id","lastId").execute(); //async task for getting data from db
-            System.out.println(lastID);
-            new AsyncHelperRegistration(SingersRegistration.this,getLastId,null,"insertSinger").execute(); //async task for getting data from db
-            System.out.println(lastID);
+            new AsyncHelperRegistration(SingersRegistration.this,getLastIdSongs,"song_id","lastIdSong").execute();
+
+            //get genre
+            new AsyncHelperRegistration(SingersRegistration.this,getGenreId,"genre_id","GenreId").execute();
+
+            System.out.println(genreID);
+            Maps maps=new Maps();
+            maps.middleLoudness(loudness2);
+            maps.middleTempo(beat2);
+            String q1=("INSERT INTO artists(artist_id, artist_name,artist_hotness) " + "VALUES(\""+lastID+"\",\""+name+"\",'0')");
+            String q2=("INSERT INTO songs(song_id,song_name,song_tempo,song_loudness,song_artist_id) " +
+                    "VALUES(\""+SingersRegistration.lastIDSong+"\",'new',\""+Maps.middleTempo+"\",\""+Maps.middleLoudness+"\",\""+lastID+"\")");
+           String q3=("INSERT INTO genreartists " + "VALUES(\""+lastID+"\",\""+genreID+"\")");;
+
+           //insert
+           new AsyncHelperRegistration(SingersRegistration.this,q1,"artist_id","insertSinger").execute(); //async task for getting data from db
+            new AsyncHelperRegistration(SingersRegistration.this,q2,"song_id","insertSinger").execute(); //async task for getting data from db
+            new AsyncHelperRegistration(SingersRegistration.this,q3,"artist_id","insertSinger").execute(); //async task for getting data from db
+
+            System.out.println(lastIDSong);
            // filters = new Filters(genre2, loudness2, beat2);
 
             //blabkajj

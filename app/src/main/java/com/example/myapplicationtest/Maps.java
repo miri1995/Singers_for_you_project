@@ -12,9 +12,10 @@ public class Maps {
     private static Maps single_instance = null;
     HashMap<String, Double> priority = new HashMap<>();
     List<String> otherGenre = new ArrayList<>();
+    public static int middleLoudness=0;
+    public static int middleTempo=0;
 
-
-    private Maps() {
+     public Maps() {
 
     }
 
@@ -85,6 +86,39 @@ public class Maps {
                 numLoud[0] = -32;
         }
         return numLoud;
+    }
+
+
+    public void middleLoudness(String loudness) {
+
+        switch (loudness) {
+            case "Weak":
+                middleLoudness = -8;
+                break;
+            case "Normal":
+                middleLoudness=-24;
+                break;
+            case "Strong":
+                middleLoudness = -45;
+                break;
+        }
+
+    }
+
+    public void middleTempo(String tempo) {
+
+        switch (tempo) {
+            case "Slow":
+                middleTempo = 42;
+                break;
+            case "Medium":
+                middleTempo=128;
+                break;
+            case "Fast":
+                middleTempo=300;
+                break;
+        }
+
     }
 
     public double[] PutInTempo(String tempo) {
