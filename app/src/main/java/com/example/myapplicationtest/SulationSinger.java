@@ -1,5 +1,6 @@
 package com.example.myapplicationtest;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -56,7 +57,18 @@ public class SulationSinger  extends Activity {
             e.printStackTrace();
         }
 
+
+
         if(str_result!=null) {
+          /*  for (int i=0;i<artists.size();i++){
+                if(moreThanOnce(artists,artists.get(i))){
+                    artists.remove(artists.get(i));
+                    tempo.remove(tempo.get(i));
+                    genres.remove(genres.get(i));
+                    loudness.remove(loudness.get(i));
+                }
+
+            }*/
             FittingPercents fittingPercents = new FittingPercents(priority);
             if(priority.getPrioGenre().equals("high")){
                 grades = fittingPercents.percentTempoLoudness("both");
@@ -64,10 +76,14 @@ public class SulationSinger  extends Activity {
             else{
                     grades = fittingPercents.percentGenreElse();
             }
-          //  FittingPercents fittingPercents = new FittingPercents(priority);
-           // List<Double> list = fittingPercents.percent();
+
             List<String> resultArray = artists.subList(0,10);
-            List<Double> gradesArray = grades.subList(0,10);
+            List<Double> gradesArray = new ArrayList<>();
+            for(int i=0;i<grades.size();i++){
+                double grade = round(grades.get(i),2);
+                gradesArray.add(grade);
+            }
+            gradesArray = gradesArray.subList(0,10);
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, resultArray);
@@ -82,18 +98,37 @@ public class SulationSinger  extends Activity {
 
     }
 
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+    public static boolean moreThanOnce(List<String> list, String searched)
+    {
+        int numCount = 0;
+
+        for (String thisArtist : list) {
+            if (thisArtist.equals(searched)) numCount++;
+        }
+
+        return numCount > 0;
+    }
+
+
     public void allSol_click(View view) {
         List<String> resultArray = artists;
-        List<String> gradesArray = new ArrayList<>(); /*= grades*/;
+        List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
         for(int i=0;i<grades.size();i++){
-          //  DoubleRounder.round(gradesArray.get(i), 2);
-            String rounded = String.format("%.2f", gradesArray.get(i));
-            gradesArray.add(rounded);
+          double grade = round(grades.get(i),2);
+          gradesArray.add(grade);
         }
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, resultArray);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+        ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
                 R.layout.activity_listview, gradesArray);
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
