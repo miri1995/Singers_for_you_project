@@ -17,18 +17,19 @@ import java.util.List;
 public class PoetsActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
-    public static List<String> poets=new ArrayList<>();
+    public static List<String> genres=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poet_choice);
         String q3="select genre from genre";
-        new AsyncHelper(PoetsActivity.this,q3,"genre",null,null,null,"singer").execute(); //async task for getting data from db
+        new AsyncHelper(PoetsActivity.this,q3,"genre",null,null,null,"genre").execute(); //async task for getting data from db
 
 
         //categorization
-        List<String> genres = new ArrayList<String>(Arrays.asList("select","g1","g2", "g3","g4","g5","g6","g7"));
+        genres=HelperLists.genersHelperLists;
+        genres.add(0,"select");
         spinner1 = findViewById(R.id.register_what_you);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genres);

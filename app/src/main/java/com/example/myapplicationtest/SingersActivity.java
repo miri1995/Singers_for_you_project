@@ -34,12 +34,14 @@ public class SingersActivity extends AppCompatActivity {
 
       //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
         String q3="select genre from genre";
-          new AsyncHelper(SingersActivity.this,q3,"genre",null,null,null,"singer").execute(); //async task for getting data from db
+          new AsyncHelper(SingersActivity.this,q3,"genre",null,null,null,"genre").execute(); //async task for getting data from db
 
         System.out.println(geners);
         Log.d("D","singer activity"+geners);
 
         //categorization
+        //HelperLists helperLists=new HelperLists();
+        geners=HelperLists.genersHelperLists;
         geners.add(0,"select");
         spinner1 = findViewById(R.id.register_what_you);
 

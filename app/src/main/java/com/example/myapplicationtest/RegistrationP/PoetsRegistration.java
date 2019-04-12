@@ -22,7 +22,7 @@ public class PoetsRegistration extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3;
     EditText name_txt;
-   Helper helper=new Helper();
+   //Helper helper=new Helper();
     public static   List<String> geners=new ArrayList<>();
 //    public static Integer lastID;
 //    public static Integer lastIDSong;

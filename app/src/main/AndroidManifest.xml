@@ -46,11 +46,6 @@
             android:parentActivityName=".ChoiceSingerOrProduct">
         </activity>
         <activity
-            android:name=".RegistrationP.Helper"
-            android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
-        </activity>
-        <activity
             android:name=".RegistrationP.SingersRegistration"
             android:label="@string/app_name"
             android:parentActivityName=".Registration">

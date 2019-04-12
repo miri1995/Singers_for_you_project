@@ -64,7 +64,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                                 PoetsRegistration.geners.add(rs.getString(colName));
                             }
                         }
-                        Log.d("D","result"+ Helper.geners);
+                       // Log.d("D","result"+ Helper.geners);
 
                         //return "COMPLETE2";
                     } catch (SQLException e) {

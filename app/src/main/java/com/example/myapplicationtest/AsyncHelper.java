@@ -65,8 +65,9 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                 while (rs.next()) {
                     Log.d("D",flag);
                     switch (flag){
-                        case "singer":
-                            SingersActivity.geners.add(rs.getString(colName1));
+                        case "genre":
+                            HelperLists.genersHelperLists.add(rs.getString(colName1));
+                            //SingersActivity.geners.add(rs.getString(colName1));
                             break;
                         case "sol":
                             Log.d("D","entered sol");
@@ -77,9 +78,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                                 SulationSinger.genres.add(rs.getString(colName4));
                             }
                             break;
-                        case "poet":
-                            PoetsActivity.poets.add(rs.getString(colName1));
-                            break;
+
                         /*case "percents":
                             SulationSinger.tempo.add(rs.getString(colName1));
                             SulationSinger.loudness.add(rs.getString(colName2));*/

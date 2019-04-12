@@ -32,7 +32,7 @@ public class SingersRegistration extends AppCompatActivity {
     private String beat2=null;
     private String name=null;
 
-    private Helper helper=new Helper();
+  //  private Helper helper=new Helper();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
