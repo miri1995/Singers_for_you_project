@@ -70,10 +70,12 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                             break;
                         case "sol":
                             Log.d("D","entered sol");
-                            SulationSinger.artists.add(rs.getString(colName1));
-                            SulationSinger.tempo.add(rs.getDouble(colName2));
-                            SulationSinger.loudness.add(rs.getDouble(colName3));
-                            SulationSinger.genres.add(rs.getString(colName4));
+                            if(!SulationSinger.moreThanOnce(SulationSinger.artists,rs.getString(colName1))) {
+                                SulationSinger.artists.add(rs.getString(colName1));
+                                SulationSinger.tempo.add(rs.getDouble(colName2));
+                                SulationSinger.loudness.add(rs.getDouble(colName3));
+                                SulationSinger.genres.add(rs.getString(colName4));
+                            }
                             break;
                         case "poet":
                             PoetsActivity.poets.add(rs.getString(colName1));

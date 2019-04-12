@@ -27,30 +27,52 @@ public class FittingPercents {
         if (priority.getFilters().getTempo().equals("Fast") || priority.getFilters().getTempo().equals("Slow")) {
             if(priority.getPrioTempo().equals("medium") || priority.getPrioTempo().equals("low")){
                 for (int i = 0; i < SulationSinger.tempo.size(); i++) {
-                    double step = (Math.abs(/*Double.parseDouble*/(SulationSinger.tempo.get(i)) - numTempo[0])) / priorityMap.get(priority.getPrioTempo());
-                    gradeTempo = 100 * (1 - step) * percentTempo;
+                    if(priority.getFilters().getTempo().equals("Slow") && SulationSinger.tempo.get(i)< numTempo[0]){
+                        gradeTempo = 100 * percentTempo;
+                    }
+                    else if (priority.getFilters().getTempo().equals("Fast") && SulationSinger.tempo.get(i) > numTempo[0]){
+                        gradeTempo = 100 * percentTempo;
+                    }
+                    else {
+                        double step = (Math.abs(/*Double.parseDouble*/(SulationSinger.tempo.get(i)) - numTempo[0])) / priorityMap.get(priority.getPrioTempo());
+                        gradeTempo = 100 * (1 - step) * percentTempo;
+                    }
                     gradesTempo.add(gradeTempo);
                 }
             }
-            if (priority.getFilters().getLoudness().equals("Weak") || priority.getFilters().getTempo().equals("Strong")) {
+            if (priority.getFilters().getLoudness().equals("Weak") || priority.getFilters().getLoudness().equals("Strong")) {
                 if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
                     for (int i = 0; i < SulationSinger.loudness.size(); i++) {
-                        double step = (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0])) / priorityMap.get(priority.getPrioLoudness());
-                        gradeLoudness = 100 * (1 - step) * percentLoudness;
+                        if(priority.getFilters().getLoudness().equals("Weak") && SulationSinger.loudness.get(i) > numLoudness[0]){
+                            gradeLoudness = 100 * percentLoudness;
+                        }
+                        else if( priority.getFilters().getLoudness().equals("Strong") && SulationSinger.loudness.get(i) < numLoudness[0]){
+                            gradeLoudness = 100 * percentLoudness;
+                        }
+                        else{
+                            double step = (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0])) / priorityMap.get(priority.getPrioLoudness());
+                            gradeLoudness = 100 * (1 - step) * percentLoudness;
+                        }
                         gradesLoudness.add(gradeLoudness);
                     }
                 }
             } else {
                 if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
                     for (int i = 0; i < SulationSinger.loudness.size(); i++) {
-                        double step;
-                        if (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0]) < Math.abs(/*Integer.parseInt*/(SulationSinger.loudness.get(i)) - numLoudness[1])) {
-                            step = (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0])) / priorityMap.get(priority.getPrioLoudness());
-                        } else {
-                            step = (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[1])) / priorityMap.get(priority.getPrioLoudness());
+                        if(SulationSinger.loudness.get(i)>numLoudness[0] && SulationSinger.loudness.get(i)<numLoudness[1]){
+                            gradeLoudness = 100 * percentLoudness;
+                        }
+                        else{
+                            double step;
+                            if (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0]) < Math.abs(/*Integer.parseInt*/(SulationSinger.loudness.get(i)) - numLoudness[1])) {
+                                step = 2 * (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0])) / priorityMap.get(priority.getPrioLoudness());
+                            } else {
+                                step = 2* (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[1])) / priorityMap.get(priority.getPrioLoudness());
+                            }
+
+                            gradeLoudness = 100 * (1 - step) * percentLoudness;
                         }
 
-                        gradeLoudness = 100 * (1 - step) * percentLoudness;
                         gradesLoudness.add(gradeLoudness);
                     }
                 }
@@ -59,22 +81,37 @@ public class FittingPercents {
         else {
             if (priority.getPrioTempo().equals("medium") || priority.getPrioTempo().equals("low")){
                 for (int i = 0; i < SulationSinger.tempo.size(); i++) {
-                    double step;
-                    if (Math.abs(/*Integer.parseInt*/(SulationSinger.tempo.get(i)) - numTempo[0]) < Math.abs(/*Integer.parseInt*/(SulationSinger.tempo.get(i)) - numTempo[1])) {
-                        step = (Math.abs(/*Double.parseDouble*/(SulationSinger.tempo.get(i)) - numTempo[0])) / priorityMap.get(priority.getPrioTempo());
-                    } else {
-                        step = (Math.abs(/*Double.parseDouble*/(SulationSinger.tempo.get(i)) - numLoudness[1])) / priorityMap.get(priority.getPrioTempo());
+                    if(SulationSinger.tempo.get(i)>numTempo[0] && SulationSinger.tempo.get(i)<numTempo[1]){
+                        gradeTempo = 100 * percentTempo;
+                    }
+                    else{
+                        double step;
+                        if (Math.abs(/*Integer.parseInt*/(SulationSinger.tempo.get(i)) - numTempo[0]) < Math.abs(/*Integer.parseInt*/(SulationSinger.tempo.get(i)) - numTempo[1])) {
+                            step = 2* (Math.abs(/*Double.parseDouble*/(SulationSinger.tempo.get(i)) - numTempo[0])) / priorityMap.get(priority.getPrioTempo());
+                        } else {
+                            step = 2* (Math.abs(/*Double.parseDouble*/(SulationSinger.tempo.get(i)) - numTempo[1])) / priorityMap.get(priority.getPrioTempo());
+                        }
+
+                        gradeTempo = 100 * (1 - step) * percentTempo;
                     }
 
-                    gradeTempo = 100 * (1 - step) * percentTempo;
                     gradesTempo.add(gradeTempo);
                 }
             }
             if (priority.getFilters().getLoudness().equals("Weak") || priority.getFilters().getTempo().equals("Strong")) {
                 if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
                     for (int i = 0; i < SulationSinger.loudness.size(); i++) {
-                        double step = (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0])) / priorityMap.get(priority.getPrioLoudness());
-                        gradeLoudness = 100 * (1 - step) * percentLoudness;
+                        if(priority.getFilters().getLoudness().equals("Weak") && SulationSinger.loudness.get(i) > numLoudness[0]){
+                            gradeLoudness = 100 * percentLoudness;
+                        }
+                        else if ( priority.getFilters().getTempo().equals("Strong") && SulationSinger.loudness.get(i) < numLoudness[0]){
+                            gradeLoudness = 100 * percentLoudness;
+                        }
+                        else{
+                            double step = (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0])) / priorityMap.get(priority.getPrioLoudness());
+                            gradeLoudness = 100 * (1 - step) * percentLoudness;
+                        }
+
                         gradesLoudness.add(gradeLoudness);
                     }
                 }
@@ -82,14 +119,20 @@ public class FittingPercents {
             else {
                 if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
                     for (int i = 0; i < SulationSinger.loudness.size(); i++) {
-                        double step;
-                        if (Math.abs(/*Integer.parseInt*/(SulationSinger.loudness.get(i)) - numLoudness[0]) < Math.abs(/*Integer.parseInt*/(SulationSinger.loudness.get(i)) - numLoudness[1])) {
-                            step = (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0])) / priorityMap.get(priority.getPrioLoudness());
-                        } else {
-                            step = (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[1])) / priorityMap.get(priority.getPrioLoudness());
+                        if(SulationSinger.loudness.get(i)>numLoudness[0] && SulationSinger.loudness.get(i)<numLoudness[1]){
+                            gradeLoudness = 100 * percentLoudness;
+                        }
+                        else{
+                            double step;
+                            if (Math.abs(/*Integer.parseInt*/(SulationSinger.loudness.get(i)) - numLoudness[0]) < Math.abs(/*Integer.parseInt*/(SulationSinger.loudness.get(i)) - numLoudness[1])) {
+                                step = 2* (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[0])) / priorityMap.get(priority.getPrioLoudness());
+                            } else {
+                                step = 2* (Math.abs(/*Double.parseDouble*/(SulationSinger.loudness.get(i)) - numLoudness[1])) / priorityMap.get(priority.getPrioLoudness());
+                            }
+
+                            gradeLoudness = 100 * (1 - step) * percentLoudness;
                         }
 
-                        gradeLoudness = 100 * (1 - step) * percentLoudness;
                         gradesLoudness.add(gradeLoudness);
                     }
                 }
