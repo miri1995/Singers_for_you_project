@@ -5,15 +5,12 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.myapplicationtest.ProductActivity;
-import com.example.myapplicationtest.SingersActivity;
 import com.example.myapplicationtest.SulationSinger;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {

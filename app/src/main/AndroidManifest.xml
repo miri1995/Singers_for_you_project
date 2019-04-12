@@ -35,7 +35,7 @@
                 android:value="com.example.myapplicationtest.ChoiceSingerOrProduct" />
         </activity>
         <activity
-            android:name=".ProductActivity"
+            android:name=".PoetsActivity"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity">
 

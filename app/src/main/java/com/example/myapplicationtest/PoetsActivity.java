@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProductActivity extends AppCompatActivity {
+public class PoetsActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
     public static List<String> poets=new ArrayList<>();
@@ -22,12 +22,10 @@ public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_choice);
+        setContentView(R.layout.poet_choice);
+        String q3="select genre from genre";
+        new AsyncHelper(PoetsActivity.this,q3,"genre",null,null,null,"singer").execute(); //async task for getting data from db
 
-        String q3="select * from poets";
-       // new AsyncHelper(ProductActivity.this,q3,"poet_name",null,"poet").execute(); //async task for getting data from db
-
-        System.out.println(poets);
 
         //categorization
         List<String> genres = new ArrayList<String>(Arrays.asList("select","g1","g2", "g3","g4","g5","g6","g7"));
@@ -58,7 +56,7 @@ public class ProductActivity extends AppCompatActivity {
         spinner4.setAdapter(locationAdapter);
 
     }
-    public void second_click(View view) {
+    public void poet_choise_click(View view) {
 
         String genre2 =null;
         String target_Audience2 = null;
@@ -80,7 +78,7 @@ public class ProductActivity extends AppCompatActivity {
 
         filters = new Filters(genre2,target_Audience2,beat2);
 
-        Intent intent1 = new Intent(ProductActivity.this, ParioritySingers.class);
+        Intent intent1 = new Intent(PoetsActivity.this, ParioritySingers.class);
         intent1.putExtra("com.example.myapplicationtest.Filters", filters);
         setResult(Activity.RESULT_OK, intent1);
         startActivity(intent1);
@@ -89,7 +87,7 @@ public class ProductActivity extends AppCompatActivity {
     }
 
     public void backSingerORProduct_click(View view){
-        Intent intent = new Intent(ProductActivity.this, ChoiceSingerOrProduct.class);
+        Intent intent = new Intent(PoetsActivity.this, ChoiceSingerOrProduct.class);
         startActivity(intent);
     }
 }
