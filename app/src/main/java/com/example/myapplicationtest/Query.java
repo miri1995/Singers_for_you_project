@@ -39,8 +39,8 @@ public class Query {
                 "from genre\n" +
                 "INNER JOIN genreartists on genre.genre_id = genreartists.genre_id\n" +
                 "INNER JOIN artists on artists.artist_id = genreartists.artist_id\n" +
-                "INNER JOIN songs on songs.song_artist_id = artists.artist_id\n" +
-                "WHERE artists.artist_id IN ";
+                "INNER JOIN songs on songs.song_artist_id = artists.artist_id\n"; //+
+                //"WHERE artists.artist_id IN ";
         // check that this features are not null
         String notNull=" AND songs.song_loudness IS NOT NULL AND songs.song_tempo IS NOT NULL";
         double num_tempo;
@@ -64,19 +64,19 @@ public class Query {
                 num_loudness = numLoud[0] - (double)priority.get(prioLoudness);
                 if(temp==1){
                     num_tempo = numTempo[0] + (double)priority.get(prioTempo);
-                    q=  mapGenre+ "(Select song_artist_id FROM songs where song_tempo <\""+num_tempo+"\""+ "AND song_loudness >\""+num_loudness+"\""+
-                            notNull+")";
+                    q=  mapGenre+ "WHERE song_tempo <\""+num_tempo+"\""+ "AND song_loudness >\""+num_loudness+"\""+
+                            notNull;
                 }else if(temp==2){
                     num_tempo = numTempo[0] - ((double)priority.get(prioTempo)/2);
                     double num_tempo2 = numTempo[1] + ((double)priority.get(prioTempo)/2);
                     q= mapGenre+
-                            "(Select song_artist_id FROM songs WHERE song_tempo between \""+num_tempo+"\""+ "and \""+num_tempo2+"\"" + "AND song_loudness>\""+num_loudness+"\""+
-                            notNull+")";
+                            "WHERE song_tempo between \""+num_tempo+"\""+ "and \""+num_tempo2+"\"" + "AND song_loudness>\""+num_loudness+"\""+
+                            notNull;
                 }else {
                     num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                     q = mapGenre +
-                            "(Select song_artist_id FROM songs WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness>\"" + num_loudness + "\"" +
-                            notNull + ")";
+                            "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness>\"" + num_loudness + "\"" +
+                            notNull;
                 }
                 break;
             case "Normal":
@@ -85,19 +85,19 @@ public class Query {
                 if(temp==1){
                     num_tempo = numTempo[0] + (double)priority.get(prioTempo);
                     q= mapGenre+
-                            "(Select song_artist_id FROM songs WHERE song_tempo<\""+num_tempo+"\"" + " AND song_loudness BETWEEN \""+num_loudness+"\"" + "and \""+num_loudness2+"\""+
-                            notNull+")";
+                            "WHERE song_tempo<\""+num_tempo+"\"" + " AND song_loudness BETWEEN \""+num_loudness+"\"" + "and \""+num_loudness2+"\""+
+                            notNull;
                 }else if(temp==2){
                     num_tempo = numTempo[0] - ((double)priority.get(prioTempo)/2);
                     double num_tempo2 = numTempo[1] + ((double)priority.get(prioTempo)/2);
                     q= mapGenre+
-                            "(Select song_artist_id FROM songs WHERE song_tempo between \""+num_tempo+"\"" + "and \""+num_tempo2+"\"" + "AND song_loudness BETWEEN \""+num_loudness+"\"" + "and \""+num_loudness2+"\"" +
-                            notNull+")";
+                            "WHERE song_tempo between \""+num_tempo+"\"" + "and \""+num_tempo2+"\"" + "AND song_loudness BETWEEN \""+num_loudness+"\"" + "and \""+num_loudness2+"\"" +
+                            notNull;
                 }else {
                     num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                     q = mapGenre +
-                            "(Select song_artist_id FROM songs WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
-                            notNull + ")";
+                            "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                            notNull;
                 }
                 break;
             case "Strong":
@@ -105,19 +105,19 @@ public class Query {
                 if(temp==1){
                     num_tempo = numTempo[0] + (double)priority.get(prioTempo);
                     q= mapGenre+
-                            "(Select song_artist_id FROM songs WHERE song_tempo<\""+num_tempo+"\"" + " AND song_loudness<\""+num_loudness+"\"" +
-                            notNull+")";
+                            "WHERE song_tempo<\""+num_tempo+"\"" + " AND song_loudness<\""+num_loudness+"\"" +
+                            notNull;
                 }else if(temp==2){
                     num_tempo = numTempo[0] - ((double)priority.get(prioTempo)/2);
                     double num_tempo2 = numTempo[1] + ((double)priority.get(prioTempo)/2);
                     q= mapGenre+
-                            "(Select song_artist_id FROM songs WHERE song_tempo between \""+num_tempo+"\"" + "and \""+num_tempo2+"\"" + "AND song_loudness<\""+num_loudness+"\"" +
-                            notNull+")";
+                            "WHERE song_tempo between \""+num_tempo+"\"" + "and \""+num_tempo2+"\"" + "AND song_loudness<\""+num_loudness+"\"" +
+                            notNull;
                 }else {
                     num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                     q = mapGenre +
-                            "(Select song_artist_id FROM songs WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness<\"" + num_loudness + "\"" +
-                            notNull + ")";
+                            "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness<\"" + num_loudness + "\"" +
+                            notNull;
                 }
                 break;
         }
