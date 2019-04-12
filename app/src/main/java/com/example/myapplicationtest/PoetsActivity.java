@@ -18,6 +18,7 @@ public class PoetsActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
     public static List<String> genres=new ArrayList<>();
+    public static List<String> goals=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +36,20 @@ public class PoetsActivity extends AppCompatActivity {
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genres);
         spinner1.setAdapter(generesAdapter);
 
-        //spinner2
+        //subject
         List<String> audience = new ArrayList<String>(Arrays.asList("select","a1","a2", "a3","a4","a5","a6","a7"));
         spinner2 = findViewById(R.id.spinner2);
-
         ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,audience);
         spinner2.setAdapter(AudienceAdapter);
 
-        //spinner3
-        List<String> beat = new ArrayList<String>(Arrays.asList("select","b1","b2", "b3","b4","b5","b6","b7"));
+        //goal
+        goals.clear();
+        String q="select distinct goal from poets";
+        new AsyncHelper(PoetsActivity.this,q,"goal",null,null,null,"goal").execute(); //async task for getting data from db
+        goals=HelperLists.goalHelperList;
+        goals.add(0,"select");
         spinner3 = findViewById(R.id.spinner3);
-
-        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beat);
+        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,goals);
         spinner3.setAdapter(beatAdapter);
 
         //spinner4

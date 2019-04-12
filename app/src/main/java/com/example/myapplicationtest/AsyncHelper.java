@@ -55,44 +55,66 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
             Log.d("D","in background");
             Class.forName("com.mysql.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
-            Log.d("D","in background"+con);
-            Log.d("D",query);
-            Log.d("D",colName1);
-            try (Statement stmt = con.createStatement();
-
-                 ResultSet rs = stmt.executeQuery(query);) {
-
-                while (rs.next()) {
-                    Log.d("D",flag);
-                    switch (flag){
-                        case "genre":
+           // Log.d("D","in background"+con);
+           // Log.d("D",query);
+           // Log.d("D",colName1);
+            switch (flag){
+                case "genre":
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            Log.d("D",flag);
                             HelperLists.genersHelperLists.add(rs.getString(colName1));
-                            //SingersActivity.geners.add(rs.getString(colName1));
-                            break;
-                        case "sol":
-                            Log.d("D","entered sol");
+                        }
+                        Log.d("D","result"+ SulationSinger.artists);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
+                    }
+                case "goal":
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            Log.d("D",flag);
+                            HelperLists.goalHelperList.add(rs.getString(colName1));
+                        }
+                        Log.d("D","result"+ SulationSinger.artists);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
+                    }
+
+                    //SingersActivity.geners.add(rs.getString(colName1));
+                    break;
+                case "sol":
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
                             if(!SulationSinger.moreThanOnce(SulationSinger.artists,rs.getString(colName1))) {
                                 SulationSinger.artists.add(rs.getString(colName1));
                                 SulationSinger.tempo.add(rs.getDouble(colName2));
                                 SulationSinger.loudness.add(rs.getDouble(colName3));
                                 SulationSinger.genres.add(rs.getString(colName4));
                             }
-                            break;
-
-                        /*case "percents":
-                            SulationSinger.tempo.add(rs.getString(colName1));
-                            SulationSinger.loudness.add(rs.getString(colName2));*/
-
+                        }
+                        Log.d("D","result"+ SulationSinger.artists);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
                     }
+                    break;
 
-                }
-                Log.d("D","result"+ SulationSinger.artists);
-                con.close();
-                //return "COMPLETE2";
-            } catch (SQLException e) {
-                System.out.println("ERROR executeQuery - " + e.getMessage());
-                Log.d("D","ERROR executeQuery");
             }
+
+
+
+
             Log.d("D","in background list"+SulationSinger.artists);
         } catch (SQLException e) {
             Log.d("D",e.getMessage());
