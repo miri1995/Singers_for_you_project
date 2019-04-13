@@ -181,7 +181,7 @@ public class FittingPercents {
            else{
                for(int j=0;j<Maps.getInstance().getSecondGenre().size();j++){
                    if(SulationSinger.genres.get(i).equals(Maps.getInstance().getSecondGenre().get(j))){
-                       gradeGenres = otherGenresGrade.get(j);
+                       gradeGenres = otherGenresGrade.get(j) * percentGenre;
                    }
                }
            }
