@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.myapplicationtest.Enums.EnumAsync;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,8 +60,11 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
            // Log.d("D","in background"+con);
            // Log.d("D",query);
            // Log.d("D",colName1);
-            switch (flag){
-                case "genre":
+            Log.d("D","NEW FLAG"+flag);
+            switch (EnumAsync.valueOf(flag)){
+
+                case Genre:
+                    Log.d("D","in genre"+query);
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
@@ -73,7 +78,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
                         Log.d("D","ERROR executeQuery");
                     }
-                case "goal":
+                case Goal:
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
@@ -90,7 +95,22 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
 
                     //SingersActivity.geners.add(rs.getString(colName1));
                     break;
-                case "sol":
+                case Topic:
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            Log.d("D",flag);
+                            HelperLists.topicHelperList.add(rs.getString(colName1));
+                        }
+
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
+                    }
+                    break;
+                case Sol:
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {

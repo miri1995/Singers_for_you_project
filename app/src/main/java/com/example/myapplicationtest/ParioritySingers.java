@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Filters;
 import com.example.myapplicationtest.SingersLogic.Priority;
 
@@ -28,21 +29,24 @@ public class ParioritySingers extends AppCompatActivity {
         setContentView(R.layout.praiority_singers);
 
         //categorization
-        List<String> genresP = new ArrayList<String>(Arrays.asList("select","high","medium","low"));
+        List<String> genresP = new ArrayList<String>(Arrays.asList("select", EnumsSingers.High.getEnums(),
+                EnumsSingers.Medium.getEnums(),EnumsSingers.Low.getEnums()));
         spinner1 = findViewById(R.id.register_what_you);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genresP);
         spinner1.setAdapter(generesAdapter);
 
         //spinner2
-        List<String> loudnessP = new ArrayList<String>(Arrays.asList("select","high","medium","low"));
+        List<String> loudnessP = new ArrayList<String>(Arrays.asList("select",EnumsSingers.High.getEnums(),
+                EnumsSingers.Medium.getEnums(),EnumsSingers.Low.getEnums()));
         spinner2 = findViewById(R.id.spinner2);
 
         ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudnessP);
         spinner2.setAdapter(AudienceAdapter);
 
         //spinner3 b
-        List<String> beatP = new ArrayList<String>(Arrays.asList("select","high","medium","low"));
+        List<String> beatP = new ArrayList<String>(Arrays.asList("select",EnumsSingers.High.getEnums(),
+                EnumsSingers.Medium.getEnums(),EnumsSingers.Low.getEnums()));
         spinner3 = findViewById(R.id.spinner3);
 
         ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beatP);

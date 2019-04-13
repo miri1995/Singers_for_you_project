@@ -1,5 +1,6 @@
 package com.example.myapplicationtest;
 
+import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Priority;
 
 import java.util.ArrayList;
@@ -37,31 +38,31 @@ public class Maps {
     }
 
     public HashMap<String, Double> PutInPriority(String prioLoudness, String prioTempo) {
-        switch (prioLoudness) {
-            case "high":
+        switch (EnumsSingers.valueOf(prioLoudness)) {
+            case High:
                 priority.put(prioLoudness, (double) 0);
-                if (prioTempo.equals("medium")) {
+                if (prioTempo.equals(EnumsSingers.Medium.getEnums())) {
                     priority.put(prioTempo, (double) 25);
                 }
-                if (prioTempo.equals("low")) {
+                if (prioTempo.equals(EnumsSingers.Low.getEnums())) {
                     priority.put(prioTempo, (double) 50);
                 }
                 break;
-            case "medium":
+            case Medium:
                 priority.put(prioLoudness, (double) 5);
-                if (prioTempo.equals("high")) {
+                if (prioTempo.equals(EnumsSingers.High.getEnums())) {
                     priority.put(prioTempo, (double) 0);
                 }
-                if (prioTempo.equals("low")) {
+                if (prioTempo.equals(EnumsSingers.Low.getEnums())) {
                     priority.put(prioTempo, (double) 50);
                 }
                 break;
-            case "low":
+            case Low:
                 priority.put(prioLoudness, (double) 10);
-                if (prioTempo.equals("high")) {
+                if (prioTempo.equals(EnumsSingers.High.getEnums())) {
                     priority.put(prioTempo, (double) 0);
                 }
-                if (prioTempo.equals("medium")) {
+                if (prioTempo.equals(EnumsSingers.Medium.getEnums())) {
                     priority.put(prioTempo, (double) 25);
                     //probably something else
                 }
@@ -74,15 +75,15 @@ public class Maps {
 
     public double[] PutInloudness(String loudness) {
         double numLoud[] = new double[2];
-        switch (loudness) {
-            case "Weak":
+        switch (EnumsSingers.valueOf(loudness)) {
+            case Weak:
                 numLoud[0] = -16;
                 break;
-            case "Normal":
+            case Normal:
                 numLoud[0] = -32;
                 numLoud[1] = -16;
                 break;
-            case "Strong":
+            case Strong:
                 numLoud[0] = -32;
         }
         return numLoud;
@@ -91,14 +92,14 @@ public class Maps {
 
     public void middleLoudness(String loudness) {
 
-        switch (loudness) {
-            case "Weak":
+        switch (EnumsSingers.valueOf(loudness)) {
+            case Weak:
                 middleLoudness = -8;
                 break;
-            case "Normal":
+            case Normal:
                 middleLoudness=-24;
                 break;
-            case "Strong":
+            case Strong:
                 middleLoudness = -45;
                 break;
         }
@@ -107,14 +108,14 @@ public class Maps {
 
     public void middleTempo(String tempo) {
 
-        switch (tempo) {
-            case "Slow":
+        switch (EnumsSingers.valueOf(tempo)) {
+            case Slow:
                 middleTempo = 42;
                 break;
-            case "Medium":
+            case Medium:
                 middleTempo=128;
                 break;
-            case "Fast":
+            case Fast:
                 middleTempo=300;
                 break;
         }
@@ -123,15 +124,15 @@ public class Maps {
 
     public double[] PutInTempo(String tempo) {
         double numTempo[] = new double[2];
-        switch (tempo) {
-            case "Slow":
+        switch (EnumsSingers.valueOf(tempo)) {
+            case Slow:
                 numTempo[0] = 85;
                 break;
-            case "Medium":
+            case Medium:
                 numTempo[0] = 85;
                 numTempo[1] = 170;
                 break;
-            case "Fast":
+            case Fast:
                 numTempo[0] = 170;
         }
         return numTempo;
@@ -139,11 +140,11 @@ public class Maps {
 
     public double PutInPercents(String whichPrio){
         double whichPercent = 0;
-        switch (whichPrio){
-            case "low":
+        switch (EnumsSingers.valueOf(whichPrio)){
+            case Low:
                 whichPercent = 0.3;
                 break;
-            case "medium":
+            case Medium:
                 whichPercent = 0.7;
 
         }

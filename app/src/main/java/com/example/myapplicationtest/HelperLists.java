@@ -7,7 +7,7 @@ public class HelperLists {
 
     public static List<String> genersHelperLists=new ArrayList<>();
     public static List<String> goalHelperList=new ArrayList<>();
-    public static List<String> subjectHelperList=new ArrayList<>();
+    public static List<String> topicHelperList=new ArrayList<>();
 
     public HelperLists(){
 

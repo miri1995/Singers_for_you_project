@@ -5,6 +5,8 @@ package com.example.myapplicationtest;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
+import com.example.myapplicationtest.Enums.EnumsSingers;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import com.example.myapplicationtest.Enums.EnumsSingers.*;
 
 /**
  * Query class - responsible for making the queries.
@@ -45,22 +49,22 @@ public class Query {
         String notNull=" AND songs.song_loudness IS NOT NULL AND songs.song_tempo IS NOT NULL";
         double num_tempo;
         double num_loudness;
-        switch (tempo){
-            case "Slow":
+        switch (EnumsSingers.valueOf(tempo)){
+            case Slow:
                 temp=1;
                 break;
-            case "Medium":
+            case Medium:
                 temp=2;
                 break;
-            case "Fast":
+            case Fast:
                 temp=3;
                 break;
         }
         // according to the loudness and tempo chosen by the user creates the continuation of the query.
         double numLoud[] = Maps.getInstance().PutInloudness(loudness);
         double numTempo[] = Maps.getInstance().PutInTempo(tempo);
-        switch (loudness){
-            case "Weak":
+        switch (EnumsSingers.valueOf(loudness)){
+            case Weak:
                 num_loudness = numLoud[0] - (double)priority.get(prioLoudness);
                 if(temp==1){
                     num_tempo = numTempo[0] + (double)priority.get(prioTempo);
@@ -79,7 +83,7 @@ public class Query {
                             notNull;
                 }
                 break;
-            case "Normal":
+            case Normal:
                 num_loudness = (double)numLoud[0] - ((double)priority.get(prioLoudness)/2);
                 double num_loudness2 = (double)numLoud[1] + ((double)priority.get(prioLoudness)/2);
                 if(temp==1){
@@ -100,7 +104,7 @@ public class Query {
                             notNull;
                 }
                 break;
-            case "Strong":
+            case Strong:
                 num_loudness = numLoud[0] + (double)priority.get(prioLoudness);
                 if(temp==1){
                     num_tempo = numTempo[0] + (double)priority.get(prioTempo);
@@ -140,7 +144,7 @@ public class Query {
         HashMap<String,Double> priority = Maps.getInstance().PutInPriority(prioLoudness,prioTempo);
         List<String> couples=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
-        if (prioGenre.equals("medium") || prioGenre.equals("low")){
+        if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
             couples = orderGenre(genre,prioGenre);
             otherGenre = getOtherGenre(couples,genre);
             Maps.getInstance().getFromQuery(otherGenre);
@@ -166,7 +170,7 @@ public class Query {
         }
 
         StringBuilder quGenre = new StringBuilder();
-        if(prioGenre.equals("medium") || prioGenre.equals("low")) {
+        if(prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())) {
             for (int i = 0; i < otherGenre.size(); i++) {
                quGenre.append(" OR genre.genre=\"" + otherGenre.get(i) + "\"");
             }
@@ -188,14 +192,14 @@ public class Query {
         List<Integer> vals = new ArrayList<>();
         for (Map.Entry<String, Integer> entry :map.entrySet()) {
             if (entry.getKey().contains(genre)) {
-                switch (prioGenre) {
-                    case "medium":
+                switch (EnumsSingers.valueOf(prioGenre)) {
+                    case Medium:
                         if (entry.getValue() > threshold) {
                             miniMap.put(entry.getKey(), entry.getValue());
                             vals.add(entry.getValue());
                         }
                         break;
-                    case "low":
+                    case Low:
                         if (entry.getValue() <= threshold) {
                             miniMap.put(entry.getKey(), entry.getValue());
                             vals.add(entry.getValue());

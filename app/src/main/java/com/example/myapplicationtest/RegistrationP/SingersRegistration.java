@@ -10,10 +10,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.myapplicationtest.AsyncHelper;
+import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumsSingers;
+import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.Maps;
 import com.example.myapplicationtest.R;
 import com.example.myapplicationtest.SingersLogic.Filters;
-import com.example.myapplicationtest.Enums.EnumBeat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,12 +44,12 @@ public class SingersRegistration extends AppCompatActivity {
 
         String q3="select genre from genre";
 
-        new AsyncHelperRegistration(SingersRegistration.this,q3,"genre","genre").execute();
+        new AsyncHelper(SingersRegistration.this,q3,"genre",null,null,null,EnumAsync.Genre.getEnumAsync()).execute();
        // helper.GenreQuery();
        // geners=helper.getGeners();
         System.out.println(geners);
 
-        //categorization
+        geners= HelperLists.genersHelperLists;
         geners.add(0,"select");
         spinner1 = findViewById(R.id.register_what_you);
 
@@ -55,14 +57,16 @@ public class SingersRegistration extends AppCompatActivity {
         spinner1.setAdapter(generesAdapter);
 
         //spinner2
-        List<String> loudness = new ArrayList<String>(Arrays.asList("select","Weak","Normal","Strong"));
+        List<String> loudness = new ArrayList<String>(Arrays.asList("select", EnumsSingers.Weak.getEnums(),
+                EnumsSingers.Normal.getEnums(),EnumsSingers.Strong.getEnums()));
         spinner2 = findViewById(R.id.spinner2);
 
         ArrayAdapter<String> LoudnessAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudness);
         spinner2.setAdapter(LoudnessAdapter);
 
         //spinner3
-        List<String> beat = new ArrayList<String>(Arrays.asList("select","Slow","Medium","Fast"));
+        List<String> beat = new ArrayList<String>(Arrays.asList("select",EnumsSingers.Slow.getEnums(),
+               EnumsSingers.Medium.getEnums(),EnumsSingers.Fast.getEnums()));
         spinner3 = findViewById(R.id.spinner3);
 
         ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beat);
@@ -134,11 +138,11 @@ public class SingersRegistration extends AppCompatActivity {
             String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
 
             //get id
-            new AsyncHelperRegistration(SingersRegistration.this,getLastId,"artist_id","lastId").execute(); //async task for getting data from db
-            new AsyncHelperRegistration(SingersRegistration.this,getLastIdSongs,"song_id","lastIdSong").execute();
+            new AsyncHelperRegistration(SingersRegistration.this,getLastId,"artist_id", EnumAsync.LastID.getEnumAsync()).execute(); //async task for getting data from db
+            new AsyncHelperRegistration(SingersRegistration.this,getLastIdSongs,"song_id",EnumAsync.LastIdSong.getEnumAsync()).execute();
 
             //get genre
-            new AsyncHelperRegistration(SingersRegistration.this,getGenreId,"genre_id","GenreId").execute();
+            new AsyncHelperRegistration(SingersRegistration.this,getGenreId,"genre_id",EnumAsync.GenreId.getEnumAsync()).execute();
 
             System.out.println(genreID);
             Maps maps=new Maps();
@@ -150,9 +154,9 @@ public class SingersRegistration extends AppCompatActivity {
            String q3=("INSERT INTO genreartists " + "VALUES(\""+lastID+"\",\""+genreID+"\")");;
 
            //insert
-           new AsyncHelperRegistration(SingersRegistration.this,q1,"artist_id","insertSinger").execute(); //async task for getting data from db
-            new AsyncHelperRegistration(SingersRegistration.this,q2,"song_id","insertSinger").execute(); //async task for getting data from db
-            new AsyncHelperRegistration(SingersRegistration.this,q3,"artist_id","insertSinger").execute(); //async task for getting data from db
+           new AsyncHelperRegistration(SingersRegistration.this,q1,"artist_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
+            new AsyncHelperRegistration(SingersRegistration.this,q2,"song_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
+            new AsyncHelperRegistration(SingersRegistration.this,q3,"artist_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
 
             System.out.println(lastIDSong);
            // filters = new Filters(genre2, loudness2, beat2);

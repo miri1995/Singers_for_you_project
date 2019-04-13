@@ -2,7 +2,6 @@ package com.example.myapplicationtest;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
@@ -34,7 +35,8 @@ public class SingersActivity extends AppCompatActivity {
 
       //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
         String q3="select genre from genre";
-          new AsyncHelper(SingersActivity.this,q3,"genre",null,null,null,"genre").execute(); //async task for getting data from db
+        Log.d("D","BB "+EnumAsync.Genre.getEnumAsync());
+          new AsyncHelper(SingersActivity.this,q3,"genre",null,null,null, EnumAsync.Genre.getEnumAsync()).execute(); //async task for getting data from db
 
         System.out.println(geners);
         Log.d("D","singer activity"+geners);
@@ -49,14 +51,16 @@ public class SingersActivity extends AppCompatActivity {
         spinner1.setAdapter(generesAdapter);
 
         //spinner2
-        List<String> loudness = new ArrayList<String>(Arrays.asList("select","Weak","Normal","Strong"));
+        List<String> loudness = new ArrayList<String>(Arrays.asList("select", EnumsSingers.Weak.getEnums(),
+                EnumsSingers.Normal.getEnums(), EnumsSingers.Strong.getEnums()));
         spinner2 = findViewById(R.id.spinner2);
 
         ArrayAdapter<String> LoudnessAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudness);
         spinner2.setAdapter(LoudnessAdapter);
 
         //spinner3
-        List<String> beat = new ArrayList<String>(Arrays.asList("select","Slow","Medium","Fast"));
+        List<String> beat = new ArrayList<String>(Arrays.asList("select",
+                EnumsSingers.Slow.getEnums(),EnumsSingers.Medium.getEnums(),EnumsSingers.Fast.getEnums()));
         spinner3 = findViewById(R.id.spinner3);
 
         ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beat);

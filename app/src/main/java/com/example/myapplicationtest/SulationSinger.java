@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
+import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Priority;
 //import assets.pair3.txt;
 
@@ -49,7 +51,8 @@ public class SulationSinger  extends Activity {
        // artists_id.clear();
        // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
         try {
-             str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","song_tempo","song_loudness","genre","sol").execute().get();
+             str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","song_tempo","song_loudness","genre",
+                     EnumAsync.Sol.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -70,7 +73,7 @@ public class SulationSinger  extends Activity {
 
             }*/
             FittingPercents fittingPercents = new FittingPercents(priority);
-            if(priority.getPrioGenre().equals("high")){
+            if(priority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
                 grades = fittingPercents.percentTempoLoudness("both");
             }
             else{

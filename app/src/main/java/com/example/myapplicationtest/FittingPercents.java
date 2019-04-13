@@ -1,5 +1,6 @@
 package com.example.myapplicationtest;
 
+import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Priority;
 
 import java.util.ArrayList;
@@ -24,13 +25,14 @@ public class FittingPercents {
         double percentLoudness = Maps.getInstance().PutInPercents(priority.getPrioLoudness());
         double numTempo[] = Maps.getInstance().PutInTempo(priority.getFilters().getTempo());
         double percentTempo = Maps.getInstance().PutInPercents(priority.getPrioTempo());
-        if (priority.getFilters().getTempo().equals("Fast") || priority.getFilters().getTempo().equals("Slow")) {
-            if(priority.getPrioTempo().equals("medium") || priority.getPrioTempo().equals("low")){
+        if (priority.getFilters().getTempo().equals(EnumsSingers.Fast.getEnums())
+                || priority.getFilters().getTempo().equals(EnumsSingers.Slow.getEnums())) {
+            if(priority.getPrioTempo().equals(EnumsSingers.Medium.getEnums()) || priority.getPrioTempo().equals(EnumsSingers.Low.getEnums())){
                 for (int i = 0; i < SulationSinger.tempo.size(); i++) {
-                    if(priority.getFilters().getTempo().equals("Slow") && SulationSinger.tempo.get(i)< numTempo[0]){
+                    if(priority.getFilters().getTempo().equals(EnumsSingers.Slow.getEnums()) && SulationSinger.tempo.get(i)< numTempo[0]){
                         gradeTempo = 100 * percentTempo;
                     }
-                    else if (priority.getFilters().getTempo().equals("Fast") && SulationSinger.tempo.get(i) > numTempo[0]){
+                    else if (priority.getFilters().getTempo().equals(EnumsSingers.Fast.getEnums()) && SulationSinger.tempo.get(i) > numTempo[0]){
                         gradeTempo = 100 * percentTempo;
                     }
                     else {
@@ -40,13 +42,15 @@ public class FittingPercents {
                     gradesTempo.add(gradeTempo);
                 }
             }
-            if (priority.getFilters().getLoudness().equals("Weak") || priority.getFilters().getLoudness().equals("Strong")) {
-                if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
+            if (priority.getFilters().getLoudness().equals(EnumsSingers.Weak.getEnums())
+                    || priority.getFilters().getLoudness().equals(EnumsSingers.Strong.getEnums())) {
+                if(priority.getPrioLoudness().equals(EnumsSingers.Medium.getEnums())
+                        || priority.getPrioLoudness().equals(EnumsSingers.Low.getEnums())){
                     for (int i = 0; i < SulationSinger.loudness.size(); i++) {
-                        if(priority.getFilters().getLoudness().equals("Weak") && SulationSinger.loudness.get(i) > numLoudness[0]){
+                        if(priority.getFilters().getLoudness().equals(EnumsSingers.Weak.getEnums()) && SulationSinger.loudness.get(i) > numLoudness[0]){
                             gradeLoudness = 100 * percentLoudness;
                         }
-                        else if( priority.getFilters().getLoudness().equals("Strong") && SulationSinger.loudness.get(i) < numLoudness[0]){
+                        else if( priority.getFilters().getLoudness().equals(EnumsSingers.Strong.getEnums()) && SulationSinger.loudness.get(i) < numLoudness[0]){
                             gradeLoudness = 100 * percentLoudness;
                         }
                         else{
@@ -57,7 +61,8 @@ public class FittingPercents {
                     }
                 }
             } else {
-                if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
+                if(priority.getPrioLoudness().equals(EnumsSingers.Medium.getEnums())
+                        || priority.getPrioLoudness().equals(EnumsSingers.Low.getEnums())){
                     for (int i = 0; i < SulationSinger.loudness.size(); i++) {
                         if(SulationSinger.loudness.get(i)>numLoudness[0] && SulationSinger.loudness.get(i)<numLoudness[1]){
                             gradeLoudness = 100 * percentLoudness;
@@ -79,7 +84,8 @@ public class FittingPercents {
             }
         }
         else {
-            if (priority.getPrioTempo().equals("medium") || priority.getPrioTempo().equals("low")){
+            if (priority.getPrioTempo().equals(EnumsSingers.Medium.getEnums())
+                    || priority.getPrioTempo().equals(EnumsSingers.Low.getEnums())){
                 for (int i = 0; i < SulationSinger.tempo.size(); i++) {
                     if(SulationSinger.tempo.get(i)>numTempo[0] && SulationSinger.tempo.get(i)<numTempo[1]){
                         gradeTempo = 100 * percentTempo;
@@ -98,13 +104,15 @@ public class FittingPercents {
                     gradesTempo.add(gradeTempo);
                 }
             }
-            if (priority.getFilters().getLoudness().equals("Weak") || priority.getFilters().getTempo().equals("Strong")) {
-                if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
+            if (priority.getFilters().getLoudness().equals(EnumsSingers.Weak.getEnums())
+                    || priority.getFilters().getTempo().equals(EnumsSingers.Strong.getEnums())) {
+                if(priority.getPrioLoudness().equals(EnumsSingers.Medium.getEnums())
+                        || priority.getPrioLoudness().equals(EnumsSingers.Low.getEnums())){
                     for (int i = 0; i < SulationSinger.loudness.size(); i++) {
-                        if(priority.getFilters().getLoudness().equals("Weak") && SulationSinger.loudness.get(i) > numLoudness[0]){
+                        if(priority.getFilters().getLoudness().equals(EnumsSingers.Weak.getEnums()) && SulationSinger.loudness.get(i) > numLoudness[0]){
                             gradeLoudness = 100 * percentLoudness;
                         }
-                        else if ( priority.getFilters().getTempo().equals("Strong") && SulationSinger.loudness.get(i) < numLoudness[0]){
+                        else if ( priority.getFilters().getTempo().equals(EnumsSingers.Strong.getEnums()) && SulationSinger.loudness.get(i) < numLoudness[0]){
                             gradeLoudness = 100 * percentLoudness;
                         }
                         else{
@@ -117,7 +125,8 @@ public class FittingPercents {
                 }
             }
             else {
-                if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
+                if(priority.getPrioLoudness().equals(EnumsSingers.Medium.getEnums())
+                        || priority.getPrioLoudness().equals(EnumsSingers.Low.getEnums())){
                     for (int i = 0; i < SulationSinger.loudness.size(); i++) {
                         if(SulationSinger.loudness.get(i)>numLoudness[0] && SulationSinger.loudness.get(i)<numLoudness[1]){
                             gradeLoudness = 100 * percentLoudness;
@@ -187,7 +196,8 @@ public class FittingPercents {
            }
            gradesGenre.add(gradeGenres);
         }
-        if(priority.getPrioLoudness().equals("medium") || priority.getPrioLoudness().equals("low")){
+        if(priority.getPrioLoudness().equals(EnumsSingers.Medium.getEnums())
+                || priority.getPrioLoudness().equals(EnumsSingers.Low.getEnums())){
             gradesElse = percentTempoLoudness("loudness");
         }
         else {
