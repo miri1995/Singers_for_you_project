@@ -2,23 +2,13 @@ package com.example.myapplicationtest;
 
 
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-
 import com.example.myapplicationtest.Enums.EnumsSingers;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import com.example.myapplicationtest.Enums.EnumsSingers.*;
 
 /**
  * Query class - responsible for making the queries.
@@ -34,99 +24,101 @@ public class Query {
      */
     public String MapBeat(String genre,String loudness,String tempo,
                           HashMap priority,String prioLoudness,String prioTempo,String prioGenre,
-                          List<String> otherGenre,boolean popular){
+                          List<String> otherGenre,boolean popular,String flag){
         int temp=0;
         String q="";
-        // the base query which will be the first part of all the quries
-        String mapGenre= "#standardSQL\n" + "SELECT distinct artists.artist_name,songs.song_loudness,songs.song_tempo," +
-                "genre.genre\n" +
-                "from genre\n" +
-                "INNER JOIN genreartists on genre.genre_id = genreartists.genre_id\n" +
-                "INNER JOIN artists on artists.artist_id = genreartists.artist_id\n" +
-                "INNER JOIN songs on songs.song_artist_id = artists.artist_id\n"; //+
-                //"WHERE artists.artist_id IN ";
-        // check that this features are not null
-        String notNull=" AND songs.song_loudness IS NOT NULL AND songs.song_tempo IS NOT NULL";
-        double num_tempo;
-        double num_loudness;
-        switch (EnumsSingers.valueOf(tempo)){
-            case Slow:
-                temp=1;
-                break;
-            case Medium:
-                temp=2;
-                break;
-            case Fast:
-                temp=3;
-                break;
-        }
-        // according to the loudness and tempo chosen by the user creates the continuation of the query.
-        double numLoud[] = Maps.getInstance().PutInloudness(loudness);
-        double numTempo[] = Maps.getInstance().PutInTempo(tempo);
-        switch (EnumsSingers.valueOf(loudness)){
-            case Weak:
-                num_loudness = numLoud[0] - (double)priority.get(prioLoudness);
-                if(temp==1){
-                    num_tempo = numTempo[0] + (double)priority.get(prioTempo);
-                    q=  mapGenre+ "WHERE song_tempo <\""+num_tempo+"\""+ "AND song_loudness >\""+num_loudness+"\""+
-                            notNull;
-                }else if(temp==2){
-                    num_tempo = numTempo[0] - ((double)priority.get(prioTempo)/2);
-                    double num_tempo2 = numTempo[1] + ((double)priority.get(prioTempo)/2);
-                    q= mapGenre+
-                            "WHERE song_tempo between \""+num_tempo+"\""+ "and \""+num_tempo2+"\"" + "AND song_loudness>\""+num_loudness+"\""+
-                            notNull;
-                }else {
-                    num_tempo = numTempo[0] - (double) priority.get(prioTempo);
-                    q = mapGenre +
-                            "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness>\"" + num_loudness + "\"" +
-                            notNull;
-                }
-                break;
-            case Normal:
-                num_loudness = (double)numLoud[0] - ((double)priority.get(prioLoudness)/2);
-                double num_loudness2 = (double)numLoud[1] + ((double)priority.get(prioLoudness)/2);
-                if(temp==1){
-                    num_tempo = numTempo[0] + (double)priority.get(prioTempo);
-                    q= mapGenre+
-                            "WHERE song_tempo<\""+num_tempo+"\"" + " AND song_loudness BETWEEN \""+num_loudness+"\"" + "and \""+num_loudness2+"\""+
-                            notNull;
-                }else if(temp==2){
-                    num_tempo = numTempo[0] - ((double)priority.get(prioTempo)/2);
-                    double num_tempo2 = numTempo[1] + ((double)priority.get(prioTempo)/2);
-                    q= mapGenre+
-                            "WHERE song_tempo between \""+num_tempo+"\"" + "and \""+num_tempo2+"\"" + "AND song_loudness BETWEEN \""+num_loudness+"\"" + "and \""+num_loudness2+"\"" +
-                            notNull;
-                }else {
-                    num_tempo = numTempo[0] - (double) priority.get(prioTempo);
-                    q = mapGenre +
-                            "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
-                            notNull;
-                }
-                break;
-            case Strong:
-                num_loudness = numLoud[0] + (double)priority.get(prioLoudness);
-                if(temp==1){
-                    num_tempo = numTempo[0] + (double)priority.get(prioTempo);
-                    q= mapGenre+
-                            "WHERE song_tempo<\""+num_tempo+"\"" + " AND song_loudness<\""+num_loudness+"\"" +
-                            notNull;
-                }else if(temp==2){
-                    num_tempo = numTempo[0] - ((double)priority.get(prioTempo)/2);
-                    double num_tempo2 = numTempo[1] + ((double)priority.get(prioTempo)/2);
-                    q= mapGenre+
-                            "WHERE song_tempo between \""+num_tempo+"\"" + "and \""+num_tempo2+"\"" + "AND song_loudness<\""+num_loudness+"\"" +
-                            notNull;
-                }else {
-                    num_tempo = numTempo[0] - (double) priority.get(prioTempo);
-                    q = mapGenre +
-                            "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness<\"" + num_loudness + "\"" +
-                            notNull;
-                }
-                break;
+        if (flag.equals("singer")) {
+            // the base query which will be the first part of all the quries
+            String mapGenre = "#standardSQL\n" + "SELECT distinct artists.artist_name,songs.song_loudness,songs.song_tempo," +
+                    "genre.genre\n" +
+                    "from genre\n" +
+                    "INNER JOIN genreartists on genre.genre_id = genreartists.genre_id\n" +
+                    "INNER JOIN artists on artists.artist_id = genreartists.artist_id\n" +
+                    "INNER JOIN songs on songs.song_artist_id = artists.artist_id\n"; //+
+            //"WHERE artists.artist_id IN ";
+            // check that this features are not null
+            String notNull = " AND songs.song_loudness IS NOT NULL AND songs.song_tempo IS NOT NULL";
+            double num_tempo;
+            double num_loudness;
+            switch (EnumsSingers.valueOf(tempo)) {
+                case Slow:
+                    temp = 1;
+                    break;
+                case Medium:
+                    temp = 2;
+                    break;
+                case Fast:
+                    temp = 3;
+                    break;
+            }
+            // according to the loudness and tempo chosen by the user creates the continuation of the query.
+            double numLoud[] = Maps.getInstance().PutInloudness(loudness);
+            double numTempo[] = Maps.getInstance().PutInTempo(tempo);
+            switch (EnumsSingers.valueOf(loudness)) {
+                case Weak:
+                    num_loudness = numLoud[0] - (double) priority.get(prioLoudness);
+                    if (temp == 1) {
+                        num_tempo = numTempo[0] + (double) priority.get(prioTempo);
+                        q = mapGenre + "WHERE song_tempo <\"" + num_tempo + "\"" + "AND song_loudness >\"" + num_loudness + "\"" +
+                                notNull;
+                    } else if (temp == 2) {
+                        num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
+                        double num_tempo2 = numTempo[1] + ((double) priority.get(prioTempo) / 2);
+                        q = mapGenre +
+                                "WHERE song_tempo between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND song_loudness>\"" + num_loudness + "\"" +
+                                notNull;
+                    } else {
+                        num_tempo = numTempo[0] - (double) priority.get(prioTempo);
+                        q = mapGenre +
+                                "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness>\"" + num_loudness + "\"" +
+                                notNull;
+                    }
+                    break;
+                case Normal:
+                    num_loudness = (double) numLoud[0] - ((double) priority.get(prioLoudness) / 2);
+                    double num_loudness2 = (double) numLoud[1] + ((double) priority.get(prioLoudness) / 2);
+                    if (temp == 1) {
+                        num_tempo = numTempo[0] + (double) priority.get(prioTempo);
+                        q = mapGenre +
+                                "WHERE song_tempo<\"" + num_tempo + "\"" + " AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                                notNull;
+                    } else if (temp == 2) {
+                        num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
+                        double num_tempo2 = numTempo[1] + ((double) priority.get(prioTempo) / 2);
+                        q = mapGenre +
+                                "WHERE song_tempo between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                                notNull;
+                    } else {
+                        num_tempo = numTempo[0] - (double) priority.get(prioTempo);
+                        q = mapGenre +
+                                "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                                notNull;
+                    }
+                    break;
+                case Strong:
+                    num_loudness = numLoud[0] + (double) priority.get(prioLoudness);
+                    if (temp == 1) {
+                        num_tempo = numTempo[0] + (double) priority.get(prioTempo);
+                        q = mapGenre +
+                                "WHERE song_tempo<\"" + num_tempo + "\"" + " AND song_loudness<\"" + num_loudness + "\"" +
+                                notNull;
+                    } else if (temp == 2) {
+                        num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
+                        double num_tempo2 = numTempo[1] + ((double) priority.get(prioTempo) / 2);
+                        q = mapGenre +
+                                "WHERE song_tempo between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND song_loudness<\"" + num_loudness + "\"" +
+                                notNull;
+                    } else {
+                        num_tempo = numTempo[0] - (double) priority.get(prioTempo);
+                        q = mapGenre +
+                                "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness<\"" + num_loudness + "\"" +
+                                notNull;
+                    }
+                    break;
+            }
         }
         // sends to a function that is responsible for Concatenation of the strings into final query.
-        String sol=GetSol(q,genre,prioGenre,otherGenre,popular);
+        String sol=GetSol(q,genre,null,null,prioGenre,null,null,otherGenre,null,null,popular,flag);
         //returns the final query
         return sol;
     }
@@ -135,23 +127,67 @@ public class Query {
     /**
      * receives the user's choices and compose from them the matching query.
      * @param genre = user's choice of genre
-     * @param loudness = user's choice of loudness.
-     * @param tempo = user's choice of tempo.
+     * @param element2 = user's choice of element2.
+     * @param element3 = user's choice of element3.
      * @return q = the matching query
      */
 
-    public String UserInput(String genre, String loudness, String tempo,String prioGenre, String prioLoudness, String prioTempo,boolean popular){
-        HashMap<String,Double> priority = Maps.getInstance().PutInPriority(prioLoudness,prioTempo);
+    public String UserInput(String genre, String element2, String element3,String prioGenre, String prioElement2, String prioElement3,boolean popular,String flag){
+        HashMap<String,Double> priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
         List<String> couples=new ArrayList<>();
+        List<String> couples2=new ArrayList<>();
+        List<String> couples3=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
+        List<String> otherElement2=new ArrayList<>();
+        List<String> otherElement3=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderGenre(genre,prioGenre);
-            otherGenre = getOtherGenre(couples,genre);
-            Maps.getInstance().getFromQuery(otherGenre);
+            couples = orderCouples(genre,prioGenre,"genre",20);
+            otherGenre = getOtherElement(couples,genre);
+            Maps.getInstance().getFromQuery(otherGenre,"genre");
+        }
+        if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
+            if (flag.equals("poets")) {
+                couples2 = orderCouples(element2, prioElement2,"topic",3);
+                otherElement2 = getOtherElement(couples2, element2);
+                Maps.getInstance().getFromQuery(otherElement2, "topic");
+            }
+        }
+            if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())){
+                if(flag.equals("poets")){
+                    couples3 = orderCouples(element3,prioElement3,"goal",3);
+                    otherElement3 = getOtherElement(couples3,element3);
+                    Maps.getInstance().getFromQuery(otherElement3,"goal");
+                }
+        }
+        String q="";
+        if (flag.equals("singer")){
+            q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,flag);
 
         }
-        String q=MapBeat(genre,loudness,tempo,priority,prioLoudness,prioTempo,prioGenre,otherGenre,popular);
+        else{
+            q= MapGenreTopicGoal(genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
+        }
         return q;
+
+    }
+
+    public String MapGenreTopicGoal(String genre,String element2,String element3,String prioGenre,String prioElement2,String prioElement3,
+                                    List<String> otherGenre,List<String> otherTopic,List<String> otherGoal,boolean popular,String flag){
+        StringBuilder q = new StringBuilder();
+        q.append("#standardSQL\n" + "SELECT distinct poets.poet_name,poets.song_topic,poets.goal," +
+                "from poets\n");
+        if(prioGenre.equals(EnumsSingers.High.getEnums())){
+           q.append("WHERE poets.genre=\""+genre+"\"");
+        }
+        else if(prioElement2.equals(EnumsSingers.High.getEnums())){
+            q.append("WHERE poets.song_topic=\""+element2+"\"");
+        }
+        else{
+            q.append("WHERE poets.song_topic=\""+element3+"\"");
+        }
+       // String t =q;
+        String sol = GetSol((q,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherTopic,otherGoal,popular,flag);
+        return sol;
     }
 
 
@@ -161,32 +197,69 @@ public class Query {
      * @param genre = user's choice of genre.
      * @return lastQ = the final query
      */
-    public String GetSol(String BeatQ, String genre,String prioGenre,List<String> otherGenre,boolean popular){
+
+    //TODO: stop here
+    public String GetSol(String BeatQ, String genre,String element2,String element3,String prioGenre,String prioElement2,String prioElement3,
+                         List<String> otherGenre,List<String> otherTopic,List<String> otherGoal,boolean popular,String flag){
         String hotness=null;
         if(popular){
              hotness=" order by artists.artist_hotness DESC";
         }else{
-            hotness=" order by artists.artist_hotness ASC";
+            if(flag.equals("singer")){
+                hotness=" order by artists.artist_hotness ASC";
+            }
         }
 
         StringBuilder quGenre = new StringBuilder();
+        StringBuilder quTopic = new StringBuilder();
+        StringBuilder quGoal = new StringBuilder();
         if(prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())) {
             for (int i = 0; i < otherGenre.size(); i++) {
-               quGenre.append(" OR genre.genre=\"" + otherGenre.get(i) + "\"");
+                if(flag.equals("singer")){
+                    quGenre.append(" OR genre.genre=\"" + otherGenre.get(i) + "\"");
+                }
+                else{
+                    quGenre.append(" OR poets.genre=\"" + otherGenre.get(i) + "\"");
+                }
             }
-
         }
-        String lastQ=BeatQ+" AND (genre.genre=\""+genre+"\""+quGenre+")"+hotness;
+        if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
+            for (int i = 0; i < otherTopic.size(); i++) {
+                quTopic.append(" OR poets.song_topic=\"" + otherTopic.get(i) + "\"");
+            }
+        }
+        if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())) {
+            for (int i = 0; i < otherGoal.size(); i++) {
+                quTopic.append(" OR poets.goal=\"" + otherGoal.get(i) + "\"");
+            }
+        }
+        String lastQ="";
+        if(flag.equals("singer")){
+            lastQ=BeatQ+" AND (genre.genre=\""+genre+"\""+quGenre+")"+hotness;
+        }
+       /* else{
+            lastQ=BeatQ+" And ("
+        }*/
+
 
         return lastQ;
     }
 
 
 
-    public List<String> orderGenre(String genre, String prioGenre){
-        int threshold =20;
-        CoupleDistance genreDistance = CoupleDistance.getInstance();
-        Map<String, Integer> map = genreDistance.getGenreMap();
+    public List<String> orderCouples(String genre, String prioGenre,String which,int threshold){
+        Map<String, Integer> map = new HashMap<>();
+        CoupleDistance coupleDistance = CoupleDistance.getInstance();
+        if(which.equals("genre")){
+            map = coupleDistance.getGenreMap();
+        }
+        else if(which.equals("topic")){
+            map = coupleDistance.getTopicMap();
+        }
+        else{
+            map = coupleDistance.getGoalMap();
+        }
+
         Map<String, Integer> miniMap = new HashMap<>();
         List<String> couples=new ArrayList<>();
         List<Integer> vals = new ArrayList<>();
@@ -229,19 +302,19 @@ public class Query {
 
     }
 
-    public List getOtherGenre(List<String> couples,String genre){
-        List <String> secondGenre = new ArrayList<>();
+    public List getOtherElement(List<String> couples, String element){
+        List <String> secondElement = new ArrayList<>();
         for(int i=0;i<couples.size();i++){
             String[] tokens = couples.get(i).split(",");
-            if(!tokens[0].equals(genre)){
-                secondGenre.add(tokens[0]);
+            if(!tokens[0].equals(element)){
+                secondElement.add(tokens[0]);
             }
             else{
-                secondGenre.add(tokens[1]);
+                secondElement.add(tokens[1]);
             }
 
         }
-        return secondGenre;
+        return secondElement;
     }
 
 

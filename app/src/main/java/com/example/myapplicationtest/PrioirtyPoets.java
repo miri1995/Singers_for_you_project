@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Switch;
 
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Poets.PoetsPriority;
@@ -126,7 +125,7 @@ public class PrioirtyPoets extends AppCompatActivity {
             PoetsFilters filters = (PoetsFilters) intent.getSerializableExtra("com.example.myapplicationtest.Poets.PoetsFilters");
             poetsPriority = new PoetsPriority(genreP2, subjectP2, goalP2,filters);
 
-            Intent intent1 = new Intent(PrioirtyPoets.this, SolutionPriority.class);
+            Intent intent1 = new Intent(PrioirtyPoets.this, SolutionPoets.class);
             intent1.putExtra("com.example.myapplicationtest.Poets.PoetsPriority", poetsPriority);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);

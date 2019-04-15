@@ -13,6 +13,8 @@ public class Maps {
     private static Maps single_instance = null;
     HashMap<String, Double> priority = new HashMap<>();
     List<String> otherGenre = new ArrayList<>();
+    List<String>otherTopic = new ArrayList<>();
+    List<String>otherGoal = new ArrayList<>();
     public static int middleLoudness=0;
     public static int middleTempo=0;
 
@@ -28,6 +30,16 @@ public class Maps {
     public List<String> getSecondGenre() {
 
         return otherGenre;
+    }
+
+    public List<String> getSecondTopic() {
+
+        return otherTopic;
+    }
+
+    public List<String> getSecondGoal() {
+
+        return otherGoal;
     }
 
     public static Maps getInstance() {
@@ -151,10 +163,16 @@ public class Maps {
         return whichPercent;
     }
 
-    public void getFromQuery(List<String>coupleGenre){
-      /*  for(int i=0;i<coupleGenre.size();i++){
-            otherGenre.add(coupleGenre.get(i));
-        }*/
-      otherGenre.addAll(coupleGenre);
+    public void getFromQuery(List<String>coupleGenre,String whichList){
+     if(whichList.equals("genre")){
+         otherGenre.addAll(coupleGenre);
+     }
+     else if (whichList.equals("topic")){
+         otherTopic.addAll(coupleGenre);
+     }
+     else {
+         otherGoal.addAll(coupleGenre);
+     }
+
     }
 }

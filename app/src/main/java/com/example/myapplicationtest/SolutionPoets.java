@@ -1,6 +1,5 @@
 package com.example.myapplicationtest;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +11,7 @@ import android.widget.ListView;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
-import com.example.myapplicationtest.SingersLogic.Priority;
+import com.example.myapplicationtest.Poets.PoetsPriority;
 //import assets.pair3.txt;
 
 import java.util.ArrayList;
@@ -21,15 +20,13 @@ import java.util.concurrent.ExecutionException;
 
 import static java.lang.StrictMath.round;
 
-public class SulationSinger  extends Activity {
-
-
-    Priority priority = new Priority();
-   public static List<String> artists=new ArrayList<>();
+public class SolutionPoets extends Activity {
+    PoetsPriority poetsPriority = new PoetsPriority();
+    public static List<String> poets=new ArrayList<>();
     //public static List<String> artists_id=new ArrayList<>();
-   public static List<String> genres=new ArrayList<>();
-    public static List<Double> tempo=new ArrayList<>();
-    public static List<Double> loudness=new ArrayList<>();
+    public static List<String> genres=new ArrayList<>();
+    public static List<String> subject=new ArrayList<>();
+    public static List<String> goal=new ArrayList<>();
     List<Double>grades = new ArrayList<>();
 
     @Override
@@ -37,22 +34,23 @@ public class SulationSinger  extends Activity {
 
         String str_result=null;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.solution_singers);
+        setContentView(R.layout.solution_poets);
         Intent intent2 = getIntent();
-        priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.SingersLogic.Priority");
+        poetsPriority = (PoetsPriority) intent2.getSerializableExtra("com.example.myapplicationtest.Poets.PoetsPriority");
 
 
         Query query = new Query();
-        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),
-                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),priority.getPopular(),"singer");
-        artists.clear();
-        tempo.clear();
-        loudness.clear();
-       // artists_id.clear();
-       // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
+        String flag = "poets";
+        String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),
+                poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false,"poets");
+        poets.clear();
+        subject.clear();
+        goal.clear();
+        // artists_id.clear();
+        // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
         try {
-             str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","song_tempo","song_loudness","genre",
-                     EnumAsync.Sol.getEnumAsync()).execute().get();
+            str_result=new AsyncHelper(SolutionPoets.this,q3,"artist_name","song_topic","goal","genre",
+                    EnumAsync.Sol.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -72,15 +70,15 @@ public class SulationSinger  extends Activity {
                 }
 
             }*/
-            FittingPercents fittingPercents = new FittingPercents(priority,null);
-            if(priority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
+            FittingPercents fittingPercents = new FittingPercents(null,poetsPriority);
+            if(poetsPriority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
                 grades = fittingPercents.percentTempoLoudness("both");
             }
             else{
-                    grades = fittingPercents.percentGenreElse();
+                grades = fittingPercents.percentGenreElse();
             }
 
-            List<String> resultArray = artists.subList(0,10);
+            List<String> resultArray = poets.subList(0,10);
             List<Double> gradesArray = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
@@ -96,7 +94,7 @@ public class SulationSinger  extends Activity {
             ListView listView2 = findViewById(R.id.listView2);
             listView.setAdapter(adapter);
             listView2.setAdapter(adapter2);
-           // Log.d("D", "ll" + listView.toString());
+            // Log.d("D", "ll" + listView.toString());
         }
 
     }
@@ -122,11 +120,11 @@ public class SulationSinger  extends Activity {
 
 
     public void allSol_click(View view) {
-        List<String> resultArray = artists;
+        List<String> resultArray = poets;
         List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
         for(int i=0;i<grades.size();i++){
-          double grade = round(grades.get(i),2);
-          gradesArray.add(grade);
+            double grade = round(grades.get(i),2);
+            gradesArray.add(grade);
         }
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -143,7 +141,8 @@ public class SulationSinger  extends Activity {
     }
 
     public void back_click(View view){
-        Intent intent = new Intent(SulationSinger.this, SingersActivity.class);
+        Intent intent = new Intent(SolutionPoets.this, PoetsActivity.class);
         startActivity(intent);
     }
 }
+
