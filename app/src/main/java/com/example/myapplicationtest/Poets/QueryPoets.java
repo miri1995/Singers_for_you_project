@@ -11,7 +11,7 @@ public class QueryPoets {
                             String prioGenre, String prioSubject, String prioGoal,String prioLanguage,boolean popular){
 
         String q="select * from poets where\n" +
-                "poets.genre=\""+genre+"\""+"and poets.subject=\""+subject+"\" and poets.goal=\""+goal+"\"";
+                "poets.genre=\""+genre+"\""+"and poets.song_topic=\""+subject+"\" and poets.goal=\""+goal+"\"";
 
 
         return null;
