@@ -57,7 +57,7 @@ public class CoupleDistance {
         return couples;
     }
 
-    public Map<String,Integer> countPairs(List<List<String>> couples){
+    public Map<String,Integer> countPairs(List<List<String>> couples,String flag){
         for(int i=0;i<couples.size();i++){
             int counter=1;
             if(i!=couples.size()-1) {
@@ -79,14 +79,39 @@ public class CoupleDistance {
                 }
             }
             else{
-                genreMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
+                if(flag.equals("genre")){
+                    genreMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
+                }
+                else if (flag.equals("topic")){
+                    topicMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
+                }
+                else{
+                    goalMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
+                }
             }
-            genreMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter/2);
+            if(flag.equals("genre")){
+                genreMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter/2);
+            }
+            else if (flag.equals("topic")){
+                topicMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter);
+            }
+            else{
+                goalMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter);
+            }
+
         }
 
         // lines.remove(i);
-
+    if(flag.equals("genre")){
         return genreMap;
+    }
+    else if (flag.equals("topic")){
+        return topicMap;
+    }
+    else{
+        return goalMap;
+    }
+
     }
 
 }

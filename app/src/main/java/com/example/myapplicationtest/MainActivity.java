@@ -47,14 +47,52 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        GenreDistance genreDistance = GenreDistance.getInstance();
+        CoupleDistance coupleDistance = CoupleDistance.getInstance();
         List<List<String>> GenreCouples = new ArrayList<>();
         try {
-            GenreCouples = genreDistance.ReadFile(text);
+            GenreCouples = coupleDistance.ReadFile(text);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        genreDistance.countPairs(GenreCouples);
+        coupleDistance.countPairs(GenreCouples,"genre");
+
+        String text2="";
+        try {
+            InputStream is = getAssets().open("topics.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            text2 = new String(buffer);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        List<List<String>> topicCouples = new ArrayList<>();
+        try {
+            topicCouples = coupleDistance.ReadFile(text2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        coupleDistance.countPairs(topicCouples,"topic");
+
+        String text3="";
+        try {
+            InputStream is = getAssets().open("goal.txt");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            text3 = new String(buffer);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        List<List<String>> goalCouples = new ArrayList<>();
+        try {
+            goalCouples = coupleDistance.ReadFile(text3);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        coupleDistance.countPairs(goalCouples,"goal");
 
     }
 

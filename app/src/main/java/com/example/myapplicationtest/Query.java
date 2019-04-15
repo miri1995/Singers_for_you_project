@@ -185,8 +185,8 @@ public class Query {
 
     public List<String> orderGenre(String genre, String prioGenre){
         int threshold =20;
-        GenreDistance genreDistance = GenreDistance.getInstance();
-        Map<String, Integer> map = genreDistance.getMap();
+        CoupleDistance genreDistance = CoupleDistance.getInstance();
+        Map<String, Integer> map = genreDistance.getGenreMap();
         Map<String, Integer> miniMap = new HashMap<>();
         List<String> couples=new ArrayList<>();
         List<Integer> vals = new ArrayList<>();
