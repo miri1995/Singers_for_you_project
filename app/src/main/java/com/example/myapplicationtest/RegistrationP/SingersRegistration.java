@@ -27,7 +27,7 @@ public class SingersRegistration extends AppCompatActivity {
     EditText name_txt;
     public static List<String> geners=new ArrayList<>();
     public static Integer lastID;
-    public static Integer lastIDSong;
+    public static Integer lastIDSong=0;
     public static String genreChoice =null;
     public static Integer genreID=0;
     private String loudness2 = null;
@@ -79,22 +79,12 @@ public class SingersRegistration extends AppCompatActivity {
 
     }
 
-  /*  public String getGenreChoice(){
-        return genreChoice;
-    }
-
-    public String getLoudness2(){
-        return loudness2;
-    }
-
-    public String getBeat2(){
-        return beat2;
-    }*/
-
 
 
     public void registration_singers_click(View view) {
-
+        String getLastId="select artist_id from artists order by artist_id desc limit 1";
+        //get id
+        new AsyncHelperRegistration(SingersRegistration.this,getLastId,"artist_id", EnumAsync.LastID.getEnumAsync()).execute(); //async task for getting data from db
 
         name = name_txt.getText().toString();
 
@@ -133,17 +123,17 @@ public class SingersRegistration extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }else { //only if all filter selected
-            String getLastId="select artist_id from artists order by artist_id desc limit 1";
+
             String getLastIdSongs="select song_id from songs order by song_id desc limit 1";
             String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
 
-            //get id
-            new AsyncHelperRegistration(SingersRegistration.this,getLastId,"artist_id", EnumAsync.LastID.getEnumAsync()).execute(); //async task for getting data from db
+
+
             new AsyncHelperRegistration(SingersRegistration.this,getLastIdSongs,"song_id",EnumAsync.LastIdSong.getEnumAsync()).execute();
 
             //get genre
             new AsyncHelperRegistration(SingersRegistration.this,getGenreId,"genre_id",EnumAsync.GenreId.getEnumAsync()).execute();
-
+            System.out.print(lastID);
             System.out.println(genreID);
             Maps maps=new Maps();
             maps.middleLoudness(loudness2);
