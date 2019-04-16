@@ -84,7 +84,7 @@ public class PrioirtyPoets extends AppCompatActivity {
             subjectP2 =spinner2.getSelectedItem().toString();
         }
         if(spinner3.getSelectedItem()!=null){
-            genreP2 =spinner3.getSelectedItem().toString();
+            goalP2 =spinner3.getSelectedItem().toString();
         }
       /*  if(swPopular.isChecked()){
             pop=true;
