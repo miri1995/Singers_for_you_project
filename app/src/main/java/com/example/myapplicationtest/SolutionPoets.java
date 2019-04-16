@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Poets.PoetsPriority;
 //import assets.pair3.txt;
 
@@ -44,9 +45,9 @@ public class SolutionPoets extends Activity {
         String flag = "poets";
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),
                 poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false,flag);
-        poets.clear();
-        subject.clear();
-        goal.clear();
+       // poets.clear();
+       // subject.clear();
+        //goal.clear();
         // artists_id.clear();
         // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
         try {
@@ -64,11 +65,11 @@ public class SolutionPoets extends Activity {
         if(str_result!=null) {
             FittingPercents fittingPercents = new FittingPercents(null,poetsPriority);
 
-            if(poetsPriority.getPrioGenre().equals("high")){
+            if(poetsPriority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
                 gradesElement1 = fittingPercents.percentElement("topic");
                 gradesElement2 = fittingPercents.percentElement("goal");
             }
-            else if(poetsPriority.getPrioSubject().equals("high")){
+            else if(poetsPriority.getPrioSubject().equals(EnumsSingers.High.getEnums())){
                 gradesElement1 = fittingPercents.percentElement("genre");
                 gradesElement2 = fittingPercents.percentElement("goal");
             }
