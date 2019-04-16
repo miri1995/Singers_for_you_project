@@ -1,7 +1,7 @@
 package com.example.myapplicationtest.Enums;
 
 public enum EnumAsync {
-    LastID("LastId"),LastIdSong("LastIdSong"),GenreId("GenreId"), InsertSinger("InsertSinger"), //ASYNC REGISTRATION
+    LastID("LastID"),LastIdSong("LastIdSong"),GenreId("GenreId"), InsertSinger("InsertSinger"), //ASYNC REGISTRATION
     Genre("Genre"), Goal("Goal"),Sol("Sol"),Topic("Topic"); //ASYNCHELPER
 
     private String enumAsync;

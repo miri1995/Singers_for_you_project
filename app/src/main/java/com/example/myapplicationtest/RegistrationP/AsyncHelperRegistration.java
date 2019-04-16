@@ -49,25 +49,34 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
             Log.d("D","in background");
             Class.forName("com.mysql.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
-            Log.d("DD","FLAG:"+flag);
+            Log.d("D","FLAG:"+flag);
+            Log.d("D","query:"+query);
             int result;
             switch (EnumAsync.valueOf(flag)){
                 case LastID:
+                    Log.d("D","IN LASTID");
                     try (Statement stmt = con.createStatement();
+
                          ResultSet rs = stmt.executeQuery(query);) {
+                        Log.d("D","IN LASTID"+query);
                         while (rs.next()) {
+
                             SingersRegistration.lastID=Integer.parseInt(rs.getString(colName))+1;
+
                         }
-                        Log.d("D","result"+ SingersRegistration.lastIDSong);
+                        Log.d("D","result"+ SingersRegistration.lastID);
                         con.close();
+                        //return "COMPLETE2";
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
                         Log.d("D","ERROR executeQuery");
                     }
                     break;
                 case LastIdSong:
+                    Log.d("D","IN LastIdSong");
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
+                        Log.d("D","IN LastIdSong"+query);
                         while (rs.next()) {
 
                                 SingersRegistration.lastIDSong=Integer.parseInt(rs.getString(colName))+1;
