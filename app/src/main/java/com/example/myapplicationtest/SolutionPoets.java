@@ -136,7 +136,7 @@ public class SolutionPoets extends Activity {
         listView.setAdapter(adapter);
         listView2.setAdapter(adapter2);
 
-        Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
+        Button allSolButton = (Button) findViewById(R.id.btAllSolPoets);
         allSolButton.setVisibility(View.GONE);
     }
 

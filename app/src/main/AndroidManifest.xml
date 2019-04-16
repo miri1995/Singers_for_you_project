@@ -79,6 +79,14 @@
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.PoetsActivity" />
         </activity>
+        <activity
+            android:name=".SolutionPoets"
+            android:label="@string/app_name"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.intent.action.MAIN"
+                android:value="com.example.myapplicationtest.PriorityPoets" />
+        </activity>
     </application>
 
 </manifest>
