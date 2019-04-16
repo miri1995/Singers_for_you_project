@@ -2,6 +2,7 @@ package com.example.myapplicationtest.RegistrationP;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -152,12 +153,12 @@ public class SingersRegistration extends AppCompatActivity {
            // filters = new Filters(genre2, loudness2, beat2);
 
             //blabkajj
-           /* Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
+          /*  Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
             intent1.putExtra("com.example.myapplicationtest.SingersLogic.Filters", filters);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);*/
 
-            finish();
+           // finish();
         }
     }
 

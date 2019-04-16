@@ -107,6 +107,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                     break;
 
                 case InsertSinger:
+                    Thread.sleep(10000);
                     try (Statement stmt = con.createStatement();) {
                         Log.d("D","query " + query);
                          result = stmt.executeUpdate(query);
@@ -126,6 +127,8 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             Log.d("D",e.getMessage());
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         // Log.d("D",playerList.get(1).toString());

@@ -11,15 +11,11 @@ import android.widget.Spinner;
 
 import com.example.myapplicationtest.AsyncHelper;
 import com.example.myapplicationtest.Enums.EnumAsync;
-import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
-import com.example.myapplicationtest.Maps;
-import com.example.myapplicationtest.PoetsActivity;
 import com.example.myapplicationtest.R;
 import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PoetsRegistration extends AppCompatActivity {
@@ -34,6 +30,8 @@ public class PoetsRegistration extends AppCompatActivity {
     public static Integer genreID=0;
     private List<String> topics=new ArrayList<>();
     private List<String> goals =new ArrayList<>();
+    private String topic=null;
+    private String goal =null;
     private String name=null;
 
     @Override
@@ -126,40 +124,17 @@ public class PoetsRegistration extends AppCompatActivity {
             dialog.show();
         }else { //only if all filter selected
             String getLastId="select poet_id from poets order by poet_id desc limit 1";
-            String getLastIdSongs="select song_id from songs order by song_id desc limit 1";
-            String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
 
 
             //get id
-            new AsyncHelperRegistration(PoetsRegistration.this,getLastId,"artist_id", EnumAsync.LastID.getEnumAsync()).execute();
+            //new AsyncHelperRegistration(PoetsRegistration.this,getLastId,"poet_id", EnumAsync.LastIDPoet.getEnumAsync()).execute();
 
-            new AsyncHelperRegistration(SingersRegistration.this,getLastIdSongs,"song_id",EnumAsync.LastIdSong.getEnumAsync()).execute();
-
-            //get genre
-            new AsyncHelperRegistration(SingersRegistration.this,getGenreId,"genre_id",EnumAsync.GenreId.getEnumAsync()).execute();
-            System.out.print(lastID);
-            System.out.println(genreID);
-            Maps maps=new Maps();
-            maps.middleLoudness(topic);
-            maps.middleTempo(goal);
-            String q1=("INSERT INTO artists(artist_id, artist_name,artist_hotness) " + "VALUES(\""+lastID+"\",\""+name+"\",'0')");
-            String q2=("INSERT INTO songs(song_id,song_name,song_tempo,song_loudness,song_artist_id) " +
-                    "VALUES(\""+SingersRegistration.lastIDSong+"\",'new',\""+Maps.middleTempo+"\",\""+Maps.middleLoudness+"\",\""+lastID+"\")");
-            String q3=("INSERT INTO genreartists " + "VALUES(\""+lastID+"\",\""+genreID+"\")");;
+            String q1=("INSERT INTO poets " +
+                    "VALUES(\""+lastID+"\",\""+name+"\",null,null,\""+genreChoice+"\",\""+topic+"\",\""+goal+"\")");
 
             //insert
-            new AsyncHelperRegistration(SingersRegistration.this,q1,"artist_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-            new AsyncHelperRegistration(SingersRegistration.this,q2,"song_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-            new AsyncHelperRegistration(SingersRegistration.this,q3,"artist_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
+            new AsyncHelperRegistration(PoetsRegistration.this,q1,"poet_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
 
-            System.out.println(lastIDSong);
-            // filters = new Filters(genre2, topic, goal);
-
-            //blabkajj
-           /* Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
-            intent1.putExtra("com.example.myapplicationtest.SingersLogic.Filters", filters);
-            setResult(Activity.RESULT_OK, intent1);
-            startActivity(intent1);*/
 
             finish();
         }
