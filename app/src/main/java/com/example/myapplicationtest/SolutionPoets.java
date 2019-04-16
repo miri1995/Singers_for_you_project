@@ -51,7 +51,7 @@ public class SolutionPoets extends Activity {
         // artists_id.clear();
         // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
         try {
-            str_result=new AsyncHelper(SolutionPoets.this,q3,"artist_name","song_topic","goal","genre",
+            str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genre",
                     EnumAsync.Poet.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {

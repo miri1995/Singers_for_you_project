@@ -130,10 +130,13 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                     }
                     break;
                 case Poet:
+                    Log.d("D","col1 "+ colName1);
+                    Log.d("D","in poet query"+ query);
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query)) {
-                        Log.d("D","in poet query"+ SolutionPoets.poets);
+
                         while (rs.next()) {
+                            Log.d("D","in poet query"+ rs.getString(colName1));
                             if(!SolutionPoets.moreThanOnce(SolutionPoets.poets,rs.getString(colName1))) {
                                 SolutionPoets.poets.add(rs.getString(colName1));
                                 SolutionPoets.subject.add(rs.getString(colName2));
@@ -146,7 +149,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         //return "COMPLETE2";
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQueryPoet - " + e.getMessage());
-                        Log.d("D","ERROR executeQueryPoet");
+                        Log.d("D","ERROR executeQueryPoet"+ e.getMessage());
                     }
                     break;
 
