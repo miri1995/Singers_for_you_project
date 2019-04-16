@@ -79,13 +79,22 @@ public class SolutionPoets extends Activity {
             }
             grades=fittingPercents.uniteTwoListd(gradesElement1,gradesElement2);
 
-            List<String> resultArray = poets.subList(0,10);
+            List<String> resultArray = new ArrayList<>();
+            if(poets.size()>10){
+                resultArray=poets.subList(0,10);
+            }
+            else{
+                resultArray=poets;
+            }
+
             List<Double> gradesArray = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
                 gradesArray.add(grade);
             }
-            gradesArray = gradesArray.subList(0,10);
+            if(gradesArray.size()>10){
+                gradesArray = gradesArray.subList(0,10);
+            }
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, resultArray);

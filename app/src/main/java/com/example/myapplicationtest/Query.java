@@ -226,7 +226,7 @@ public class Query {
             lastQ=BeatQ+" AND (genre.genre=\""+genre+"\""+quGenre+")"+hotness;
         }
         else{
-            String concat = " WHERE poets.genre=\""+genre+"\""+quGenre+" AND (poets.song_topic=\""+element2+"\""+quTopic+")"+
+            String concat = " WHERE (poets.genre=\""+genre+"\""+quGenre+")"+" AND (poets.song_topic=\""+element2+"\""+quTopic+")"+
                     "And (poets.goal=\""+element3+"\""+quGoal+")";
             lastQ=BeatQ+concat;
         }

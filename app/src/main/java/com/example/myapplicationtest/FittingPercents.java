@@ -238,50 +238,64 @@ public class FittingPercents {
                 gradesElement.add(ElementGrade);
             }
         }
-        else if(which.equals("topic")){
+        else if(which.equals("topic")) {
             percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioSubject());
-            maxGrade = 100-(100/(double)Maps.getInstance().getSecondTopic().size());
-            step = maxGrade/(Maps.getInstance().getSecondTopic().size()-1);
-            List<Double> otherTopicsGrade = new ArrayList<>();
-            for(int i=0; i<Maps.getInstance().getSecondTopic().size();i++){
-                gradeOtherElement = maxGrade -step * i;
-                otherTopicsGrade.add(gradeOtherElement);
-            }
-            for(int i=0;i<SolutionPoets.subject.size();i++){
-                if(SolutionPoets.subject.get(i).equals(prioirtyPoets.getFilters().getSubject())){
-                    ElementGrade = 100 * percentElement;
+            if (Maps.getInstance().getSecondTopic().size() != 0) {
+                maxGrade = 100 - (100 / (double) Maps.getInstance().getSecondTopic().size());
+                step = maxGrade / (Maps.getInstance().getSecondTopic().size() - 1);
+                List<Double> otherTopicsGrade = new ArrayList<>();
+                for (int i = 0; i < Maps.getInstance().getSecondTopic().size(); i++) {
+                    gradeOtherElement = maxGrade - step * i;
+                    otherTopicsGrade.add(gradeOtherElement);
                 }
-                else{
-                    for(int j=0;j<Maps.getInstance().getSecondTopic().size();j++){
-                        if(SolutionPoets.subject.get(i).equals(Maps.getInstance().getSecondTopic().get(j))){
-                            ElementGrade= otherTopicsGrade.get(j) * percentElement;
+                for (int i = 0; i < SolutionPoets.subject.size(); i++) {
+                    if (SolutionPoets.subject.get(i).equals(prioirtyPoets.getFilters().getSubject())) {
+                        ElementGrade = 100 * percentElement;
+                    } else {
+                        for (int j = 0; j < Maps.getInstance().getSecondTopic().size(); j++) {
+                            if (SolutionPoets.subject.get(i).equals(Maps.getInstance().getSecondTopic().get(j))) {
+                                ElementGrade = otherTopicsGrade.get(j) * percentElement;
+                            }
                         }
                     }
+                    gradesElement.add(ElementGrade);
                 }
-                gradesElement.add(ElementGrade);
+            } else {
+                for (int i = 0; i < SolutionPoets.subject.size(); i++) {
+                    ElementGrade=100 * percentElement;
+                    gradesElement.add(ElementGrade);
+                }
             }
         }
         else{
             percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioGoal());
-            maxGrade = 100-(100/(double)Maps.getInstance().getSecondGoal().size());
-            step = maxGrade/(Maps.getInstance().getSecondGoal().size()-1);
-            List<Double> otherGoalsGrade = new ArrayList<>();
-            for(int i=0; i<Maps.getInstance().getSecondGoal().size();i++){
-                gradeOtherElement = maxGrade -step * i;
-                otherGoalsGrade.add(gradeOtherElement);
-            }
-            for(int i=0;i<SolutionPoets.goal.size();i++){
-                if(SolutionPoets.goal.get(i).equals(prioirtyPoets.getFilters().getGoal())){
-                    ElementGrade = 100 * percentElement;
+            if(Maps.getInstance().getSecondGoal().size()!=0) {
+                maxGrade = 100 - (100 / (double) Maps.getInstance().getSecondGoal().size());
+                step = maxGrade / (Maps.getInstance().getSecondGoal().size() - 1);
+                List<Double> otherGoalsGrade = new ArrayList<>();
+                for (int i = 0; i < Maps.getInstance().getSecondGoal().size(); i++) {
+                    gradeOtherElement = maxGrade - step * i;
+                    otherGoalsGrade.add(gradeOtherElement);
                 }
-                else{
-                    for(int j=0;j<Maps.getInstance().getSecondGoal().size();j++){
-                        if(SolutionPoets.goal.get(i).equals(Maps.getInstance().getSecondGoal().get(j))){
-                            ElementGrade= otherGoalsGrade.get(j) * percentElement;
+
+                for (int i = 0; i < SolutionPoets.goal.size(); i++) {
+                    if (SolutionPoets.goal.get(i).equals(prioirtyPoets.getFilters().getGoal())) {
+                        ElementGrade = 100 * percentElement;
+                    } else {
+                        for (int j = 0; j < Maps.getInstance().getSecondGoal().size(); j++) {
+                            if (SolutionPoets.goal.get(i).equals(Maps.getInstance().getSecondGoal().get(j))) {
+                                ElementGrade = otherGoalsGrade.get(j) * percentElement;
+                            }
                         }
                     }
+                    gradesElement.add(ElementGrade);
                 }
-                gradesElement.add(ElementGrade);
+            }
+            else{
+                for (int i = 0; i < SolutionPoets.goal.size(); i++) {
+                    ElementGrade=100 * percentElement;
+                    gradesElement.add(ElementGrade);
+                }
             }
         }
 
