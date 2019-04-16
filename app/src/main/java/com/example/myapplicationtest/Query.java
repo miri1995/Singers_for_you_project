@@ -168,8 +168,8 @@ public class Query {
 
         }
         else{
-            String choose = "#standardSQL\n" + "SELECT distinct dbProject.poets.poet_name,dbProject.poets.song_topic,dbProject.poets.goal,dbProject.poets.genre\n" +
-                    " FROM dbProject.poets";
+            String choose = "SELECT distinct poets.poet_name,poets.song_topic,poets.goal,poets.genre\n" +
+                    " FROM poets";
             q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
         }
         return q;
@@ -226,8 +226,8 @@ public class Query {
             lastQ=BeatQ+" AND (genre.genre=\""+genre+"\""+quGenre+")"+hotness;
         }
         else{
-            String concat = " WHERE poets.genre=\""+genre+"\""+quGenre+" AND poets.song_topic=\""+element2+"\""+quTopic+
-                    "And poets.goal=\""+element3+"\""+quGoal;
+            String concat = " WHERE poets.genre=\""+genre+"\""+quGenre+" AND (poets.song_topic=\""+element2+"\""+quTopic+")"+
+                    "And (poets.goal=\""+element3+"\""+quGoal+")";
             lastQ=BeatQ+concat;
         }
 
