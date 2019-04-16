@@ -92,7 +92,7 @@ public class PoetsActivity extends AppCompatActivity {
          filters= new PoetsFilters(genre2,subject2,goal2);
 
         Intent intent1 = new Intent(PoetsActivity.this, PrioirtyPoets.class);//todo to change this
-        intent1.putExtra("com.example.myapplicationtest.Filters", filters);
+        intent1.putExtra("com.example.myapplicationtest.Poets.PoetsFilters", filters);
         setResult(Activity.RESULT_OK, intent1);
         startActivity(intent1);
 
