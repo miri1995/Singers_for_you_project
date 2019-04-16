@@ -10,7 +10,6 @@ import android.widget.ListView;
 
 
 import com.example.myapplicationtest.Enums.EnumAsync;
-import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Poets.PoetsPriority;
 //import assets.pair3.txt;
 
@@ -28,6 +27,8 @@ public class SolutionPoets extends Activity {
     public static List<String> subject=new ArrayList<>();
     public static List<String> goal=new ArrayList<>();
     List<Double>grades = new ArrayList<>();
+    List<Double>gradesElement1 = new ArrayList<>();
+    List<Double>gradesElement2 = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,7 @@ public class SolutionPoets extends Activity {
         Query query = new Query();
         String flag = "poets";
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),
-                poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false,"poets");
+                poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false,flag);
         poets.clear();
         subject.clear();
         goal.clear();
@@ -50,7 +51,7 @@ public class SolutionPoets extends Activity {
         // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
         try {
             str_result=new AsyncHelper(SolutionPoets.this,q3,"artist_name","song_topic","goal","genre",
-                    EnumAsync.Sol.getEnumAsync()).execute().get();
+                    EnumAsync.Poet.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -61,22 +62,21 @@ public class SolutionPoets extends Activity {
 
 
         if(str_result!=null) {
-          /*  for (int i=0;i<artists.size();i++){
-                if(moreThanOnce(artists,artists.get(i))){
-                    artists.remove(artists.get(i));
-                    tempo.remove(tempo.get(i));
-                    genres.remove(genres.get(i));
-                    loudness.remove(loudness.get(i));
-                }
-
-            }*/
             FittingPercents fittingPercents = new FittingPercents(null,poetsPriority);
-            if(poetsPriority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
-                grades = fittingPercents.percentTempoLoudness("both");
+
+            if(poetsPriority.getPrioGenre().equals("high")){
+                gradesElement1 = fittingPercents.percentElement("topic");
+                gradesElement2 = fittingPercents.percentElement("goal");
+            }
+            else if(poetsPriority.getPrioSubject().equals("high")){
+                gradesElement1 = fittingPercents.percentElement("genre");
+                gradesElement2 = fittingPercents.percentElement("goal");
             }
             else{
-                grades = fittingPercents.percentGenreElse();
+                gradesElement1 = fittingPercents.percentElement("topic");
+                gradesElement2 = fittingPercents.percentElement("genre");
             }
+            grades=fittingPercents.uniteTwoListd(gradesElement1,gradesElement2);
 
             List<String> resultArray = poets.subList(0,10);
             List<Double> gradesArray = new ArrayList<>();

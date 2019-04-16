@@ -71,12 +71,12 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                             Log.d("D",flag);
                             HelperLists.genersHelperLists.add(rs.getString(colName1));
                         }
-                        Log.d("D","result"+ SulationSinger.artists);
+                        Log.d("D","result genre"+ rs);
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        System.out.println("ERROR executeQueryGenre - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery gen");
                     }
                 case Goal:
                     try (Statement stmt = con.createStatement();
@@ -85,12 +85,12 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                             Log.d("D",flag);
                             HelperLists.goalHelperList.add(rs.getString(colName1));
                         }
-                        Log.d("D","result"+ SulationSinger.artists);
+                        Log.d("D","result goal"+ rs);
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        Log.d("D","ERROR executeQuery goal");
                     }
 
                     //SingersActivity.geners.add(rs.getString(colName1));
@@ -106,8 +106,8 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        System.out.println("ERROR executeQuery - topix" + e.getMessage());
+                        Log.d("D","ERROR executeQuery top");
                     }
                     break;
                 case Sol:
@@ -127,6 +127,26 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
                         Log.d("D","ERROR executeQuery");
+                    }
+                    break;
+                case Poet:
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query)) {
+                        Log.d("D","in poet query"+ SolutionPoets.poets);
+                        while (rs.next()) {
+                            if(!SolutionPoets.moreThanOnce(SolutionPoets.poets,rs.getString(colName1))) {
+                                SolutionPoets.poets.add(rs.getString(colName1));
+                                SolutionPoets.subject.add(rs.getString(colName2));
+                                SolutionPoets.goal.add(rs.getString(colName3));
+                                SolutionPoets.genres.add(rs.getString(colName4));
+                            }
+                        }
+                        Log.d("D","resultPoet"+ SolutionPoets.poets);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQueryPoet - " + e.getMessage());
+                        Log.d("D","ERROR executeQueryPoet");
                     }
                     break;
 

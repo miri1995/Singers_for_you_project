@@ -170,13 +170,8 @@ public class FittingPercents {
         List<Double> gradesElse = new ArrayList<>();
         List<Double> gradesGenre = new ArrayList<>();
         List<Double> gradesFinal = new ArrayList<>();
-        double gradeElse;
+        //double gradeElse;
         double gradeGenres=0;
-       // float numLoudness[] = Maps.getInstance().PutInloudness(priority.getFilters().getLoudness());
-        //HashMap<String, Float> priorityMap = Maps.getInstance().PutInPriority(priority.getPrioLoudness(), priority.getPrioTempo());
-        //double percentLoudness = Maps.getInstance().PutInPercents(priority.getPrioLoudness());
-        //float numTempo[] = Maps.getInstance().PutInTempo(priority.getFilters().getTempo());
-        //double percentTempo = Maps.getInstance().PutInPercents(priority.getPrioTempo());
         double percentGenre = Maps.getInstance().PutInPercents(priority.getPrioGenre());
         double maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenre().size());
         double step = maxGrade/(Maps.getInstance().getSecondGenre().size()-1);
@@ -211,5 +206,94 @@ public class FittingPercents {
              gradesFinal.add(finalGrade);
         }
            return gradesFinal;
+    }
+
+    public List<Double> percentElement(String which){
+        List<Double> gradesElement = new ArrayList<>();
+        double ElementGrade=0;
+        double percentElement=0;
+        double maxGrade=0;
+        double step=0;
+        double gradeOtherElement;
+        if(which.equals("genre")){
+            percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioGenre());
+            maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenre().size());
+            step = maxGrade/(Maps.getInstance().getSecondGenre().size()-1);
+            List<Double> otherGenresGrade = new ArrayList<>();
+            for(int i=0; i<Maps.getInstance().getSecondGenre().size();i++){
+                gradeOtherElement = maxGrade -step * i;
+                otherGenresGrade.add(gradeOtherElement);
+            }
+            for(int i=0;i<SolutionPoets.genres.size();i++){
+                if(SolutionPoets.genres.get(i).equals(prioirtyPoets.getFilters().getGenre())){
+                    ElementGrade = 100 * percentElement;
+                }
+                else{
+                    for(int j=0;j<Maps.getInstance().getSecondGenre().size();j++){
+                        if(SolutionPoets.genres.get(i).equals(Maps.getInstance().getSecondGenre().get(j))){
+                            ElementGrade= otherGenresGrade.get(j) * percentElement;
+                        }
+                    }
+                }
+                gradesElement.add(ElementGrade);
+            }
+        }
+        else if(which.equals("topic")){
+            percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioSubject());
+            maxGrade = 100-(100/(double)Maps.getInstance().getSecondTopic().size());
+            step = maxGrade/(Maps.getInstance().getSecondTopic().size()-1);
+            List<Double> otherTopicsGrade = new ArrayList<>();
+            for(int i=0; i<Maps.getInstance().getSecondTopic().size();i++){
+                gradeOtherElement = maxGrade -step * i;
+                otherTopicsGrade.add(gradeOtherElement);
+            }
+            for(int i=0;i<SolutionPoets.subject.size();i++){
+                if(SolutionPoets.subject.get(i).equals(prioirtyPoets.getFilters().getSubject())){
+                    ElementGrade = 100 * percentElement;
+                }
+                else{
+                    for(int j=0;j<Maps.getInstance().getSecondTopic().size();j++){
+                        if(SolutionPoets.subject.get(i).equals(Maps.getInstance().getSecondTopic().get(j))){
+                            ElementGrade= otherTopicsGrade.get(j) * percentElement;
+                        }
+                    }
+                }
+                gradesElement.add(ElementGrade);
+            }
+        }
+        else{
+            percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioGoal());
+            maxGrade = 100-(100/(double)Maps.getInstance().getSecondGoal().size());
+            step = maxGrade/(Maps.getInstance().getSecondGoal().size()-1);
+            List<Double> otherGoalsGrade = new ArrayList<>();
+            for(int i=0; i<Maps.getInstance().getSecondGoal().size();i++){
+                gradeOtherElement = maxGrade -step * i;
+                otherGoalsGrade.add(gradeOtherElement);
+            }
+            for(int i=0;i<SolutionPoets.goal.size();i++){
+                if(SolutionPoets.goal.get(i).equals(prioirtyPoets.getFilters().getGoal())){
+                    ElementGrade = 100 * percentElement;
+                }
+                else{
+                    for(int j=0;j<Maps.getInstance().getSecondGoal().size();j++){
+                        if(SolutionPoets.goal.get(i).equals(Maps.getInstance().getSecondGoal().get(j))){
+                            ElementGrade= otherGoalsGrade.get(j) * percentElement;
+                        }
+                    }
+                }
+                gradesElement.add(ElementGrade);
+            }
+        }
+
+      return gradesElement;
+    }
+
+    public List<Double> uniteTwoListd(List<Double>gradesElement1,List<Double>gradesElement2){
+        List<Double>gradesFinal=new ArrayList<>();
+        for(int i=0;i<gradesElement1.size();i++){
+            double finalGrade = gradesElement1.get(i) + gradesElement2.get(i);
+            gradesFinal.add(finalGrade);
+        }
+        return gradesFinal;
     }
 }

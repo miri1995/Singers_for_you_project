@@ -1,6 +1,5 @@
 package com.example.myapplicationtest;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -43,8 +42,9 @@ public class SulationSinger  extends Activity {
 
 
         Query query = new Query();
+        String flag="singer";
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),
-                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),priority.getPopular(),"singer");
+                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),priority.getPopular(),flag);
         artists.clear();
         tempo.clear();
         loudness.clear();
@@ -63,15 +63,7 @@ public class SulationSinger  extends Activity {
 
 
         if(str_result!=null) {
-          /*  for (int i=0;i<artists.size();i++){
-                if(moreThanOnce(artists,artists.get(i))){
-                    artists.remove(artists.get(i));
-                    tempo.remove(tempo.get(i));
-                    genres.remove(genres.get(i));
-                    loudness.remove(loudness.get(i));
-                }
 
-            }*/
             FittingPercents fittingPercents = new FittingPercents(priority,null);
             if(priority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
                 grades = fittingPercents.percentTempoLoudness("both");

@@ -165,40 +165,22 @@ public class Query {
 
         }
         else{
-            q= MapGenreTopicGoal(genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
+            String choose = "#standardSQL\n" + "SELECT distinct poets.poet_name,poets.song_topic,poets.goal," +
+                    "from poets\n";
+            q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
         }
         return q;
 
     }
 
-    public String MapGenreTopicGoal(String genre,String element2,String element3,String prioGenre,String prioElement2,String prioElement3,
-                                    List<String> otherGenre,List<String> otherTopic,List<String> otherGoal,boolean popular,String flag){
-        StringBuilder q = new StringBuilder();
-        q.append("#standardSQL\n" + "SELECT distinct poets.poet_name,poets.song_topic,poets.goal," +
-                "from poets\n");
-        if(prioGenre.equals(EnumsSingers.High.getEnums())){
-           q.append("WHERE poets.genre=\""+genre+"\"");
-        }
-        else if(prioElement2.equals(EnumsSingers.High.getEnums())){
-            q.append("WHERE poets.song_topic=\""+element2+"\"");
-        }
-        else{
-            q.append("WHERE poets.song_topic=\""+element3+"\"");
-        }
-       // String t =q;
-        String sol = GetSol((q,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherTopic,otherGoal,popular,flag);
-        return sol;
-    }
-
-
-    /**
+      /**
      * composes all the query parts into one query.
      * @param BeatQ  = the combination of the tempo and loudness chosen by the user.
      * @param genre = user's choice of genre.
      * @return lastQ = the final query
      */
 
-    //TODO: stop here
+
     public String GetSol(String BeatQ, String genre,String element2,String element3,String prioGenre,String prioElement2,String prioElement3,
                          List<String> otherGenre,List<String> otherTopic,List<String> otherGoal,boolean popular,String flag){
         String hotness=null;
@@ -223,24 +205,28 @@ public class Query {
                 }
             }
         }
-        if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
-            for (int i = 0; i < otherTopic.size(); i++) {
-                quTopic.append(" OR poets.song_topic=\"" + otherTopic.get(i) + "\"");
+        if(flag.equals("poet")){
+            if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
+                for (int i = 0; i < otherTopic.size(); i++) {
+                    quTopic.append(" OR poets.song_topic=\"" + otherTopic.get(i) + "\"");
+                }
+            }
+            if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())) {
+                for (int i = 0; i < otherGoal.size(); i++) {
+                    quGoal.append(" OR poets.goal=\"" + otherGoal.get(i) + "\"");
+                }
             }
         }
-        if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())) {
-            for (int i = 0; i < otherGoal.size(); i++) {
-                quTopic.append(" OR poets.goal=\"" + otherGoal.get(i) + "\"");
-            }
-        }
+
         String lastQ="";
         if(flag.equals("singer")){
             lastQ=BeatQ+" AND (genre.genre=\""+genre+"\""+quGenre+")"+hotness;
         }
-       /* else{
-            lastQ=BeatQ+" And ("
-        }*/
-
+        else{
+            String concat = " WHERE poets.genre=\""+genre+"\""+quGenre+" AND poets.song_topic=\""+element2+"\""+quTopic+
+                    "And poets.goal=\""+element3+"\""+quGoal;
+            lastQ=BeatQ+concat;
+        }
 
         return lastQ;
     }

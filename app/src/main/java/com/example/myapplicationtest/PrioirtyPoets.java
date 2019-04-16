@@ -95,7 +95,7 @@ public class PrioirtyPoets extends AppCompatActivity {
             location2 =spinner4.getSelectedItem().toString();
         }*/
 
-        if(genreP2==null || subjectP2==null || goalP2==null ||
+      /*  if(genreP2==null || subjectP2==null || goalP2==null ||
                 genreP2.equals("select") || subjectP2.equals("select") ||
                 goalP2.equals("select") ){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -117,8 +117,8 @@ public class PrioirtyPoets extends AppCompatActivity {
             });
 
             AlertDialog dialog = builder.create();
-            dialog.show();
-        }else { //only if all filter selected
+            dialog.show();*/
+       // }else { //only if all filter selected
 
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
@@ -131,7 +131,7 @@ public class PrioirtyPoets extends AppCompatActivity {
             startActivity(intent1);
 
             finish();
-        }
+      //  }
     }
 }
 
