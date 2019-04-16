@@ -133,7 +133,10 @@ public class Query {
      */
 
     public String UserInput(String genre, String element2, String element3,String prioGenre, String prioElement2, String prioElement3,boolean popular,String flag){
-        HashMap<String,Double> priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
+        HashMap<String,Double> priority = new HashMap<>();
+        if(element2.equals("loudness") && element3.equals("tempo")){
+            priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
+        }
         List<String> couples=new ArrayList<>();
         List<String> couples2=new ArrayList<>();
         List<String> couples3=new ArrayList<>();
@@ -165,8 +168,8 @@ public class Query {
 
         }
         else{
-            String choose = "#standardSQL\n" + "SELECT distinct poets.poet_name,poets.song_topic,poets.goal," +
-                    "from poets\n";
+            String choose = "#standardSQL\n" + "SELECT distinct dbProject.poets.poet_name,dbProject.poets.song_topic,dbProject.poets.goal,dbProject.poets.genre\n" +
+                    " FROM dbProject.poets";
             q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
         }
         return q;
@@ -205,7 +208,7 @@ public class Query {
                 }
             }
         }
-        if(flag.equals("poet")){
+        if(flag.equals("poets")){
             if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
                 for (int i = 0; i < otherTopic.size(); i++) {
                     quTopic.append(" OR poets.song_topic=\"" + otherTopic.get(i) + "\"");
