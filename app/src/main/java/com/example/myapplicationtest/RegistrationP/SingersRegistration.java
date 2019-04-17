@@ -163,7 +163,7 @@ public class SingersRegistration extends AppCompatActivity {
                 new AsyncHelperRegistration(SingersRegistration.this, q2, "song_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
                 new AsyncHelperRegistration(SingersRegistration.this, q3, "artist_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
             }else{
-                Thread.sleep(5000);
+                Thread.sleep(5000);//todo check if need this
             }
             System.out.println(lastIDSong);
            // filters = new Filters(genre2, loudness2, beat2);
@@ -174,7 +174,7 @@ public class SingersRegistration extends AppCompatActivity {
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);*/
 
-           // finish();
+            finish();
         }
     }
 

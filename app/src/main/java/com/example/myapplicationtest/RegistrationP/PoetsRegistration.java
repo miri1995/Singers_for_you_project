@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -17,6 +18,7 @@ import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class PoetsRegistration extends AppCompatActivity {
 
@@ -123,18 +125,29 @@ public class PoetsRegistration extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }else { //only if all filter selected
+            String str_result=null;
             String getLastId="select poet_id from poets order by poet_id desc limit 1";
 
 
             //get id
-            //new AsyncHelperRegistration(PoetsRegistration.this,getLastId,"poet_id", EnumAsync.LastIDPoet.getEnumAsync()).execute();
+            try {
+                str_result =new AsyncHelperRegistration(PoetsRegistration.this,getLastId,"poet_id",
+                        EnumAsync.LastIDPoet.getEnumAsync()).execute().get();
+            }catch (ExecutionException e) {
+                e.printStackTrace();
+                Log.d("D","1: "+e.getMessage());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                Log.d("D","2: "+e.getMessage());
+            }
 
-            String q1=("INSERT INTO poets " +
-                    "VALUES(\""+lastID+"\",\""+name+"\",null,null,\""+genreChoice+"\",\""+topic+"\",\""+goal+"\")");
+            if(str_result!=null) {
+                String q1 = ("INSERT INTO poets " +
+                        "VALUES(\"" + lastID + "\",\"" + name + "\",null,null,\"" + genreChoice + "\",\"" + topic + "\",\"" + goal + "\")");
 
-            //insert
-            new AsyncHelperRegistration(PoetsRegistration.this,q1,"poet_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-
+                //insert
+                new AsyncHelperRegistration(PoetsRegistration.this, q1, "poet_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
+            }
 
             finish();
         }
