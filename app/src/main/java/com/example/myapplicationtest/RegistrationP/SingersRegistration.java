@@ -37,7 +37,7 @@ public class SingersRegistration extends AppCompatActivity {
     private String beat2=null;
     private String name=null;
     HelperLists helperLists=new HelperLists();
- 
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

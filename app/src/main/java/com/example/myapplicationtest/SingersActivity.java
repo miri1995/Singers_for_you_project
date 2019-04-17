@@ -81,7 +81,7 @@ public class SingersActivity extends AppCompatActivity {
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
         }*/
-        boolean allChoose=checkChoise(genre2,loudness2,beat2);
+        boolean allChoose=helperLists.checkChoise(genre2,loudness2,beat2);
         if(allChoose) { //only if all filter selected
             filters = new Filters(genre2, loudness2, beat2);
             Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
@@ -90,19 +90,7 @@ public class SingersActivity extends AppCompatActivity {
             startActivity(intent1);
             finish();
         }else{
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(true);
-            builder.setTitle("Error Choose");
-            builder.setMessage("Please select all filters");
-            builder.setPositiveButton(android.R.string.yes,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+           helperLists.ErrorChoice(this);
         }
 
     }
@@ -121,15 +109,7 @@ public class SingersActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public boolean checkChoise(String genre2, String loudness2, String beat2){
-        if(genre2==null || loudness2==null || beat2==null ||
-                genre2.equals("select") || loudness2.equals("select") ||
-                beat2.equals("select") ){
-          return false;
-        }else{
-            return true;
-        }
-    }
+
 
 
 }

@@ -23,6 +23,7 @@ public class ParioritySingers extends AppCompatActivity {
     Priority priority;
     Spinner spinner1, spinner2, spinner3, spinner4;
     Switch swPopular;
+    HelperLists helperLists=new HelperLists();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,32 +93,8 @@ public class ParioritySingers extends AppCompatActivity {
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
         }*/
-
-        if(genreP2==null || loudnessP2==null || beatP2==null ||
-                genreP2.equals("select") || loudnessP2.equals("select") ||
-                beatP2.equals("select") ){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(true);
-            builder.setTitle("Error Choose");
-            builder.setMessage("Please select all filters");
-            builder.setPositiveButton("Confirm",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }else { //only if all filter selected
-
+        boolean allChoose=helperLists.checkChoise(genreP2,loudnessP2,beatP2);
+        if(allChoose){
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
             Filters filters = (Filters) intent.getSerializableExtra("com.example.myapplicationtest.SingersLogic.Filters");
@@ -129,6 +106,8 @@ public class ParioritySingers extends AppCompatActivity {
             startActivity(intent1);
 
             finish();
+        }else{
+            helperLists.ErrorChoice(this);
         }
     }
 }
