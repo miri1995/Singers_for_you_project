@@ -9,7 +9,7 @@ public class ChoiceSingerOrProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choice_singer_or_creator);
+        setContentView(R.layout.choice_singer_or_creator2);
     }
 
     public void choiceClick(View view) {

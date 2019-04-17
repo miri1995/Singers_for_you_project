@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Spinner;
 
 
+import com.example.myapplicationtest.RegistrationP.PoetsRegistration;
 import com.example.myapplicationtest.RegistrationP.SingersRegistration;
 //import com.example.myapplicationtest.RegistrationP.PoetsRegistration;
 import com.example.myapplicationtest.RegistrationP.ComposerRegistration;
@@ -30,10 +31,10 @@ public class Registration extends AppCompatActivity {
                 Intent intent = new Intent(Registration.this, SingersRegistration.class);
                 startActivity(intent);
                 break;
-            /*case R.id.poets2:
+            case R.id.poets2:
                 Intent intent2 = new Intent(Registration.this, PoetsRegistration.class);
                 startActivity(intent2);
-                break;*/
+                break;
             case R.id.composer2:
                 Intent intent3 = new Intent(Registration.this, ComposerRegistration.class);
                 startActivity(intent3);
