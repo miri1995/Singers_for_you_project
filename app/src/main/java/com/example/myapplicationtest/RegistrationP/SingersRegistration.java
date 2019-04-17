@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class SingersRegistration extends AppCompatActivity {
-    Filters filters;
+
     Spinner spinner1, spinner2, spinner3;
     EditText name_txt;
     public static List<String> geners=new ArrayList<>();
@@ -37,7 +37,7 @@ public class SingersRegistration extends AppCompatActivity {
     private String beat2=null;
     private String name=null;
     HelperLists helperLists=new HelperLists();
-  //  private Helper helper=new Helper();
+ 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
