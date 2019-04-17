@@ -28,7 +28,7 @@ public class SingersRegistration extends AppCompatActivity {
 
     Spinner spinner1, spinner2, spinner3;
     EditText name_txt;
-    public static List<String> geners=new ArrayList<>();
+
     public static Integer lastID;
     public static Integer lastIDSong=0;
     public static String genreChoice =null;
@@ -44,35 +44,16 @@ public class SingersRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.singers_registration);
 
-
-        String q3=helperLists.getGenreQuery();
-        new AsyncHelper(SingersRegistration.this,q3,"genre",null,null,null,EnumAsync.Genre.getEnumAsync()).execute();
-        geners= HelperLists.genersHelperLists;
-        geners.add(0,EnumsSingers.select.getEnums());
+        //Name
+        name_txt = findViewById(R.id.nameAdd);
+        //genre
         spinner1 = findViewById(R.id.register_what_you);
-
-        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
-        spinner1.setAdapter(generesAdapter);
-
-        //spinner2
-        List<String> loudness = new ArrayList<String>(Arrays.asList(EnumsSingers.select.getEnums(), EnumsSingers.Weak.getEnums(),
-                EnumsSingers.Normal.getEnums(),EnumsSingers.Strong.getEnums()));
+        //loudness
         spinner2 = findViewById(R.id.spinner2);
-
-        ArrayAdapter<String> LoudnessAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudness);
-        spinner2.setAdapter(LoudnessAdapter);
-
-        //spinner3
-        List<String> beat = new ArrayList<String>(Arrays.asList(EnumsSingers.select.getEnums(),EnumsSingers.Slow.getEnums(),
-               EnumsSingers.Medium.getEnums(),EnumsSingers.Fast.getEnums()));
+        //tempo
         spinner3 = findViewById(R.id.spinner3);
-
-        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beat);
-        spinner3.setAdapter(beatAdapter);
-
-        //spinner4
-
-           name_txt = findViewById(R.id.nameAdd);
+        //init all spinner
+        helperLists.InitSingerFilters(this,spinner1,spinner2,spinner3);
 
 
     }

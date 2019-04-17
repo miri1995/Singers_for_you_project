@@ -28,44 +28,23 @@ public class PoetsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poet_choice);
-        String q3=helperLists.getGenreQuery();
-        new AsyncHelper(PoetsActivity.this,q3,"genre",null,null,null,
-                EnumAsync.Genre.getEnumAsync()).execute(); //async task for getting data from db
 
 
         //categorization
-        genres=HelperLists.genersHelperLists;
-        genres.add(0,"select");
+
         spinner1 = findViewById(R.id.register_what_you);
 
-        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genres);
-        spinner1.setAdapter(generesAdapter);
-
         //subject
-        String q2=helperLists.getTopicQuery();
-        new AsyncHelper(PoetsActivity.this,q2,"song_topic",null,null,null,
-                EnumAsync.Topic.getEnumAsync()).execute(); //async task for getting data from db
-        topics=HelperLists.topicHelperList;
-        topics.add(0,"select");
         spinner2 = findViewById(R.id.spinner2);
-        ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,topics);
-        spinner2.setAdapter(AudienceAdapter);
+
 
         //goal
-        goals.clear();
-        String q=helperLists.getGoalQuery();
-        new AsyncHelper(PoetsActivity.this,q,"goal",null,null,null,
-                EnumAsync.Goal.getEnumAsync()).execute(); //async task for getting data from db
-        goals=HelperLists.goalHelperList;
-        goals.add(0,"select");
         spinner3 = findViewById(R.id.spinner3);
-        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,goals);
-        spinner3.setAdapter(beatAdapter);
+       helperLists.InitPoetsFilters(this,spinner1,spinner2,spinner3);
 
         //spinner4
         List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
         spinner4 = findViewById(R.id.spinner4);
-
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
         spinner4.setAdapter(locationAdapter);
 

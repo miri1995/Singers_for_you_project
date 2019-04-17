@@ -26,13 +26,11 @@ public class PoetsRegistration extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3;
     EditText name_txt;
-    public static List<String> geners=new ArrayList<>();
+
     public static Integer lastID;
-    public static Integer lastIDSong=0;
     public static String genreChoice =null;
-    public static Integer genreID=0;
-    private List<String> topics=new ArrayList<>();
-    private List<String> goals =new ArrayList<>();
+
+
     private String topic=null;
     private String goal =null;
     private String name=null;
@@ -43,47 +41,16 @@ public class PoetsRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poets_registration);
 
-        String q3=helperLists.getGenreQuery();
-        new AsyncHelper(PoetsRegistration.this,q3,"genre",null,null,null,
-                EnumAsync.Genre.getEnumAsync()).execute(); //async task for getting data from db
-
-
-        //categorization
-        geners=HelperLists.genersHelperLists;
-        geners.add(0, EnumsSingers.select.getEnums());
-        spinner1 = findViewById(R.id.register_what_you);
-
-        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
-        spinner1.setAdapter(generesAdapter);
-
-        //subject
-        String q2=helperLists.getTopicQuery();
-        new AsyncHelper(PoetsRegistration.this,q2,"song_topic",null,null,null,
-                EnumAsync.Topic.getEnumAsync()).execute(); //async task for getting data from db
-        topics=HelperLists.topicHelperList;
-        topics.add(0,EnumsSingers.select.getEnums());
-        spinner2 = findViewById(R.id.spinner2);
-        ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,topics);
-        spinner2.setAdapter(AudienceAdapter);
-
-        //goal
-        goals.clear();
-        String q=helperLists.getGoalQuery();
-        new AsyncHelper(PoetsRegistration.this,q,"goal",null,null,null,
-                EnumAsync.Goal.getEnumAsync()).execute(); //async task for getting data from db
-        goals=HelperLists.goalHelperList;
-        goals.add(0,EnumsSingers.select.getEnums());
-        spinner3 = findViewById(R.id.spinner3);
-        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,goals);
-        spinner3.setAdapter(beatAdapter);
-
-
-
-        //spinner4
-
+        //name
         name_txt = findViewById(R.id.nameAdd);
-
-
+        //genre
+        spinner1 = findViewById(R.id.register_what_you);
+        //topic
+        spinner2 = findViewById(R.id.spinner2);
+        //goal
+        spinner3 = findViewById(R.id.spinner3);
+        //init all spinner
+        helperLists.InitPoetsFilters(this,spinner1,spinner2,spinner3);
     }
 
 

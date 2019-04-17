@@ -14,7 +14,7 @@
     <string name="instrument">Musical Instrument:</string>
     <string name="textViewPop">The most popular?</string>
     <string name="button">find!</string>
-
+    <string name="buttonRegister">Register me!</string>
     <string name="textView3">results</string>
     <string name="back_button">back</string>
     <string name="button2">finish</string>

@@ -42,7 +42,7 @@ public class SolutionPoets extends Activity {
 
 
         Query query = new Query();
-        String flag = "poets";
+        String flag = EnumsSingers.poets.getEnums();
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),null,
                 poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false,flag);
 

@@ -32,24 +32,15 @@ public class SingersActivity extends AppCompatActivity {
         setContentView(R.layout.singer_choice);
 
        //genres
-        updateGenreList();
         spinner1 = findViewById(R.id.register_what_you);
-        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
-        spinner1.setAdapter(generesAdapter);
 
         //loudness
-        List<String> loudness = new ArrayList<String>(Arrays.asList("select", EnumsSingers.Weak.getEnums(),
-                EnumsSingers.Normal.getEnums(), EnumsSingers.Strong.getEnums()));
         spinner2 = findViewById(R.id.spinner2);
-        ArrayAdapter<String> LoudnessAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudness);
-        spinner2.setAdapter(LoudnessAdapter);
 
         //tempo
-        List<String> beat = new ArrayList<String>(Arrays.asList("select",
-                EnumsSingers.Slow.getEnums(),EnumsSingers.Medium.getEnums(),EnumsSingers.Fast.getEnums()));
         spinner3 = findViewById(R.id.spinner3);
-        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beat);
-        spinner3.setAdapter(beatAdapter);
+        //init all spinner
+        helperLists.InitSingerFilters(this,spinner1,spinner2,spinner3);
 
         //spinner4
      //   List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));

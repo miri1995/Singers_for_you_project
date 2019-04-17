@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.myapplicationtest.AsyncHelper;
+import com.example.myapplicationtest.ComposersActivity;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
@@ -23,64 +24,46 @@ import com.example.myapplicationtest.SingersActivity;
 import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class ComposerRegistration extends AppCompatActivity {
 
-    Filters filters;
-    Spinner spinner1, spinner2, spinner3;
+
+    Spinner spinner1, spinner2, spinner3,spinner4;
     EditText name_txt;
-    public static List<String> geners=new ArrayList<>();
+
     public static Integer lastID;
-    public static Integer lastIDSong=0;
+
     public static String genreChoice =null;
-    public static Integer genreID=0;
-    private List<String> topics=new ArrayList<>();
-    private List<String> goals =new ArrayList<>();
+    public static String loudness =null;
+    public static String tempo =null;
+    public static String musicalInstrumentChoice=null;
+
     private String name=null;
     HelperLists helperLists=new HelperLists();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.poets_registration);
+        setContentView(R.layout.composer_registration);
 
         //genre
-        String q3=helperLists.getGenreQuery();
-        new AsyncHelper(ComposerRegistration.this,q3,"genre",null,null,null,EnumAsync.Genre.getEnumAsync()).execute();
-        geners= HelperLists.genersHelperLists;
-        geners.add(0, EnumsSingers.select.getEnums());
-        spinner1 = findViewById(R.id.register_what_you);
-        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
-        spinner1.setAdapter(generesAdapter);
+        spinner1 = findViewById(R.id.genre);
 
-        //subject
-        String q2="select distinct song_topic from poets";
-//        new AsyncHelper(ComposerRegistration.this,q2,"song_topic",null,null,null,
-//                EnumAsync.Topic.getEnumAsync()).execute(); //async task for getting data from db
-        topics=HelperLists.topicHelperList;
-        topics.add(0,"select");
-        spinner2 = findViewById(R.id.spinner2);
-        ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,topics);
-        spinner2.setAdapter(AudienceAdapter);
+        //loudness
+        spinner2 = findViewById(R.id.loudness);
 
-        //goal
-        goals.clear();
-        String q="select distinct goal from poets";
-//        new AsyncHelper(ComposerRegistration.this,q,"goal",null,null,null,
-//                EnumAsync.Goal.getEnumAsync()).execute(); //async task for getting data from db
-        goals=HelperLists.goalHelperList;
-        goals.add(0,"select");
-        spinner3 = findViewById(R.id.spinner3);
-        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,goals);
-        spinner3.setAdapter(beatAdapter);
+        //tempo
+        spinner3 = findViewById(R.id.tempo);
 
+        //musical instriment
+        spinner4 = findViewById(R.id.instrument_spinner);
 
-
-        //spinner4
-
+        //name
         name_txt = findViewById(R.id.nameAdd);
+        helperLists.InitComposersFilters(this,spinner1,spinner2,spinner3,spinner4);
 
 
     }
@@ -88,20 +71,23 @@ public class ComposerRegistration extends AppCompatActivity {
     public void registration_composer_click(View view) {
         //async task for getting data from db
 
-     /*   name = name_txt.getText().toString();
+        name = name_txt.getText().toString();
 
         if(spinner1.getSelectedItem()!=null){
             genreChoice =spinner1.getSelectedItem().toString();
         }
         if(spinner2.getSelectedItem()!=null){
-            topic =spinner2.getSelectedItem().toString();
+            loudness =spinner2.getSelectedItem().toString();
         }
         if(spinner3.getSelectedItem()!=null){
-            goal =spinner3.getSelectedItem().toString();
-        }*/
+            tempo =spinner3.getSelectedItem().toString();
+        }
+        if(spinner4.getSelectedItem()!=null){
+            musicalInstrumentChoice =spinner4.getSelectedItem().toString();
+        }
 
-        boolean allChoose=true;
-      //  boolean allChoose=helperLists.checkChoise(genreChoice,loudness2,beat2);
+
+        boolean allChoose=helperLists.checkChoise(genreChoice,loudness,tempo,musicalInstrumentChoice);
         if(allChoose) { //only if all filter selected
             InsertComposer();
         }else{
@@ -126,12 +112,16 @@ public class ComposerRegistration extends AppCompatActivity {
         }
 
         if(str_result!=null) {
-//            String q1 = ("INSERT INTO composers " +
-//                    "VALUES(\"" + lastID + "\",\"" + name + "\",\"" + genreChoice + "\",\"" + topic + "\",\"" + goal + "\")");
+            Maps maps=new Maps();
+            maps.middleLoudness(loudness);
+            maps.middleTempo(tempo);
+            String q1 = ("INSERT INTO composers " +
+                    "VALUES(\"" + lastID + "\",\"" + name + "\",\"" + genreChoice + "\",\"" + musicalInstrumentChoice + "\"" +
+                    ",null,\"" + Maps.middleLoudness + "\",\""+Maps.middleTempo+"\")");
 
             //insert
             //async task for getting data from db
-//            new AsyncHelperRegistration(ComposerRegistration.this, q1, "composer_id", EnumAsync.InsertSinger.getEnumAsync()).execute();
+            new AsyncHelperRegistration(ComposerRegistration.this, q1, "composer_id", EnumAsync.InsertSinger.getEnumAsync()).execute();
         }
 
         finish();

@@ -57,6 +57,11 @@
             android:parentActivityName=".Registration">
         </activity>
         <activity
+            android:name=".RegistrationP.ComposerRegistration"
+            android:label="@string/app_name"
+            android:parentActivityName=".Registration">
+        </activity>
+        <activity
             android:name=".ParioritySingers"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity">
