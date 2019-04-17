@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import com.example.myapplicationtest.SingersLogic.Filters;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class SingersRegistration extends AppCompatActivity {
     Filters filters;
@@ -82,10 +84,7 @@ public class SingersRegistration extends AppCompatActivity {
 
 
 
-    public void registration_singers_click(View view) {
-        String getLastId="select artist_id from artists order by artist_id desc limit 1";
-        //get id
-        new AsyncHelperRegistration(SingersRegistration.this,getLastId,"artist_id", EnumAsync.LastID.getEnumAsync()).execute(); //async task for getting data from db
+    public void registration_singers_click(View view) throws InterruptedException {
 
         name = name_txt.getText().toString();
 
@@ -124,31 +123,48 @@ public class SingersRegistration extends AppCompatActivity {
             AlertDialog dialog = builder.create();
             dialog.show();
         }else { //only if all filter selected
-
+            String str_result3=null,str_result2=null,str_result=null;
             String getLastIdSongs="select song_id from songs order by song_id desc limit 1";
             String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
 
 
+            String getLastId="select artist_id from artists order by artist_id desc limit 1";
+            //get id
+            try {
+                str_result = new AsyncHelperRegistration(SingersRegistration.this, getLastId,
+                        "artist_id", EnumAsync.LastID.getEnumAsync()).execute().get(); //async task for getting data from db
 
-            new AsyncHelperRegistration(SingersRegistration.this,getLastIdSongs,"song_id",EnumAsync.LastIdSong.getEnumAsync()).execute();
+                str_result2 = new AsyncHelperRegistration(SingersRegistration.this, getLastIdSongs,
+                        "song_id", EnumAsync.LastIdSong.getEnumAsync()).execute().get();
 
-            //get genre
-            new AsyncHelperRegistration(SingersRegistration.this,getGenreId,"genre_id",EnumAsync.GenreId.getEnumAsync()).execute();
-            System.out.print(lastID);
-            System.out.println(genreID);
+                //get genre
+                str_result3 = new AsyncHelperRegistration(SingersRegistration.this, getGenreId,
+                        "genre_id", EnumAsync.GenreId.getEnumAsync()).execute().get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+                Log.d("D","1: "+e.getMessage());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                Log.d("D","2: "+e.getMessage());
+            }
+
+
             Maps maps=new Maps();
             maps.middleLoudness(loudness2);
             maps.middleTempo(beat2);
-            String q1=("INSERT INTO artists(artist_id, artist_name,artist_hotness) " + "VALUES(\""+lastID+"\",\""+name+"\",'0')");
-            String q2=("INSERT INTO songs(song_id,song_name,song_tempo,song_loudness,song_artist_id) " +
-                    "VALUES(\""+SingersRegistration.lastIDSong+"\",'new',\""+Maps.middleTempo+"\",\""+Maps.middleLoudness+"\",\""+lastID+"\")");
-           String q3=("INSERT INTO genreartists " + "VALUES(\""+lastID+"\",\""+genreID+"\")");;
 
            //insert
-           new AsyncHelperRegistration(SingersRegistration.this,q1,"artist_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-            new AsyncHelperRegistration(SingersRegistration.this,q2,"song_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-            new AsyncHelperRegistration(SingersRegistration.this,q3,"artist_id",EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-
+            if(str_result!=null && str_result2!=null && str_result3!=null) {
+                String q1=("INSERT INTO artists(artist_id, artist_name,artist_hotness) " + "VALUES(\""+lastID+"\",\""+name+"\",'0')");
+                String q2=("INSERT INTO songs(song_id,song_name,song_tempo,song_loudness,song_artist_id) " +
+                        "VALUES(\""+SingersRegistration.lastIDSong+"\",'new',\""+Maps.middleTempo+"\",\""+Maps.middleLoudness+"\",\""+lastID+"\")");
+                String q3=("INSERT INTO genreartists " + "VALUES(\""+lastID+"\",\""+genreID+"\")");
+                new AsyncHelperRegistration(SingersRegistration.this, q1, "artist_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
+                new AsyncHelperRegistration(SingersRegistration.this, q2, "song_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
+                new AsyncHelperRegistration(SingersRegistration.this, q3, "artist_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
+            }else{
+                Thread.sleep(5000);
+            }
             System.out.println(lastIDSong);
            // filters = new Filters(genre2, loudness2, beat2);
 

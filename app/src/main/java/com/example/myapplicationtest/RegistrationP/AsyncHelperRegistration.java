@@ -69,7 +69,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                         //return "COMPLETE2";
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        Log.d("D","ERROR executeQuery"+ e.getMessage());
                     }
                     break;
                 case LastIdSong:
@@ -87,7 +87,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                         //return "COMPLETE2";
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        Log.d("D","ERROR executeQuery"+ e.getMessage());
                     }
                     break;
                 case GenreId:
@@ -101,13 +101,13 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                         //return "COMPLETE2";
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        Log.d("D","ERROR executeQuery"+ e.getMessage());
                     }
 
                     break;
 
                 case InsertSinger:
-                    Thread.sleep(10000);
+                  //  Thread.sleep(10000);
                     try (Statement stmt = con.createStatement();) {
                         Log.d("D","query " + query);
                          result = stmt.executeUpdate(query);
@@ -128,23 +128,17 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
         } catch (ClassNotFoundException e) {
             Log.d("D",e.getMessage());
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
         // Log.d("D",playerList.get(1).toString());
         return "COMPLETE";
     }
 
 
-    public List<String> getList(){
-        Log.d("D","LLL"+playerList);
-        return playerList;
-    }
+
     protected void onPostExecute(String result) {
 
         if (result!=null) {
             mProgressDialog.dismiss();
-
         }
 
     }
