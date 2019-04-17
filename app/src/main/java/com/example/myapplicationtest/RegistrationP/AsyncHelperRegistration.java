@@ -120,6 +120,21 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                     }
 
                     break;
+                case LastIDComp:
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            ComposerRegistration.lastID=Integer.parseInt(rs.getString(colName))+1;
+                        }
+                        Log.d("D","result"+  PoetsRegistration.lastID);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery"+ e.getMessage());
+                    }
+
+                    break;
                 case InsertSinger:
                   //  Thread.sleep(10000);
                     try (Statement stmt = con.createStatement();) {

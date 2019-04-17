@@ -12,6 +12,7 @@ import android.widget.Spinner;
 
 import com.example.myapplicationtest.AsyncHelper;
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.R;
 import com.example.myapplicationtest.SingersLogic.Filters;
@@ -49,7 +50,7 @@ public class PoetsRegistration extends AppCompatActivity {
 
         //categorization
         geners=HelperLists.genersHelperLists;
-        geners.add(0,"select");
+        geners.add(0, EnumsSingers.select.getEnums());
         spinner1 = findViewById(R.id.register_what_you);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
@@ -60,7 +61,7 @@ public class PoetsRegistration extends AppCompatActivity {
         new AsyncHelper(PoetsRegistration.this,q2,"song_topic",null,null,null,
                 EnumAsync.Topic.getEnumAsync()).execute(); //async task for getting data from db
         topics=HelperLists.topicHelperList;
-        topics.add(0,"select");
+        topics.add(0,EnumsSingers.select.getEnums());
         spinner2 = findViewById(R.id.spinner2);
         ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,topics);
         spinner2.setAdapter(AudienceAdapter);
@@ -71,7 +72,7 @@ public class PoetsRegistration extends AppCompatActivity {
         new AsyncHelper(PoetsRegistration.this,q,"goal",null,null,null,
                 EnumAsync.Goal.getEnumAsync()).execute(); //async task for getting data from db
         goals=HelperLists.goalHelperList;
-        goals.add(0,"select");
+        goals.add(0,EnumsSingers.select.getEnums());
         spinner3 = findViewById(R.id.spinner3);
         ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,goals);
         spinner3.setAdapter(beatAdapter);

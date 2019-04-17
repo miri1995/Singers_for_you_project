@@ -46,17 +46,16 @@ public class SingersRegistration extends AppCompatActivity {
 
 
         String q3=helperLists.getGenreQuery();
-
         new AsyncHelper(SingersRegistration.this,q3,"genre",null,null,null,EnumAsync.Genre.getEnumAsync()).execute();
         geners= HelperLists.genersHelperLists;
-        geners.add(0,"select");
+        geners.add(0,EnumsSingers.select.getEnums());
         spinner1 = findViewById(R.id.register_what_you);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
         spinner1.setAdapter(generesAdapter);
 
         //spinner2
-        List<String> loudness = new ArrayList<String>(Arrays.asList("select", EnumsSingers.Weak.getEnums(),
+        List<String> loudness = new ArrayList<String>(Arrays.asList(EnumsSingers.select.getEnums(), EnumsSingers.Weak.getEnums(),
                 EnumsSingers.Normal.getEnums(),EnumsSingers.Strong.getEnums()));
         spinner2 = findViewById(R.id.spinner2);
 
@@ -64,7 +63,7 @@ public class SingersRegistration extends AppCompatActivity {
         spinner2.setAdapter(LoudnessAdapter);
 
         //spinner3
-        List<String> beat = new ArrayList<String>(Arrays.asList("select",EnumsSingers.Slow.getEnums(),
+        List<String> beat = new ArrayList<String>(Arrays.asList(EnumsSingers.select.getEnums(),EnumsSingers.Slow.getEnums(),
                EnumsSingers.Medium.getEnums(),EnumsSingers.Fast.getEnums()));
         spinner3 = findViewById(R.id.spinner3);
 
