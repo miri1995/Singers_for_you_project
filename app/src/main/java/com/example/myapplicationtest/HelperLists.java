@@ -14,6 +14,7 @@ public class HelperLists {
     public static List<String> genersHelperLists=new ArrayList<>();
     public static List<String> goalHelperList=new ArrayList<>();
     public static List<String> topicHelperList=new ArrayList<>();
+    public static List<String> instrumentHelperList = new ArrayList<>();
 
     public HelperLists(){
 
@@ -32,6 +33,8 @@ public class HelperLists {
    public String getGoalQuery(){
         return "select distinct goal from poets";
    }
+
+   public String getInstrumentQuery(){ return "select distinct musical_instrument from composers";}
 
     public boolean checkChoise(String genre2, String loudness2, String beat2){
         if(genre2==null || loudness2==null || beat2==null ||

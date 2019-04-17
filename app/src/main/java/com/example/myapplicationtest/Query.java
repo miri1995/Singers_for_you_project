@@ -132,11 +132,9 @@ public class Query {
      * @return q = the matching query
      */
 
-    public String UserInput(String genre, String element2, String element3,String prioGenre, String prioElement2, String prioElement3,boolean popular,String flag){
+    public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean popular,String flag){
         HashMap<String,Double> priority = new HashMap<>();
-      //  if(element2.equals("loudness") && element3.equals("tempo")){
-            priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
-      //  }
+        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
         List<String> couples=new ArrayList<>();
         List<String> couples2=new ArrayList<>();
         List<String> couples3=new ArrayList<>();
@@ -167,10 +165,16 @@ public class Query {
             q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,flag);
 
         }
-        else{
+        else if (flag.equals("poets")){
             String choose = "SELECT distinct poets.poet_name,poets.song_topic,poets.goal,poets.genre\n" +
                     " FROM poets";
             q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
+        }
+        else{
+            String choose = "Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
+                    "FROM composers WHEFE (composers.musical_instrument=\""+instrument+"\""+")";
+            q=GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
+
         }
         return q;
 
@@ -203,8 +207,11 @@ public class Query {
                 if(flag.equals("singer")){
                     quGenre.append(" OR genre.genre=\"" + otherGenre.get(i) + "\"");
                 }
-                else{
+                else if (flag.equals("poets")){
                     quGenre.append(" OR poets.genre=\"" + otherGenre.get(i) + "\"");
+                }
+                else{
+                    quGenre.append(" OR composers.composers_genre=\"" + otherGenre.get(i) + "\"");
                 }
             }
         }
@@ -225,10 +232,13 @@ public class Query {
         if(flag.equals("singer")){
             lastQ=BeatQ+" AND (genre.genre=\""+genre+"\""+quGenre+")"+hotness;
         }
-        else{
+        else if (flag.equals("poets")){
             String concat = " WHERE (poets.genre=\""+genre+"\""+quGenre+")"+" AND (poets.song_topic=\""+element2+"\""+quTopic+")"+
                     "And (poets.goal=\""+element3+"\""+quGoal+")";
             lastQ=BeatQ+concat;
+        }
+        else{
+            lastQ=BeatQ+" AND (composers.composers_genre=\""+genre+"\""+quGenre+")";
         }
 
         return lastQ;

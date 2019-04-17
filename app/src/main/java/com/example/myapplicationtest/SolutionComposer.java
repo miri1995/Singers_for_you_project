@@ -9,72 +9,41 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TabHost;
 
-
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
+import com.example.myapplicationtest.Composer.ComposersPriority;
 import com.example.myapplicationtest.SingersLogic.Priority;
-//import assets.pair3.txt;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import static java.lang.StrictMath.round;
 
-public class SulationSinger  extends Activity {
-
-
-    Priority priority = new Priority();
-   public static List<String> artists=new ArrayList<>();
+public class SolutionComposer extends Activity {
+    ComposersPriority priority = new ComposersPriority();
+    public static List<String> composers=new ArrayList<>();
     //public static List<String> artists_id=new ArrayList<>();
-   public static List<String> genres=new ArrayList<>();
+    public static List<String> genres=new ArrayList<>();
     public static List<Double> tempo=new ArrayList<>();
     public static List<Double> loudness=new ArrayList<>();
     List<Double>grades = new ArrayList<>();
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.solution_singers2);
-        TabHost tabhost = findViewById(R.id.tabHost);
-        tabhost.setup();
-        TabHost.TabSpec ts = tabhost.newTabSpec("tag1");
-        //tab1
-        ts.setContent(R.id.tab1);
-        ts.setIndicator("Most Popular");
-        mostOrLessPop(true);
-        tabhost.addTab(ts);
-        //tab2
-        ts = tabhost.newTabSpec("tag2");
-        ts.setContent(R.id.tab2);
-        ts.setIndicator("Less Popular");
-        //mostOrLessPop(false);
-        tabhost.addTab(ts);
-        ts= tabhost.newTabSpec("tag3");
-        ts.setContent(R.id.tab3);
-        ts.setIndicator("The Best For You");
-        tabhost.addTab(ts);
-
-
-
-    }
-
-    public void mostOrLessPop(boolean popular){
         String str_result=null;
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.solution_composer);
         Intent intent2 = getIntent();
-        priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.SingersLogic.Priority");
+        priority = (ComposersPriority) intent2.getSerializableExtra("com.example.myapplicationtest.Composer.ComposersPriority");
         Query query = new Query();
-        String flag="singer";
-        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),null,
-                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),popular,flag);
-        artists.clear();
+        String flag="composer";
+        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getFilters().getMusical_instrument(),
+                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),false,flag);
+        /*composers.clear();
         tempo.clear();
-        loudness.clear();
+        loudness.clear();*/
         try {
-            str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","song_tempo","song_loudness","genre",
-                    EnumAsync.Sol.getEnumAsync()).execute().get();
+            str_result=new AsyncHelper(SolutionComposer.this,q3,"composer_name","composers_tempo","composers_loudness","composers_genre",
+                    EnumAsync.Composer.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
             e.printStackTrace();
@@ -86,7 +55,7 @@ public class SulationSinger  extends Activity {
 
         if(str_result!=null) {
 
-            FittingPercents fittingPercents = new FittingPercents(priority,null,null);
+            FittingPercents fittingPercents = new FittingPercents(null,null,priority);
             if(priority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
                 grades = fittingPercents.percentTempoLoudness("both");
             }
@@ -94,35 +63,31 @@ public class SulationSinger  extends Activity {
                 grades = fittingPercents.percentGenreElse();
             }
 
-            List<String> resultArray = artists.subList(0,10);
+            List<String> resultArray = new ArrayList<>();
+            if(composers.size()>10){
+                resultArray = composers.subList(0,10);
+            }
+            else{
+                resultArray = composers;
+            }
             List<Double> gradesArray = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
                 gradesArray.add(grade);
             }
-            gradesArray = gradesArray.subList(0,10);
+            if(gradesArray.size()>10){
+                gradesArray = gradesArray.subList(0,10);
+            }
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, resultArray);
             ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
                     R.layout.activity_listview, gradesArray);
 
-            if(popular) {
-                ListView listView = findViewById(R.id.listView);
-                ListView listView2 = findViewById(R.id.listView2);
-                listView.setAdapter(adapter);
-                listView2.setAdapter(adapter2);
-            }else{
-                ListView listView = findViewById(R.id.listViewLess);
-                ListView listView2 = findViewById(R.id.listViewLess2);
-                listView.setAdapter(adapter);
-                listView2.setAdapter(adapter2);
-            }
-          //  listView.setAdapter(adapter);
-         //   listView2.setAdapter(adapter2);
-            // Log.d("D", "ll" + listView.toString());
+
         }
     }
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -144,11 +109,11 @@ public class SulationSinger  extends Activity {
 
 
     public void allSol_click(View view) {
-        List<String> resultArray = artists;
+        List<String> resultArray = composers;
         List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
         for(int i=0;i<grades.size();i++){
-          double grade = round(grades.get(i),2);
-          gradesArray.add(grade);
+            double grade = round(grades.get(i),2);
+            gradesArray.add(grade);
         }
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -165,7 +130,7 @@ public class SulationSinger  extends Activity {
     }
 
     public void back_click(View view){
-        Intent intent = new Intent(SulationSinger.this, SingersActivity.class);
+        Intent intent = new Intent(SolutionComposer.this, ComposersActivity.class);
         startActivity(intent);
     }
 }

@@ -8,19 +8,19 @@ public class ComposersPriority implements Serializable {
     private String prioGenre;
     private String prioloudness;
     private String priotempo;
-    private Filters filters;
-    private String prioMusical_instrument;
-    private boolean pop;
+    private ComposerFilters filters;
+    //private String prioMusical_instrument;
+   // private boolean pop;
     // private Filters filters = new Filters("genre","loudness","tempo");
 
-    public ComposersPriority(String prioGenre, String prioloudness, String priotempo,String prioMusical_instrument,
-                             Filters filters, boolean pop) {
+    public ComposersPriority(String prioGenre, String prioloudness, String priotempo,
+                             ComposerFilters filters) {
         this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
         this.priotempo = priotempo;
-        this.prioMusical_instrument=prioMusical_instrument;
+       // this.prioMusical_instrument=prioMusical_instrument;
         this.filters=filters;
-        this.pop=pop;
+      //  this.pop=pop;
         //initialize();
 
     }
@@ -29,7 +29,7 @@ public class ComposersPriority implements Serializable {
 
     }
 
-    public Filters getFilters(){
+    public ComposerFilters getFilters(){
         return this.filters;
     }
 
@@ -58,9 +58,9 @@ public class ComposersPriority implements Serializable {
      *
      * @return prioMusical_instrument
      */
-    public String getPrioMusical_instrument(){return  this.prioMusical_instrument;}
+   // public String getPrioMusical_instrument(){return  this.prioMusical_instrument;}
 
-    public boolean getPopular(){
+ /*   public boolean getPopular(){
         return this.pop;
-    }
+    }*/
 }

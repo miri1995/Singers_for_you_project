@@ -153,6 +153,41 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                     }
                     break;
 
+                case Instrument:
+                    Log.d("D","in instrument"+query);
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            Log.d("D",flag);
+                            HelperLists.instrumentHelperList.add(rs.getString(colName1));
+                        }
+                        Log.d("D","result instrument"+ rs);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQueryGenre - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery gen");
+                    }
+                    break;
+                case Composer:
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            if(!SolutionComposer.moreThanOnce(SolutionComposer.composers,rs.getString(colName1))) {
+                                SolutionComposer.composers.add(rs.getString(colName1));
+                                SolutionComposer.tempo.add(rs.getDouble(colName2));
+                                SolutionComposer.loudness.add(rs.getDouble(colName3));
+                                SolutionComposer.genres.add(rs.getString(colName4));
+                            }
+                        }
+                        Log.d("D","result"+ SolutionComposer.composers);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
+                    }
+                    break;
             }
 
 

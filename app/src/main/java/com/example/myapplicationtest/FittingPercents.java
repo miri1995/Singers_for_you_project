@@ -1,5 +1,6 @@
 package com.example.myapplicationtest;
 
+import com.example.myapplicationtest.Composer.ComposersPriority;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Poets.PoetsPriority;
 import com.example.myapplicationtest.SingersLogic.Priority;
@@ -11,10 +12,12 @@ import java.util.List;
 public class FittingPercents {
     private Priority priority;
     private PoetsPriority prioirtyPoets;
+    private ComposersPriority composersPriority;
 
-    public FittingPercents(Priority priority,PoetsPriority prioirtyPoets) {
+    public FittingPercents(Priority priority,PoetsPriority prioirtyPoets,ComposersPriority composersPriority) {
         this.priority = priority;
         this.prioirtyPoets =prioirtyPoets;
+        this.composersPriority=composersPriority;
     }
 
     public List<Double> percentTempoLoudness(String flag) {

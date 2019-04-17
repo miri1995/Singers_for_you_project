@@ -23,7 +23,7 @@ public class ChoiceSingerOrProduct extends AppCompatActivity {
                 startActivity(intent2);
                 break;
             case R.id.composer:
-                Intent intent3 = new Intent(ChoiceSingerOrProduct.this, PoetsActivity.class);
+                Intent intent3 = new Intent(ChoiceSingerOrProduct.this, ComposersActivity.class);
                 startActivity(intent3);
                 break;
             case R.id.btregistration:
