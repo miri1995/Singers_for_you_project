@@ -14,6 +14,7 @@ import android.widget.Spinner;
 
 import com.example.myapplicationtest.AsyncHelper;
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.Maps;
 import com.example.myapplicationtest.ParioritySingers;
@@ -45,16 +46,12 @@ public class ComposerRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poets_registration);
 
-        String q3="select genre from genre";
-//        new AsyncHelper(ComposerRegistration.this,q3,"genre",null,null,null,
-//                EnumAsync.Genre.getEnumAsync()).execute(); //async task for getting data from db
-
-
-        //categorization
+        //genre
+        String q3=helperLists.getGenreQuery();
+        new AsyncHelper(ComposerRegistration.this,q3,"genre",null,null,null,EnumAsync.Genre.getEnumAsync()).execute();
         geners= HelperLists.genersHelperLists;
-        geners.add(0,"select");
+        geners.add(0, EnumsSingers.select.getEnums());
         spinner1 = findViewById(R.id.register_what_you);
-
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
         spinner1.setAdapter(generesAdapter);
 
