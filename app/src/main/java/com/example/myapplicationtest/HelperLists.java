@@ -62,5 +62,16 @@ public class HelperLists {
         dialog.show();
     }
 
+    public List<String> updateGenreList(Context context){
+        List<String> geners=new ArrayList<>();
+        String q3=getGenreQuery();
+        //async task for getting data from db
+        new AsyncHelper(context,q3,"genre",
+                null,null,null, EnumAsync.Genre.getEnumAsync()).execute();
+        geners=HelperLists.genersHelperLists;
+        geners.add(0,"select");
+        return geners;
+    }
+
 
 }
