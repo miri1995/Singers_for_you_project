@@ -24,20 +24,28 @@ public class Query {
      */
     public String MapBeat(String genre,String loudness,String tempo,
                           HashMap priority,String prioLoudness,String prioTempo,String prioGenre,
-                          List<String> otherGenre,boolean popular,String flag){
+                          List<String> otherGenre,boolean popular,String flag,String instrument,
+                          String whichtableloudness,String whichtabletempo,String whichcolloudness,String whichcoltempo){
         int temp=0;
         String q="";
+        String mapGenre="";
         if (flag.equals("singer")) {
             // the base query which will be the first part of all the quries
-            String mapGenre = "#standardSQL\n" + "SELECT distinct artists.artist_name,songs.song_loudness,songs.song_tempo," +
-                    "genre.genre\n" +
-                    "from genre\n" +
-                    "INNER JOIN genreartists on genre.genre_id = genreartists.genre_id\n" +
-                    "INNER JOIN artists on artists.artist_id = genreartists.artist_id\n" +
-                    "INNER JOIN songs on songs.song_artist_id = artists.artist_id\n"; //+
+            if(flag.equals("singer")) {
+                mapGenre = "#standardSQL\n" + "SELECT distinct artists.artist_name,songs.song_loudness,songs.song_tempo," +
+                        "genre.genre\n" +
+                        "from genre\n" +
+                        "INNER JOIN genreartists on genre.genre_id = genreartists.genre_id\n" +
+                        "INNER JOIN artists on artists.artist_id = genreartists.artist_id\n" +
+                        "INNER JOIN songs on songs.song_artist_id = artists.artist_id\n"; //+
+            }
+            else{
+                mapGenre="Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
+                        "FROM composers WHERE (composers.musical_instrument=\""+instrument+"\""+")";
+            }
             //"WHERE artists.artist_id IN ";
             // check that this features are not null
-            String notNull = " AND songs.song_loudness IS NOT NULL AND songs.song_tempo IS NOT NULL";
+            String notNull = " AND \""+whichtableloudness+"\"" + " IS NOT NULL AND \""+whichtabletempo+"\"" + " IS NOT NULL";
             double num_tempo;
             double num_loudness;
             switch (EnumsSingers.valueOf(tempo)) {
@@ -59,18 +67,18 @@ public class Query {
                     num_loudness = numLoud[0] - (double) priority.get(prioLoudness);
                     if (temp == 1) {
                         num_tempo = numTempo[0] + (double) priority.get(prioTempo);
-                        q = mapGenre + "WHERE song_tempo <\"" + num_tempo + "\"" + "AND song_loudness >\"" + num_loudness + "\"" +
+                        q = mapGenre + "WHERE \""+whichcoltempo+"\"" + "<\"" + num_tempo + "\"" + "AND \""+whichcolloudness+"\""+ ">\"" + num_loudness + "\"" +
                                 notNull;
                     } else if (temp == 2) {
                         num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
                         double num_tempo2 = numTempo[1] + ((double) priority.get(prioTempo) / 2);
                         q = mapGenre +
-                                "WHERE song_tempo between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND song_loudness>\"" + num_loudness + "\"" +
+                                "WHERE \""+whichcoltempo+"\"" + " between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND \""+whichcolloudness+"\""+">\"" + num_loudness + "\"" +
                                 notNull;
                     } else {
                         num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness>\"" + num_loudness + "\"" +
+                                "WHERE \""+whichcoltempo+"\""+">\"" + num_tempo + "\"" + "AND \""+whichcolloudness+"\""+">\"" + num_loudness + "\"" +
                                 notNull;
                     }
                     break;
@@ -80,18 +88,18 @@ public class Query {
                     if (temp == 1) {
                         num_tempo = numTempo[0] + (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE song_tempo<\"" + num_tempo + "\"" + " AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                                "WHERE \""+whichcoltempo+"\""+"<\"" + num_tempo + "\"" + " AND \""+whichcolloudness+"\"" +" BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
                                 notNull;
                     } else if (temp == 2) {
                         num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
                         double num_tempo2 = numTempo[1] + ((double) priority.get(prioTempo) / 2);
                         q = mapGenre +
-                                "WHERE song_tempo between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                                "WHERE \""+whichcoltempo+"\"" +" between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND \""+whichcolloudness+"\""+ "BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
                                 notNull;
                     } else {
                         num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                                "WHERE \""+whichcoltempo+"\""+">\"" + num_tempo + "\"" + "AND \""+whichcolloudness+"\""+ " BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
                                 notNull;
                     }
                     break;
@@ -100,18 +108,18 @@ public class Query {
                     if (temp == 1) {
                         num_tempo = numTempo[0] + (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE song_tempo<\"" + num_tempo + "\"" + " AND song_loudness<\"" + num_loudness + "\"" +
+                                "WHERE \""+whichcoltempo+"\""+"<\"" + num_tempo + "\"" + " AND \""+whichcolloudness+"\""+"<\"" + num_loudness + "\"" +
                                 notNull;
                     } else if (temp == 2) {
                         num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
                         double num_tempo2 = numTempo[1] + ((double) priority.get(prioTempo) / 2);
                         q = mapGenre +
-                                "WHERE song_tempo between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND song_loudness<\"" + num_loudness + "\"" +
+                                "WHERE \""+whichcoltempo+"\""+ " between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND \""+whichcolloudness+"\""+"<\"" + num_loudness + "\"" +
                                 notNull;
                     } else {
                         num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE song_tempo>\"" + num_tempo + "\"" + "AND song_loudness<\"" + num_loudness + "\"" +
+                                "WHERE \""+whichcoltempo+"\""+">\"" + num_tempo + "\"" + "AND \""+whichcolloudness+"\""+"<\"" + num_loudness + "\"" +
                                 notNull;
                     }
                     break;
@@ -162,7 +170,11 @@ public class Query {
         }
         String q="";
         if (flag.equals("singer")){
-            q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,flag);
+            String whichtableloudness = "songs.song_loudness";
+            String whichtabletempo = "songs.song_tempo";
+            String whichcolloudness = "song_loudness";
+            String whichcoltempo = "song_tempo";
+            q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,flag,null,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
 
         }
         else if (flag.equals("poets")){
@@ -171,9 +183,14 @@ public class Query {
             q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
         }
         else{
-            String choose = "Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
-                    "FROM composers WHEFE (composers.musical_instrument=\""+instrument+"\""+")";
-            q=GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
+            String whichtableloudness = "composers.composers_loudness";
+            String whichtabletempo = "composers.composers_tempo";
+            String whichcolloudness = "composers_loudness";
+            String whichcoltempo = "composers_tempo";
+            q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,flag,instrument,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
+           /* String choose = "Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
+                    "FROM composers WHERE (composers.musical_instrument=\""+instrument+"\""+")";
+            q=GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);*/
 
         }
         return q;

@@ -55,13 +55,13 @@ public class SolutionComposer extends Activity {
 
         if(str_result!=null) {
 
-            FittingPercents fittingPercents = new FittingPercents(null,null,priority);
+         /*   FittingPercents fittingPercents = new FittingPercents(null,null,priority);
             if(priority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
                 grades = fittingPercents.percentTempoLoudness("both");
             }
             else{
                 grades = fittingPercents.percentGenreElse();
-            }
+            }*/
 
             List<String> resultArray = new ArrayList<>();
             if(composers.size()>10){
@@ -70,19 +70,19 @@ public class SolutionComposer extends Activity {
             else{
                 resultArray = composers;
             }
-            List<Double> gradesArray = new ArrayList<>();
+          /*  List<Double> gradesArray = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
                 gradesArray.add(grade);
             }
             if(gradesArray.size()>10){
                 gradesArray = gradesArray.subList(0,10);
-            }
+            }*/
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, resultArray);
-            ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
-                    R.layout.activity_listview, gradesArray);
+          /*  ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+                    R.layout.activity_listview, gradesArray);*/
 
 
         }
@@ -110,20 +110,20 @@ public class SolutionComposer extends Activity {
 
     public void allSol_click(View view) {
         List<String> resultArray = composers;
-        List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
-        for(int i=0;i<grades.size();i++){
+     //   List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
+       /* for(int i=0;i<grades.size();i++){
             double grade = round(grades.get(i),2);
             gradesArray.add(grade);
-        }
+        }*/
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, resultArray);
-        ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
-                R.layout.activity_listview, gradesArray);
+       /* ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+                R.layout.activity_listview, gradesArray);*/
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
         listView.setAdapter(adapter);
-        listView2.setAdapter(adapter2);
+      //  listView2.setAdapter(adapter2);
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
         allSolButton.setVisibility(View.GONE);
