@@ -1,5 +1,7 @@
 package com.example.myapplicationtest;
 
+import com.example.myapplicationtest.Enums.EnumAsync;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,19 @@ public class HelperLists {
 
     }
 
-   /* public List<String> getGenersHelperLists(){
-        return genersHelperLists;
-    }*/
+
+
+   public String getGenreQuery(){
+        return "select genre from genre";
+   }
+
+   public String getTopicQuery(){
+        return "select distinct song_topic from poets";
+   }
+
+   public String getGoalQuery(){
+        return "select distinct goal from poets";
+   }
+
+
 }

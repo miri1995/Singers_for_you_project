@@ -44,41 +44,6 @@ public class Registration extends AppCompatActivity {
                 throw new RuntimeException("Unknow button ID");
         }
 
-
-
-     /*   String categorization2=null;
-        String genre2 =null;
-        String loudness2 = null;
-        String beat2=null;
-        String genre=null,subject=null, goal=null;
-        // String location2=null;
-
-
-        if(spinner2.getSelectedItem()!=null){
-            loudness2 =spinner2.getSelectedItem().toString();
-        }
-        if(spinner3.getSelectedItem()!=null){
-            beat2 =spinner3.getSelectedItem().toString();
-        }
-
-
-
-
-        if(categorization.getSelectedItem()!=null){
-            categorization2 = categorization.getSelectedItem().toString();
-            switch (categorization2){
-                case "singer":
-                    filters = new Filters(genre2, loudness2, beat2);
-                    break;
-                case "poet":
-                    poetsFilters=new PoetsFilters(genre,  subject,  goal);
-                    break;
-                case "composer":
-                    composerFilters=new ComposerFilters();
-                    break;
-
-            }
-        }*/
     }
 
 

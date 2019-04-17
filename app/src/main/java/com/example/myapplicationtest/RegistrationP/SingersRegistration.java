@@ -36,7 +36,7 @@ public class SingersRegistration extends AppCompatActivity {
     private String loudness2 = null;
     private String beat2=null;
     private String name=null;
-
+    HelperLists helperLists=new HelperLists();
   //  private Helper helper=new Helper();
 
     @Override
@@ -45,13 +45,9 @@ public class SingersRegistration extends AppCompatActivity {
         setContentView(R.layout.singers_registration);
 
 
-        String q3="select genre from genre";
+        String q3=helperLists.getGenreQuery();
 
         new AsyncHelper(SingersRegistration.this,q3,"genre",null,null,null,EnumAsync.Genre.getEnumAsync()).execute();
-       // helper.GenreQuery();
-       // geners=helper.getGeners();
-        System.out.println(geners);
-
         geners= HelperLists.genersHelperLists;
         geners.add(0,"select");
         spinner1 = findViewById(R.id.register_what_you);
@@ -126,8 +122,6 @@ public class SingersRegistration extends AppCompatActivity {
             String str_result3=null,str_result2=null,str_result=null;
             String getLastIdSongs="select song_id from songs order by song_id desc limit 1";
             String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
-
-
             String getLastId="select artist_id from artists order by artist_id desc limit 1";
             //get id
             try {

@@ -134,9 +134,9 @@ public class Query {
 
     public String UserInput(String genre, String element2, String element3,String prioGenre, String prioElement2, String prioElement3,boolean popular,String flag){
         HashMap<String,Double> priority = new HashMap<>();
-        if(element2.equals("loudness") && element3.equals("tempo")){
+      //  if(element2.equals("loudness") && element3.equals("tempo")){
             priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
-        }
+      //  }
         List<String> couples=new ArrayList<>();
         List<String> couples2=new ArrayList<>();
         List<String> couples3=new ArrayList<>();

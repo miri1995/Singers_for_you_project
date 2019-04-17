@@ -45,11 +45,7 @@ public class SolutionPoets extends Activity {
         String flag = "poets";
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),
                 poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false,flag);
-       // poets.clear();
-       // subject.clear();
-        //goal.clear();
-        // artists_id.clear();
-        // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
+
         try {
             str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genre",
                     EnumAsync.Poet.getEnumAsync()).execute().get();

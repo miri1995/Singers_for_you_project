@@ -21,13 +21,13 @@ import java.util.concurrent.ExecutionException;
 
 import static java.lang.StrictMath.round;
 
-public class SulationSinger  extends Activity {
+public class SulationSinger2  extends Activity {
 
 
     Priority priority = new Priority();
-   public static List<String> artists=new ArrayList<>();
+    public static List<String> artists=new ArrayList<>();
     //public static List<String> artists_id=new ArrayList<>();
-   public static List<String> genres=new ArrayList<>();
+    public static List<String> genres=new ArrayList<>();
     public static List<Double> tempo=new ArrayList<>();
     public static List<Double> loudness=new ArrayList<>();
     List<Double>grades = new ArrayList<>();
@@ -35,22 +35,73 @@ public class SulationSinger  extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
+        String str_result=null;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers2);
         TabHost tabhost = findViewById(R.id.tabHost);
         tabhost.setup();
         TabHost.TabSpec ts = tabhost.newTabSpec("tag1");
-        //tab1
         ts.setContent(R.id.tab1);
         ts.setIndicator("Most Popular");
-        mostOrLessPop(true);
+           Intent intent2 = getIntent();
+        priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.SingersLogic.Priority");
+
+
+        Query query = new Query();
+        String flag="singer";
+        String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),
+                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),priority.getPopular(),flag);
+        artists.clear();
+        tempo.clear();
+        loudness.clear();
+       // artists_id.clear();
+       // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
+        try {
+             str_result=new AsyncHelper(SulationSinger2.this,q3,"artist_name","song_tempo","song_loudness","genre",
+                     EnumAsync.Sol.getEnumAsync()).execute().get();
+            // Log.d("D","sol re "+str_result);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+
+        if(str_result!=null) {
+
+            FittingPercents fittingPercents = new FittingPercents(priority,null);
+            if(priority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
+                grades = fittingPercents.percentTempoLoudness("both");
+            }
+            else{
+                    grades = fittingPercents.percentGenreElse();
+            }
+
+            List<String> resultArray = artists.subList(0,10);
+            List<Double> gradesArray = new ArrayList<>();
+            for(int i=0;i<grades.size();i++){
+                double grade = round(grades.get(i),2);
+                gradesArray.add(grade);
+            }
+            gradesArray = gradesArray.subList(0,10);
+            ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    R.layout.activity_listview, resultArray);
+            ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+                    R.layout.activity_listview, gradesArray);
+            ListView listView = findViewById(R.id.listView);
+            ListView listView2 = findViewById(R.id.listView2);
+            listView.setAdapter(adapter);
+            listView2.setAdapter(adapter2);
+           // Log.d("D", "ll" + listView.toString());
+        }
+
         tabhost.addTab(ts);
-        //tab2
+
         ts = tabhost.newTabSpec("tag2");
         ts.setContent(R.id.tab2);
         ts.setIndicator("Less Popular");
-        //mostOrLessPop(false);
         tabhost.addTab(ts);
         ts= tabhost.newTabSpec("tag3");
         ts.setContent(R.id.tab3);
@@ -59,21 +110,22 @@ public class SulationSinger  extends Activity {
 
 
 
-    }
 
-    public void mostOrLessPop(boolean popular){
-        String str_result=null;
-        Intent intent2 = getIntent();
+      /*  Intent intent2 = getIntent();
         priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.SingersLogic.Priority");
+
+
         Query query = new Query();
         String flag="singer";
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),
-                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),popular,flag);
+                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),priority.getPopular(),flag);
         artists.clear();
         tempo.clear();
         loudness.clear();
+        // artists_id.clear();
+        // new AsyncHelper(SulationSinger.this,q3,"artist_name","artist_id","sol").execute(); //async task for getting data from db
         try {
-            str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","song_tempo","song_loudness","genre",
+            str_result=new AsyncHelper(SulationSinger2.this,q3,"artist_name","song_tempo","song_loudness","genre",
                     EnumAsync.Sol.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
@@ -106,23 +158,15 @@ public class SulationSinger  extends Activity {
                     R.layout.activity_listview, resultArray);
             ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
                     R.layout.activity_listview, gradesArray);
-
-            if(popular) {
-                ListView listView = findViewById(R.id.listView);
-                ListView listView2 = findViewById(R.id.listView2);
-                listView.setAdapter(adapter);
-                listView2.setAdapter(adapter2);
-            }else{
-                ListView listView = findViewById(R.id.listViewLess);
-                ListView listView2 = findViewById(R.id.listViewLess2);
-                listView.setAdapter(adapter);
-                listView2.setAdapter(adapter2);
-            }
-          //  listView.setAdapter(adapter);
-         //   listView2.setAdapter(adapter2);
+            ListView listView = findViewById(R.id.listView);
+            ListView listView2 = findViewById(R.id.listView2);
+            listView.setAdapter(adapter);
+            listView2.setAdapter(adapter2);
             // Log.d("D", "ll" + listView.toString());
-        }
+        }*/
+
     }
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -147,8 +191,8 @@ public class SulationSinger  extends Activity {
         List<String> resultArray = artists;
         List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
         for(int i=0;i<grades.size();i++){
-          double grade = round(grades.get(i),2);
-          gradesArray.add(grade);
+            double grade = round(grades.get(i),2);
+            gradesArray.add(grade);
         }
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -165,7 +209,7 @@ public class SulationSinger  extends Activity {
     }
 
     public void back_click(View view){
-        Intent intent = new Intent(SulationSinger.this, SingersActivity.class);
+        Intent intent = new Intent(SulationSinger2.this, SingersActivity.class);
         startActivity(intent);
     }
 }

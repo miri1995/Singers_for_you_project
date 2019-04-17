@@ -25,16 +25,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-         final String host = "35.225.34.63";
-         final String port = "3306";
-         final String schema = "dbProject";
-         final String user = "root";
-         final String password = "0542015460mb";
-         final String url = "jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel";
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // DBConnection.getInstance().getConnection(); // DB connection
 
         String text="";
         try {
@@ -93,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         coupleDistance.countPairs(goalCouples,"goal");
+
+    }
+
+    public void readFile(String fileName){
 
     }
 

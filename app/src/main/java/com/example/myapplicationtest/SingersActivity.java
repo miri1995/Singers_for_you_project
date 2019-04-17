@@ -22,6 +22,7 @@ import java.util.List;
 public class SingersActivity extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3, spinner4;
+    HelperLists helperLists=new HelperLists();
     public static List<String> geners=new ArrayList<>();
 
 
@@ -29,40 +30,24 @@ public class SingersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.singer_choice);
-//lko
-      //  Connector connector;
-      //  connector = new Connector();
 
-      //  Connection con=DBConnection.getInstance().getConnection(); // DB connection
-        String q3="select genre from genre";
-        Log.d("D","BB "+EnumAsync.Genre.getEnumAsync());
-          new AsyncHelper(SingersActivity.this,q3,"genre",null,null,null, EnumAsync.Genre.getEnumAsync()).execute(); //async task for getting data from db
-
-        System.out.println(geners);
-        Log.d("D","singer activity"+geners);
-
-        //categorization
-        //HelperLists helperLists=new HelperLists();
-        geners=HelperLists.genersHelperLists;
-        geners.add(0,"select");
+       //genres
+        updateGenreList();
         spinner1 = findViewById(R.id.register_what_you);
-
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,geners);
         spinner1.setAdapter(generesAdapter);
 
-        //spinner2
+        //loudness
         List<String> loudness = new ArrayList<String>(Arrays.asList("select", EnumsSingers.Weak.getEnums(),
                 EnumsSingers.Normal.getEnums(), EnumsSingers.Strong.getEnums()));
         spinner2 = findViewById(R.id.spinner2);
-
         ArrayAdapter<String> LoudnessAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudness);
         spinner2.setAdapter(LoudnessAdapter);
 
-        //spinner3
+        //tempo
         List<String> beat = new ArrayList<String>(Arrays.asList("select",
                 EnumsSingers.Slow.getEnums(),EnumsSingers.Medium.getEnums(),EnumsSingers.Fast.getEnums()));
         spinner3 = findViewById(R.id.spinner3);
-
         ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beat);
         spinner3.setAdapter(beatAdapter);
 
@@ -74,7 +59,6 @@ public class SingersActivity extends AppCompatActivity {
      //   spinner4.setAdapter(locationAdapter);
 
     }
-
 
 
 
@@ -121,6 +105,15 @@ public class SingersActivity extends AppCompatActivity {
             dialog.show();
         }
 
+    }
+
+    public void updateGenreList(){
+        String q3=helperLists.getGenreQuery();
+        //async task for getting data from db
+        new AsyncHelper(SingersActivity.this,q3,"genre",
+                null,null,null, EnumAsync.Genre.getEnumAsync()).execute();
+        geners=HelperLists.genersHelperLists;
+        geners.add(0,"select");
     }
 
     public void backSingerORProduct_click(View view){

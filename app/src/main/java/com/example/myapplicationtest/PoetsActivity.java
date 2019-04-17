@@ -22,12 +22,13 @@ public class PoetsActivity extends AppCompatActivity {
     public static List<String> genres=new ArrayList<>();
     public static List<String> goals=new ArrayList<>();
     public static List<String> topics=new ArrayList<>();
+    HelperLists helperLists=new HelperLists();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poet_choice);
-        String q3="select genre from genre";
+        String q3=helperLists.getGenreQuery();
         new AsyncHelper(PoetsActivity.this,q3,"genre",null,null,null,
                 EnumAsync.Genre.getEnumAsync()).execute(); //async task for getting data from db
 
@@ -41,7 +42,7 @@ public class PoetsActivity extends AppCompatActivity {
         spinner1.setAdapter(generesAdapter);
 
         //subject
-        String q2="select distinct song_topic from poets";
+        String q2=helperLists.getTopicQuery();
         new AsyncHelper(PoetsActivity.this,q2,"song_topic",null,null,null,
                 EnumAsync.Topic.getEnumAsync()).execute(); //async task for getting data from db
         topics=HelperLists.topicHelperList;
@@ -52,7 +53,7 @@ public class PoetsActivity extends AppCompatActivity {
 
         //goal
         goals.clear();
-        String q="select distinct goal from poets";
+        String q=helperLists.getGoalQuery();
         new AsyncHelper(PoetsActivity.this,q,"goal",null,null,null,
                 EnumAsync.Goal.getEnumAsync()).execute(); //async task for getting data from db
         goals=HelperLists.goalHelperList;

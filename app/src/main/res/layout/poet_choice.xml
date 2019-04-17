@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light">
+    android:background="#CF5F04">
 
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -115,7 +115,6 @@
         android:textStyle="bold" />
 
 
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="180dp"
@@ -130,6 +129,7 @@
         android:textColor="@color/colorAccent"
         android:textSize="30sp"
         android:textStyle="bold" />
+
     <Button
         android:id="@+id/back_buttom"
         android:layout_width="wrap_content"
