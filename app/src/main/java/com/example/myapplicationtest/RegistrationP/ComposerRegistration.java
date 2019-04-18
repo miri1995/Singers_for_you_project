@@ -121,7 +121,18 @@ public class ComposerRegistration extends AppCompatActivity {
 
             //insert
             //async task for getting data from db
-            new AsyncHelperRegistration(ComposerRegistration.this, q1, "composer_id", EnumAsync.InsertSinger.getEnumAsync()).execute();
+            String str_result5= null;
+            try {
+                str_result5 = new AsyncHelperRegistration(ComposerRegistration.this, q1,
+                        "composer_id", EnumAsync.InsertSinger.getEnumAsync()).execute().get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(str_result5!=null){
+                helperLists.sucsessRegister(this);
+            }
         }
 
         finish();

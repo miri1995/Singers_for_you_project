@@ -206,6 +206,11 @@ public class HelperLists {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            dialog.wait(100);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         dialog.cancel();
                     }
                 });

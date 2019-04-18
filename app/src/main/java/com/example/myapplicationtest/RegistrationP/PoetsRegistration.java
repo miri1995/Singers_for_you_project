@@ -117,7 +117,7 @@ public class PoetsRegistration extends AppCompatActivity {
                 //insert
                 new AsyncHelperRegistration(PoetsRegistration.this, q1, "poet_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
             }
-
+            helperLists.sucsessRegister(this);
             finish();
         }
     }
