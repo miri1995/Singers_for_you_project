@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import static java.lang.StrictMath.E;
 import static java.lang.StrictMath.round;
 
 public class SulationSinger  extends Activity {
@@ -88,10 +89,10 @@ public class SulationSinger  extends Activity {
 
             FittingPercents fittingPercents = new FittingPercents(priority,null,null);
             if(priority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
-                grades = fittingPercents.percentTempoLoudness("both");
+                grades = fittingPercents.percentTempoLoudness("both",priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getPrioLoudness(),priority.getPrioTempo(),tempo,loudness);
             }
             else{
-                grades = fittingPercents.percentGenreElse();
+                grades = fittingPercents.percentGenreElse(priority.getPrioGenre(),genres,priority.getFilters().getGenre(),priority.getPrioLoudness(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getPrioTempo(),tempo,loudness);
             }
 
             List<String> resultArray = artists.subList(0,10);
