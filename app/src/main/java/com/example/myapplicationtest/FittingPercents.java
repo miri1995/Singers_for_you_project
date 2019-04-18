@@ -131,8 +131,8 @@ public class FittingPercents {
                 }
             }
             else {
-                if(loudness.equals(EnumsSingers.Medium.getEnums())
-                        || loudness.equals(EnumsSingers.Low.getEnums())){
+                if(prioLoudness.equals(EnumsSingers.Medium.getEnums())
+                        || prioLoudness.equals(EnumsSingers.Low.getEnums())){
                     for (int i = 0; i < loudnessList.size(); i++) {
                         if(loudnessList.get(i)>numLoudness[0] && loudnessList.get(i)<numLoudness[1]){
                             gradeLoudness = 100 * percentLoudness;
