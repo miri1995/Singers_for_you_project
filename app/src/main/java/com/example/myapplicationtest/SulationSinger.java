@@ -65,7 +65,7 @@ public class SulationSinger  extends Activity {
     public void mostOrLessPop(boolean popular){
         String str_result=null;
         Intent intent2 = getIntent();
-        priority = (Priority) intent2.getSerializableExtra("com.example.myapplicationtest.SingersLogic.Priority");
+        priority = (Priority) intent2.getSerializableExtra(Priority.class.getName());
         Query query = new Query();
         String flag=EnumsSingers.singer.getEnums();
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),null,

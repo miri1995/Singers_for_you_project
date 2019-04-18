@@ -60,15 +60,13 @@ public class SingersActivity extends AppCompatActivity {
         String beat2=null;
        // String location2=null;
 
-        if(spinner1.getSelectedItem()!=null){
+        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
+                helperLists.checkSelectedItem(spinner3,this)){
             genre2 =spinner1.getSelectedItem().toString();
-        }
-        if(spinner2.getSelectedItem()!=null){
             loudness2 =spinner2.getSelectedItem().toString();
-        }
-        if(spinner3.getSelectedItem()!=null){
             beat2 =spinner3.getSelectedItem().toString();
         }
+
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
         }*/
@@ -76,7 +74,7 @@ public class SingersActivity extends AppCompatActivity {
         if(allChoose) { //only if all filter selected
             filters = new Filters(genre2, loudness2, beat2);
             Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
-            intent1.putExtra("com.example.myapplicationtest.SingersLogic.Filters", filters);
+            intent1.putExtra(Filters.class.getName(), filters);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
             finish();
@@ -86,17 +84,9 @@ public class SingersActivity extends AppCompatActivity {
 
     }
 
-    public void updateGenreList(){
-        String q3=helperLists.getGenreQuery();
-        //async task for getting data from db
-        new AsyncHelper(SingersActivity.this,q3,"genre",
-                null,null,null, EnumAsync.Genre.getEnumAsync()).execute();
-        geners=HelperLists.genersHelperLists;
-        geners.add(0,"select");
-    }
 
     public void backSingerORProduct_click(View view){
-        Intent intent = new Intent(SingersActivity.this, ChoiceSingerOrProduct.class);
+        Intent intent = new Intent(this, ChoiceSingerOrProduct.class);
         startActivity(intent);
     }
 

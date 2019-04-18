@@ -16,8 +16,11 @@ import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.Maps;
+import com.example.myapplicationtest.PoetsActivity;
 import com.example.myapplicationtest.R;
+import com.example.myapplicationtest.Registration;
 import com.example.myapplicationtest.SingersLogic.Filters;
+import com.example.myapplicationtest.SolutionPoets;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,86 +67,85 @@ public class SingersRegistration extends AppCompatActivity {
 
         name = name_txt.getText().toString();
 
-        if(spinner1.getSelectedItem()!=null){
+        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
+                helperLists.checkSelectedItem(spinner3,this)){
             genreChoice =spinner1.getSelectedItem().toString();
-        }
-        if(spinner2.getSelectedItem()!=null){
             loudness2 =spinner2.getSelectedItem().toString();
-        }
-        if(spinner3.getSelectedItem()!=null){
             beat2 =spinner3.getSelectedItem().toString();
         }
 
-
-        if(genreChoice==null || loudness2==null || beat2==null ||
-                genreChoice.equals("select") || loudness2.equals("select") ||
-                beat2.equals("select") ){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(true);
-            builder.setTitle("Error Choose");
-            builder.setMessage("Please select all filters");
-            builder.setPositiveButton("Confirm",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }else { //only if all filter selected
-            String str_result3=null,str_result2=null,str_result=null;
-            String getLastIdSongs="select song_id from songs order by song_id desc limit 1";
-            String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
-            String getLastId="select artist_id from artists order by artist_id desc limit 1";
-            //get id
+        boolean allChoose=helperLists.checkChoise(genreChoice,loudness2,beat2);
+        if(allChoose) { //only if all filter selected
             try {
-                str_result = new AsyncHelperRegistration(SingersRegistration.this, getLastId,
-                        "artist_id", EnumAsync.LastID.getEnumAsync()).execute().get(); //async task for getting data from db
-
-                str_result2 = new AsyncHelperRegistration(SingersRegistration.this, getLastIdSongs,
-                        "song_id", EnumAsync.LastIdSong.getEnumAsync()).execute().get();
-
-                //get genre
-                str_result3 = new AsyncHelperRegistration(SingersRegistration.this, getGenreId,
-                        "genre_id", EnumAsync.GenreId.getEnumAsync()).execute().get();
+                InsertSinger();
             } catch (ExecutionException e) {
                 e.printStackTrace();
-                Log.d("D","1: "+e.getMessage());
+            }
+        }else{
+            helperLists.ErrorChoice(this);
+        }
+           // finish();
+
+    }
+    public void InsertSinger() throws ExecutionException, InterruptedException {
+        String str_result3Final=null,str_result2Final=null,str_resultFinal=null;
+        String str_result3=null,str_result2=null,str_result=null;
+        String getLastIdSongs="select song_id from songs order by song_id desc limit 1";
+        String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
+        String getLastId="select artist_id from artists order by artist_id desc limit 1";
+        //get id
+        try {
+            str_result = new AsyncHelperRegistration(SingersRegistration.this, getLastId,
+                    "artist_id", EnumAsync.LastID.getEnumAsync()).execute().get(); //async task for getting data from db
+
+            str_result2 = new AsyncHelperRegistration(SingersRegistration.this, getLastIdSongs,
+                    "song_id", EnumAsync.LastIdSong.getEnumAsync()).execute().get();
+
+            //get genre
+            str_result3 = new AsyncHelperRegistration(SingersRegistration.this, getGenreId,
+                    "genre_id", EnumAsync.GenreId.getEnumAsync()).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        Maps maps=new Maps();
+        maps.middleLoudness(loudness2);
+        maps.middleTempo(beat2);
+
+        //insert
+        if(str_result!=null && str_result2!=null && str_result3!=null) {
+
+            //query
+            String q1=("INSERT INTO artists(artist_id, artist_name,artist_hotness) " + "VALUES(\""+lastID+"\",\""+name+"\",'0')");
+            String q2=("INSERT INTO songs(song_id,song_name,song_tempo,song_loudness,song_artist_id) " +
+                    "VALUES(\""+SingersRegistration.lastIDSong+"\",'new',\""+Maps.middleTempo+"\",\""+Maps.middleLoudness+"\",\""+lastID+"\")");
+            String q3=("INSERT INTO genreartists " + "VALUES(\""+lastID+"\",\""+genreID+"\")");
+
+            //async task for getting data from db
+            str_resultFinal=new AsyncHelperRegistration(SingersRegistration.this, q1,
+                    "artist_id", EnumAsync.InsertSinger.getEnumAsync()).execute().get();
+            str_result2Final=new AsyncHelperRegistration(SingersRegistration.this, q2,
+                    "song_id", EnumAsync.InsertSinger.getEnumAsync()).execute().get();
+            str_result3Final=new AsyncHelperRegistration(SingersRegistration.this, q3,
+                    "artist_id", EnumAsync.InsertSinger.getEnumAsync()).execute().get();
+        }else{
+            try {
+                Thread.sleep(5000);//todo check if need this
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                Log.d("D","2: "+e.getMessage());
             }
-
-
-            Maps maps=new Maps();
-            maps.middleLoudness(loudness2);
-            maps.middleTempo(beat2);
-
-           //insert
-            if(str_result!=null && str_result2!=null && str_result3!=null) {
-                String q1=("INSERT INTO artists(artist_id, artist_name,artist_hotness) " + "VALUES(\""+lastID+"\",\""+name+"\",'0')");
-                String q2=("INSERT INTO songs(song_id,song_name,song_tempo,song_loudness,song_artist_id) " +
-                        "VALUES(\""+SingersRegistration.lastIDSong+"\",'new',\""+Maps.middleTempo+"\",\""+Maps.middleLoudness+"\",\""+lastID+"\")");
-                String q3=("INSERT INTO genreartists " + "VALUES(\""+lastID+"\",\""+genreID+"\")");
-                new AsyncHelperRegistration(SingersRegistration.this, q1, "artist_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-                new AsyncHelperRegistration(SingersRegistration.this, q2, "song_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-                new AsyncHelperRegistration(SingersRegistration.this, q3, "artist_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-            }else{
-                Thread.sleep(5000);//todo check if need this
-            }
-            System.out.println(lastIDSong);
-
-            helperLists.sucsessRegister(this);
-           // finish();
         }
+        if(str_resultFinal!=null && str_result2Final!=null && str_result3Final!=null) {
+            helperLists.sucsessRegister(this);
+        }
+    }
+
+    public void back_registration_click(View view){
+        Intent intent = new Intent(this, Registration.class);
+        startActivity(intent);
     }
 
 

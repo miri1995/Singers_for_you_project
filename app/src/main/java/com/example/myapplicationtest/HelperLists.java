@@ -134,6 +134,16 @@ public class HelperLists {
         return musicalInstrument;
     }
 
+    public void initPariority(Context context,Spinner spinner,Spinner spinner2,Spinner spinner3){
+        List<String> pr = new ArrayList<String>(Arrays.asList(EnumsSingers.select.getEnums(), EnumsSingers.High.getEnums(),
+                EnumsSingers.Medium.getEnums(),EnumsSingers.Low.getEnums()));
+        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item,pr);
+        spinner.setAdapter(generesAdapter);
+        spinner2.setAdapter(generesAdapter);
+        spinner3.setAdapter(generesAdapter);
+
+    }
+
     public void InitSingerFilters(Context context, Spinner spinner,Spinner spinner2,Spinner spinner3){
         List<String> geners=new ArrayList<>();
         //genre
@@ -219,5 +229,14 @@ public class HelperLists {
         Intent intent1 = new Intent(context, ChoiceSingerOrProduct.class);
         context.startActivity(intent1);
 
+    }
+
+    public boolean checkSelectedItem(Spinner spinner,Context context){
+        if(spinner.getSelectedItem()!=null){
+            return true;
+        }else{
+            ErrorChoice(context);
+            return false;
+        }
     }
 }

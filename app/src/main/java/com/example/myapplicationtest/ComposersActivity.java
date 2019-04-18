@@ -32,8 +32,6 @@ public class ComposersActivity extends AppCompatActivity{
 
         spinner1 = findViewById(R.id.register_what_you);
 
-
-
         //loudness
         spinner2 = findViewById(R.id.spinner2);
 
@@ -66,25 +64,21 @@ public class ComposersActivity extends AppCompatActivity{
         String instrument2=null;
         // String location2=null;
 
-        if(spinner1.getSelectedItem()!=null){
+        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
+                helperLists.checkSelectedItem(spinner3,this)&& helperLists.checkSelectedItem(spinner4,this)){
             genre2 =spinner1.getSelectedItem().toString();
-        }
-        if(spinner2.getSelectedItem()!=null){
             loudness2 =spinner2.getSelectedItem().toString();
-        }
-        if(spinner3.getSelectedItem()!=null){
             beat2 =spinner3.getSelectedItem().toString();
-        }
-        if(spinner4.getSelectedItem()!=null){
             instrument2=spinner4.getSelectedItem().toString();
         }
+
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
         }*/
 
             filters = new ComposerFilters(genre2, loudness2, beat2,instrument2);
             Intent intent1 = new Intent(ComposersActivity.this, PriorityComposers.class);
-            intent1.putExtra("com.example.myapplicationtest.Composer.ComposerFilters", filters);
+            intent1.putExtra(ComposerFilters.class.getName(), filters);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
             finish();

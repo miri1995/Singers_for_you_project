@@ -20,6 +20,7 @@ import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.Maps;
 import com.example.myapplicationtest.ParioritySingers;
 import com.example.myapplicationtest.R;
+import com.example.myapplicationtest.Registration;
 import com.example.myapplicationtest.SingersActivity;
 import com.example.myapplicationtest.SingersLogic.Filters;
 
@@ -69,23 +70,15 @@ public class ComposerRegistration extends AppCompatActivity {
     }
 
     public void registration_composer_click(View view) {
-        //async task for getting data from db
 
         name = name_txt.getText().toString();
-
-        if(spinner1.getSelectedItem()!=null){
+        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
+                helperLists.checkSelectedItem(spinner3,this)&& helperLists.checkSelectedItem(spinner4,this)){
             genreChoice =spinner1.getSelectedItem().toString();
-        }
-        if(spinner2.getSelectedItem()!=null){
             loudness =spinner2.getSelectedItem().toString();
-        }
-        if(spinner3.getSelectedItem()!=null){
             tempo =spinner3.getSelectedItem().toString();
-        }
-        if(spinner4.getSelectedItem()!=null){
             musicalInstrumentChoice =spinner4.getSelectedItem().toString();
         }
-
 
         boolean allChoose=helperLists.checkChoise(genreChoice,loudness,tempo,musicalInstrumentChoice);
         if(allChoose) { //only if all filter selected
@@ -105,10 +98,8 @@ public class ComposerRegistration extends AppCompatActivity {
                     EnumAsync.LastIDComp.getEnumAsync()).execute().get();
         }catch (ExecutionException e) {
             e.printStackTrace();
-            Log.d("D","1: "+e.getMessage());
         } catch (InterruptedException e) {
             e.printStackTrace();
-            Log.d("D","2: "+e.getMessage());
         }
 
         if(str_result!=null) {
@@ -137,7 +128,10 @@ public class ComposerRegistration extends AppCompatActivity {
 
         finish();
     }
-
+    public void back_registration_click(View view){
+        Intent intent = new Intent(this, Registration.class);
+        startActivity(intent);
+    }
 
 
 }

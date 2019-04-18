@@ -56,23 +56,18 @@ public class PoetsActivity extends AppCompatActivity {
         String goal2=null;
         String location2=null;
 
-        if(spinner1.getSelectedItem()!=null){
+        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
+                helperLists.checkSelectedItem(spinner3,this)){
             genre2 =spinner1.getSelectedItem().toString();
-        }
-        if(spinner2.getSelectedItem()!=null){
             subject2 =spinner2.getSelectedItem().toString();
-        }
-        if(spinner3.getSelectedItem()!=null){
             goal2 =spinner3.getSelectedItem().toString();
         }
-      /*  if(spinner4.getSelectedItem()!=null){
-            location2 =spinner4.getSelectedItem().toString();
-        }*/
+
 
          filters= new PoetsFilters(genre2,subject2,goal2);
 
         Intent intent1 = new Intent(PoetsActivity.this, PrioirtyPoets.class);//todo to change this
-        intent1.putExtra("com.example.myapplicationtest.Poets.PoetsFilters", filters);
+        intent1.putExtra(PoetsFilters.class.getName(), filters);
         setResult(Activity.RESULT_OK, intent1);
         startActivity(intent1);
 

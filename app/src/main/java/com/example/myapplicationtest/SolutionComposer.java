@@ -33,7 +33,7 @@ public class SolutionComposer extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_composer);
         Intent intent2 = getIntent();
-        priority = (ComposersPriority) intent2.getSerializableExtra("com.example.myapplicationtest.Composer.ComposersPriority");
+        priority = (ComposersPriority) intent2.getSerializableExtra(ComposersPriority.class.getName());
         Query query = new Query();
         String flag=EnumsSingers.composer.getEnums();
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getFilters().getMusical_instrument(),

@@ -2,6 +2,7 @@ package com.example.myapplicationtest.RegistrationP;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.R;
+import com.example.myapplicationtest.Registration;
 import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
@@ -55,74 +57,73 @@ public class PoetsRegistration extends AppCompatActivity {
 
 
     public void registration_poets_click(View view) {
-        //async task for getting data from db
 
         name = name_txt.getText().toString();
 
-        if(spinner1.getSelectedItem()!=null){
+        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
+                helperLists.checkSelectedItem(spinner3,this)){
             genreChoice =spinner1.getSelectedItem().toString();
-        }
-        if(spinner2.getSelectedItem()!=null){
             topic =spinner2.getSelectedItem().toString();
-        }
-        if(spinner3.getSelectedItem()!=null){
             goal =spinner3.getSelectedItem().toString();
         }
 
-
-        if(genreChoice==null || topic ==null || goal ==null ||
-                genreChoice.equals("select") || topic.equals("select") ||
-                goal.equals("select") ){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(true);
-            builder.setTitle("Error Choose");
-            builder.setMessage("Please select all filters");
-            builder.setPositiveButton("Confirm",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-            builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }else { //only if all filter selected
-            String str_result=null;
-            String getLastId="select poet_id from poets order by poet_id desc limit 1";
-
-
-            //get id
-            try {
-                str_result =new AsyncHelperRegistration(PoetsRegistration.this,getLastId,"poet_id",
-                        EnumAsync.LastIDPoet.getEnumAsync()).execute().get();
-            }catch (ExecutionException e) {
-                e.printStackTrace();
-                Log.d("D","1: "+e.getMessage());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                Log.d("D","2: "+e.getMessage());
-            }
-
-            if(str_result!=null) {
-                String q1 = ("INSERT INTO poets " +
-                        "VALUES(\"" + lastID + "\",\"" + name + "\",null,null,\"" + genreChoice + "\",\"" + topic + "\",\"" + goal + "\")");
-
-                //insert
-                new AsyncHelperRegistration(PoetsRegistration.this, q1, "poet_id", EnumAsync.InsertSinger.getEnumAsync()).execute(); //async task for getting data from db
-            }
-            helperLists.sucsessRegister(this);
+        boolean allChoose=helperLists.checkChoise(genreChoice,topic,goal);
+        if(allChoose) { //only if all filter selected
+           InsertPoet();
+        }else{
+            helperLists.ErrorChoice(this);
+        }
             finish();
         }
+
+
+    public void InsertPoet() {
+        String succsess=null;
+        String str_result=null;
+        String getLastId="select poet_id from poets order by poet_id desc limit 1";
+
+
+        //get id
+        try {
+            str_result =new AsyncHelperRegistration(PoetsRegistration.this,getLastId,"poet_id",
+                    EnumAsync.LastIDPoet.getEnumAsync()).execute().get();
+        }catch (ExecutionException e) {
+            e.printStackTrace();
+            Log.d("D","1: "+e.getMessage());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Log.d("D","2: "+e.getMessage());
+        }
+
+        if(str_result!=null) {
+            String q1 = ("INSERT INTO poets " +
+                    "VALUES(\"" + lastID + "\",\"" + name + "\",null,null,\"" + genreChoice + "\",\"" + topic + "\",\"" + goal + "\")");
+
+            //insert
+            try {
+                succsess=new AsyncHelperRegistration(PoetsRegistration.this, q1,
+                        "poet_id", EnumAsync.InsertSinger.getEnumAsync()).execute().get(); //async task for getting data from db
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(succsess!=null){
+                helperLists.sucsessRegister(this);
+            }
+
+
+        }
+
     }
 
-
-
-
+    public void back_registration_click(View view){
+        Intent intent = new Intent(this, Registration.class);
+        startActivity(intent);
+    }
 }
+
+
+
+
+

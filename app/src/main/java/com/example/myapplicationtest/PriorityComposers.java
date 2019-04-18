@@ -26,29 +26,16 @@ public class PriorityComposers extends AppCompatActivity {
         setContentView(R.layout.priority_composers);
 
         //categorization
-        List<String> genresP = new ArrayList<String>(Arrays.asList("select", EnumsSingers.High.getEnums(),
-                EnumsSingers.Medium.getEnums(),EnumsSingers.Low.getEnums()));
         spinner1 = findViewById(R.id.register_what_you);
 
-        ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genresP);
-        spinner1.setAdapter(generesAdapter);
-
         //spinner2
-        List<String> loudnessP = new ArrayList<String>(Arrays.asList("select",EnumsSingers.High.getEnums(),
-                EnumsSingers.Medium.getEnums(),EnumsSingers.Low.getEnums()));
         spinner2 = findViewById(R.id.spinner2);
 
-        ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,loudnessP);
-        spinner2.setAdapter(AudienceAdapter);
 
         //spinner3 b
-        List<String> beatP = new ArrayList<String>(Arrays.asList("select",EnumsSingers.High.getEnums(),
-                EnumsSingers.Medium.getEnums(),EnumsSingers.Low.getEnums()));
         spinner3 = findViewById(R.id.spinner3);
 
-        ArrayAdapter<String> beatAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,beatP);
-        spinner3.setAdapter(beatAdapter);
-
+        helperLists.initPariority(this,spinner1,spinner2,spinner3);
         //spinner4
         //   List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
         //  spinner4 = findViewById(R.id.spinner4);
@@ -73,32 +60,22 @@ public class PriorityComposers extends AppCompatActivity {
         //boolean pop;
         //   String location2=null;
 
-        if(spinner1.getSelectedItem()!=null){
+        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
+                helperLists.checkSelectedItem(spinner3,this)){
             genreP2 =spinner1.getSelectedItem().toString();
-        }
-        if(spinner2.getSelectedItem()!=null){
             loudnessP2 =spinner2.getSelectedItem().toString();
-        }
-        if(spinner3.getSelectedItem()!=null){
             beatP2 =spinner3.getSelectedItem().toString();
         }
-      /*  if(swPopular.isChecked()){
-            pop=true;
-        }else{
-            pop=false;
-        }*/
-      /*  if(spinner4.getSelectedItem()!=null){
-            location2 =spinner4.getSelectedItem().toString();
-        }*/
+
         boolean allChoose=helperLists.checkChoise(genreP2,loudnessP2,beatP2);
         if(allChoose){
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
-            ComposerFilters filters = (ComposerFilters) intent.getSerializableExtra("com.example.myapplicationtest.Composer.ComposerFilters");
+            ComposerFilters filters = (ComposerFilters) intent.getSerializableExtra(ComposerFilters.class.getName());
             priority = new ComposersPriority(genreP2, loudnessP2, beatP2,filters);
 
             Intent intent1 = new Intent(PriorityComposers.this, SolutionComposer.class);
-            intent1.putExtra("com.example.myapplicationtest.Composer.ComposersPriority", priority);
+            intent1.putExtra(ComposersPriority.class.getName(), priority);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
 

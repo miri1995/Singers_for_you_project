@@ -38,7 +38,7 @@ public class SolutionPoets extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_poets);
         Intent intent2 = getIntent();
-        poetsPriority = (PoetsPriority) intent2.getSerializableExtra("com.example.myapplicationtest.Poets.PoetsPriority");
+        poetsPriority = (PoetsPriority) intent2.getSerializableExtra(PoetsPriority.class.getName());
 
 
         Query query = new Query();
