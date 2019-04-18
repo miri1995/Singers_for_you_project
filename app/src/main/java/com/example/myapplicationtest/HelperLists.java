@@ -1,8 +1,10 @@
 package com.example.myapplicationtest;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -193,5 +195,24 @@ public class HelperLists {
         musicalInstrument=updateMusicalInstrimentList(context);
         ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item,musicalInstrument);
         spinner4.setAdapter(AudienceAdapter);
+    }
+
+    public void sucsessRegister(Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(true);
+        builder.setTitle("Success In Registration");
+        builder.setMessage("Thanks! \n Your registration has been registered.");
+        builder.setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        Intent intent1 = new Intent(context, ChoiceSingerOrProduct.class);
+        context.startActivity(intent1);
+
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 public class ChoiceSingerOrProduct extends AppCompatActivity {
     @Override
@@ -41,4 +42,9 @@ public class ChoiceSingerOrProduct extends AppCompatActivity {
         homeIntent.addCategory( Intent.CATEGORY_HOME );
         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     }
+
+   /* public void updateTextView() {
+        TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(toThis);
+    }*/
 }

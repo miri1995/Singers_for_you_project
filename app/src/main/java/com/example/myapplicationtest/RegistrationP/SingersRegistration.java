@@ -140,15 +140,9 @@ public class SingersRegistration extends AppCompatActivity {
                 Thread.sleep(5000);//todo check if need this
             }
             System.out.println(lastIDSong);
-           // filters = new Filters(genre2, loudness2, beat2);
 
-            //blabkajj
-          /*  Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
-            intent1.putExtra("com.example.myapplicationtest.SingersLogic.Filters", filters);
-            setResult(Activity.RESULT_OK, intent1);
-            startActivity(intent1);*/
-
-            finish();
+            helperLists.sucsessRegister(this);
+           // finish();
         }
     }
 
