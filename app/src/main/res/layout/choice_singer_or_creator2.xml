@@ -92,12 +92,12 @@
         <ImageView
             android:id="@+id/btregistration"
             android:layout_width="wrap_content"
-            android:layout_height="97dp"
+            android:layout_height="93dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="200dp"
 
 
-            android:layout_marginBottom="168dp"
+            android:layout_marginBottom="181dp"
 
             android:onClick="choiceClick"
             app:srcCompat="@drawable/registration" />
