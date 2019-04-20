@@ -13,6 +13,7 @@ import android.widget.Spinner;
 
 import com.example.myapplicationtest.AsyncHelper;
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.R;
@@ -80,7 +81,7 @@ public class PoetsRegistration extends AppCompatActivity {
     public void InsertPoet() {
         String succsess=null;
         String str_result=null;
-        String getLastId="select poet_id from poets order by poet_id desc limit 1";
+        String getLastId="select "+ EnumTables.poet_id.getEnums()+" from poets order by poet_id desc limit 1";
 
 
         //get id

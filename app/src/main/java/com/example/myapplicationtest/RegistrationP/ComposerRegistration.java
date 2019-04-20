@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import com.example.myapplicationtest.AsyncHelper;
 import com.example.myapplicationtest.ComposersActivity;
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.Maps;
@@ -91,7 +92,7 @@ public class ComposerRegistration extends AppCompatActivity {
 
     public void InsertComposer(){
         String str_result=null;
-        String getLastId="select composer_id from composers order by composer_id desc limit 1";
+        String getLastId="select "+ EnumTables.composer_id.getEnums()+" from composers order by composer_id desc limit 1";
         //get id
         try {
             str_result =new AsyncHelperRegistration(ComposerRegistration.this,getLastId,"composer_id",

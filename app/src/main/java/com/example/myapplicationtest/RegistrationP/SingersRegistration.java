@@ -13,6 +13,7 @@ import android.widget.Spinner;
 
 import com.example.myapplicationtest.AsyncHelper;
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.Maps;
@@ -90,9 +91,9 @@ public class SingersRegistration extends AppCompatActivity {
     public void InsertSinger() throws ExecutionException, InterruptedException {
         String str_result3Final=null,str_result2Final=null,str_resultFinal=null;
         String str_result3=null,str_result2=null,str_result=null;
-        String getLastIdSongs="select song_id from songs order by song_id desc limit 1";
-        String getGenreId="select genre_id from genre where genre=\""+genreChoice+"\"";
-        String getLastId="select artist_id from artists order by artist_id desc limit 1";
+        String getLastIdSongs="select "+ EnumTables.song_id.getEnums()+" from songs order by song_id desc limit 1";
+        String getGenreId="select "+EnumTables.genre_id.getEnums()+" from genre where genre=\""+genreChoice+"\"";
+        String getLastId="select "+EnumTables.artist_id.getEnums()+" from artists order by artist_id desc limit 1";
         //get id
         try {
             str_result = new AsyncHelperRegistration(SingersRegistration.this, getLastId,

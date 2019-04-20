@@ -1,6 +1,7 @@
 package com.example.myapplicationtest;
 
 import android.app.Activity;
+import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,20 +12,17 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Priority;
-//import assets.pair3.txt;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import static java.lang.StrictMath.E;
-import static java.lang.StrictMath.round;
+//import assets.pair3.txt;
 
-public class SulationSinger  extends Activity {
+public class SulationSinger2 extends TabActivity implements TabHost.OnTabChangeListener {
 
 
     Priority priority = new Priority();
@@ -34,7 +32,8 @@ public class SulationSinger  extends Activity {
     public static List<Double> tempo=new ArrayList<>();
     public static List<Double> loudness=new ArrayList<>();
     List<Double>grades = new ArrayList<>();
-    String items[] =new  String[]{};
+    private ListView listView1;
+    private ListView listView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,29 +41,64 @@ public class SulationSinger  extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers2);
-        TabHost tabhost = findViewById(R.id.tabHost);
-        tabhost.setup();
-        TabHost.TabSpec ts = tabhost.newTabSpec("tag1");
-        //tab1
-        ts.setContent(R.id.tab1);
-        ts.setIndicator("Most Popular");
-        mostOrLessPop(true);
-        tabhost.addTab(ts);
-        //tab2
-        /*ts = tabhost.newTabSpec("tag2");
-        ts.setContent(R.id.tab2);
-        ts.setIndicator("Less Popular");*/
-    //    mostOrLessPop(false);
-        tabhost.addTab(tabhost.newTabSpec("tab_inser").setIndicator("Less Popular",getResources().getDrawable(android.R.drawable.ic_menu_edit)).setContent(R.id.lessPopular));
-        //mostOrLessPop(false);
-        tabhost.addTab(ts);
-        ts= tabhost.newTabSpec("tag3");
-        ts.setContent(R.id.tab3);
-        ts.setIndicator("The Best For You");
-        tabhost.addTab(ts);
+        TabHost tabHost = getTabHost();
+        tabHost.setOnTabChangedListener(this);
 
 
+        // setup list view 1
+        listView1 = (ListView) findViewById(R.id.listView);
 
+        // create some dummy strings to add to the list
+        List<String> list1Strings = new ArrayList<String>();
+        list1Strings.add("Item 1");
+        list1Strings.add("Item 2");
+        list1Strings.add("Item 3");
+        list1Strings.add("Item 4");
+        listView1.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, list1Strings));
+
+        // setup list view 2
+        listView2 = (ListView) findViewById(R.id.listView2);
+
+        // create some dummy strings to add to the list (make it empty initially)
+        List<String> list2Strings = new ArrayList<String>();
+        listView2.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, list2Strings));
+
+        // add an onclicklistener to add an item from the first list to the second list
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView parent, View view, int position, long id) {
+                String item = (String) listView1.getAdapter().getItem(position);
+                if(item != null) {
+                    ((ArrayAdapter) listView2.getAdapter()).add(item);
+                    Toast.makeText(SulationSinger2.this, item + " added to list 2", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // add views to tab host
+        tabHost.addTab(tabHost.newTabSpec("tab1").setIndicator("tab 1").setContent(new TabHost.TabContentFactory() {
+            public View createTabContent(String arg0) {
+                return listView1;
+            }
+        }));
+        tabHost.addTab(tabHost.newTabSpec("tab2").setIndicator("tab 2").setContent(new TabHost.TabContentFactory() {
+            public View createTabContent(String arg0) {
+                return listView2;
+            }
+        }));
+
+
+    }
+
+    /**
+     * Implement logic here when a tab is selected
+     */
+    public void onTabChanged(String tabName) {
+        if(tabName.equals("tab2")) {
+            //do something
+        }
+        else if(tabName.equals("tab1")) {
+            //do something
+        }
     }
 
     public void mostOrLessPop(boolean popular){
@@ -79,7 +113,7 @@ public class SulationSinger  extends Activity {
         tempo.clear();
         loudness.clear();
         try {
-            str_result=new AsyncHelper(SulationSinger.this,q3,"artist_name","song_tempo","song_loudness","genre",
+            str_result=new AsyncHelper(SulationSinger2.this,q3,"artist_name","song_tempo","song_loudness","genre",
                     EnumAsync.Sol.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
@@ -101,16 +135,16 @@ public class SulationSinger  extends Activity {
             }
 
             List<String> resultArray = artists.subList(0,10);
-            List<Double> gradesArray = new ArrayList<>();
+            List<String> gradesArray = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
-                double grade = round(grades.get(i),2);
-                gradesArray.add(grade);
+                double grade = round(grades.get(i),0);
+                gradesArray.add(grade+"%");
             }
             gradesArray = gradesArray.subList(0,10);
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, resultArray);
-            ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, gradesArray);
 
             if(popular) {
@@ -118,14 +152,6 @@ public class SulationSinger  extends Activity {
                 ListView listView2 = findViewById(R.id.listView2);
                 listView.setAdapter(adapter);
                 listView2.setAdapter(adapter2);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    public void onItemClick(AdapterView parent, View view, int position, long id) {
-
-
-                            Toast.makeText(SulationSinger.this, artists+ " added to list 2", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
             }else{
                 ListView listView = findViewById(R.id.listViewLess);
                 ListView listView2 = findViewById(R.id.listViewLess2);
@@ -159,15 +185,15 @@ public class SulationSinger  extends Activity {
 
     public void allSol_click(View view) {
         List<String> resultArray = artists;
-        List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
+        List<String> gradesArray = new ArrayList<>(); /*= grades*/;
         for(int i=0;i<grades.size();i++){
           double grade = round(grades.get(i),2);
-          gradesArray.add(grade);
+          gradesArray.add(grade+"%");
         }
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, resultArray);
-        ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, gradesArray);
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
@@ -179,7 +205,7 @@ public class SulationSinger  extends Activity {
     }
 
     public void back_click(View view){
-        Intent intent = new Intent(SulationSinger.this, SingersActivity.class);
+        Intent intent = new Intent(SulationSinger2.this, SingersActivity.class);
         startActivity(intent);
     }
 }
