@@ -54,6 +54,10 @@ public class HelperLists {
         }
     }
 
+
+
+
+
     public boolean checkChoise(String genre2, String loudness2, String beat2,String check4){
         if(genre2==null || loudness2==null || beat2==null || check4==null||
                 genre2.equals(EnumsSingers.select.getEnums()) || loudness2.equals(EnumsSingers.select.getEnums()) ||

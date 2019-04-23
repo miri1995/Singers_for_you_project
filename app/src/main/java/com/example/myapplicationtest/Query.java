@@ -1,3 +1,4 @@
+/*
 package com.example.myapplicationtest;
 
 
@@ -10,18 +11,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+*/
 /**
  * Query class - responsible for making the queries.
- */
+ *//*
+
 public class Query {
 
-    /**
+    */
+/**
      * creates the queries according to the user's choices.
      * @param genre = user's choice of genre
      * @param loudness = user's choice of loudness.
      * @param tempo = user's choice of tempo.
      * @return sol = the final query
-     */
+     *//*
+
     public String MapBeat(String genre,String loudness,String tempo,
                           HashMap priority,String prioLoudness,String prioTempo,String prioGenre,
                           List<String> otherGenre,boolean popular,String flag,String instrument,
@@ -135,13 +140,15 @@ public class Query {
     }
 
 
-    /**
+    */
+/**
      * receives the user's choices and compose from them the matching query.
      * @param genre = user's choice of genre
      * @param element2 = user's choice of element2.
      * @param element3 = user's choice of element3.
      * @return q = the matching query
-     */
+     *//*
+
 
     public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean popular,String flag){
         HashMap<String,Double> priority = new HashMap<>();
@@ -191,21 +198,25 @@ public class Query {
             String whichcolloudness = "composers_loudness";
             String whichcoltempo = "composers_tempo";
             q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,flag,instrument,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
-           /* String choose = "Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
+           */
+/* String choose = "Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
                     "FROM composers WHERE (composers.musical_instrument=\""+instrument+"\""+")";
-            q=GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);*/
+            q=GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);*//*
+
 
         }
         return q;
 
     }
 
-      /**
+      */
+/**
      * composes all the query parts into one query.
      * @param BeatQ  = the combination of the tempo and loudness chosen by the user.
      * @param genre = user's choice of genre.
      * @return lastQ = the final query
-     */
+     *//*
+
 
 
     public String GetSol(String BeatQ, String genre,String element2,String element3,String prioGenre,String prioElement2,String prioElement3,
@@ -338,4 +349,4 @@ public class Query {
     }
 
 
-}
+}*/

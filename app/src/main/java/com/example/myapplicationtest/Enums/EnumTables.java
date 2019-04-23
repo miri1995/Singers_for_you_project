@@ -2,6 +2,9 @@ package com.example.myapplicationtest.Enums;
 
 public enum EnumTables {
 
+  //TO main
+  genre("genre"),topic("topic"),goal("goal"),
+
    //artists
     artist_id("artist_id"),artist_name("artist_name"),artist_hotness("artist_hotness"),
 

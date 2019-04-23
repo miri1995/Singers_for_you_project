@@ -1,5 +1,7 @@
 package com.example.myapplicationtest;
 
+import com.example.myapplicationtest.Enums.EnumTables;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -79,20 +81,20 @@ public class CoupleDistance {
                 }
             }
             else{
-                if(flag.equals("genre")){
+                if(flag.equals(EnumTables.genre.getEnums())){
                     genreMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
                 }
-                else if (flag.equals("topic")){
+                else if (flag.equals(EnumTables.topic.getEnums())){
                     topicMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
                 }
                 else{
                     goalMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
                 }
             }
-            if(flag.equals("genre")){
+            if(flag.equals(EnumTables.genre.getEnums())){
                 genreMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter/2);
             }
-            else if (flag.equals("topic")){
+            else if (flag.equals(EnumTables.topic.getEnums())){
                 topicMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter);
             }
             else{
@@ -102,10 +104,10 @@ public class CoupleDistance {
         }
 
         // lines.remove(i);
-    if(flag.equals("genre")){
+    if(flag.equals(EnumTables.genre.getEnums())){
         return genreMap;
     }
-    else if (flag.equals("topic")){
+    else if (flag.equals(EnumTables.topic.getEnums())){
         return topicMap;
     }
     else{

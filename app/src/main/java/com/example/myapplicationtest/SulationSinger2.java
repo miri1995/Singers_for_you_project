@@ -1,3 +1,4 @@
+/*
 package com.example.myapplicationtest;
 
 import android.app.Activity;
@@ -89,9 +90,11 @@ public class SulationSinger2 extends TabActivity implements TabHost.OnTabChangeL
 
     }
 
-    /**
+    */
+/**
      * Implement logic here when a tab is selected
-     */
+     *//*
+
     public void onTabChanged(String tabName) {
         if(tabName.equals("tab2")) {
             //do something
@@ -185,7 +188,9 @@ public class SulationSinger2 extends TabActivity implements TabHost.OnTabChangeL
 
     public void allSol_click(View view) {
         List<String> resultArray = artists;
-        List<String> gradesArray = new ArrayList<>(); /*= grades*/;
+        List<String> gradesArray = new ArrayList<>(); */
+/*= grades*//*
+;
         for(int i=0;i<grades.size();i++){
           double grade = round(grades.get(i),2);
           gradesArray.add(grade+"%");
@@ -208,4 +213,4 @@ public class SulationSinger2 extends TabActivity implements TabHost.OnTabChangeL
         Intent intent = new Intent(SulationSinger2.this, SingersActivity.class);
         startActivity(intent);
     }
-}
+}*/
