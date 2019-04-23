@@ -30,5 +30,7 @@
     <string name="txtName">Name</string>
     <string name="Subject">Subject:</string>
     <string name="Goal">Goal:</string>
+    <string name="main">In this application you can find Singers, Poets and Composers according to your the preferences.
+    You can register as a Singers, Poets or Composers and thus increase your chances of success</string>
 
 </resources>
