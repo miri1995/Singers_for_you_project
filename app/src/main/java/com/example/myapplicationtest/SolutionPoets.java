@@ -41,10 +41,10 @@ public class SolutionPoets extends Activity {
         poetsPriority = (PoetsPriority) intent2.getSerializableExtra(PoetsPriority.class.getName());
 
 
-        Query query = new Query();
-        String flag = EnumsSingers.poets.getEnums();
+        Query_Poet query = new Query_Poet();
+        //String flag = EnumsSingers.poets.getEnums();
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),null,
-                poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false,flag);
+                poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false);
 
         try {
             str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genre",

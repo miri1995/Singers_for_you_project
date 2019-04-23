@@ -71,10 +71,10 @@ public class SulationSinger  extends Activity {
         String str_result=null;
         Intent intent2 = getIntent();
         priority = (Priority) intent2.getSerializableExtra(Priority.class.getName());
-        Query query = new Query();
-        String flag=EnumsSingers.singer.getEnums();
+        Query_Singer query = new Query_Singer();
+       // String flag=EnumsSingers.singer.getEnums();
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),null,
-                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),popular,flag);
+                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),popular);
         artists.clear();
         tempo.clear();
         loudness.clear();

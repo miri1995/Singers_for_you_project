@@ -3,14 +3,29 @@ package com.example.myapplicationtest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.concurrent.ExecutionException;
 
 public class ChoiceSingerOrProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choice_singer_or_creator2);
+
+        //http
+      /*  try {
+            String sol=new AsyncHTTP(this).execute().get();
+            Log.d("D","SOLLLL "+ sol);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            Log.d("D","SOLLLL "+ e.getMessage());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Log.d("D","SOLLLL "+ e.getMessage());
+        }*/
     }
 
     public void choiceClick(View view) {

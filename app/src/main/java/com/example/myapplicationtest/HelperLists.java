@@ -81,13 +81,16 @@ public class HelperLists {
     }
 
     public List<String> updateGenreList(Context context){
+
         List<String> geners=new ArrayList<>();
         String q3=getGenreQuery();
         //async task for getting data from db
         new AsyncHelper(context,q3,"genre",
                 null,null,null, EnumAsync.Genre.getEnumAsync()).execute();
         geners=HelperLists.genersHelperLists;
-        geners.add(0,EnumsSingers.select.getEnums());
+        if(!geners.contains(EnumsSingers.select.getEnums())) {
+            geners.add(0, EnumsSingers.select.getEnums());
+        }
         return geners;
     }
 
