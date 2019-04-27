@@ -42,7 +42,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
 
     protected void onPreExecute() {
         mProgressDialog = ProgressDialog.show(context, "",
-                "Please wait, getting database...");
+                "Please wait...");
     }
 
     @Override
