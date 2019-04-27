@@ -121,8 +121,9 @@ public class SulationSinger  extends Activity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView parent, View view, int position, long id) {
 
-
-                            Toast.makeText(SulationSinger.this, artists+ " added to list 2", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SulationSinger.this, YouTubeActivity.class);
+                        startActivity(intent);
+                           // Toast.makeText(SulationSinger.this, artists+ " added to list 2", Toast.LENGTH_SHORT).show();
 
                     }
                 });

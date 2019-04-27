@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void find_click(View view) {
+
         Intent intent = new Intent(MainActivity.this, ChoiceSingerOrProduct.class);
         startActivity(intent);
     }
