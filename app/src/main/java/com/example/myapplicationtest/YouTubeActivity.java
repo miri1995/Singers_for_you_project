@@ -46,7 +46,7 @@ public class YouTubeActivity  extends YouTubeBaseActivity   {
     }
 
     private void loadVideo() {
-        App.getVideoSearchApi().callback(SulationSinger.artists.get(1)).enqueue(new Callback<JsonResponse>() {
+        App.getVideoSearchApi().callback(SulationSinger.whichArtist).enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 Log.d(TAG, "onResponse: ");

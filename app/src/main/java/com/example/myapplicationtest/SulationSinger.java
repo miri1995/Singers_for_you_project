@@ -33,6 +33,7 @@ public class SulationSinger  extends Activity {
    public static List<String> genres=new ArrayList<>();
     public static List<Double> tempo=new ArrayList<>();
     public static List<Double> loudness=new ArrayList<>();
+    public static String whichArtist;
     List<Double>grades = new ArrayList<>();
     String items[] =new  String[]{};
 
@@ -123,6 +124,7 @@ public class SulationSinger  extends Activity {
 
                         Intent intent = new Intent(SulationSinger.this, YouTubeActivity.class);
                         startActivity(intent);
+                        whichArtist = listView.getItemAtPosition(position).toString();
                            // Toast.makeText(SulationSinger.this, artists+ " added to list 2", Toast.LENGTH_SHORT).show();
 
                     }
