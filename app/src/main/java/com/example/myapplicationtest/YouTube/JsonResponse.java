@@ -1,4 +1,4 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.YouTube;
 
 import com.google.gson.annotations.SerializedName;
 

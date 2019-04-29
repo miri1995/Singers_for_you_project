@@ -1,6 +1,8 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.YouTube;
 
 import android.app.Application;
+
+import com.example.myapplicationtest.YouTube.VideoSearchApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

@@ -9,19 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Priority;
+import com.example.myapplicationtest.YouTube.YouTubeActivity;
 //import assets.pair3.txt;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import static java.lang.StrictMath.E;
 import static java.lang.StrictMath.round;
 
 public class SulationSinger  extends Activity {
@@ -102,16 +101,16 @@ public class SulationSinger  extends Activity {
             }
 
             List<String> resultArray = artists.subList(0,10);
-            List<Double> gradesArray = new ArrayList<>();
+            List<String> gradesArray = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
-                double grade = round(grades.get(i),2);
-                gradesArray.add(grade);
+                double grade = round(grades.get(i),1);
+                gradesArray.add(grade+"%");
             }
             gradesArray = gradesArray.subList(0,10);
             ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, resultArray);
-            ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
                     R.layout.activity_listview, gradesArray);
 
             if(popular) {
@@ -162,15 +161,15 @@ public class SulationSinger  extends Activity {
 
     public void allSol_click(View view) {
         List<String> resultArray = artists;
-        List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
+        List<String> gradesArray = new ArrayList<>(); /*= grades*/;
         for(int i=0;i<grades.size();i++){
-          double grade = round(grades.get(i),2);
-          gradesArray.add(grade);
+          double grade = round(grades.get(i),1);
+          gradesArray.add(grade+"%");
         }
         ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, resultArray);
-        ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
                 R.layout.activity_listview, gradesArray);
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);

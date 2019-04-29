@@ -1,18 +1,14 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.YouTube;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
 
+import com.example.myapplicationtest.R;
+import com.example.myapplicationtest.SulationSinger;
 import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerView;
 
 import java.util.ArrayList;
 import java.util.List;

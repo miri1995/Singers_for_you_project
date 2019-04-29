@@ -1,5 +1,5 @@
 
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.YouTube;
 
 public class YouTubeConfig {
 

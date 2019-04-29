@@ -1,9 +1,7 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.YouTube;
 
 import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
