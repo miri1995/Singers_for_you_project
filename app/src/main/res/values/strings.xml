@@ -31,5 +31,9 @@
     <string name="Subject">Subject:</string>
     <string name="Goal">Goal:</string>
     <string name="main">In this application you can find Singers, Poets and Composers \naccording to your the preferences.\nYou can register as a Singers, Poets or Composers and thus increase your chances of success</string>
+    <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
+    <string name="search">Search</string>
+    <string name="add_video">Add new video</string>
+    <string name="settings">Settings</string>
 
 </resources>
