@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class YouTubeActivity  extends YouTubeBaseActivity  {
+public class YouTubeActivity  extends YouTubeBaseActivity   {
     private static final String TAG = "TAG";
     private ThumbnailVideoAdapter thumbnailVideoAdapter;
     private List<JsonVideo> videos;
