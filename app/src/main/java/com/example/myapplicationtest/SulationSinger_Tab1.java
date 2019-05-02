@@ -44,29 +44,7 @@ public class SulationSinger_Tab1 extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers);
-     /*   TabHost tabhost = findViewById(R.id.tabHost);
-        tabhost.setup();
-        TabHost.TabSpec ts = tabhost.newTabSpec("tag1");
-        //tab1
-        ts.setContent(R.id.tab1);
-        ts.setIndicator("Most Popular");*/
         mostOrLessPop(true);
-  /*      tabhost.addTab(ts);
-        //tab2
-        //ts = tabhost.newTabSpec("tag2");
-        //ts.setContent(R.id.tab2);
-       // ts.setIndicator("Less Popular");
-      //  mostOrLessPop(false);
-        //tabhost.addTab(tabhost.newTabSpec("tag2").setIndicator("Less Popular",getResources().getDrawable(android.R.drawable.ic_menu_edit)).setContent(R.id.lessPopular));
-        //mostOrLessPop(false);
-        tabhost.addTab(ts);
-        ts= tabhost.newTabSpec("tag3");
-        ts.setContent(R.id.tab3);
-        ts.setIndicator("The Best For You");
-        tabhost.addTab(ts);*/
-
-
-
     }
 
     public void mostOrLessPop(boolean popular){
@@ -104,6 +82,7 @@ public class SulationSinger_Tab1 extends Activity {
 
             resultArrayLess= artists;
             gradesArrayLess=grades;
+
 
             List<String> resultArray = artists.subList(0,10);
             List<String> gradesArray = new ArrayList<>();
