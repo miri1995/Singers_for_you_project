@@ -36,9 +36,13 @@ public class SulationSinger2  extends TabActivity {
         intent2.putExtra(Priority.class.getName(), priority);
         setResult(Activity.RESULT_OK, intent2);
 
+        Intent intent3 = new Intent(SulationSinger2.this, SulationSinger_Tab3.class);
+       // intent2.putExtra(Priority.class.getName(), priority);
+        setResult(Activity.RESULT_OK, intent3);
 
-        mTabHost.addTab(mTabHost.newTabSpec("first").setIndicator("Most Popular").setContent(intent1));
-        mTabHost.addTab(mTabHost.newTabSpec("second").setIndicator("Less Popular").setContent(intent2));
+        mTabHost.addTab(mTabHost.newTabSpec("tab1").setIndicator("Most Popular").setContent(intent1));
+        mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Less Popular").setContent(intent2));
+        mTabHost.addTab(mTabHost.newTabSpec("tab3").setIndicator("The Best For You").setContent(intent3));
         mTabHost.setCurrentTab(0);
 
 
