@@ -11,7 +11,13 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 //import assets.pair3.txt;
 
@@ -28,31 +34,46 @@ public class SulationSinger_Tab3 extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers_less_popular);
-        //convert from list<double> to list of string
-        List<String> strings = new ArrayList<String>();
-        for (Double d : SulationSinger_Tab1.gradesArrayLess) {
-            // Apply formatting to the string if necessary
-            strings.add(d.toString()+"%");
+
+
+        //todo
+        //להפןך בין הקי לואלו כי האחוזים הם לא חד ערכיים- מהאתר מיון עפ ערך
+        //https://www.mkyong.com/java/how-to-sort-a-map-in-java/
+        Map<Double,String> map= new HashMap<Double, String>();
+        for(int i=0; i<SulationSinger_Tab1.gradesArrayLess.size();i++){
+            map.put(SulationSinger_Tab1.gradesArrayLess.get(i),SulationSinger_Tab1.resultArrayLess.get(i));
         }
-        sortedListArtists =strings;
-        Collections.sort(sortedListArtists);
 
-        List<String> reverseListTop10= sortedListArtists.subList(0,10);
+      //  Map<Double, String> treeMap = new TreeMap<Double, String>(map);
 
-        //convert from list<double> to list of string
-      /*  List<String> strings = new ArrayList<String>();
-        for (Double d : SulationSinger_Tab1.gradesArrayLess) {
-            // Apply formatting to the string if necessary
-            strings.add(d.toString()+"%");
-        }*/
+        Map<Double, String> treeMap = new TreeMap<Double, String>(
+                new Comparator<Double>() {
 
-       // sortedGrades =  helperLists.reverseArrayList(strings);
-        List<String> reverseGradeTop10= sortedGrades.subList(0,10);
+                    @Override
+                    public int compare(Double o1, Double o2) {
+                        return o2.compareTo(o1);
+                    }
+
+                });
+
+
+        treeMap.putAll(map);
+
+
+        for (Map.Entry<Double, String> entry : treeMap.entrySet()) {
+            sortedListArtists.add(entry.getValue());
+            sortedGrades.add(entry.getKey().toString()+"%");
+        }
+
+
+        List<String> listTop10= sortedListArtists.subList(0,10);
+
+        List<String> gradeTop10= sortedGrades.subList(0,10);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, reverseListTop10);
+                R.layout.activity_listview, listTop10);
         ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, reverseGradeTop10);
+                R.layout.activity_listview, gradeTop10);
         ListView listView = findViewById(R.id.listViewLess);
         ListView listView2 = findViewById(R.id.listViewLess2);
         listView.setAdapter(adapter);
