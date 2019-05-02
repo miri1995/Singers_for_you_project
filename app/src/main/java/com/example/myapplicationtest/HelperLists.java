@@ -54,7 +54,12 @@ public class HelperLists {
         }
     }
 
-
+    public boolean checkPriority(String pr1,String pr2,String pr3){
+        if(!pr1.equals(pr2) && !pr1.equals(pr3) && !pr2.equals(pr3)){
+            return true;
+        }else
+            return false;
+    }
 
 
 
@@ -245,5 +250,19 @@ public class HelperLists {
             ErrorChoice(context);
             return false;
         }
+    }
+
+    public List<String> reverseArrayList(List<String> alist)
+    {
+        // Arraylist for storing reversed elements
+        List<String> revArrayList = new ArrayList<String>();
+        for (int i = alist.size() - 1; i >= 0; i--) {
+
+            // Append the elements in reverse order
+            revArrayList.add(alist.get(i));
+        }
+
+        // Return the reversed arraylist
+        return revArrayList;
     }
 }
