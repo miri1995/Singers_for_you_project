@@ -39,15 +39,10 @@ public class SulationSinger_Tab2 extends Activity {
 
         reverseGrade=  helperLists.reverseArrayList(strings);
         List<String> reverseGradeTop10=reverseGrade.subList(0,10);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, reverseListTop10);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, reverseGradeTop10);
         ListView listView = findViewById(R.id.listViewLess);
         ListView listView2 = findViewById(R.id.listViewLess2);
-        listView.setAdapter(adapter);
-        listView2.setAdapter(adapter2);
+
+        helperLists.updateTwoListView(this,reverseListTop10,reverseGradeTop10, listView , listView2);
 
     }
 
@@ -57,14 +52,9 @@ public class SulationSinger_Tab2 extends Activity {
 
 
     public void allSol_click(View view) {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, reverseListArtists);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, reverseGrade);
         ListView listView = findViewById(R.id.listViewLess);
         ListView listView2 = findViewById(R.id.listViewLess2);
-        listView.setAdapter(adapter);
-        listView2.setAdapter(adapter2);
+        helperLists.updateTwoListView(this,reverseListArtists,reverseGrade, listView , listView2);
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
         allSolButton.setVisibility(View.GONE);
