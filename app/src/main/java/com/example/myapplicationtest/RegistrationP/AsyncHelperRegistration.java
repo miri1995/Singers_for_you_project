@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
-import com.example.myapplicationtest.SulationSinger;
+import com.example.myapplicationtest.SulationSinger_Tab1;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -150,7 +150,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
 
             }
 
-            Log.d("D","in background list"+SulationSinger.artists);
+            Log.d("D","in background list"+ SulationSinger_Tab1.artists);
         } catch (SQLException e) {
             Log.d("D",e.getMessage());
             e.printStackTrace();

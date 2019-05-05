@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
@@ -15,7 +16,12 @@ import com.example.myapplicationtest.RegistrationP.PoetsRegistration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class HelperLists {
 
@@ -54,7 +60,12 @@ public class HelperLists {
         }
     }
 
-
+    public boolean checkPriority(String pr1,String pr2,String pr3){
+        if(!pr1.equals(pr2) && !pr1.equals(pr3) && !pr2.equals(pr3)){
+            return true;
+        }else
+            return false;
+    }
 
 
 
@@ -245,5 +256,69 @@ public class HelperLists {
             ErrorChoice(context);
             return false;
         }
+    }
+
+    /**
+     *
+     * @param alist
+     * @return reverse of a list
+     */
+    public List<String> reverseArrayList(List<String> alist)
+    {
+        // Arraylist for storing reversed elements
+        List<String> revArrayList = new ArrayList<String>();
+        for (int i = alist.size() - 1; i >= 0; i--) {
+
+            // Append the elements in reverse order
+            revArrayList.add(alist.get(i));
+        }
+
+        // Return the reversed arraylist
+        return revArrayList;
+    }
+
+    /**
+     * sorted generic function that sorte map by value(sorting from big to small).
+     * @param unsortMap
+     * @param <K>
+     * @param <V>
+     * @return sorted map
+     */
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortMapByValue(Map<K, V> unsortMap) {
+
+        List<Map.Entry<K, V>> list =
+                new LinkedList<Map.Entry<K, V>>(unsortMap.entrySet());
+
+
+
+        Collections.sort(list, new Comparator<Map.Entry<K, V>>() {
+            public int compare(Map.Entry<K, V> o1, Map.Entry<K, V> o2) {
+                return (o2.getValue()).compareTo(o1.getValue());
+            }
+        });
+
+        Map<K, V> result = new LinkedHashMap<K, V>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
+
+    }
+
+    /**
+     * Update the list view in accordance 2 list input
+     * @param context
+     * @param list1
+     * @param list2
+     * @param listView
+     * @param listView2
+     */
+    public void updateTwoListView(Context context,List<String> list1,List<String> list2, ListView listView, ListView listView2){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.activity_listview, list1);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context,
+                R.layout.activity_listview, list2);
+        listView.setAdapter(adapter);
+        listView2.setAdapter(adapter2);
     }
 }

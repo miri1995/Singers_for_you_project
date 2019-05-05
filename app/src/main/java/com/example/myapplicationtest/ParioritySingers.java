@@ -72,15 +72,17 @@ public class ParioritySingers extends AppCompatActivity {
             location2 =spinner4.getSelectedItem().toString();
         }*/
         boolean allChoose=helperLists.checkChoise(genreP2,loudnessP2,beatP2);
-        if(allChoose){
+        boolean diffrentPriority=helperLists.checkPriority(genreP2,loudnessP2,beatP2);
+        if(allChoose && diffrentPriority){
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
             Filters filters = (Filters) intent.getSerializableExtra(Filters.class.getName());
             priority = new Priority(genreP2, loudnessP2, beatP2,filters,pop);
 
-            Intent intent1 = new Intent(ParioritySingers.this, SulationSinger.class);
+            Intent intent1 = new Intent(ParioritySingers.this, SulationSinger2.class);
             intent1.putExtra(Priority.class.getName(), priority);
             setResult(Activity.RESULT_OK, intent1);
+           // Intent intent2 = new Intent(ParioritySingers.this, SulationSinger2.class);
             startActivity(intent1);
 
             finish();
