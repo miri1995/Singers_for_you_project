@@ -28,7 +28,7 @@ public class SulationSinger2  extends TabActivity {
         Priority priority = (Priority) intent.getSerializableExtra(Priority.class.getName());
 
 
-        Intent intent1 = new Intent(SulationSinger2.this, SulationSinger_Tab1.class);
+        Intent intent1 = new Intent(SulationSinger2.this, SolutionSinger_Tab1.class);
         intent1.putExtra(Priority.class.getName(), priority);
         setResult(Activity.RESULT_OK, intent1);
 

@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
-import com.example.myapplicationtest.SulationSinger_Tab1;
+import com.example.myapplicationtest.SolutionSinger_Tab1;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,7 +26,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
     public AsyncHelperRegistration(Context context, String query,String colName, String flag) {
         //Log.d("D",url);
         this.context = context;
-       // playerList=new ArrayList<>();
+        // playerList=new ArrayList<>();
         this.query=query;
         this.colName=colName;
         this.flag=flag;
@@ -79,7 +79,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                         Log.d("D","IN LastIdSong"+query);
                         while (rs.next()) {
 
-                                SingersRegistration.lastIDSong=Integer.parseInt(rs.getString(colName))+1;
+                            SingersRegistration.lastIDSong=Integer.parseInt(rs.getString(colName))+1;
 
                         }
                         Log.d("D","result"+ SingersRegistration.lastIDSong);
@@ -92,9 +92,9 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                     break;
                 case GenreId:
                     try (Statement stmt = con.createStatement();
-                        ResultSet rs = stmt.executeQuery(query);) {
+                         ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
-                                SingersRegistration.genreID=Integer.parseInt(rs.getString(colName));
+                            SingersRegistration.genreID=Integer.parseInt(rs.getString(colName));
                         }
                         Log.d("D","result"+ SingersRegistration.lastIDSong);
                         con.close();
@@ -136,10 +136,10 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
 
                     break;
                 case InsertSinger:
-                  //  Thread.sleep(10000);
+                    //  Thread.sleep(10000);
                     try (Statement stmt = con.createStatement();) {
                         Log.d("D","query " + query);
-                         result = stmt.executeUpdate(query);
+                        result = stmt.executeUpdate(query);
                         Log.d("D","Success - executeUpdate, result = " + result);
                         con.close();
                     } catch (SQLException e) {
@@ -150,7 +150,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
 
             }
 
-            Log.d("D","in background list"+ SulationSinger_Tab1.artists);
+            Log.d("D","in background list"+ SolutionSinger_Tab1.artists);
         } catch (SQLException e) {
             Log.d("D",e.getMessage());
             e.printStackTrace();

@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 
 import com.example.myapplicationtest.R;
-import com.example.myapplicationtest.SulationSinger_Tab1;
+import com.example.myapplicationtest.SolutionSinger_Tab1;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class YouTubeActivity  extends YouTubeBaseActivity   {
     }
 
     private void loadVideo() {
-        App.getVideoSearchApi().callback(SulationSinger_Tab1.whichArtist).enqueue(new Callback<JsonResponse>() {
+        App.getVideoSearchApi().callback(SolutionSinger_Tab1.whichArtist).enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                 Log.d(TAG, "onResponse: ");

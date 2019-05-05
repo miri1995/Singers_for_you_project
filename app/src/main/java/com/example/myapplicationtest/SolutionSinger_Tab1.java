@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -21,7 +20,7 @@ import java.util.concurrent.ExecutionException;
 
 
 
-public class SulationSinger_Tab1 extends Activity {
+public class SolutionSinger_Tab1 extends Activity {
 
 
     Priority priority = new Priority();
@@ -57,7 +56,7 @@ public class SulationSinger_Tab1 extends Activity {
         tempo.clear();
         loudness.clear();
         try {
-            str_result = new AsyncHelper(SulationSinger_Tab1.this, q3, "artist_name", "song_tempo", "song_loudness", "genre",
+            str_result = new AsyncHelper(SolutionSinger_Tab1.this, q3, "artist_name", "song_tempo", "song_loudness", "genre",
                     EnumAsync.Sol.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
@@ -94,7 +93,7 @@ public class SulationSinger_Tab1 extends Activity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView parent, View view, int position, long id) {
 
-                    Intent intent = new Intent(SulationSinger_Tab1.this, YouTubeActivity.class);
+                    Intent intent = new Intent(SolutionSinger_Tab1.this, YouTubeActivity.class);
                     startActivity(intent);
                     whichArtist = listView.getItemAtPosition(position).toString();
                 }
@@ -138,7 +137,7 @@ public class SulationSinger_Tab1 extends Activity {
     }
 
     public void back_click(View view){
-        Intent intent = new Intent(SulationSinger_Tab1.this, SingersActivity.class);
+        Intent intent = new Intent(SolutionSinger_Tab1.this, SingersActivity.class);
         startActivity(intent);
     }
 }

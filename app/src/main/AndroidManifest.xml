@@ -71,7 +71,7 @@
                 android:value="com.example.myapplicationtest.SingersActivity" />
         </activity>
         <activity
-            android:name=".SulationSinger_Tab1"
+            android:name=".SolutionSinger_Tab1"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity">
             <meta-data

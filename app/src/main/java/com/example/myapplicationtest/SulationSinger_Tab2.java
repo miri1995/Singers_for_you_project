@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -27,12 +26,12 @@ public class SulationSinger_Tab2 extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers_less_popular);
 
-        reverseListArtists =helperLists.reverseArrayList(SulationSinger_Tab1.resultArrayLess);
+        reverseListArtists =helperLists.reverseArrayList(SolutionSinger_Tab1.resultArrayLess);
         List<String> reverseListTop10= reverseListArtists.subList(0,10);
 
         //convert from list<double> to list of string
         List<String> strings = new ArrayList<String>();
-        for (Double d : SulationSinger_Tab1.gradesArrayLess) {
+        for (Double d : SolutionSinger_Tab1.gradesArrayLess) {
             // Apply formatting to the string if necessary
             strings.add(d.toString()+"%");
         }

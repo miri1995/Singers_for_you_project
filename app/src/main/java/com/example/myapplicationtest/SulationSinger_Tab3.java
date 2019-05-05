@@ -1,20 +1,14 @@
 package com.example.myapplicationtest;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,8 +31,8 @@ public class SulationSinger_Tab3 extends Activity {
 
 
         Map<String,Integer> map= new HashMap<String,Integer>();
-        for(int i=0; i<SulationSinger_Tab1.gradesArrayLess.size();i++){
-            map.put(SulationSinger_Tab1.resultArrayLess.get(i),SulationSinger_Tab1.gradesArrayLess.get(i).intValue());
+        for(int i = 0; i< SolutionSinger_Tab1.gradesArrayLess.size(); i++){
+            map.put(SolutionSinger_Tab1.resultArrayLess.get(i), SolutionSinger_Tab1.gradesArrayLess.get(i).intValue());
         }
         Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
 

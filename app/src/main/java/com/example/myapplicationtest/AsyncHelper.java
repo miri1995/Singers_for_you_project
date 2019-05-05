@@ -114,14 +114,14 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
-                            if(!SulationSinger_Tab1.moreThanOnce(SulationSinger_Tab1.artists,rs.getString(colName1))) {
-                                SulationSinger_Tab1.artists.add(rs.getString(colName1));
-                                SulationSinger_Tab1.tempo.add(rs.getDouble(colName2));
-                                SulationSinger_Tab1.loudness.add(rs.getDouble(colName3));
-                                SulationSinger_Tab1.genres.add(rs.getString(colName4));
+                            if(!SolutionSinger_Tab1.moreThanOnce(SolutionSinger_Tab1.artists,rs.getString(colName1))) {
+                                SolutionSinger_Tab1.artists.add(rs.getString(colName1));
+                                SolutionSinger_Tab1.tempo.add(rs.getDouble(colName2));
+                                SolutionSinger_Tab1.loudness.add(rs.getDouble(colName3));
+                                SolutionSinger_Tab1.genres.add(rs.getString(colName4));
                             }
                         }
-                        Log.d("D","result"+ SulationSinger_Tab1.artists);
+                        Log.d("D","result"+ SolutionSinger_Tab1.artists);
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
@@ -193,7 +193,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
 
 
 
-            Log.d("D","in background list"+ SulationSinger_Tab1.artists);
+            Log.d("D","in background list"+ SolutionSinger_Tab1.artists);
         } catch (SQLException e) {
             Log.d("D",e.getMessage());
             e.printStackTrace();

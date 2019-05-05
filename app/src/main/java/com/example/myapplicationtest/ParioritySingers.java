@@ -1,23 +1,15 @@
 package com.example.myapplicationtest;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Switch;
 
-import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Filters;
 import com.example.myapplicationtest.SingersLogic.Priority;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ParioritySingers extends AppCompatActivity {
     Priority priority;
