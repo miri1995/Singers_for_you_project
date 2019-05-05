@@ -11,7 +11,7 @@
         android:id="@+id/welcome_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/holo_red_light"
+        android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -19,36 +19,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-
-        <Button
-            android:id="@+id/composer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="110dp"
-            android:layout_marginBottom="175dp"
-            android:background="@color/colorAccent"
-
-            android:onClick="choiceClick"
-            android:text="@string/btnComposer"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="30sp"
-            android:textStyle="normal|bold" />
-
-        <Button
-            android:id="@+id/poets"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="110dp"
-            android:layout_marginBottom="102dp"
-            android:background="@color/colorAccent"
-
-            android:onClick="choiceClick"
-            android:text="@string/btnPoets"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="30sp"
-            android:textStyle="normal|bold" />
 
         <TextView
             android:id="@+id/textView4"
@@ -61,66 +31,68 @@
             android:hint="@string/welcome"
             android:text="@string/app_name"
             android:textAlignment="center"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="50sp"
             android:textStyle="bold"
             android:typeface="normal"
             app:fontFamily="serif-monospace" />
 
-        <Button
-            android:id="@+id/singers"
+
+
+        <ImageView
+            android:id="@+id/poets"
             android:layout_width="186dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="110dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginBottom="257dp"
-            android:background="@color/colorAccent"
-
+            android:cropToPadding="false"
             android:onClick="choiceClick"
-            android:text="@string/btnSingers"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="30sp"
-            android:textStyle="normal|bold" />
+            app:srcCompat="@drawable/poets" />
 
-        <Button
-            android:id="@+id/btregistration"
-            android:layout_width="wrap_content"
-            android:layout_height="77dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="110dp"
-            android:layout_marginBottom="329dp"
-            android:background="@color/colorAccent"
-
-            android:onClick="choiceClick"
-            android:text="@string/btregistration"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="30sp"
-            android:textStyle="normal|bold" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="156dp"
-            android:layout_height="113dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="126dp"
-            android:layout_marginBottom="402dp"
-            android:contentDescription="@string/imageView"
-            app:srcCompat="@drawable/music" />
-
-        <Button
-            android:id="@+id/btnexit"
+            android:id="@+id/singers"
             android:layout_width="181dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="35dp"
-            android:background="@color/colorAccent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="120dp"
+            android:contentDescription="TODO"
+            android:onClick="choiceClick"
+            app:srcCompat="@drawable/singers"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="314dp" />
+
+        <ImageView
+            android:id="@+id/composer"
+            android:layout_width="173dp"
+            android:layout_height="109dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="220dp"
 
 
-            android:text="@string/btexit"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="30sp"
-            android:textStyle="normal|bold" />
+            android:layout_marginBottom="316dp"
+            android:onClick="choiceClick"
+            app:srcCompat="@drawable/composers" />
+
+        <ImageView
+            android:id="@+id/btregistration"
+            android:layout_width="wrap_content"
+            android:layout_height="93dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="200dp"
+
+
+            android:layout_marginBottom="181dp"
+
+            android:onClick="choiceClick"
+            app:srcCompat="@drawable/registration" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

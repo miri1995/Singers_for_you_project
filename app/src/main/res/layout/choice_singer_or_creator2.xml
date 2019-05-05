@@ -37,20 +37,7 @@
             android:typeface="normal"
             app:fontFamily="serif-monospace" />
 
-        <Button
-            android:id="@+id/btnexit"
-            android:layout_width="181dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="35dp"
-            android:background="@color/colorAccent"
 
-
-            android:text="@string/btexit"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="30sp"
-            android:textStyle="normal|bold" />
 
         <ImageView
             android:id="@+id/poets"

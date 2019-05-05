@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">singers for you</string>
-    <string name="welcome">singers for you</string>
+    <string name="app_name">Artists for you</string>
+    <string name="welcome">Artists for you</string>
     <string name="button_start"> start </string>
     <string name="imageView"> music1 </string>
 
@@ -30,7 +30,7 @@
     <string name="txtName">Name</string>
     <string name="Subject">Subject:</string>
     <string name="Goal">Goal:</string>
-    <string name="main">In this application you can find Singers, Poets and Composers \naccording to your the preferences.\nYou can register as a Singers, Poets or Composers and thus increase your chances of success</string>
+    <string name="main">In this application you can find Singers, Poets and Composers \naccording to your the preferences.\nYou can register as a Singer, Poet or Composer and thus increase your chances of success</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
     <string name="search">Search</string>
     <string name="add_video">Add new video</string>
