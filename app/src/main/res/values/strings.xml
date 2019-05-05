@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">singers for you</string>
+    <string name="app_name">artists for you</string>
     <string name="welcome">artists for you</string>
     <string name="button_start"> start </string>
     <string name="imageView"> music1 </string>
