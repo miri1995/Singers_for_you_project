@@ -81,15 +81,18 @@ public class SolutionSinger_Tab1 extends Activity {
 
             List<String> resultArray = artists.subList(0, 10);
             List<String> gradesArray = new ArrayList<>();
-            for (int i = 0; i < grades.size(); i++) {
-                double grade = round(grades.get(i), 1);
-                gradesArray.add(grade + "%");
+            List<Artist> artistsList= new ArrayList<>();
+            for(int i=0;i<grades.size();i++){
+                double grade = round(grades.get(i),1);
+                Artist artist=new Artist(artists.get(i),grade+"%");
+                artistsList.add(artist);
+                //gradesArray.add(grade+"%");
             }
-            gradesArray = gradesArray.subList(0, 10);
+            artistsList = artistsList.subList(0, 10);
 
             ListView listView = findViewById(R.id.listView);
             ListView listView2 = findViewById(R.id.listView2);
-            helperLists.updateTwoListView(this, resultArray, gradesArray, listView, listView2);
+            helperLists.updateTwoListView(this, artistsList, listView, listView2);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView parent, View view, int position, long id) {
 
@@ -124,13 +127,17 @@ public class SolutionSinger_Tab1 extends Activity {
     public void allSol_click(View view) {
         List<String> resultArray = artists;
         List<String> gradesArray = new ArrayList<>(); /*= grades*/;
+        List<Artist> artistsList= new ArrayList<>();
         for(int i=0;i<grades.size();i++){
           double grade = round(grades.get(i),1);
-          gradesArray.add(grade+"%");
+            Artist artist=new Artist(artists.get(i),grade+"%");
+            artistsList.add(artist);
+          //gradesArray.add(grade+"%");
         }
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
-        helperLists.updateTwoListView(this, resultArray, gradesArray, listView, listView2);
+
+        helperLists.updateTwoListView(this, artistsList, listView, listView2);
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
         allSolButton.setVisibility(View.GONE);

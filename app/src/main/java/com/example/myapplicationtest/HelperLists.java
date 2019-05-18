@@ -1,18 +1,18 @@
 package com.example.myapplicationtest;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
-import com.example.myapplicationtest.RegistrationP.ComposerRegistration;
-import com.example.myapplicationtest.RegistrationP.PoetsRegistration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -314,11 +314,44 @@ public class HelperLists {
      * @param listView
      * @param listView2
      */
-    public void updateTwoListView(Context context,List<String> list1,List<String> list2, ListView listView, ListView listView2){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.activity_listview, list1);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context,
-                R.layout.activity_listview, list2);
+    public void updateTwoListView(Context context,List<Artist> list, ListView listView, ListView listView2){
+      /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.activity_listview, list1);*/
+        /*ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context,
+                R.layout.activity_listview, list2);*/
+     //   listView.setAdapter(adapter);
+
+        ArtistsListAdapter adapter = new ArtistsListAdapter(context, R.layout.adapter_view_layout, list);
         listView.setAdapter(adapter);
-        listView2.setAdapter(adapter2);
+
+
+
+      //  listView2.setAdapter(adapter2);
+
+     /*   ViewTreeObserver listVTO = listView.getViewTreeObserver();
+        listVTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                listView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                resizeListView(listView);
+            }
+        });*/
+    }
+
+    private void resizeListView(ListView listView) {
+        ListAdapter adapter = listView.getAdapter();
+        int count = adapter.getCount();
+        int itemsHeight = 0;
+        // Your views have the same layout, so all of them have
+        // the same height
+        View oneChild = listView.getChildAt(0);
+        if( oneChild == null)
+            return;
+        itemsHeight = oneChild.getHeight();
+        // Resize your list view
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)listView.getLayoutParams();
+        params.height = itemsHeight * count;
+        listView.setLayoutParams(params);
+
+
     }
 }
