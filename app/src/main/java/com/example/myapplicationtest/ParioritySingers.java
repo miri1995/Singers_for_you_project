@@ -14,7 +14,7 @@ import com.example.myapplicationtest.SingersLogic.Priority;
 public class ParioritySingers extends AppCompatActivity {
     Priority priority;
     Spinner spinner1, spinner2, spinner3, spinner4;
-    Switch swPopular;
+   // Switch swPopular;
     HelperLists helperLists=new HelperLists();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class ParioritySingers extends AppCompatActivity {
         helperLists.initPariority(this,spinner1,spinner2,spinner3);
 
         //spinner4
-        swPopular = findViewById(R.id.swPop);
+       // swPopular = findViewById(R.id.swPop);
 
 
 
@@ -55,11 +55,11 @@ public class ParioritySingers extends AppCompatActivity {
             beatP2 =spinner3.getSelectedItem().toString();
         }
 
-        if(swPopular.isChecked()){
+      /*  if(swPopular.isChecked()){
             pop=true;
         }else{
             pop=false;
-        }
+        }*/
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
         }*/
@@ -69,7 +69,7 @@ public class ParioritySingers extends AppCompatActivity {
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
             Filters filters = (Filters) intent.getSerializableExtra(Filters.class.getName());
-            priority = new Priority(genreP2, loudnessP2, beatP2,filters,pop);
+            priority = new Priority(genreP2, loudnessP2, beatP2,filters,true); //todo delete pop
 
             Intent intent1 = new Intent(ParioritySingers.this, SulationSinger2.class);
             intent1.putExtra(Priority.class.getName(), priority);

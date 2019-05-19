@@ -73,8 +73,8 @@
             android:layout_height="113dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="244dp"
-            android:layout_marginBottom="175dp"
+            android:layout_marginStart="255dp"
+            android:layout_marginBottom="141dp"
             android:contentDescription="@string/imageView"
             app:srcCompat="@drawable/music" />
 
@@ -84,8 +84,8 @@
             android:layout_height="113dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="185dp"
-            android:layout_marginBottom="150dp"
+            android:layout_marginStart="207dp"
+            android:layout_marginBottom="121dp"
             android:contentDescription="@string/imageView"
             app:srcCompat="@drawable/music" />
 
