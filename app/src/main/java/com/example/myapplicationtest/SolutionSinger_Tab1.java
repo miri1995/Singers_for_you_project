@@ -79,8 +79,7 @@ public class SolutionSinger_Tab1 extends Activity {
             gradesArrayLess = grades;
 
 
-            List<String> resultArray = artists.subList(0, 10);
-            List<String> gradesArray = new ArrayList<>();
+
             List<Artist> artistsList= new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),1);
@@ -88,8 +87,10 @@ public class SolutionSinger_Tab1 extends Activity {
                 artistsList.add(artist);
                 //gradesArray.add(grade+"%");
             }
-            artistsList = artistsList.subList(0, 10);
-
+            boolean sol=helperLists.checkSizeOfListResults(this,artistsList,1);
+            if(sol) {
+                artistsList = artistsList.subList(0, 10);
+            }
             ListView listView = findViewById(R.id.listView);
             ListView listView2 = findViewById(R.id.listView2);
             helperLists.updateTwoListView(this, artistsList, listView, listView2);

@@ -37,6 +37,8 @@ public class SulationSinger_Tab2 extends Activity {
         }
 
         reverseGrade=  helperLists.reverseArrayList(strings);
+
+
         List<String> reverseGradeTop10=reverseGrade.subList(0,10);
         ListView listView = findViewById(R.id.listViewLess);
         ListView listView2 = findViewById(R.id.listViewLess2);
@@ -45,6 +47,10 @@ public class SulationSinger_Tab2 extends Activity {
             Artist artist=new Artist(reverseListTop10.get(i),reverseGradeTop10.get(i));
             artistsList.add(artist);
         }
+        boolean sol=helperLists.checkSizeOfListResults(this,artistsList,2);
+      /*  if(sol) {
+            artistsList = artistsList.subList(0, 10);
+        }*/
         helperLists.updateTwoListView(this,artistsList, listView , listView2);
 
     }

@@ -309,8 +309,6 @@ public class HelperLists {
     /**
      * Update the list view in accordance 2 list input
      * @param context
-     * @param list1
-     * @param list2
      * @param listView
      * @param listView2
      */
@@ -323,35 +321,69 @@ public class HelperLists {
         ArtistsListAdapter adapter = new ArtistsListAdapter(context, R.layout.adapter_view_layout, list);
         listView.setAdapter(adapter);
 
-
-
-      //  listView2.setAdapter(adapter2);
-
-     /*   ViewTreeObserver listVTO = listView.getViewTreeObserver();
-        listVTO.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                listView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                resizeListView(listView);
-            }
-        });*/
     }
 
-    private void resizeListView(ListView listView) {
-        ListAdapter adapter = listView.getAdapter();
-        int count = adapter.getCount();
-        int itemsHeight = 0;
-        // Your views have the same layout, so all of them have
-        // the same height
-        View oneChild = listView.getChildAt(0);
-        if( oneChild == null)
-            return;
-        itemsHeight = oneChild.getHeight();
-        // Resize your list view
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)listView.getLayoutParams();
-        params.height = itemsHeight * count;
-        listView.setLayoutParams(params);
+   public boolean checkSizeOfListResults(Context context, List<Artist> list, int tab){
+        String message="";
+        switch (tab){
+            case 1:
+                message="They are arranged according to their popularity," +
+                        " so that the most popular artist appears at the top of the list\n\n";
+                break;
+            case 2:
+                message="They are arranged according to the match percentage to you," +
+                        " according to your preferences so that the artist most appropriate to you appears at the top of the list\n\n";
+                break;
+            case 3:
+                message="They are arranged according to the match percentage to you," +
+                        " according to your preferences so that the artist less appropriate to you appears at the top of the list\n\n";
+                break;
+        }
+        if(list.size()<10){
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setCancelable(true);
+            //builder.setTitle("Success In Registration");
+            builder.setMessage("Sorry we found only "+ String.valueOf(list.size())+" artists for you.\n " +
+                    "Do you want that we increase the filter and get back artists with a wider match range?");
+            builder.setPositiveButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //todo change the function with range
+                            dialog.cancel();
+                        }
+                    });
+            builder.setNegativeButton(android.R.string.no,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
 
-
-    }
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+           // Intent intent1 = new Intent(context, ChoiceSingerOrProduct.class);
+           // context.startActivity(intent1);
+            return false;
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setCancelable(true);
+            //builder.setTitle("Success In Registration");
+            builder.setMessage("We found "+ String.valueOf(list.size())+" artists that match for you.\n" +
+                    message
+                    +"Enjoyable use :)");
+            builder.setPositiveButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //todo change the function with range
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return true;
+        }
+   }
 }
