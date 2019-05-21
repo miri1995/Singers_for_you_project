@@ -41,10 +41,10 @@ public class PoetsActivity extends AppCompatActivity {
        helperLists.InitPoetsFilters(this,spinner1,spinner2,spinner3);
 
         //spinner4
-        List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
+        /*List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
         spinner4 = findViewById(R.id.spinner4);
         ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
-        spinner4.setAdapter(locationAdapter);
+        spinner4.setAdapter(locationAdapter);*/
 
     }
     public void poet_choise_click(View view) {
@@ -52,7 +52,7 @@ public class PoetsActivity extends AppCompatActivity {
         String genre2 =null;
         String subject2 = null;
         String goal2=null;
-        String location2=null;
+        //String location2=null;
 
         if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
                 helperLists.checkSelectedItem(spinner3,this)){
