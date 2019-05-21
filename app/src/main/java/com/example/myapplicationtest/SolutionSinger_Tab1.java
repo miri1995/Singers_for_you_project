@@ -133,7 +133,6 @@ public class SolutionSinger_Tab1 extends Activity {
           double grade = round(grades.get(i),1);
             Artist artist=new Artist(artists.get(i),grade+"%");
             artistsList.add(artist);
-          //gradesArray.add(grade+"%");
         }
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);

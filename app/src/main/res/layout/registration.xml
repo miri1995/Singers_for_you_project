@@ -78,15 +78,28 @@
         android:onClick="back_choice_click"
         android:text="@string/back_button" />
 
-   <!--- <TextView
-        android:id="@+id/txWhat_you"
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
-        android:layout_height="217dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginBottom="150dp"
-        android:text="@string/register_what_you"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold" />-->
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="100dp"
+        android:text="@string/register_text"
+        android:textColor="@color/colorText"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <!--- <TextView
+         android:id="@+id/txWhat_you"
+         android:layout_width="wrap_content"
+         android:layout_height="217dp"
+         android:layout_marginStart="120dp"
+         android:layout_marginBottom="150dp"
+         android:text="@string/register_what_you"
+         android:textAlignment="center"
+         android:textSize="30sp"
+         android:textStyle="bold" />-->
 
 </RelativeLayout>
