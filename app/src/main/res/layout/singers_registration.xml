@@ -6,14 +6,6 @@
     android:background="@android:color/holo_blue_dark">
 
 
-    <SeekBar
-        android:id="@+id/seekBar2"
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:max="3"
-        android:progress="1" />
-
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/GridLayout2"
@@ -40,7 +32,7 @@
             android:fontFamily="serif-monospace"
             android:text="@string/txtName"
             android:textAlignment="viewStart"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorText"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -60,7 +52,7 @@
             android:fontFamily="serif-monospace"
             android:text="@string/textView36"
             android:textAlignment="textStart"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorText"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -79,7 +71,7 @@
             android:text="@string/textView19"
             android:textAlignment="textStart"
             android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorText"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -96,7 +88,7 @@
             android:layout_gravity="fill"
             android:fontFamily="serif-monospace"
             android:text="@string/textView38"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorText"
             android:textSize="24sp"
             android:textStyle="bold" />
 

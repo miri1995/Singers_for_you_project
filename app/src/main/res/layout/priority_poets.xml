@@ -6,7 +6,6 @@
     android:background="#CF5F04">
 
 
-
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/GridLayout2"
@@ -19,28 +18,28 @@
         android:columnCount="2"
         android:layoutDirection="ltr"
         android:orientation="horizontal"
-        android:rowCount="5"
-        android:useDefaultMargins="true"
+        android:rowCount="3"
 
+        android:useDefaultMargins="true"
         tools:context=".PrioirtyPoets">
 
 
         <TextView
             android:id="@+id/textView36"
-            android:layout_width="170dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:fontFamily="serif-monospace"
-            android:text="@string/textView36"
 
+            android:text="@string/textView36"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/register_what_you"
-            android:layout_width="0dp"
+            android:layout_width="140dp"
             android:layout_gravity="fill_horizontal"
             android:textSize="36sp" />
 
@@ -50,8 +49,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
             android:fontFamily="serif-monospace"
-            android:text="@string/Subject"
 
+            android:text="@string/Subject"
             android:textAllCaps="false"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
@@ -80,25 +79,6 @@
             android:layout_width="0dp"
             android:layout_gravity="fill_horizontal" />
 
-        <TextView
-            android:id="@+id/textView39"
-            android:layout_width="160dp"
-            android:layout_height="60dp"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:fontFamily="serif-monospace"
-            android:text="@string/textView39"
-
-            android:textColor="@color/colorAccent"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <Switch
-            android:id="@+id/spinner4"
-            android:layout_width="127dp"
-            android:layout_gravity="fill_horizontal" />
-
-
 
     </GridLayout>
 
@@ -114,9 +94,10 @@
         android:text="@string/button"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@android:color/holo_green_light"
+        android:textColor="#CF5F04"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:fontFamily="serif-monospace"/>
 
     <!--        <Button
             android:id="@+id/start"
@@ -154,5 +135,18 @@
         android:layout_height="41dp"
         android:max="3"
         android:progress="2" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="150dp"
+        android:fontFamily="serif-monospace"
+        android:text="@string/priority_text"
+        android:textColor="@color/colorText"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
 </RelativeLayout>

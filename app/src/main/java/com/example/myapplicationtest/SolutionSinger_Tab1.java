@@ -41,17 +41,17 @@ public class SolutionSinger_Tab1 extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_singers);
-        mostOrLessPop(true);
+        mostOrLessPop(false);
     }
 
-    public void mostOrLessPop(boolean popular) {
+    public void mostOrLessPop(boolean needToIncreaseSol) {
         String str_result = null;
         Intent intent2 = getIntent();
         priority = (Priority) intent2.getSerializableExtra(Priority.class.getName());
         Query_Singer query = new Query_Singer();
         // String flag=EnumsSingers.singer.getEnums();
         String q3 = query.UserInput(priority.getFilters().getGenre(), priority.getFilters().getLoudness(), priority.getFilters().getTempo(), null,
-                priority.getPrioGenre(), priority.getPrioLoudness(), priority.getPrioTempo(), popular);
+                priority.getPrioGenre(), priority.getPrioLoudness(), priority.getPrioTempo(), needToIncreaseSol);
         artists.clear();
         tempo.clear();
         loudness.clear();
@@ -70,9 +70,14 @@ public class SolutionSinger_Tab1 extends Activity {
 
             FittingPercents fittingPercents = new FittingPercents(priority, null, null);
             if (priority.getPrioGenre().equals(EnumsSingers.High.getEnums())) {
-                grades = fittingPercents.percentTempoLoudness("both", priority.getFilters().getLoudness(), priority.getFilters().getTempo(), priority.getPrioLoudness(), priority.getPrioTempo(), tempo, loudness);
+                grades = fittingPercents.percentTempoLoudness("both",
+                        priority.getFilters().getLoudness(), priority.getFilters().getTempo(),
+                        priority.getPrioLoudness(), priority.getPrioTempo(), tempo, loudness,needToIncreaseSol);
             } else {
-                grades = fittingPercents.percentGenreElse(priority.getPrioGenre(), genres, priority.getFilters().getGenre(), priority.getPrioLoudness(), priority.getFilters().getLoudness(), priority.getFilters().getTempo(), priority.getPrioTempo(), tempo, loudness);
+                grades = fittingPercents.percentGenreElse(priority.getPrioGenre(), genres,
+                        priority.getFilters().getGenre(), priority.getPrioLoudness(),
+                        priority.getFilters().getLoudness(), priority.getFilters().getTempo(),
+                        priority.getPrioTempo(), tempo, loudness,needToIncreaseSol);
             }
 
             resultArrayLess = artists;
@@ -90,18 +95,21 @@ public class SolutionSinger_Tab1 extends Activity {
             boolean sol=helperLists.checkSizeOfListResults(this,artistsList,1);
             if(sol) {
                 artistsList = artistsList.subList(0, 10);
-            }
-            ListView listView = findViewById(R.id.listView);
-            ListView listView2 = findViewById(R.id.listView2);
-            helperLists.updateTwoListView(this, artistsList, listView, listView2);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                public void onItemClick(AdapterView parent, View view, int position, long id) {
+                ListView listView = findViewById(R.id.listView);
+                ListView listView2 = findViewById(R.id.listView2);
+                helperLists.updateTwoListView(this, artistsList, listView, listView2);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    public void onItemClick(AdapterView parent, View view, int position, long id) {
 
-                    Intent intent = new Intent(SolutionSinger_Tab1.this, YouTubeActivity.class);
-                    startActivity(intent);
-                    whichArtist = listView.getItemAtPosition(position).toString();
-                }
-            });
+                        Intent intent = new Intent(SolutionSinger_Tab1.this, YouTubeActivity.class);
+                        startActivity(intent);
+                        whichArtist = listView.getItemAtPosition(position).toString();
+                    }
+                });
+            }else{ //need to increase the filters
+                mostOrLessPop(true);
+            }
+
 
         }
     }

@@ -1,3 +1,4 @@
+/*
 package com.example.myapplicationtest;
 
 import android.app.ProgressDialog;
@@ -103,3 +104,4 @@ public class AsyncHTTP extends AsyncTask<Void, Void, String> {
 
     }
 }
+*/

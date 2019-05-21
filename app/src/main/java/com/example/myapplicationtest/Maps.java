@@ -49,33 +49,46 @@ public class Maps {
         return single_instance;
     }
 
-    public HashMap<String, Double> PutInPriority(String prioLoudness, String prioTempo) {
+    public HashMap<String, Double> PutInPriority(String prioLoudness, String prioTempo,boolean needToIncreaseSol) {
+         int tempoMed=0;
+         int tempoHigh=0;
+         int tempoLow=0;
+         if(needToIncreaseSol){
+             tempoMed=35;
+             tempoLow=60;
+             tempoHigh=10;
+         }else{
+             tempoMed=25;
+             tempoLow=50;
+             tempoHigh=0;
+         }
+
         switch (EnumsSingers.valueOf(prioLoudness)) {
             case High:
                 priority.put(prioLoudness, (double) 0);
                 if (prioTempo.equals(EnumsSingers.Medium.getEnums())) {
-                    priority.put(prioTempo, (double) 25);
+                    priority.put(prioTempo, (double) tempoMed);
                 }
                 if (prioTempo.equals(EnumsSingers.Low.getEnums())) {
-                    priority.put(prioTempo, (double) 50);
+                    priority.put(prioTempo, (double) tempoLow);
                 }
                 break;
             case Medium:
                 priority.put(prioLoudness, (double) 5);
                 if (prioTempo.equals(EnumsSingers.High.getEnums())) {
-                    priority.put(prioTempo, (double) 0);
+                    priority.put(prioTempo, (double) tempoHigh);
                 }
                 if (prioTempo.equals(EnumsSingers.Low.getEnums())) {
-                    priority.put(prioTempo, (double) 50);
+                    priority.put(prioTempo, (double) tempoLow);
                 }
                 break;
             case Low:
                 priority.put(prioLoudness, (double) 10);
                 if (prioTempo.equals(EnumsSingers.High.getEnums())) {
-                    priority.put(prioTempo, (double) 0);
+                    priority.put(prioTempo, (double) tempoHigh);
                 }
                 if (prioTempo.equals(EnumsSingers.Medium.getEnums())) {
-                    priority.put(prioTempo, (double) 25);
+                    priority.put(prioTempo, (double) tempoMed);
                     //probably something else
                 }
                 break;
@@ -84,6 +97,7 @@ public class Maps {
         return priority;
 
     }
+
 
     public double[] PutInloudness(String loudness) {
         double numLoud[] = new double[2];

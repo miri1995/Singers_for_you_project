@@ -127,7 +127,7 @@ public class Query_Poet implements IQuery {
 
     public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean popular){
         HashMap<String,Double> priority = new HashMap<>();
-        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
+        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3,popular);
         List<String> couples=new ArrayList<>();
         List<String> couples2=new ArrayList<>();
         List<String> couples3=new ArrayList<>();

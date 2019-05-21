@@ -14,20 +14,25 @@ public class FittingPercents {
     private PoetsPriority prioirtyPoets;
     private ComposersPriority composersPriority;
 
-    public FittingPercents(Priority priority,PoetsPriority prioirtyPoets,ComposersPriority composersPriority) {
+
+    public FittingPercents(Priority priority,PoetsPriority prioirtyPoets,
+                           ComposersPriority composersPriority) {
         this.priority = priority;
         this.prioirtyPoets =prioirtyPoets;
         this.composersPriority=composersPriority;
+
     }
 
-    public List<Double> percentTempoLoudness(String flag,String loudness,String tempo,String prioLoudness,String prioTempo,List<Double> tempoList,List<Double> loudnessList) {
+    public List<Double> percentTempoLoudness(String flag,String loudness,String tempo,
+                                             String prioLoudness,String prioTempo,
+                                             List<Double> tempoList,List<Double> loudnessList,boolean needToIncreece) {
         List<Double> gradesLoudness = new ArrayList<>();
         List<Double> gradesTempo = new ArrayList<>();
         List<Double> gradesFinal = new ArrayList<>();
         double gradeTempo;
         double gradeLoudness;
         double numLoudness[] = Maps.getInstance().PutInloudness(loudness);
-        HashMap<String, Double> priorityMap = Maps.getInstance().PutInPriority(prioLoudness, prioTempo);
+        HashMap<String, Double> priorityMap = Maps.getInstance().PutInPriority(prioLoudness, prioTempo,needToIncreece);
         double percentLoudness = Maps.getInstance().PutInPercents(prioLoudness);
         double numTempo[] = Maps.getInstance().PutInTempo(tempo);
         double percentTempo = Maps.getInstance().PutInPercents(prioTempo);
@@ -168,8 +173,10 @@ public class FittingPercents {
         return gradesFinal;
     }
 
-    public List<Double> percentGenreElse(String prioGenre,List<String>genresList,String genre,String prioLoudness,String loudness,String tempo,
-    String prioTempo,List<Double> tempoList,List<Double> loudnessList){
+    public List<Double> percentGenreElse(String prioGenre,List<String>genresList,String genre,
+                                         String prioLoudness,String loudness,String tempo,
+                                            String prioTempo,List<Double> tempoList,
+                                         List<Double> loudnessList,boolean needToIncreece){
         boolean flag = false;
         List<Double> gradesElse = new ArrayList<>();
         List<Double> gradesGenre = new ArrayList<>();
@@ -200,10 +207,12 @@ public class FittingPercents {
         }
         if(prioLoudness.equals(EnumsSingers.Medium.getEnums())
                 || prioLoudness.equals(EnumsSingers.Low.getEnums())){
-            gradesElse = percentTempoLoudness("loudness",loudness,tempo,prioLoudness,prioTempo,tempoList,loudnessList);
+            gradesElse = percentTempoLoudness("loudness",loudness,tempo,prioLoudness,prioTempo,
+                    tempoList,loudnessList,needToIncreece);
         }
         else {
-            gradesElse = percentTempoLoudness("tempo",loudness,tempo,prioLoudness,prioTempo,tempoList,loudnessList);
+            gradesElse = percentTempoLoudness("tempo",loudness,tempo,prioLoudness,
+                    prioTempo,tempoList,loudnessList,needToIncreece);
         }
         for(int i=0; i<genresList.size();i++){
              double finalGrade = gradesElse.get(i)+ gradesGenre.get(i);

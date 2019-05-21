@@ -134,5 +134,17 @@
         android:layout_height="41dp"
         android:max="3"
         android:progress="2" />
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="150dp"
+        android:fontFamily="serif-monospace"
+        android:text="@string/priority_text"
+        android:textColor="@color/colorText"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
 </RelativeLayout>

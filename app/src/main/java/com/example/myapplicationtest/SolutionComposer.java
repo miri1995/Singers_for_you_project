@@ -12,6 +12,7 @@ import android.widget.TabHost;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Composer.ComposersPriority;
+import com.example.myapplicationtest.SingersLogic.Helper;
 import com.example.myapplicationtest.SingersLogic.Priority;
 
 import java.util.ArrayList;
@@ -27,20 +28,24 @@ public class SolutionComposer extends Activity {
     public static List<Double> tempo=new ArrayList<>();
     public static List<Double> loudness=new ArrayList<>();
     List<Double>grades = new ArrayList<>();
+    private int counter=0;
 
     protected void onCreate(Bundle savedInstanceState) {
-        String str_result=null;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_composer);
+        doQueryAndUpdate(false);
+    }
+
+     public void doQueryAndUpdate(boolean needToIncrease){
+         String str_result = null;
         Intent intent2 = getIntent();
         priority = (ComposersPriority) intent2.getSerializableExtra(ComposersPriority.class.getName());
         Query_Composser query = new Query_Composser();
        // String flag=EnumsSingers.composer.getEnums();
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getFilters().getMusical_instrument(),
-                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),false);
-        /*composers.clear();
-        tempo.clear();
-        loudness.clear();*/
+                priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),needToIncrease);
+
         try {
             str_result=new AsyncHelper(SolutionComposer.this,q3,"composer_name","composers_tempo","composers_loudness","composers_genre",
                     EnumAsync.Composer.getEnumAsync()).execute().get();
@@ -57,37 +62,51 @@ public class SolutionComposer extends Activity {
 
             FittingPercents fittingPercents = new FittingPercents(null,null,priority);
             if(priority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
-                grades = fittingPercents.percentTempoLoudness("both",priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getPrioLoudness(),priority.getPrioTempo(),tempo,loudness);
+                grades = fittingPercents.percentTempoLoudness("both",
+                        priority.getFilters().getLoudness(),
+                        priority.getFilters().getTempo(),
+                        priority.getPrioLoudness(),priority.getPrioTempo(),tempo,loudness,needToIncrease);
             }
             else{
-                grades = fittingPercents.percentGenreElse(priority.getPrioGenre(),genres,priority.getFilters().getGenre(),priority.getPrioLoudness(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getPrioTempo(),tempo,loudness);
+                grades = fittingPercents.percentGenreElse(priority.getPrioGenre(),
+                        genres,priority.getFilters().getGenre(),priority.getPrioLoudness(),
+                        priority.getFilters().getLoudness(),priority.getFilters().getTempo(),
+                        priority.getPrioTempo(),tempo,loudness,needToIncrease);
             }
 
             List<String> resultArray = new ArrayList<>();
-            if(composers.size()>10){
+            HelperLists helperLists =new HelperLists();
+
+           /* if(composers.size()>10){
                 resultArray = composers.subList(0,10);
             }
             else{
                 resultArray = composers;
-            }
+            }*/
+            List<Artist> artistList=new ArrayList<>();
             List<Double> gradesArray = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
+                Artist artist=new Artist(composers.get(i),grade+"%");
+                artistList.add(artist);
                 gradesArray.add(grade);
             }
-            if(gradesArray.size()>10){
-                gradesArray = gradesArray.subList(0,10);
+            boolean sol=helperLists.checkSizeOfListResults(this,artistList,3);
+            if(sol){
+                resultArray = composers.subList(0,10);
+                gradesArray=gradesArray.subList(0,10);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                        R.layout.activity_listview, resultArray);
+                ListView listView = findViewById(R.id.listView);
+                listView.setAdapter(adapter);
+                ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
+                        R.layout.activity_listview, gradesArray);
+                ListView listView2 = findViewById(R.id.listView2);
+                listView2.setAdapter(adapter2);
+            }else if(counter==0){
+                counter++;
+                doQueryAndUpdate(true);
             }
-            ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    R.layout.activity_listview, resultArray);
-            ListView listView = findViewById(R.id.listView);
-            listView.setAdapter(adapter);
-            ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
-                    R.layout.activity_listview, gradesArray);
-            ListView listView2 = findViewById(R.id.listView2);
-            listView2.setAdapter(adapter2);
-
 
         }
     }

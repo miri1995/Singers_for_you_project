@@ -24,7 +24,7 @@ public class Query_Singer implements IQuery{
      */
     public String MapBeat(String genre,String loudness,String tempo,
                           HashMap priority,String prioLoudness,String prioTempo,String prioGenre,
-                          List<String> otherGenre,boolean popular,String instrument,
+                          List<String> otherGenre,boolean needToIncreaseSol,String instrument,
                           String whichtableloudness,String whichtabletempo,String whichcolloudness,String whichcoltempo){
         int temp=0;
         String q="";
@@ -121,7 +121,7 @@ public class Query_Singer implements IQuery{
         }
 
         // sends to a function that is responsible for Concatenation of the strings into final query.
-        String sol=GetSol(q,genre,null,null,prioGenre,null,null,otherGenre,null,null,popular);
+        String sol=GetSol(q,genre,null,null,prioGenre,null,null,otherGenre,null,null,needToIncreaseSol);
         //returns the final query
         return sol;
     }
@@ -135,9 +135,9 @@ public class Query_Singer implements IQuery{
      * @return q = the matching query
      */
 
-    public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean popular){
+    public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean needToIncreaseSol){
         HashMap<String,Double> priority = new HashMap<>();
-        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
+        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3,needToIncreaseSol);
         List<String> couples=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
@@ -150,7 +150,8 @@ public class Query_Singer implements IQuery{
         String whichtabletempo = "songs.song_tempo";
         String whichcolloudness = "song_loudness";
         String whichcoltempo = "song_tempo";
-        q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,null,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
+        q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,needToIncreaseSol,
+                null,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
 
         return q;
 
@@ -165,15 +166,15 @@ public class Query_Singer implements IQuery{
 
 
     public String GetSol(String BeatQ, String genre,String element2,String element3,String prioGenre,String prioElement2,String prioElement3,
-                         List<String> otherGenre,List<String> otherTopic,List<String> otherGoal,boolean popular){
+                         List<String> otherGenre,List<String> otherTopic,List<String> otherGoal,boolean needToIncreaseSol){
         String hotness=null;
-        if(popular){
+        //if(needToIncreaseSol){
              hotness=" order by artists.artist_hotness DESC";
-        }else{
+     //   }else{
 
                 hotness=" order by artists.artist_hotness ASC";
 
-        }
+      //  }
 
 
         StringBuilder quGenre = new StringBuilder();

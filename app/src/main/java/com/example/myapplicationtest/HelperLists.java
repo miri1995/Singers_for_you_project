@@ -189,8 +189,8 @@ public class HelperLists {
 
         //topic
         topics=updateTopicList(context);
-        ArrayAdapter<String> AudienceAdapter = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item,topics);
-        spinner2.setAdapter(AudienceAdapter);
+        ArrayAdapter<String> topicAdapter = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item,topics);
+        spinner2.setAdapter(topicAdapter);
 
         //goal
         goals=updateGoalList(context);
@@ -321,6 +321,7 @@ public class HelperLists {
     }
 
    public boolean checkSizeOfListResults(Context context, List<Artist> list, int tab){
+        Maps maps=new Maps();
         String message="";
         switch (tab){
             case 1:
@@ -374,7 +375,6 @@ public class HelperLists {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            //todo change the function with range
                             dialog.cancel();
                         }
                     });

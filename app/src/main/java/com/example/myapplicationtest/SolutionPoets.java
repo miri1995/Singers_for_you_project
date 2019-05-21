@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Poets.PoetsPriority;
+import com.example.myapplicationtest.SingersLogic.Helper;
 //import assets.pair3.txt;
 
 import java.util.ArrayList;
@@ -30,13 +31,19 @@ public class SolutionPoets extends Activity {
     List<Double>grades = new ArrayList<>();
     List<Double>gradesElement1 = new ArrayList<>();
     List<Double>gradesElement2 = new ArrayList<>();
+    private int counter=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        String str_result=null;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_poets);
+        doQueryAndUpdate(false);
+    }
+
+     public void  doQueryAndUpdate(boolean needToIncrease){
+         String str_result = null;
         Intent intent2 = getIntent();
         poetsPriority = (PoetsPriority) intent2.getSerializableExtra(PoetsPriority.class.getName());
 
@@ -44,7 +51,7 @@ public class SolutionPoets extends Activity {
         Query_Poet query = new Query_Poet();
         //String flag = EnumsSingers.poets.getEnums();
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),null,
-                poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),false);
+                poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),needToIncrease);
 
         try {
             str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genre",
@@ -76,31 +83,41 @@ public class SolutionPoets extends Activity {
             grades=fittingPercents.uniteTwoListd(gradesElement1,gradesElement2);
 
             List<String> resultArray = new ArrayList<>();
-            if(poets.size()>10){
-                resultArray=poets.subList(0,10);
+           /* if(poets.size()>10){
+
             }
             else{
                 resultArray=poets;
-            }
+            }*/
 
-            List<Double> gradesArray = new ArrayList<>();
+            List<Artist> artistList=new ArrayList<>();
+            List<String> gradesArray = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
-                gradesArray.add(grade);
+                Artist artist=new Artist(poets.get(i),grade+"%");
+                artistList.add(artist);
+                gradesArray.add(grade+"%");
             }
-            if(gradesArray.size()>10){
+            HelperLists helperLists=new HelperLists();
+            boolean sol=helperLists.checkSizeOfListResults(this,artistList,3);
+            if(sol){
                 gradesArray = gradesArray.subList(0,10);
+                resultArray=poets.subList(0,10);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                        R.layout.activity_listview, resultArray);
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                        R.layout.activity_listview, gradesArray);
+                ListView listView = findViewById(R.id.listView);
+                ListView listView2 = findViewById(R.id.listView2);
+                listView.setAdapter(adapter);
+                listView2.setAdapter(adapter2);
+            }else if(counter==0){
+                counter++;
+                doQueryAndUpdate(true);
+
             }
-            ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    R.layout.activity_listview, resultArray);
-            ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
-                    R.layout.activity_listview, gradesArray);
-            ListView listView = findViewById(R.id.listView);
-            ListView listView2 = findViewById(R.id.listView2);
-            listView.setAdapter(adapter);
-            listView2.setAdapter(adapter2);
-            // Log.d("D", "ll" + listView.toString());
+
+
         }
 
     }
