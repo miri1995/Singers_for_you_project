@@ -4,10 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -244,7 +241,7 @@ public class HelperLists {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
-        Intent intent1 = new Intent(context, ChoiceSingerOrProduct.class);
+        Intent intent1 = new Intent(context, WhichArtist.class);
         context.startActivity(intent1);
 
     }
@@ -363,7 +360,7 @@ public class HelperLists {
                     });
             AlertDialog dialog = builder.create();
             dialog.show();
-           // Intent intent1 = new Intent(context, ChoiceSingerOrProduct.class);
+           // Intent intent1 = new Intent(context, WhichArtist.class);
            // context.startActivity(intent1);
             return false;
         }else{

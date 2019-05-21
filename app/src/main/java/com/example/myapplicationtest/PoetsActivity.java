@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Poets.PoetsFilters;
-import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -75,7 +73,7 @@ public class PoetsActivity extends AppCompatActivity {
     }
 
     public void backSingerORProduct_click(View view){
-        Intent intent = new Intent(PoetsActivity.this, ChoiceSingerOrProduct.class);
+        Intent intent = new Intent(PoetsActivity.this, WhichArtist.class);
         startActivity(intent);
     }
 }

@@ -12,7 +12,7 @@ import com.example.myapplicationtest.SingersLogic.Priority;
 
 import static java.lang.StrictMath.round;
 
-public class SulationSinger2  extends TabActivity {
+public class SolutionSinger2 extends TabActivity {
 
 
     @Override
@@ -28,15 +28,15 @@ public class SulationSinger2  extends TabActivity {
         Priority priority = (Priority) intent.getSerializableExtra(Priority.class.getName());
 
 
-        Intent intent1 = new Intent(SulationSinger2.this, SolutionSinger_Tab1.class);
+        Intent intent1 = new Intent(SolutionSinger2.this, SolutionSinger_Tab1.class);
         intent1.putExtra(Priority.class.getName(), priority);
         setResult(Activity.RESULT_OK, intent1);
 
-        Intent intent2 = new Intent(SulationSinger2.this, SulationSinger_Tab2.class);
+        Intent intent2 = new Intent(SolutionSinger2.this, SolutionSinger_Tab2.class);
         intent2.putExtra(Priority.class.getName(), priority);
         setResult(Activity.RESULT_OK, intent2);
 
-        Intent intent3 = new Intent(SulationSinger2.this, SulationSinger_Tab3.class);
+        Intent intent3 = new Intent(SolutionSinger2.this, SolutionSinger_Tab3.class);
        // intent2.putExtra(Priority.class.getName(), priority);
         setResult(Activity.RESULT_OK, intent3);
 
@@ -46,7 +46,7 @@ public class SulationSinger2  extends TabActivity {
         mTabHost.setCurrentTab(0);
 
 
-        // Intent intent2 = new Intent(ParioritySingers.this, SulationSinger2.class);
+        // Intent intent2 = new Intent(PrioritySingers.this, SolutionSinger2.class);
        // startActivity(intent1);
 
        // finish();

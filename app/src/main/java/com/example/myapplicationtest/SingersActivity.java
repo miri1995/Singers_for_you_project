@@ -1,22 +1,15 @@
 package com.example.myapplicationtest;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.myapplicationtest.Enums.EnumAsync;
-import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.SingersLogic.Filters;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SingersActivity extends AppCompatActivity {
@@ -73,7 +66,7 @@ public class SingersActivity extends AppCompatActivity {
         boolean allChoose=helperLists.checkChoise(genre2,loudness2,beat2);
         if(allChoose) { //only if all filter selected
             filters = new Filters(genre2, loudness2, beat2);
-            Intent intent1 = new Intent(SingersActivity.this, ParioritySingers.class);
+            Intent intent1 = new Intent(SingersActivity.this, PrioritySingers.class);
             intent1.putExtra(Filters.class.getName(), filters);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
@@ -86,7 +79,7 @@ public class SingersActivity extends AppCompatActivity {
 
 
     public void backSingerORProduct_click(View view){
-        Intent intent = new Intent(this, ChoiceSingerOrProduct.class);
+        Intent intent = new Intent(this, WhichArtist.class);
         startActivity(intent);
     }
 

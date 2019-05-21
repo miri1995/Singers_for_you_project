@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
-import android.widget.Switch;
 
 import com.example.myapplicationtest.SingersLogic.Filters;
 import com.example.myapplicationtest.SingersLogic.Priority;
 
-public class ParioritySingers extends AppCompatActivity {
+public class PrioritySingers extends AppCompatActivity {
     Priority priority;
     Spinner spinner1, spinner2, spinner3, spinner4;
    // Switch swPopular;
@@ -71,10 +70,10 @@ public class ParioritySingers extends AppCompatActivity {
             Filters filters = (Filters) intent.getSerializableExtra(Filters.class.getName());
             priority = new Priority(genreP2, loudnessP2, beatP2,filters,true); //todo delete pop
 
-            Intent intent1 = new Intent(ParioritySingers.this, SulationSinger2.class);
+            Intent intent1 = new Intent(PrioritySingers.this, SolutionSinger2.class);
             intent1.putExtra(Priority.class.getName(), priority);
             setResult(Activity.RESULT_OK, intent1);
-           // Intent intent2 = new Intent(ParioritySingers.this, SulationSinger2.class);
+           // Intent intent2 = new Intent(PrioritySingers.this, SolutionSinger2.class);
             startActivity(intent1);
 
             finish();

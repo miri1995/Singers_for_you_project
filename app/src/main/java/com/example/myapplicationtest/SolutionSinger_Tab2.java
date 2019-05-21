@@ -12,7 +12,7 @@ import java.util.List;
 
 //import assets.pair3.txt;
 
-public class SulationSinger_Tab2 extends Activity {
+public class SolutionSinger_Tab2 extends Activity {
 
     private static List<String> reverseListArtists =new ArrayList<>();
     private static List<String> reverseGrade=new ArrayList<>();
@@ -77,7 +77,7 @@ public class SulationSinger_Tab2 extends Activity {
     }
 
     public void back_click(View view){
-        Intent intent = new Intent(SulationSinger_Tab2.this, SingersActivity.class);
+        Intent intent = new Intent(SolutionSinger_Tab2.this, SingersActivity.class);
         startActivity(intent);
     }
 }
