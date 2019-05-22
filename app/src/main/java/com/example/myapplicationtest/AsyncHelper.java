@@ -3,6 +3,8 @@ package com.example.myapplicationtest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
@@ -45,6 +47,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                 "Please wait...");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected String doInBackground(Void... voids) {
         final String host = "35.225.34.63";
@@ -197,21 +200,19 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                                 if(!values.contains(rs.getString(colName2))){
                                     values.add(rs.getString(colName2));
                                   //  Log.d("D","result"+ values);
-                                    Log.d("D","ids"+ rs.getString(colName1));
+                                  //  Log.d("D","ids"+ rs.getString(colName1));
                                 }
                             }
                             else{
                                 values.clear();
                                 values.add(rs.getString(colName2));
-                               // Log.d("D","result2"+ values);
-                                Log.d("D","ids"+ rs.getString(colName1));
                             }
-                            HelperLists.poetIdGenre.put(rs.getString(colName1),values);
-                         //   Log.d("D","map" + HelperLists.poetIdGenre.toString());
-
-                               // HelperLists.poetIdTopic.put(colName1,colName3);
-                                //HelperLists.poetIdGoal.put(colName1,colName4);
+                            String whichid = rs.getString(colName1);
+                            HelperLists.poetIdGenre.put(whichid,values);
+                            Log.d("D","id "+rs.getString(colName1) );
+                            Log.d("D","map" + HelperLists.poetIdGenre.toString());
                         }
+                       // Log.d("D","fin"+ rs);
                        // Log.d("D","map" + HelperLists.poetIdGenre.get(2).toString());
                         //Log.d("D","result"+ SolutionComposer.composers);
                         con.close();
