@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         readFile("goal.txt",EnumTables.goal.getEnums());
         HelperLists helperLists = new HelperLists();
         Map<String,List<String>> poetIdGenre = helperLists.updatePoetMap(this);
+        LearnedDataBase l=new LearnedDataBase(poetIdGenre);
 
     }
 
