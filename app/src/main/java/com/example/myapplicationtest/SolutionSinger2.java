@@ -36,7 +36,7 @@ public class SolutionSinger2 extends TabActivity {
         intent2.putExtra(Priority.class.getName(), priority);
         setResult(Activity.RESULT_OK, intent2);
 
-        Intent intent3 = new Intent(SolutionSinger2.this, SolutionSinger_Tab3.class);
+        Intent intent3 = new Intent(SolutionSinger2.this, SulationSinger_Tab3.class);
        // intent2.putExtra(Priority.class.getName(), priority);
         setResult(Activity.RESULT_OK, intent3);
 

@@ -3,7 +3,8 @@ package com.example.myapplicationtest.Enums;
 public enum EnumAsync {
     LastID("LastID"),LastIdSong("LastIdSong"),GenreId("GenreId"), InsertSinger("InsertSinger"),
     LastIDPoet("LastIDPoet"),LastIDComp("LastIDComp"), //ASYNC REGISTRATION
-    Genre("Genre"), Goal("Goal"),Sol("Sol"),Topic("Topic"),Poet("Poet"),Instrument("Instrument"),Composer("Composer"),; //ASYNCHELPER
+    Genre("Genre"), Goal("Goal"),Sol("Sol"),Topic("Topic"),Poet("Poet"),Instrument("Instrument"),Composer("Composer"),RelevantPoets("RelevantPoets")
+    ; //ASYNCHELPER
 
     private String enumAsync;
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,15 +27,21 @@ public class HelperLists {
     public static List<String> goalHelperList=new ArrayList<>();
     public static List<String> topicHelperList=new ArrayList<>();
     public static List<String> instrumentHelperList = new ArrayList<>();
-    public static List<String> composerIDHelperList = new ArrayList<>();
-    public static List<String> composerGenreHelperList = new ArrayList<>();
+   // public static List<String> composerIDHelperList = new ArrayList<>();
+    //public static List<String> composerGenreHelperList = new ArrayList<>();
+    public static Map<String,List<String>> poetIdTopic = new HashMap();
+    public static Map<String,List<String>> poetIdGenre = new HashMap();
+    public static Map<String,List<String>> poetIdGoal = new HashMap();
+    public static List<String> poetGoalList = new ArrayList<>();
 
     public HelperLists(){
 
     }
 
-    public String getComposerId(){return "select composers.composer_id from composers";}
-    public String getComposerGenre(){return "select composers.composers_genre from composers";}
+   // public String getComposerId(){return "select composers.composer_id from composers";}
+    //public String getComposerGenre(){return "select composers.composers_genre from composers";}
+
+    public String getrelevantPoets() {return "select poet_id,genre,song_topic,goal FROM poets order by poet_id";}
 
    public String getGenreQuery(){
         return "select genre from genre";
@@ -150,6 +157,20 @@ public class HelperLists {
         musicalInstrument=HelperLists.instrumentHelperList;
         musicalInstrument.add(0,EnumsSingers.select.getEnums());
         return musicalInstrument;
+    }
+
+    public Map updatePoetMap(Context context){
+        //List<String> musicalInstrument=new ArrayList<>();
+        Map<String,List<String>> poetIdGenre2 = new HashMap<>();
+        String q2=getrelevantPoets();
+        new AsyncHelper(context,q2,"poet_id","genre","song_topic","goal",
+                EnumAsync.RelevantPoets.getEnumAsync()).execute(); //async task for getting data from db
+        // TODO maybe here call the function of couples organization
+        poetIdGenre2 = HelperLists.poetIdGenre;
+        return poetIdGenre2;
+       // musicalInstrument=HelperLists.instrumentHelperList;
+        //musicalInstrument.add(0,EnumsSingers.select.getEnums());
+       // return musicalInstrument;
     }
 
     public void initPariority(Context context,Spinner spinner,Spinner spinner2,Spinner spinner3){

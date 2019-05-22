@@ -188,6 +188,39 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         Log.d("D","ERROR executeQuery");
                     }
                     break;
+                case RelevantPoets:
+                    List<String> values = new ArrayList<>();
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            if(HelperLists.poetIdGenre.containsKey(rs.getString(colName1))){
+                                if(!values.contains(rs.getString(colName2))){
+                                    values.add(rs.getString(colName2));
+                                  //  Log.d("D","result"+ values);
+                                    Log.d("D","ids"+ rs.getString(colName1));
+                                }
+                            }
+                            else{
+                                values.clear();
+                                values.add(rs.getString(colName2));
+                               // Log.d("D","result2"+ values);
+                                Log.d("D","ids"+ rs.getString(colName1));
+                            }
+                            HelperLists.poetIdGenre.put(rs.getString(colName1),values);
+                         //   Log.d("D","map" + HelperLists.poetIdGenre.toString());
+
+                               // HelperLists.poetIdTopic.put(colName1,colName3);
+                                //HelperLists.poetIdGoal.put(colName1,colName4);
+                        }
+                       // Log.d("D","map" + HelperLists.poetIdGenre.get(2).toString());
+                        //Log.d("D","result"+ SolutionComposer.composers);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery");
+                    }
+                    break;
             }
 
 

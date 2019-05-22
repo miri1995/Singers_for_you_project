@@ -14,7 +14,7 @@ import java.util.Map;
 
 //import assets.pair3.txt;
 
-public class SolutionSinger_Tab3 extends Activity {
+public class SulationSinger_Tab3 extends Activity {
 
     private static List<String> sortedListArtists =new ArrayList<>();
     private static List<String> sortedGrades =new ArrayList<>();
@@ -84,7 +84,7 @@ public class SolutionSinger_Tab3 extends Activity {
     }
 
     public void back_click(View view){
-        Intent intent = new Intent(SolutionSinger_Tab3.this, SingersActivity.class);
+        Intent intent = new Intent(SulationSinger_Tab3.this, SingersActivity.class);
         startActivity(intent);
     }
 }

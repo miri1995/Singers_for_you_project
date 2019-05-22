@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         readFile("pair3.txt", EnumTables.genre.getEnums());
         readFile("topics.txt",EnumTables.topic.getEnums());
         readFile("goal.txt",EnumTables.goal.getEnums());
+        HelperLists helperLists = new HelperLists();
+        Map<String,List<String>> poetIdGenre = helperLists.updatePoetMap(this);
 
     }
 

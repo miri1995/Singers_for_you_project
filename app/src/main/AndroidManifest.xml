@@ -87,7 +87,7 @@
                 android:value="com.example.myapplicationtest.ParioritySingers" />
         </activity>
         <activity
-            android:name=".SolutionSinger_Tab3"
+            android:name=".SulationSinger_Tab3"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity">
         </activity>
