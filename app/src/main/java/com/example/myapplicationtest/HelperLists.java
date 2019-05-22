@@ -26,12 +26,15 @@ public class HelperLists {
     public static List<String> goalHelperList=new ArrayList<>();
     public static List<String> topicHelperList=new ArrayList<>();
     public static List<String> instrumentHelperList = new ArrayList<>();
+    public static List<String> composerIDHelperList = new ArrayList<>();
+    public static List<String> composerGenreHelperList = new ArrayList<>();
 
     public HelperLists(){
 
     }
 
-
+    public String getComposerId(){return "select composers.composer_id from composers";}
+    public String getComposerGenre(){return "select composers.composers_genre from composers";}
 
    public String getGenreQuery(){
         return "select genre from genre";

@@ -17,9 +17,13 @@ import java.util.List;
 public class AsyncLearnedData extends AsyncTask<Void, Void, String> {
     ProgressDialog mProgressDialog;
     Context context;
-    public AsyncLearnedData(Context context, String query, String colName1, String colName2, String colName3, String colName4, String flag) {
+    String query;
+    String colName;
+    public AsyncLearnedData(Context context, String query, String colName) {
         //Log.d("D",url);
         this.context=context;
+        this.query=query;
+        this.colName=colName;
     }
 
     protected void onPreExecute() {
@@ -30,10 +34,30 @@ public class AsyncLearnedData extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... voids) {
 
+        final String host = "35.225.34.63";
+        final String port = "3306";
+        final String schema = "dbProject";
+        final String user = "root";
+        final String password = "0542015460mb";
 
-            Log.d("D","in background list"+ SolutionSinger_Tab1.artists);
+        try {
+            Log.d("D", "in background");
+            Class.forName("com.mysql.jdbc.Driver");
+            java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
 
-        // Log.d("D",playerList.get(1).toString());
+            try (Statement stmt = con.createStatement();
+                 ResultSet rs = stmt.executeQuery(query);) {
+                while (rs.next()) {
+
+                    HelperLists.composerGenreHelperList.add(rs.getString(colName));
+                }
+                con.close();
+            } catch (SQLException e) {
+                Log.d("D", "ERROR executeQuery gen");
+            }
+        }catch (Exception e) {
+            Log.d("D", e.getMessage());
+        }
         return "COMPLETE";
     }
 
