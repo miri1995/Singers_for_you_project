@@ -37,10 +37,11 @@ public class LearnedDataBase {
                 for (int i = 0; i < values.size(); i++)
                     for (int j = i+1; j < values.size(); j++)
 
-                        // finding the index with same
-                        // value but different index.
-                        if (values.get(i) != values.get(j)){
-                            Pair pair = new Pair(values.get(i), values.get(i + 1));
+                        // finding the index with different
+                        // value and different index.
+                        if (values.get(i) != values.get(j) &&
+                                !pairs.contains(values.get(i)) && !pairs.contains(values.get(j))){
+                            Pair pair = new Pair(values.get(i), values.get(j));
                             pairs.add(pair);
                         }
 
