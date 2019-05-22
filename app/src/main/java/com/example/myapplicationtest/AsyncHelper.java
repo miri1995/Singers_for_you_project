@@ -192,29 +192,24 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                     }
                     break;
                 case RelevantPoets:
-                    List<String> values = new ArrayList<>();
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
-                            if(HelperLists.poetIdGenre.containsKey(rs.getString(colName1))){
-                                if(!values.contains(rs.getString(colName2))){
+                            String key=rs.getString(colName1);
+                            if(HelperLists.poetIdGenre.containsKey(key)){
+                                List<String> values=HelperLists.poetIdGenre.get(key);
+                                if(values!=null && !values.contains(rs.getString(colName2))){
                                     values.add(rs.getString(colName2));
-                                  //  Log.d("D","result"+ values);
-                                  //  Log.d("D","ids"+ rs.getString(colName1));
+                                    HelperLists.poetIdGenre.put(key,values);
                                 }
                             }
                             else{
-                                values.clear();
+                                List<String> values = new ArrayList<>();
                                 values.add(rs.getString(colName2));
+                                HelperLists.poetIdGenre.put(key,values);
                             }
-                            String whichid = rs.getString(colName1);
-                            HelperLists.poetIdGenre.put(whichid,values);
-                            Log.d("D","id "+rs.getString(colName1) );
-                            Log.d("D","map" + HelperLists.poetIdGenre.toString());
                         }
-                       // Log.d("D","fin"+ rs);
-                       // Log.d("D","map" + HelperLists.poetIdGenre.get(2).toString());
-                        //Log.d("D","result"+ SolutionComposer.composers);
+                        Log.d("D","map" + HelperLists.poetIdGenre.toString());
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {

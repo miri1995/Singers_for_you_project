@@ -160,7 +160,6 @@ public class HelperLists {
     }
 
     public Map updatePoetMap(Context context){
-        //List<String> musicalInstrument=new ArrayList<>();
         Map<String,List<String>> poetIdGenre2 = new HashMap<>();
         String q2=getrelevantPoets();
         new AsyncHelper(context,q2,"poet_id","genre","song_topic","goal",
@@ -168,9 +167,6 @@ public class HelperLists {
         // TODO maybe here call the function of couples organization
         poetIdGenre2 = HelperLists.poetIdGenre;
         return poetIdGenre2;
-       // musicalInstrument=HelperLists.instrumentHelperList;
-        //musicalInstrument.add(0,EnumsSingers.select.getEnums());
-       // return musicalInstrument;
     }
 
     public void initPariority(Context context,Spinner spinner,Spinner spinner2,Spinner spinner3){
