@@ -11,7 +11,7 @@ public class ComposersPriority implements Serializable {
     private ComposerFilters filters;
     //private String prioMusical_instrument;
    // private boolean pop;
-    // private Filters filters = new Filters("genre","loudness","tempo");
+    // private Filters filters = new Filters("genreSinger","loudness","tempo");
 
     public ComposersPriority(String prioGenre, String prioloudness, String priotempo,
                              ComposerFilters filters) {
@@ -34,7 +34,7 @@ public class ComposersPriority implements Serializable {
     }
 
     /**
-     * @return genre = chosen genre
+     * @return genreSinger = chosen genreSinger
      */
     public String getPrioGenre() {
         return prioGenre;

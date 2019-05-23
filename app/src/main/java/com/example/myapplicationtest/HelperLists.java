@@ -32,7 +32,8 @@ public class HelperLists {
     public static Map<String,List<String>> poetIdTopic = new HashMap();
     public static Map<String,List<String>> poetIdGenre = new HashMap();
     public static Map<String,List<String>> poetIdGoal = new HashMap();
-    public static List<String> poetGoalList = new ArrayList<>();
+    public static Map<String,List<String>> composerIdGenre = new HashMap();
+    //public static List<String> poetGoalList = new ArrayList<>();
 
     public HelperLists(){
 
@@ -41,7 +42,7 @@ public class HelperLists {
    // public String getComposerId(){return "select composers.composer_id from composers";}
     //public String getComposerGenre(){return "select composers.composers_genre from composers";}
 
-    public String getrelevantPoets() {return "select poet_id,genre,song_topic,goal FROM poets order by poet_id";}
+    public String getRelevantPoets() {return "select poet_id,genre,song_topic,goal FROM poets order by poet_id";}
 
    public String getGenreQuery(){
         return "select genre from genre";
@@ -103,16 +104,15 @@ public class HelperLists {
     }
 
     public List<String> updateGenreList(Context context){
-
         List<String> geners=new ArrayList<>();
         String q3=getGenreQuery();
         //async task for getting data from db
         new AsyncHelper(context,q3,"genre",
                 null,null,null, EnumAsync.Genre.getEnumAsync()).execute();
         geners=HelperLists.genersHelperLists;
-        if(!geners.contains(EnumsSingers.select.getEnums())) {
+       // if(!geners.contains(EnumsSingers.select.getEnums())) {
             geners.add(0, EnumsSingers.select.getEnums());
-        }
+        //}
         return geners;
     }
 
@@ -159,14 +159,13 @@ public class HelperLists {
         return musicalInstrument;
     }
 
-    public Map updatePoetMap(Context context){
-        Map<String,List<String>> poetIdGenre2 = new HashMap<>();
-        String q2=getrelevantPoets();
+    public void updatePoetMap(Context context){
+        //Map<String,List<String>> poetIdGenre2 = new HashMap<>();
+        String q2= getRelevantPoets();
         new AsyncHelper(context,q2,"poet_id","genre","song_topic","goal",
                 EnumAsync.RelevantPoets.getEnumAsync()).execute(); //async task for getting data from db
-        // TODO maybe here call the function of couples organization
-        poetIdGenre2 = HelperLists.poetIdGenre;
-        return poetIdGenre2;
+        //poetIdGenre2 = HelperLists.poetIdGenre;
+        //return poetIdGenre2;
     }
 
     public void initPariority(Context context,Spinner spinner,Spinner spinner2,Spinner spinner3){
@@ -181,7 +180,7 @@ public class HelperLists {
 
     public void InitSingerFilters(Context context, Spinner spinner,Spinner spinner2,Spinner spinner3){
         List<String> geners=new ArrayList<>();
-        //genre
+        //genreSinger
         geners=updateGenreList(context);
 
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item,geners);
@@ -202,7 +201,7 @@ public class HelperLists {
         List<String> geners=new ArrayList<>();
         List<String> topics=new ArrayList<>();
          List<String> goals =new ArrayList<>();
-        //genre
+        //genreSinger
         geners=updateGenreList(context);
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item,geners);
         spinner1.setAdapter(generesAdapter);
@@ -221,7 +220,7 @@ public class HelperLists {
     public void InitComposersFilters(Context context, Spinner spinner1,Spinner spinner2,Spinner spinner3,Spinner spinner4){
          List<String> geners=new ArrayList<>();
          List<String> musicalInstrument =new ArrayList<>();
-        //genre
+        //genreSinger
         geners=updateGenreList(context);
         ArrayAdapter<String> generesAdapter = new ArrayAdapter<String>(context.getApplicationContext(), android.R.layout.simple_spinner_item,geners);
         spinner1.setAdapter(generesAdapter);

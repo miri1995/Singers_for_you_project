@@ -54,7 +54,7 @@ public class SolutionPoets extends Activity {
                 poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),needToIncrease);
 
         try {
-            str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genre",
+            str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genreSinger",
                     EnumAsync.Poet.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
@@ -73,12 +73,12 @@ public class SolutionPoets extends Activity {
                 gradesElement2 = fittingPercents.percentElement("goal");
             }
             else if(poetsPriority.getPrioSubject().equals(EnumsSingers.High.getEnums())){
-                gradesElement1 = fittingPercents.percentElement("genre");
+                gradesElement1 = fittingPercents.percentElement("genreSinger");
                 gradesElement2 = fittingPercents.percentElement("goal");
             }
             else{
                 gradesElement1 = fittingPercents.percentElement("topic");
-                gradesElement2 = fittingPercents.percentElement("genre");
+                gradesElement2 = fittingPercents.percentElement("genreSinger");
             }
             grades=fittingPercents.uniteTwoListd(gradesElement1,gradesElement2);
 

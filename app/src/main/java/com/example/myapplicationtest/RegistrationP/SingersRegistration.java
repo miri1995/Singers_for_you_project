@@ -50,7 +50,7 @@ public class SingersRegistration extends AppCompatActivity {
 
         //Name
         name_txt = findViewById(R.id.nameAdd);
-        //genre
+        //genreSinger
         spinner1 = findViewById(R.id.register_what_you);
         //loudness
         spinner2 = findViewById(R.id.spinner2);
@@ -92,7 +92,7 @@ public class SingersRegistration extends AppCompatActivity {
         String str_result3Final=null,str_result2Final=null,str_resultFinal=null;
         String str_result3=null,str_result2=null,str_result=null;
         String getLastIdSongs="select "+ EnumTables.song_id.getEnums()+" from songs order by song_id desc limit 1";
-        String getGenreId="select "+EnumTables.genre_id.getEnums()+" from genre where genre=\""+genreChoice+"\"";
+        String getGenreId="select "+EnumTables.genre_id.getEnums()+" from genreSinger where genreSinger=\""+genreChoice+"\"";
         String getLastId="select "+EnumTables.artist_id.getEnums()+" from artists order by artist_id desc limit 1";
         //get id
         try {
@@ -102,7 +102,7 @@ public class SingersRegistration extends AppCompatActivity {
             str_result2 = new AsyncHelperRegistration(SingersRegistration.this, getLastIdSongs,
                     "song_id", EnumAsync.LastIdSong.getEnumAsync()).execute().get();
 
-            //get genre
+            //get genreSinger
             str_result3 = new AsyncHelperRegistration(SingersRegistration.this, getGenreId,
                     "genre_id", EnumAsync.GenreId.getEnumAsync()).execute().get();
         } catch (ExecutionException e) {

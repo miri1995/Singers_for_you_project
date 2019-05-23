@@ -3,7 +3,8 @@ package com.example.myapplicationtest.Enums;
 public enum EnumTables {
 
   //TO main
-  genre("genre"),topic("topic"),goal("goal"),
+  genreSinger("genreSinger"),topic("topic"),goal("goal"),genrePoet("genrePoet"),genreComposer("genreComposer"),
+
 
    //artists
     artist_id("artist_id"),artist_name("artist_name"),artist_hotness("artist_hotness"),
@@ -14,8 +15,8 @@ public enum EnumTables {
     //genreartists
     /*artist_id*/ genre_id("genre_id"),
 
-    //genre
-    /*genre_id*/ /*genre("genre")*/
+    //genreSinger
+    /*genre_id*/ /*genreSinger("genreSinger")*/
 
     //poets
     poet_id("poet_id"),poet_name("poet_name"),song_topic("song_topic"),/*goal("goal")*/

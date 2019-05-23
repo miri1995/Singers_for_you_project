@@ -56,7 +56,7 @@ public class SolutionSinger_Tab1 extends Activity {
         tempo.clear();
         loudness.clear();
         try {
-            str_result = new AsyncHelper(SolutionSinger_Tab1.this, q3, "artist_name", "song_tempo", "song_loudness", "genre",
+            str_result = new AsyncHelper(SolutionSinger_Tab1.this, q3, "artist_name", "song_tempo", "song_loudness", "genreSinger",
                     EnumAsync.Sol.getEnumAsync()).execute().get();
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {

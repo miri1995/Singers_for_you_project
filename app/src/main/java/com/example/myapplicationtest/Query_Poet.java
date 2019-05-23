@@ -17,7 +17,7 @@ public class Query_Poet implements IQuery {
 
     /**
      * creates the queries according to the user's choices.
-     * @param genre = user's choice of genre
+     * @param genre = user's choice of genreSinger
      * @param loudness = user's choice of loudness.
      * @param tempo = user's choice of tempo.
      * @return sol = the final query
@@ -119,7 +119,7 @@ public class Query_Poet implements IQuery {
 
     /**
      * receives the user's choices and compose from them the matching query.
-     * @param genre = user's choice of genre
+     * @param genre = user's choice of genreSinger
      * @param element2 = user's choice of element2.
      * @param element3 = user's choice of element3.
      * @return q = the matching query
@@ -135,19 +135,19 @@ public class Query_Poet implements IQuery {
         List<String> otherElement2=new ArrayList<>();
         List<String> otherElement3=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderCouples(genre,prioGenre,"genre",20);
+            couples = orderCouples(genre,prioGenre,"genrePoet",5);
             otherGenre = getOtherElement(couples,genre);
-            Maps.getInstance().getFromQuery(otherGenre,"genre");
+            Maps.getInstance().getFromQuery(otherGenre,"genrePoet");
         }
         if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
 
-                couples2 = orderCouples(element2, prioElement2,"topic",3);
+                couples2 = orderCouples(element2, prioElement2,"topic",5);
                 otherElement2 = getOtherElement(couples2, element2);
                 Maps.getInstance().getFromQuery(otherElement2, "topic");
 
         }
         if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())){
-                couples3 = orderCouples(element3,prioElement3,"goal",3);
+                couples3 = orderCouples(element3,prioElement3,"goal",5);
                 otherElement3 = getOtherElement(couples3,element3);
                 Maps.getInstance().getFromQuery(otherElement3,"goal");
         }
@@ -163,7 +163,7 @@ public class Query_Poet implements IQuery {
       /**
      * composes all the query parts into one query.
      * @param BeatQ  = the combination of the tempo and loudness chosen by the user.
-     * @param genre = user's choice of genre.
+     * @param genre = user's choice of genreSinger.
      * @return lastQ = the final query
      */
 
@@ -212,14 +212,17 @@ public class Query_Poet implements IQuery {
     public List<String> orderCouples(String genre, String prioGenre,String which,int threshold){
         Map<String, Integer> map = new HashMap<>();
         CoupleDistance coupleDistance = CoupleDistance.getInstance();
-        if(which.equals("genre")){
-            map = coupleDistance.getGenreMap();
+        if(which.equals("genreSinger")){
+            map = coupleDistance.getGenreSingerMap();
         }
         else if(which.equals("topic")){
             map = coupleDistance.getTopicMap();
         }
-        else{
+        else if (which.equals("goal")){
             map = coupleDistance.getGoalMap();
+        }
+        else if (which.equals("genrePoet")){
+            map = coupleDistance.getGenrePoetMap();
         }
 
         Map<String, Integer> miniMap = new HashMap<>();

@@ -1,7 +1,6 @@
 package com.example.myapplicationtest;
 
 import com.example.myapplicationtest.Enums.EnumsSingers;
-import com.example.myapplicationtest.SingersLogic.Priority;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +11,9 @@ public class Maps {
 
     private static Maps single_instance = null;
     HashMap<String, Double> priority = new HashMap<>();
-    List<String> otherGenre = new ArrayList<>();
+    List<String> otherGenreSinger = new ArrayList<>();
+    List<String> otherGenrePoet = new ArrayList<>();
+    List<String> otherGenreComposer = new ArrayList<>();
     List<String>otherTopic = new ArrayList<>();
     List<String>otherGoal = new ArrayList<>();
     public static int middleLoudness=0;
@@ -27,10 +28,21 @@ public class Maps {
         return priority;
     }
 
-    public List<String> getSecondGenre() {
+    public List<String> getSecondGenreSinger() {
 
-        return otherGenre;
+        return otherGenreSinger;
     }
+
+    public List<String> getSecondGenrePoet() {
+
+        return otherGenrePoet;
+    }
+
+    public List<String> getSecondGenreComposer() {
+
+        return otherGenreComposer;
+    }
+
 
     public List<String> getSecondTopic() {
 
@@ -178,14 +190,17 @@ public class Maps {
     }
 
     public void getFromQuery(List<String>coupleGenre,String whichList){
-     if(whichList.equals("genre")){
-         otherGenre.addAll(coupleGenre);
+     if(whichList.equals("genreSinger")){
+         otherGenreSinger.addAll(coupleGenre);
      }
      else if (whichList.equals("topic")){
          otherTopic.addAll(coupleGenre);
      }
-     else {
+     else if (whichList.equals("goal")){
          otherGoal.addAll(coupleGenre);
+     }
+     else if (whichList.equals("genrePoet")){
+         otherGenrePoet.addAll(coupleGenre);
      }
 
     }

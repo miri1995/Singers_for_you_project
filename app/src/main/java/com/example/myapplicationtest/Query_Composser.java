@@ -17,7 +17,7 @@ public class Query_Composser implements IQuery {
 
     /**
      * creates the queries according to the user's choices.
-     * @param genre = user's choice of genre
+     * @param genre = user's choice of genreSinger
      * @param loudness = user's choice of loudness.
      * @param tempo = user's choice of tempo.
      * @return sol = the final query
@@ -126,7 +126,7 @@ public class Query_Composser implements IQuery {
 
     /**
      * receives the user's choices and compose from them the matching query.
-     * @param genre = user's choice of genre
+     * @param genre = user's choice of genreSinger
      * @param element2 = user's choice of element2.
      * @param element3 = user's choice of element3.
      * @return q = the matching query
@@ -138,9 +138,9 @@ public class Query_Composser implements IQuery {
         List<String> couples=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderCouples(genre,prioGenre,"genre",20);
+            couples = orderCouples(genre,prioGenre,"genreComposer",20);
             otherGenre = getOtherElement(couples,genre);
-            Maps.getInstance().getFromQuery(otherGenre,"genre");
+            Maps.getInstance().getFromQuery(otherGenre,"genreComposer");
         }
         String q="";
             String whichtableloudness = "composers.composers_loudness";
@@ -150,7 +150,7 @@ public class Query_Composser implements IQuery {
             q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,instrument,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
            /* String choose = "Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
                     "FROM composers WHERE (composers.musical_instrument=\""+instrument+"\""+")";
-            q=GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);*/
+            q=GetSol(choose,genreSinger,element2,element3,prioGenre,prioElement2,prioElement3,otherGenreSinger,otherElement2,otherElement3,popular,flag);*/
 
       //  }
         return q;
@@ -160,7 +160,7 @@ public class Query_Composser implements IQuery {
       /**
      * composes all the query parts into one query.
      * @param BeatQ  = the combination of the tempo and loudness chosen by the user.
-     * @param genre = user's choice of genre.
+     * @param genre = user's choice of genreSinger.
      * @return lastQ = the final query
      */
 
@@ -194,14 +194,17 @@ public class Query_Composser implements IQuery {
     public List<String> orderCouples(String genre, String prioGenre,String which,int threshold){
         Map<String, Integer> map = new HashMap<>();
         CoupleDistance coupleDistance = CoupleDistance.getInstance();
-        if(which.equals("genre")){
-            map = coupleDistance.getGenreMap();
+        if(which.equals("genreSinger")){
+            map = coupleDistance.getGenreSingerMap();
         }
         else if(which.equals("topic")){
             map = coupleDistance.getTopicMap();
         }
-        else{
+        else if (which.equals("goal")){
             map = coupleDistance.getGoalMap();
+        }
+        else if (which.equals("genrePoet")){
+            map = coupleDistance.getGenrePoetMap();
         }
 
         Map<String, Integer> miniMap = new HashMap<>();

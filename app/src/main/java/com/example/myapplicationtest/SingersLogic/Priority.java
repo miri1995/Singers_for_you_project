@@ -9,7 +9,7 @@ public class Priority implements Serializable {
     private String priotempo;
     private Filters filters;
     private boolean pop;
-    // private Filters filters = new Filters("genre","loudness","tempo");
+    // private Filters filters = new Filters("genreSinger","loudness","tempo");
 
     public Priority(String prioGenre, String prioloudness, String priotempo,Filters filters, boolean pop) {
         this.prioGenre = prioGenre;
@@ -29,7 +29,7 @@ public class Priority implements Serializable {
     }
 
     /**
-     * @return genre = chosen genre
+     * @return genreSinger = chosen genreSinger
      */
     public String getPrioGenre() {
         return prioGenre;

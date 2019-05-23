@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,16 +22,22 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        readFile("pair3.txt", EnumTables.genre.getEnums());
-        readFile("topics.txt",EnumTables.topic.getEnums());
-        readFile("goal.txt",EnumTables.goal.getEnums());
+        CoupleDistance coupleDistance = CoupleDistance.getInstance();
+        readFile("pair3.txt", EnumTables.genreSinger.getEnums(),coupleDistance);
+       // readFile("topics.txt",EnumTables.topic.getEnums());
+        //readFile("goal.txt",EnumTables.goal.getEnums());
         HelperLists helperLists = new HelperLists();
-        Map<String,List<String>> poetIdGenre = helperLists.updatePoetMap(this);
-        LearnedDataBase l=new LearnedDataBase(poetIdGenre);
-
+        helperLists.updatePoetMap(this);
+        List<List<String>> genreCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre);
+        List<List<String>> topicCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic);
+        List<List<String>> goalCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal);
+        List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre);
+        coupleDistance.countPairs(genreCouplesPoets,EnumTables.genrePoet.getEnums());
+        coupleDistance.countPairs(topicCouplesPoets,EnumTables.topic.getEnums());
+        coupleDistance.countPairs(goalCouplesPoets,EnumTables.goal.getEnums());
     }
 
-    public void readFile(String fileName,String flag){
+    public void readFile(String fileName,String flag,CoupleDistance coupleDistance){
         String text="";
         try {
             InputStream is = getAssets().open(fileName);
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        CoupleDistance coupleDistance = CoupleDistance.getInstance();
+       // CoupleDistance coupleDistance = CoupleDistance.getInstance();
         List<List<String>> couples = new ArrayList<>();
         try {
             couples = coupleDistance.ReadFile(text);

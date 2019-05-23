@@ -21,15 +21,15 @@ public class Query {
     */
 /**
      * creates the queries according to the user's choices.
-     * @param genre = user's choice of genre
+     * @param genreSinger = user's choice of genreSinger
      * @param loudness = user's choice of loudness.
      * @param tempo = user's choice of tempo.
      * @return sol = the final query
      *//*
 
-    public String MapBeat(String genre,String loudness,String tempo,
+    public String MapBeat(String genreSinger,String loudness,String tempo,
                           HashMap priority,String prioLoudness,String prioTempo,String prioGenre,
-                          List<String> otherGenre,boolean popular,String flag,String instrument,
+                          List<String> otherGenreSinger,boolean popular,String flag,String instrument,
                           String whichtableloudness,String whichtabletempo,String whichcolloudness,String whichcoltempo){
         int temp=0;
         String q="";
@@ -38,9 +38,9 @@ public class Query {
             // the base query which will be the first part of all the quries
             if(flag.equals(EnumsSingers.singer.getEnums())) {
                 mapGenre = "#standardSQL\n" + "SELECT distinct artists.artist_name,songs.song_loudness,songs.song_tempo," +
-                        "genre.genre\n" +
-                        "from genre\n" +
-                        "INNER JOIN genreartists on genre.genre_id = genreartists.genre_id\n" +
+                        "genreSinger.genreSinger\n" +
+                        "from genreSinger\n" +
+                        "INNER JOIN genreartists on genreSinger.genre_id = genreartists.genre_id\n" +
                         "INNER JOIN artists on artists.artist_id = genreartists.artist_id\n" +
                         "INNER JOIN songs on songs.song_artist_id = artists.artist_id\n"; //+
             }
@@ -134,7 +134,7 @@ public class Query {
             q=q+" AND (composers.musical_instrument=\""+instrument+"\""+")";
         }
         // sends to a function that is responsible for Concatenation of the strings into final query.
-        String sol=GetSol(q,genre,null,null,prioGenre,null,null,otherGenre,null,null,popular,flag);
+        String sol=GetSol(q,genreSinger,null,null,prioGenre,null,null,otherGenreSinger,null,null,popular,flag);
         //returns the final query
         return sol;
     }
@@ -143,26 +143,26 @@ public class Query {
     */
 /**
      * receives the user's choices and compose from them the matching query.
-     * @param genre = user's choice of genre
+     * @param genreSinger = user's choice of genreSinger
      * @param element2 = user's choice of element2.
      * @param element3 = user's choice of element3.
      * @return q = the matching query
      *//*
 
 
-    public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean popular,String flag){
+    public String UserInput(String genreSinger, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean popular,String flag){
         HashMap<String,Double> priority = new HashMap<>();
         priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3);
         List<String> couples=new ArrayList<>();
         List<String> couples2=new ArrayList<>();
         List<String> couples3=new ArrayList<>();
-        List<String> otherGenre=new ArrayList<>();
+        List<String> otherGenreSinger=new ArrayList<>();
         List<String> otherElement2=new ArrayList<>();
         List<String> otherElement3=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderCouples(genre,prioGenre,"genre",20);
-            otherGenre = getOtherElement(couples,genre);
-            Maps.getInstance().getFromQuery(otherGenre,"genre");
+            couples = orderCouples(genreSinger,prioGenre,"genreSinger",20);
+            otherGenreSinger = getOtherElement(couples,genreSinger);
+            Maps.getInstance().getFromQuery(otherGenreSinger,"genreSinger");
         }
         if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
             if (flag.equals(EnumsSingers.poets.getEnums())) {
@@ -184,24 +184,24 @@ public class Query {
             String whichtabletempo = "songs.song_tempo";
             String whichcolloudness = "song_loudness";
             String whichcoltempo = "song_tempo";
-            q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,flag,null,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
+            q=MapBeat(genreSinger,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenreSinger,popular,flag,null,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
 
         }
         else if (flag.equals(EnumsSingers.poets.getEnums())){
-            String choose = "SELECT distinct poets.poet_name,poets.song_topic,poets.goal,poets.genre\n" +
+            String choose = "SELECT distinct poets.poet_name,poets.song_topic,poets.goal,poets.genreSinger\n" +
                     " FROM poets";
-            q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);
+            q= GetSol(choose,genreSinger,element2,element3,prioGenre,prioElement2,prioElement3,otherGenreSinger,otherElement2,otherElement3,popular,flag);
         }
         else{
             String whichtableloudness = "composers.composers_loudness";
             String whichtabletempo = "composers.composers_tempo";
             String whichcolloudness = "composers_loudness";
             String whichcoltempo = "composers_tempo";
-            q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,flag,instrument,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
+            q=MapBeat(genreSinger,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenreSinger,popular,flag,instrument,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
            */
 /* String choose = "Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
                     "FROM composers WHERE (composers.musical_instrument=\""+instrument+"\""+")";
-            q=GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular,flag);*//*
+            q=GetSol(choose,genreSinger,element2,element3,prioGenre,prioElement2,prioElement3,otherGenreSinger,otherElement2,otherElement3,popular,flag);*//*
 
 
         }
@@ -213,14 +213,14 @@ public class Query {
 /**
      * composes all the query parts into one query.
      * @param BeatQ  = the combination of the tempo and loudness chosen by the user.
-     * @param genre = user's choice of genre.
+     * @param genreSinger = user's choice of genreSinger.
      * @return lastQ = the final query
      *//*
 
 
 
-    public String GetSol(String BeatQ, String genre,String element2,String element3,String prioGenre,String prioElement2,String prioElement3,
-                         List<String> otherGenre,List<String> otherTopic,List<String> otherGoal,boolean popular,String flag){
+    public String GetSol(String BeatQ, String genreSinger,String element2,String element3,String prioGenre,String prioElement2,String prioElement3,
+                         List<String> otherGenreSinger,List<String> otherTopic,List<String> otherGoal,boolean popular,String flag){
         String hotness=null;
         if(popular){
              hotness=" order by artists.artist_hotness DESC";
@@ -235,15 +235,15 @@ public class Query {
         StringBuilder quTopic = new StringBuilder();
         StringBuilder quGoal = new StringBuilder();
         if(prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())) {
-            for (int i = 0; i < otherGenre.size(); i++) {
+            for (int i = 0; i < otherGenreSinger.size(); i++) {
                 if(flag.equals(EnumsSingers.singer.getEnums())){
-                    quGenre.append(" OR genre.genre=\"" + otherGenre.get(i) + "\"");
+                    quGenre.append(" OR genreSinger.genreSinger=\"" + otherGenreSinger.get(i) + "\"");
                 }
                 else if (flag.equals(EnumsSingers.poets.getEnums())){
-                    quGenre.append(" OR poets.genre=\"" + otherGenre.get(i) + "\"");
+                    quGenre.append(" OR poets.genreSinger=\"" + otherGenreSinger.get(i) + "\"");
                 }
                 else{
-                    quGenre.append(" OR composers.composers_genre=\"" + otherGenre.get(i) + "\"");
+                    quGenre.append(" OR composers.composers_genre=\"" + otherGenreSinger.get(i) + "\"");
                 }
             }
         }
@@ -262,15 +262,15 @@ public class Query {
 
         String lastQ="";
         if(flag.equals(EnumsSingers.singer.getEnums())){
-            lastQ=BeatQ+" AND (genre.genre=\""+genre+"\""+quGenre+")"+hotness;
+            lastQ=BeatQ+" AND (genreSinger.genreSinger=\""+genreSinger+"\""+quGenre+")"+hotness;
         }
         else if (flag.equals(EnumsSingers.poets.getEnums())){
-            String concat = " WHERE (poets.genre=\""+genre+"\""+quGenre+")"+" AND (poets.song_topic=\""+element2+"\""+quTopic+")"+
+            String concat = " WHERE (poets.genreSinger=\""+genreSinger+"\""+quGenre+")"+" AND (poets.song_topic=\""+element2+"\""+quTopic+")"+
                     "And (poets.goal=\""+element3+"\""+quGoal+")";
             lastQ=BeatQ+concat;
         }
         else{
-            lastQ=BeatQ+" AND (composers.composers_genre=\""+genre+"\""+quGenre+")";
+            lastQ=BeatQ+" AND (composers.composers_genre=\""+genreSinger+"\""+quGenre+")";
         }
 
         return lastQ;
@@ -278,11 +278,11 @@ public class Query {
 
 
 
-    public List<String> orderCouples(String genre, String prioGenre,String which,int threshold){
+    public List<String> orderCouples(String genreSinger, String prioGenre,String which,int threshold){
         Map<String, Integer> map = new HashMap<>();
         CoupleDistance coupleDistance = CoupleDistance.getInstance();
-        if(which.equals("genre")){
-            map = coupleDistance.getGenreMap();
+        if(which.equals("genreSinger")){
+            map = coupleDistance.getGenreSingerMap();
         }
         else if(which.equals("topic")){
             map = coupleDistance.getTopicMap();
@@ -295,7 +295,7 @@ public class Query {
         List<String> couples=new ArrayList<>();
         List<Integer> vals = new ArrayList<>();
         for (Map.Entry<String, Integer> entry :map.entrySet()) {
-            if (entry.getKey().contains(genre)) {
+            if (entry.getKey().contains(genreSinger)) {
                 switch (EnumsSingers.valueOf(prioGenre)) {
                     case Medium:
                         if (entry.getValue() > threshold) {

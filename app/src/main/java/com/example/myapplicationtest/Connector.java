@@ -130,7 +130,7 @@ import java.util.List;
     /**
      * executes the query according to the user's choice.
      * adds the artists returned from the query to a list.
-     * @param filters = holds the values of genre,loudness and tempo that the user chose.
+     * @param filters = holds the values of genreSinger,loudness and tempo that the user chose.
      */
     /*public void ExecuteQuery(Filters filters, Priority priority) {
         artists.clear();

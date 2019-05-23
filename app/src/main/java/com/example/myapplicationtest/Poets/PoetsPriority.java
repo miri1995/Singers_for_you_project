@@ -31,7 +31,7 @@ public class PoetsPriority implements Serializable {
     }
 
     /**
-     * @return genre = chosen genre
+     * @return genreSinger = chosen genreSinger
      */
     public String getPrioGenre() {
         return prioGenre;

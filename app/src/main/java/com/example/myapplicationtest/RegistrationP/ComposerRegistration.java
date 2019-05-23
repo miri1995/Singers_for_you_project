@@ -37,7 +37,7 @@ public class ComposerRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.composer_registration);
 
-        //genre
+        //genreSinger
         spinner1 = findViewById(R.id.genre);
 
         //loudness

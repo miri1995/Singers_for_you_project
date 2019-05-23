@@ -46,7 +46,7 @@ public class PoetsRegistration extends AppCompatActivity {
 
         //name
         name_txt = findViewById(R.id.nameAdd);
-        //genre
+        //genreSinger
         spinner1 = findViewById(R.id.register_what_you);
         //topic
         spinner2 = findViewById(R.id.spinner2);

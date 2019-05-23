@@ -22,7 +22,7 @@ public class PoetsFilters implements Serializable {
     }
 
     /**
-     * @return genre = chosen genre
+     * @return genreSinger = chosen genreSinger
      */
     public String getGenre() {
         return genre;
