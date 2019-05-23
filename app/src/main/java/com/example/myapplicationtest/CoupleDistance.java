@@ -69,8 +69,8 @@ public class CoupleDistance {
         return couples;
     }
 
-    public List<List<String>> CreatePairFromMap(Map<String,List<String>> map) {
-        List<List<String>> pairs = new ArrayList<>();
+    public List<List<String>> CreatePairFromMap(Map<String,List<String>> map,List<List<String>> pairs) {
+        //List<List<String>> pairs2 = pairs;
 
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
             String key = entry.getKey();

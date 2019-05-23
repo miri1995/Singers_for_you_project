@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Poets.PoetsFilters;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class PoetsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poet_choice);
-
+        //HelperLists helperLists = new HelperLists();
 
         //categorization
 

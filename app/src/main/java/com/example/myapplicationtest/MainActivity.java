@@ -26,15 +26,7 @@ public class MainActivity extends AppCompatActivity {
         readFile("pair3.txt", EnumTables.genreSinger.getEnums(),coupleDistance);
        // readFile("topics.txt",EnumTables.topic.getEnums());
         //readFile("goal.txt",EnumTables.goal.getEnums());
-        HelperLists helperLists = new HelperLists();
-        helperLists.updatePoetMap(this);
-        List<List<String>> genreCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre);
-        List<List<String>> topicCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic);
-        List<List<String>> goalCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal);
-        List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre);
-        coupleDistance.countPairs(genreCouplesPoets,EnumTables.genrePoet.getEnums());
-        coupleDistance.countPairs(topicCouplesPoets,EnumTables.topic.getEnums());
-        coupleDistance.countPairs(goalCouplesPoets,EnumTables.goal.getEnums());
+
     }
 
     public void readFile(String fileName,String flag,CoupleDistance coupleDistance){

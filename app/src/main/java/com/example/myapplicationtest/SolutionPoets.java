@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Poets.PoetsPriority;
 import com.example.myapplicationtest.SingersLogic.Helper;
@@ -54,8 +55,25 @@ public class SolutionPoets extends Activity {
                 poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),needToIncrease);
 
         try {
+
+            HelperLists helperLists = new HelperLists();
+            helperLists.updatePoetMap(this);
+            CoupleDistance coupleDistance = CoupleDistance.getInstance();
+            List<List<String>> genreCouplesPoets = new ArrayList<>();
+            genreCouplesPoets=coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genreCouplesPoets);
+            List<List<String>> topicCouplesPoets = new ArrayList<>();
+            topicCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic,topicCouplesPoets));
+            List<List<String>> goalCouplesPoets = new ArrayList<>();
+            goalCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal,goalCouplesPoets));
+
+            //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
+            coupleDistance.countPairs(genreCouplesPoets, EnumTables.genrePoet.getEnums());
+            coupleDistance.countPairs(topicCouplesPoets,EnumTables.topic.getEnums());
+            coupleDistance.countPairs(goalCouplesPoets,EnumTables.goal.getEnums());
             str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genreSinger",
                     EnumAsync.Poet.getEnumAsync()).execute().get();
+
+
             // Log.d("D","sol re "+str_result);
         } catch (ExecutionException e) {
             e.printStackTrace();
