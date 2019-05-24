@@ -3,6 +3,7 @@
     <string name="welcome">Artists for you</string>
     <string name="button_start"> start </string>
     <string name="imageView"> music1 </string>
+    <string name="imageViewlogo"> logo </string>
 
     <string name="textView">filters</string>
     <string name="txtprayority">put your prayority</string>
