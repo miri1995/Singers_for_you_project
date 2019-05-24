@@ -108,12 +108,16 @@ public class HelperLists {
     public List<String> updateGenreList(Context context){
         List<String> geners=new ArrayList<>();
         String q3=getGenreQuery();
-        //async task for getting data from db
-        new AsyncHelper(context,q3,"genre",
-                null,null,null, EnumAsync.Genre.getEnumAsync()).execute();
-        geners=HelperLists.genersHelperLists;
-       // if(!geners.contains(EnumsSingers.select.getEnums())) {
+        if(HelperLists.genersHelperLists.size()==0) {
+            //async task for getting data from db
+            new AsyncHelper(context, q3, "genre",
+                    null, null, null, EnumAsync.Genre.getEnumAsync()).execute();
+            geners = HelperLists.genersHelperLists;
+            // if(!geners.contains(EnumsSingers.select.getEnums())) {
             geners.add(0, EnumsSingers.select.getEnums());
+        }else{
+            geners = HelperLists.genersHelperLists;
+        }
         //}
         return geners;
     }
@@ -133,10 +137,14 @@ public class HelperLists {
     public List<String> updateTopicList(Context context){
         List<String> topics=new ArrayList<>();
         String q2=getTopicQuery();
-        new AsyncHelper(context,q2,"song_topic",null,null,null,
-                EnumAsync.Topic.getEnumAsync()).execute(); //async task for getting data from db
-        topics=HelperLists.topicHelperList;
-        topics.add(0,EnumsSingers.select.getEnums());
+        if(HelperLists.topicHelperList.size()==0) {
+            new AsyncHelper(context, q2, "song_topic", null, null, null,
+                    EnumAsync.Topic.getEnumAsync()).execute(); //async task for getting data from db
+            topics = HelperLists.topicHelperList;
+            topics.add(0, EnumsSingers.select.getEnums());
+        }else{
+            topics = HelperLists.topicHelperList;
+        }
         return topics;
     }
 
@@ -144,27 +152,35 @@ public class HelperLists {
         List<String> goals=new ArrayList<>();
 
         String q=getGoalQuery();
-        new AsyncHelper(context,q,"goal",null,null,null,
-                EnumAsync.Goal.getEnumAsync()).execute(); //async task for getting data from db
-        goals=HelperLists.goalHelperList;
-        goals.add(0,EnumsSingers.select.getEnums());
+        if(HelperLists.goalHelperList.size()==0) {
+            new AsyncHelper(context, q, "goal", null, null, null,
+                    EnumAsync.Goal.getEnumAsync()).execute(); //async task for getting data from db
+            goals = HelperLists.goalHelperList;
+            goals.add(0, EnumsSingers.select.getEnums());
+        }else{
+            goals = HelperLists.goalHelperList;
+        }
         return goals;
     }
 
     public List<String> updateMusicalInstrimentList(Context context){
         List<String> musicalInstrument=new ArrayList<>();
         String q2=getInstrumentQuery();
-        new AsyncHelper(context,q2,"musical_instrument",null,null,null,
-                EnumAsync.Instrument.getEnumAsync()).execute(); //async task for getting data from db
-        musicalInstrument=HelperLists.instrumentHelperList;
-        musicalInstrument.add(0,EnumsSingers.select.getEnums());
+        if(HelperLists.instrumentHelperList.size()==0) {
+            new AsyncHelper(context, q2, "musical_instrument", null, null, null,
+                    EnumAsync.Instrument.getEnumAsync()).execute(); //async task for getting data from db
+            musicalInstrument = HelperLists.instrumentHelperList;
+            musicalInstrument.add(0, EnumsSingers.select.getEnums());
+        }else{
+            musicalInstrument = HelperLists.instrumentHelperList;
+        }
         return musicalInstrument;
     }
 
     public void updatePoetMap(Context context){
         //Map<String,List<String>> poetIdGenre2 = new HashMap<>();
         String q2= getRelevantPoets();
-        new AsyncHelper(context,q2,"poet_id","genre","song_topic","goal",
+        new AsyncLearnedData(context,q2,"poet_id","genre","song_topic","goal",
                 EnumAsync.RelevantPoets.getEnumAsync()).execute(); //async task for getting data from db
         //poetIdGenre2 = HelperLists.poetIdGenre;
         //return poetIdGenre2;
@@ -173,7 +189,7 @@ public class HelperLists {
     public void updateComposersMap(Context context){
         //Map<String,List<String>> poetIdGenre2 = new HashMap<>();
         String q2= getRelevantComposers();
-        new AsyncHelper(context,q2,"composer_id","composers_genre",null,null,
+        new AsyncLearnedData(context,q2,"composer_id","composers_genre",null,null,
                 EnumAsync.RelevantComposers.getEnumAsync()).execute(); //async task for getting data from db
         //poetIdGenre2 = HelperLists.poetIdGenre;
         //return poetIdGenre2;
@@ -350,7 +366,7 @@ public class HelperLists {
 
     }
 
-   public boolean checkSizeOfListResults(Context context, List<Artist> list, int tab){
+   public boolean checkSizeOfListResults(Context context, List<Artist> list, int tab,int counter){
         Maps maps=new Maps();
         String message="";
         switch (tab){
@@ -367,8 +383,9 @@ public class HelperLists {
                         " according to your preferences so that the artist less appropriate to you appears at the top of the list\n\n";
                 break;
         }
-        if(list.size()<10){
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        if(list.size()<10 && counter==0){
+           /* AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setCancelable(true);
             //builder.setTitle("Success In Registration");
             builder.setMessage("Sorry we found only "+ String.valueOf(list.size())+" artists for you.\n " +
@@ -379,6 +396,7 @@ public class HelperLists {
                         public void onClick(DialogInterface dialog, int which) {
                             //todo change the function with range
                             dialog.cancel();
+
                         }
                     });
             builder.setNegativeButton(android.R.string.no,
@@ -390,7 +408,7 @@ public class HelperLists {
                         }
                     });
             AlertDialog dialog = builder.create();
-            dialog.show();
+            dialog.show();*/
            // Intent intent1 = new Intent(context, WhichArtist.class);
            // context.startActivity(intent1);
             return false;

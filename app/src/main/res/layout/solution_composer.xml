@@ -72,14 +72,32 @@
             android:layout_width="200dp"
             android:layout_height="561dp"
             android:layout_marginStart="98dp"
-            android:layout_marginTop="65dp"/>
+            android:layout_marginTop="100dp" />
 
         <ListView
             android:id="@+id/listView2"
             android:layout_width="84dp"
             android:layout_height="561dp"
             android:layout_marginStart="300dp"
-            android:layout_marginTop="65dp"/>
+            android:layout_marginTop="100dp" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="65dp"
+            android:text="@string/nameColumn"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="65dp"
+            android:text="@string/percentColumn"
+            android:textSize="18dp" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

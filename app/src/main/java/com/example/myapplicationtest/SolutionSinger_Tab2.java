@@ -47,7 +47,7 @@ public class SolutionSinger_Tab2 extends Activity {
             Artist artist=new Artist(reverseListTop10.get(i),reverseGradeTop10.get(i));
             artistsList.add(artist);
         }
-        boolean sol=helperLists.checkSizeOfListResults(this,artistsList,2);
+        boolean sol=helperLists.checkSizeOfListResults(this,artistsList,2,0);
       /*  if(sol) {
             artistsList = artistsList.subList(0, 10);
         }*/

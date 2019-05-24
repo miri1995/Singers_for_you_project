@@ -44,4 +44,6 @@
         please fill in your priority for each filters so we can return the results that work best for you :)
     </string>
     <string name="ID">ID</string>
+    <string name="nameColumn">Name</string>
+    <string name="percentColumn">Match percent</string>
 </resources>

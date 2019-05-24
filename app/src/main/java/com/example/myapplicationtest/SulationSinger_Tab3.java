@@ -55,7 +55,7 @@ public class SulationSinger_Tab3 extends Activity {
             Artist artist=new Artist(listTop10.get(i),gradeTop10.get(i));
             artistsList.add(artist);
         }
-        boolean sol=helperLists.checkSizeOfListResults(this,artistsList,3);
+        boolean sol=helperLists.checkSizeOfListResults(this,artistsList,3,0);
        /* if(sol) {
             artistsList = artistsList.subList(0, 10);
         }*/

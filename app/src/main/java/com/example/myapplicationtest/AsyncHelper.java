@@ -191,7 +191,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         Log.d("D","ERROR executeQuery composerSol");
                     }
                     break;
-                case RelevantPoets:
+                /*case RelevantPoets:
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
@@ -272,7 +272,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         System.out.println("ERROR executeQuery - RelevantComposers" + e.getMessage());
                         Log.d("D","ERROR executeQuery RelevantComposers");
                     }
-                    break;
+                    break;*/
 
             }
 

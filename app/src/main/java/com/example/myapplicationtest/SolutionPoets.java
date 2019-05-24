@@ -116,7 +116,7 @@ public class SolutionPoets extends Activity {
                 gradesArray.add(grade+"%");
             }
             //HelperLists helperLists=new HelperLists();
-            boolean sol=helperLists.checkSizeOfListResults(this,artistList,3);
+            boolean sol=helperLists.checkSizeOfListResults(this,artistList,3,counter);
             if(sol){
                 gradesArray = gradesArray.subList(0,10);
                 resultArray=poets.subList(0,10);
