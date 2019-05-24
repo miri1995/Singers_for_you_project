@@ -130,6 +130,9 @@ public class CoupleDistance {
                 else if (flag.equals(EnumTables.genrePoet.getEnums())){
                     genrePoetMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
                 }
+                else{
+                    genreComposerMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),1);
+                }
             }
             if(flag.equals(EnumTables.genreSinger.getEnums())){
                 genreSingerMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter/2);
@@ -142,6 +145,9 @@ public class CoupleDistance {
             }
             else if (flag.equals(EnumTables.genrePoet.getEnums())){
                 genrePoetMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter);
+            }
+            else {
+                genreComposerMap.put(couples.get(i).get(0)+ "," + couples.get(i).get(1),counter);
             }
 
         }
@@ -159,8 +165,11 @@ public class CoupleDistance {
     else if (flag.equals(EnumTables.genrePoet.getEnums())){
         return genrePoetMap;
     }
+    else{
+        return genreComposerMap;
+    }
 
-    return topicMap;
+   // return topicMap;
     }
 
 }

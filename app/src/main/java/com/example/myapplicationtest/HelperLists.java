@@ -44,6 +44,8 @@ public class HelperLists {
 
     public String getRelevantPoets() {return "select poet_id,genre,song_topic,goal FROM poets order by poet_id";}
 
+    public String getRelevantComposers() {return "select composer_id,composers_genre FROM composers order by composer_id";}
+
    public String getGenreQuery(){
         return "select genre from genre";
    }
@@ -164,6 +166,15 @@ public class HelperLists {
         String q2= getRelevantPoets();
         new AsyncHelper(context,q2,"poet_id","genre","song_topic","goal",
                 EnumAsync.RelevantPoets.getEnumAsync()).execute(); //async task for getting data from db
+        //poetIdGenre2 = HelperLists.poetIdGenre;
+        //return poetIdGenre2;
+    }
+
+    public void updateComposersMap(Context context){
+        //Map<String,List<String>> poetIdGenre2 = new HashMap<>();
+        String q2= getRelevantComposers();
+        new AsyncHelper(context,q2,"composer_id","composers_genre",null,null,
+                EnumAsync.RelevantComposers.getEnumAsync()).execute(); //async task for getting data from db
         //poetIdGenre2 = HelperLists.poetIdGenre;
         //return poetIdGenre2;
     }

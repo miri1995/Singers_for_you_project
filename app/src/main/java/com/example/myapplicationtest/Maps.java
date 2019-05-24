@@ -202,6 +202,9 @@ public class Maps {
      else if (whichList.equals("genrePoet")){
          otherGenrePoet.addAll(coupleGenre);
      }
+     else{
+         otherGenreComposer.addAll(coupleGenre);
+     }
 
     }
 }

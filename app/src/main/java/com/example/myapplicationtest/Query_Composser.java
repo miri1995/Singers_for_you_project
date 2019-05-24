@@ -2,6 +2,8 @@ package com.example.myapplicationtest;
 
 
 
+import android.util.Log;
+
 import com.example.myapplicationtest.Enums.EnumsSingers;
 
 import java.util.ArrayList;
@@ -138,7 +140,7 @@ public class Query_Composser implements IQuery {
         List<String> couples=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderCouples(genre,prioGenre,"genreComposer",20);
+            couples = orderCouples(genre,prioGenre,"genreComposer",2);
             otherGenre = getOtherElement(couples,genre);
             Maps.getInstance().getFromQuery(otherGenre,"genreComposer");
         }
@@ -153,6 +155,7 @@ public class Query_Composser implements IQuery {
             q=GetSol(choose,genreSinger,element2,element3,prioGenre,prioElement2,prioElement3,otherGenreSinger,otherElement2,otherElement3,popular,flag);*/
 
       //  }
+        Log.d("D","queryComposer "+q);
         return q;
 
     }
@@ -205,6 +208,9 @@ public class Query_Composser implements IQuery {
         }
         else if (which.equals("genrePoet")){
             map = coupleDistance.getGenrePoetMap();
+        }
+        else{
+            map = coupleDistance.getGenreComposerMap();
         }
 
         Map<String, Integer> miniMap = new HashMap<>();

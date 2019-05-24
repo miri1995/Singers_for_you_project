@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TabHost;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Composer.ComposersPriority;
 import com.example.myapplicationtest.SingersLogic.Helper;
@@ -43,6 +44,17 @@ public class SolutionComposer extends Activity {
         priority = (ComposersPriority) intent2.getSerializableExtra(ComposersPriority.class.getName());
         Query_Composser query = new Query_Composser();
        // String flag=EnumsSingers.composer.getEnums();
+
+         HelperLists helperLists = new HelperLists();
+         helperLists.updateComposersMap(this);
+         CoupleDistance coupleDistance = CoupleDistance.getInstance();
+         List<List<String>> genreCouplesComposers = new ArrayList<>();
+         genreCouplesComposers=coupleDistance.CreatePairFromMap(HelperLists.composerIdGenre,genreCouplesComposers);
+
+         //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
+         coupleDistance.countPairs(genreCouplesComposers, EnumTables.genreComposer.getEnums());
+
+
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getFilters().getMusical_instrument(),
                 priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),needToIncrease);
 
@@ -75,7 +87,7 @@ public class SolutionComposer extends Activity {
             }
 
             List<String> resultArray = new ArrayList<>();
-            HelperLists helperLists =new HelperLists();
+           // HelperLists helperLists =new HelperLists();
 
            /* if(composers.size()>10){
                 resultArray = composers.subList(0,10);

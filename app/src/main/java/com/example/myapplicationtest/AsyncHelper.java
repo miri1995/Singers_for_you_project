@@ -78,8 +78,8 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQueryGenre - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery gen");
+                        System.out.println("ERROR executeQueryGenre - genre " + e.getMessage());
+                        Log.d("D","ERROR executeQuery genre");
                     }
                 case Goal:
                     try (Statement stmt = con.createStatement();
@@ -92,7 +92,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        System.out.println("ERROR executeQuery - goal " + e.getMessage());
                         Log.d("D","ERROR executeQuery goal");
                     }
 
@@ -109,7 +109,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - topix" + e.getMessage());
+                        System.out.println("ERROR executeQuery - topic" + e.getMessage());
                         Log.d("D","ERROR executeQuery top");
                     }
                     break;
@@ -128,8 +128,8 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        System.out.println("ERROR executeQuery - sol" + e.getMessage());
+                        Log.d("D","ERROR executeQuery sol");
                     }
                     break;
                 case Poet:
@@ -151,8 +151,8 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQueryPoet - " + e.getMessage());
-                        Log.d("D","ERROR executeQueryPoet"+ e.getMessage());
+                        System.out.println("ERROR executeQueryPoet - poetSol" + e.getMessage());
+                        Log.d("D","ERROR executeQueryPoetSol"+ e.getMessage());
                     }
                     break;
 
@@ -168,8 +168,8 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQueryGenre - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery gen");
+                        System.out.println("ERROR executeQueryInstrument - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery instrument");
                     }
                     break;
                 case Composer:
@@ -187,8 +187,8 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        System.out.println("ERROR executeQuery - composerSol" + e.getMessage());
+                        Log.d("D","ERROR executeQuery composerSol");
                     }
                     break;
                 case RelevantPoets:
@@ -201,7 +201,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                                 if(values1!=null && !values1.contains(rs.getString(colName2))){
                                     values1.add(rs.getString(colName2));
                                     HelperLists.poetIdGenre.put(key,values1);
-                                    HelperLists.poetIdGenre.put(key,values1);
+                                   // HelperLists.poetIdGenre.put(key,values1);
                                 }
                             }
                             else{
@@ -240,10 +240,40 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         con.close();
                         //return "COMPLETE2";
                     } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery");
+                        System.out.println("ERROR executeQuery - RelevantPoets " + e.getMessage());
+                        Log.d("D","ERROR executeQuery - RlevantPoets");
                     }
                     break;
+                case RelevantComposers:
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        while (rs.next()) {
+                            //Log.d("D","col1" + colName1);
+                            //Log.d("D","col1" + colName2);
+                            String key=rs.getString(colName1);
+                            if(HelperLists.composerIdGenre.containsKey(key)){
+                                List<String> values=HelperLists.composerIdGenre.get(key);
+                                if(values!=null && !values.contains(rs.getString(colName2))){
+                                    values.add(rs.getString(colName2));
+                                  //  HelperLists.composerIdGenre.put(key,values);
+                                    HelperLists.composerIdGenre.put(key,values);
+                                }
+                            }
+                            else{
+                                List<String> values = new ArrayList<>();
+                                values.add(rs.getString(colName2));
+                                HelperLists.composerIdGenre.put(key,values);
+                            }
+                        }
+                        Log.d("D","map" + HelperLists.composerIdGenre.toString());
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - RelevantComposers" + e.getMessage());
+                        Log.d("D","ERROR executeQuery RelevantComposers");
+                    }
+                    break;
+
             }
 
 
