@@ -219,8 +219,8 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                             }
                             else{
                                 List<String> values2 = new ArrayList<>();
-                                values2.add(rs.getString(colName2));
-                                HelperLists.poetIdGenre.put(key,values2);
+                                values2.add(rs.getString(colName3));
+                                HelperLists.poetIdTopic.put(key,values2);
                             }
 
                             if(HelperLists.poetIdGoal.containsKey(key)){

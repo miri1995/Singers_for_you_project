@@ -48,7 +48,20 @@ public class SolutionPoets extends Activity {
         Intent intent2 = getIntent();
         poetsPriority = (PoetsPriority) intent2.getSerializableExtra(PoetsPriority.class.getName());
 
+         HelperLists helperLists = new HelperLists();
+         helperLists.updatePoetMap(this);
+         CoupleDistance coupleDistance = CoupleDistance.getInstance();
+         List<List<String>> genreCouplesPoets = new ArrayList<>();
+         genreCouplesPoets=coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genreCouplesPoets);
+         List<List<String>> topicCouplesPoets = new ArrayList<>();
+         topicCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic,topicCouplesPoets));
+         List<List<String>> goalCouplesPoets = new ArrayList<>();
+         goalCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal,goalCouplesPoets));
 
+         //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
+         coupleDistance.countPairs(genreCouplesPoets, EnumTables.genrePoet.getEnums());
+         coupleDistance.countPairs(topicCouplesPoets,EnumTables.topic.getEnums());
+         coupleDistance.countPairs(goalCouplesPoets,EnumTables.goal.getEnums());
         Query_Poet query = new Query_Poet();
         //String flag = EnumsSingers.poets.getEnums();
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),null,
@@ -56,20 +69,6 @@ public class SolutionPoets extends Activity {
 
         try {
 
-            HelperLists helperLists = new HelperLists();
-            helperLists.updatePoetMap(this);
-            CoupleDistance coupleDistance = CoupleDistance.getInstance();
-            List<List<String>> genreCouplesPoets = new ArrayList<>();
-            genreCouplesPoets=coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genreCouplesPoets);
-            List<List<String>> topicCouplesPoets = new ArrayList<>();
-            topicCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic,topicCouplesPoets));
-            List<List<String>> goalCouplesPoets = new ArrayList<>();
-            goalCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal,goalCouplesPoets));
-
-            //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
-            coupleDistance.countPairs(genreCouplesPoets, EnumTables.genrePoet.getEnums());
-            coupleDistance.countPairs(topicCouplesPoets,EnumTables.topic.getEnums());
-            coupleDistance.countPairs(goalCouplesPoets,EnumTables.goal.getEnums());
             str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genreSinger",
                     EnumAsync.Poet.getEnumAsync()).execute().get();
 
@@ -116,7 +115,7 @@ public class SolutionPoets extends Activity {
                 artistList.add(artist);
                 gradesArray.add(grade+"%");
             }
-            HelperLists helperLists=new HelperLists();
+            //HelperLists helperLists=new HelperLists();
             boolean sol=helperLists.checkSizeOfListResults(this,artistList,3);
             if(sol){
                 gradesArray = gradesArray.subList(0,10);
