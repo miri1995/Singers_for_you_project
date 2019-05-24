@@ -2,6 +2,8 @@ package com.example.myapplicationtest;
 
 
 
+import android.util.Log;
+
 import com.example.myapplicationtest.Enums.EnumsSingers;
 
 import java.util.ArrayList;
@@ -135,19 +137,19 @@ public class Query_Poet implements IQuery {
         List<String> otherElement2=new ArrayList<>();
         List<String> otherElement3=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderCouples(genre,prioGenre,"genrePoet",5);
+            couples = orderCouples(genre,prioGenre,"genrePoet",12);
             otherGenre = getOtherElement(couples,genre);
             Maps.getInstance().getFromQuery(otherGenre,"genrePoet");
         }
         if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
 
-                couples2 = orderCouples(element2, prioElement2,"topic",5);
+                couples2 = orderCouples(element2, prioElement2,"topic",12);
                 otherElement2 = getOtherElement(couples2, element2);
                 Maps.getInstance().getFromQuery(otherElement2, "topic");
 
         }
         if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())){
-                couples3 = orderCouples(element3,prioElement3,"goal",5);
+                couples3 = orderCouples(element3,prioElement3,"goal",12);
                 otherElement3 = getOtherElement(couples3,element3);
                 Maps.getInstance().getFromQuery(otherElement3,"goal");
         }
@@ -156,6 +158,7 @@ public class Query_Poet implements IQuery {
                 " FROM poets";
         q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular);
 
+        Log.d("D","queryPoet "+q);
         return q;
 
     }

@@ -69,7 +69,7 @@ public class SolutionPoets extends Activity {
 
         try {
 
-            str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genreSinger",
+            str_result=new AsyncHelper(SolutionPoets.this,q3,"poet_name","song_topic","goal","genre",
                     EnumAsync.Poet.getEnumAsync()).execute().get();
 
 
@@ -90,12 +90,12 @@ public class SolutionPoets extends Activity {
                 gradesElement2 = fittingPercents.percentElement("goal");
             }
             else if(poetsPriority.getPrioSubject().equals(EnumsSingers.High.getEnums())){
-                gradesElement1 = fittingPercents.percentElement("genreSinger");
+                gradesElement1 = fittingPercents.percentElement("genrePoet");
                 gradesElement2 = fittingPercents.percentElement("goal");
             }
             else{
                 gradesElement1 = fittingPercents.percentElement("topic");
-                gradesElement2 = fittingPercents.percentElement("genreSinger");
+                gradesElement2 = fittingPercents.percentElement("genrePoet");
             }
             grades=fittingPercents.uniteTwoListd(gradesElement1,gradesElement2);
 
