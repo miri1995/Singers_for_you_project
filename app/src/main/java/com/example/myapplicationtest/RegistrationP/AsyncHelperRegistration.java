@@ -51,9 +51,10 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
             Log.d("D","FLAG:"+flag);
             Log.d("D","query:"+query);
+            Log.d("D","query:"+con);
             int result;
             switch (EnumAsync.valueOf(flag)){
-                case LastID:
+               /* case LastID:
                     Log.d("D","IN LASTID");
                     try (Statement stmt = con.createStatement();
 
@@ -71,7 +72,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
                         Log.d("D","ERROR executeQuery"+ e.getMessage());
                     }
-                    break;
+                    break;*/
                 case LastIdSong:
                     Log.d("D","IN LastIdSong");
                     try (Statement stmt = con.createStatement();
@@ -105,7 +106,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                     }
 
                     break;
-                case LastIDPoet:
+                /*case LastIDPoet:
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
@@ -119,8 +120,8 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                         Log.d("D","ERROR executeQuery"+ e.getMessage());
                     }
 
-                    break;
-                case LastIDComp:
+                    break;*/
+               /* case LastIDComp:
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
@@ -134,7 +135,7 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                         Log.d("D","ERROR executeQuery"+ e.getMessage());
                     }
 
-                    break;
+                    break;*/
                 case InsertSinger:
                     //  Thread.sleep(10000);
                     try (Statement stmt = con.createStatement();) {
@@ -152,10 +153,10 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
 
             Log.d("D","in background list"+ SolutionSinger_Tab1.artists);
         } catch (SQLException e) {
-            Log.d("D",e.getMessage());
+            Log.d("D","here "+e.getMessage());
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            Log.d("D",e.getMessage());
+            Log.d("D","here2 "+e.getMessage());
             e.printStackTrace();
         }
         // Log.d("D",playerList.get(1).toString());

@@ -29,14 +29,15 @@ public class PoetsRegistration extends AppCompatActivity {
     Filters filters;
     Spinner spinner1, spinner2, spinner3;
     EditText name_txt;
-
-    public static Integer lastID;
+    EditText id_txt;
+    //public static Integer lastID;
     public static String genreChoice =null;
 
 
     private String topic=null;
     private String goal =null;
     private String name=null;
+    private String ID=null;
     HelperLists helperLists=new HelperLists();
 
     @Override
@@ -46,6 +47,8 @@ public class PoetsRegistration extends AppCompatActivity {
 
         //name
         name_txt = findViewById(R.id.nameAdd);
+        //id
+        id_txt = findViewById(R.id.IDAdd);
         //genreSinger
         spinner1 = findViewById(R.id.register_what_you);
         //topic
@@ -60,6 +63,7 @@ public class PoetsRegistration extends AppCompatActivity {
     public void registration_poets_click(View view) {
 
         name = name_txt.getText().toString();
+        ID = id_txt.getText().toString();
 
         if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
                 helperLists.checkSelectedItem(spinner3,this)){
@@ -81,11 +85,11 @@ public class PoetsRegistration extends AppCompatActivity {
     public void InsertPoet() {
         String succsess=null;
         String str_result=null;
-        String getLastId="select "+ EnumTables.poet_id.getEnums()+" from poets order by poet_id desc limit 1";
+        //String getLastId="select "+ EnumTables.poet_id.getEnums()+" from poets order by poet_id desc limit 1";
 
 
         //get id
-        try {
+       /* try {
             str_result =new AsyncHelperRegistration(PoetsRegistration.this,getLastId,"poet_id",
                     EnumAsync.LastIDPoet.getEnumAsync()).execute().get();
         }catch (ExecutionException e) {
@@ -94,11 +98,11 @@ public class PoetsRegistration extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
             Log.d("D","2: "+e.getMessage());
-        }
+        }*/
 
-        if(str_result!=null) {
+       // if(str_result!=null) {
             String q1 = ("INSERT INTO poets " +
-                    "VALUES(\"" + lastID + "\",\"" + name + "\",null,null,\"" + genreChoice + "\",\"" + topic + "\",\"" + goal + "\")");
+                    "VALUES(\"" + Integer.parseInt(ID) + "\",\"" + name + "\",\"" + genreChoice + "\",\"" + topic + "\",\"" + goal + "\")");
 
             //insert
             try {
@@ -114,7 +118,7 @@ public class PoetsRegistration extends AppCompatActivity {
             }
 
 
-        }
+       // }
 
     }
 

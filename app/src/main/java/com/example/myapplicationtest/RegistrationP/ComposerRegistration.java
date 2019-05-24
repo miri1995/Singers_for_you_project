@@ -21,8 +21,9 @@ public class ComposerRegistration extends AppCompatActivity {
 
     Spinner spinner1, spinner2, spinner3,spinner4;
     EditText name_txt;
+    EditText id_txt;
 
-    public static Integer lastID;
+   // public static Integer lastID;
 
     public static String genreChoice =null;
     public static String loudness =null;
@@ -30,6 +31,7 @@ public class ComposerRegistration extends AppCompatActivity {
     public static String musicalInstrumentChoice=null;
 
     private String name=null;
+    private String id=null;
     HelperLists helperLists=new HelperLists();
 
     @Override
@@ -51,6 +53,9 @@ public class ComposerRegistration extends AppCompatActivity {
 
         //name
         name_txt = findViewById(R.id.nameAdd);
+
+        //id
+        id_txt = findViewById(R.id.IDAdd);
         helperLists.InitComposersFilters(this,spinner1,spinner2,spinner3,spinner4);
 
 
@@ -59,6 +64,7 @@ public class ComposerRegistration extends AppCompatActivity {
     public void registration_composer_click(View view) {
 
         name = name_txt.getText().toString();
+        id = id_txt.getText().toString();
         if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
                 helperLists.checkSelectedItem(spinner3,this)&& helperLists.checkSelectedItem(spinner4,this)){
             genreChoice =spinner1.getSelectedItem().toString();
@@ -77,7 +83,7 @@ public class ComposerRegistration extends AppCompatActivity {
     }
 
     public void InsertComposer(){
-        String str_result=null;
+      /*  String str_result=null;
         String getLastId="select "+ EnumTables.composer_id.getEnums()+" from composers order by composer_id desc limit 1";
         //get id
         try {
@@ -87,15 +93,15 @@ public class ComposerRegistration extends AppCompatActivity {
             e.printStackTrace();
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
 
-        if(str_result!=null) {
+        //if(str_result!=null) {
             Maps maps=new Maps();
             maps.middleLoudness(loudness);
             maps.middleTempo(tempo);
             String q1 = ("INSERT INTO composers " +
-                    "VALUES(\"" + lastID + "\",\"" + name + "\",\"" + genreChoice + "\",\"" + musicalInstrumentChoice + "\"" +
-                    ",null,\"" + Maps.middleLoudness + "\",\""+Maps.middleTempo+"\")");
+                    "VALUES(\"" + Integer.parseInt(id) + "\",\"" + name + "\",\"" + genreChoice + "\",\"" + musicalInstrumentChoice + "\"" +
+                    ",\"" + Maps.middleLoudness + "\",\""+Maps.middleTempo+"\")");
 
             //insert
             //async task for getting data from db
@@ -111,7 +117,7 @@ public class ComposerRegistration extends AppCompatActivity {
             if(str_result5!=null){
                 helperLists.sucsessRegister(this);
             }
-        }
+       // }
 
         finish();
     }

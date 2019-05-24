@@ -42,4 +42,5 @@
     <string name="priority_text">Before viewing your results,
         please fill in your priority for each filters so we can return the results that work best for you :)
     </string>
+    <string name="ID">ID</string>
 </resources>
