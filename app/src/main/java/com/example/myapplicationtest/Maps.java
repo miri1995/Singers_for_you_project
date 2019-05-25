@@ -111,18 +111,35 @@ public class Maps {
     }
 
 
-    public double[] PutInloudness(String loudness) {
+    public double[] PutInloudness(String loudness,boolean needToIncreaseSol) {
         double numLoud[] = new double[2];
+
         switch (EnumsSingers.valueOf(loudness)) {
             case Weak:
-                numLoud[0] = -16;
+                if(needToIncreaseSol){
+                    numLoud[0] = -8;
+                }else{
+                    numLoud[0] = -16;
+                }
+
                 break;
             case Normal:
-                numLoud[0] = -32;
-                numLoud[1] = -16;
+                if(needToIncreaseSol){
+                    numLoud[0] = -40;
+                    numLoud[1] = -8;
+                }else{
+                    numLoud[0] = -32;
+                    numLoud[1] = -16;
+                }
+
                 break;
             case Strong:
-                numLoud[0] = -32;
+                if(needToIncreaseSol){
+                    numLoud[0] = -40;
+                }else{
+                    numLoud[0] = -32;
+                }
+
         }
         return numLoud;
     }
@@ -160,18 +177,34 @@ public class Maps {
 
     }
 
-    public double[] PutInTempo(String tempo) {
+    public double[] PutInTempo(String tempo,boolean needToIncreaseSol) {
         double numTempo[] = new double[2];
         switch (EnumsSingers.valueOf(tempo)) {
             case Slow:
-                numTempo[0] = 85;
+                if(needToIncreaseSol){
+                    numTempo[0] = 65;
+                }else{
+                    numTempo[0] = 85;
+                }
+
                 break;
             case Medium:
-                numTempo[0] = 85;
-                numTempo[1] = 170;
+                if(needToIncreaseSol){
+                    numTempo[0] = 65;
+                    numTempo[1] = 180;
+                }else{
+                    numTempo[0] = 85;
+                    numTempo[1] = 170;
+                }
+
                 break;
             case Fast:
-                numTempo[0] = 170;
+                if(needToIncreaseSol){
+                    numTempo[0] = 180;
+                }else{
+                    numTempo[0] = 170;
+                }
+
         }
         return numTempo;
     }

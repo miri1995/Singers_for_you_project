@@ -26,7 +26,7 @@ public class Query_Composser implements IQuery {
      */
     public String MapBeat(String genre,String loudness,String tempo,
                           HashMap priority,String prioLoudness,String prioTempo,String prioGenre,
-                          List<String> otherGenre,boolean popular,String instrument,
+                          List<String> otherGenre,boolean needToIncrease,String instrument,
                           String whichtableloudness,String whichtabletempo,String whichcolloudness,String whichcoltempo){
         int temp=0;
         String q="";
@@ -51,8 +51,8 @@ public class Query_Composser implements IQuery {
                     break;
             }
             // according to the loudness and tempo chosen by the user creates the continuation of the query.
-            double numLoud[] = Maps.getInstance().PutInloudness(loudness);
-            double numTempo[] = Maps.getInstance().PutInTempo(tempo);
+            double numLoud[] = Maps.getInstance().PutInloudness(loudness,needToIncrease);
+            double numTempo[] = Maps.getInstance().PutInTempo(tempo,needToIncrease);
             switch (EnumsSingers.valueOf(loudness)) {
                 case Weak:
                     num_loudness = numLoud[0] - (double) priority.get(prioLoudness);
@@ -120,7 +120,7 @@ public class Query_Composser implements IQuery {
             q=q+" AND (composers.musical_instrument=\""+instrument+"\""+")";
       //  }
         // sends to a function that is responsible for Concatenation of the strings into final query.
-        String sol=GetSol(q,genre,null,null,prioGenre,null,null,otherGenre,null,null,popular);
+        String sol=GetSol(q,genre,null,null,prioGenre,null,null,otherGenre,null,null,needToIncrease);
         //returns the final query
         return sol;
     }
@@ -134,9 +134,9 @@ public class Query_Composser implements IQuery {
      * @return q = the matching query
      */
 
-    public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean popular){
+    public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean needToIncrease){
         HashMap<String,Double> priority = new HashMap<>();
-        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3,popular);
+        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3,needToIncrease);
         List<String> couples=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
@@ -149,7 +149,7 @@ public class Query_Composser implements IQuery {
             String whichtabletempo = "composers.composers_tempo";
             String whichcolloudness = "composers_loudness";
             String whichcoltempo = "composers_tempo";
-            q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,popular,instrument,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
+            q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,needToIncrease,instrument,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
            /* String choose = "Select distinct composers.composer_name,composers.composers_genre,composers.composers_loudness,composers.composers_tempo\n" +
                     "FROM composers WHERE (composers.musical_instrument=\""+instrument+"\""+")";
             q=GetSol(choose,genreSinger,element2,element3,prioGenre,prioElement2,prioElement3,otherGenreSinger,otherElement2,otherElement3,popular,flag);*/

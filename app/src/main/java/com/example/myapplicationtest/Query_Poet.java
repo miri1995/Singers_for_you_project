@@ -26,7 +26,7 @@ public class Query_Poet implements IQuery {
      */
     public String MapBeat(String genre,String loudness,String tempo,
                           HashMap priority,String prioLoudness,String prioTempo,String prioGenre,
-                          List<String> otherGenre,boolean popular,String instrument,
+                          List<String> otherGenre,boolean needToIncrease,String instrument,
                           String whichtableloudness,String whichtabletempo,String whichcolloudness,String whichcoltempo){
         int temp=0;
         String q="";
@@ -48,8 +48,8 @@ public class Query_Poet implements IQuery {
                     break;
             }
             // according to the loudness and tempo chosen by the user creates the continuation of the query.
-            double numLoud[] = Maps.getInstance().PutInloudness(loudness);
-            double numTempo[] = Maps.getInstance().PutInTempo(tempo);
+            double numLoud[] = Maps.getInstance().PutInloudness(loudness,needToIncrease);
+            double numTempo[] = Maps.getInstance().PutInTempo(tempo,needToIncrease);
             switch (EnumsSingers.valueOf(loudness)) {
                 case Weak:
                     num_loudness = numLoud[0] - (double) priority.get(prioLoudness);
@@ -113,7 +113,7 @@ public class Query_Poet implements IQuery {
                     break;
             }
         // sends to a function that is responsible for Concatenation of the strings into final query.
-        String sol=GetSol(q,genre,null,null,prioGenre,null,null,otherGenre,null,null,popular);
+        String sol=GetSol(q,genre,null,null,prioGenre,null,null,otherGenre,null,null,needToIncrease);
         //returns the final query
         return sol;
     }

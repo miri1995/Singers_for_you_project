@@ -55,8 +55,8 @@ public class Query_Singer implements IQuery{
                 break;
         }
         // according to the loudness and tempo chosen by the user creates the continuation of the query.
-        double numLoud[] = Maps.getInstance().PutInloudness(loudness);
-        double numTempo[] = Maps.getInstance().PutInTempo(tempo);
+        double numLoud[] = Maps.getInstance().PutInloudness(loudness,needToIncreaseSol);
+        double numTempo[] = Maps.getInstance().PutInTempo(tempo,needToIncreaseSol);
         switch (EnumsSingers.valueOf(loudness)) {
             case Weak:
                 num_loudness = numLoud[0] - (double) priority.get(prioLoudness);

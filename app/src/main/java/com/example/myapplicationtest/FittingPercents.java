@@ -31,10 +31,10 @@ public class FittingPercents {
         List<Double> gradesFinal = new ArrayList<>();
         double gradeTempo;
         double gradeLoudness;
-        double numLoudness[] = Maps.getInstance().PutInloudness(loudness);
+        double numLoudness[] = Maps.getInstance().PutInloudness(loudness,needToIncreece);
         HashMap<String, Double> priorityMap = Maps.getInstance().PutInPriority(prioLoudness, prioTempo,needToIncreece);
         double percentLoudness = Maps.getInstance().PutInPercents(prioLoudness);
-        double numTempo[] = Maps.getInstance().PutInTempo(tempo);
+        double numTempo[] = Maps.getInstance().PutInTempo(tempo,needToIncreece);
         double percentTempo = Maps.getInstance().PutInPercents(prioTempo);
         if (tempo.equals(EnumsSingers.Fast.getEnums())
                 || tempo.equals(EnumsSingers.Slow.getEnums())) {
