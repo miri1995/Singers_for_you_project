@@ -18,6 +18,7 @@ import com.example.myapplicationtest.SingersLogic.Helper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import static java.lang.StrictMath.round;
@@ -33,6 +34,7 @@ public class SolutionPoets extends Activity {
     List<Double>gradesElement1 = new ArrayList<>();
     List<Double>gradesElement2 = new ArrayList<>();
     private int counter=0;
+    HelperLists helperLists = new HelperLists();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,7 @@ public class SolutionPoets extends Activity {
         Intent intent2 = getIntent();
         poetsPriority = (PoetsPriority) intent2.getSerializableExtra(PoetsPriority.class.getName());
 
-         HelperLists helperLists = new HelperLists();
+
          helperLists.updatePoetMap(this);
          CoupleDistance coupleDistance = CoupleDistance.getInstance();
          List<List<String>> genreCouplesPoets = new ArrayList<>();
@@ -58,12 +60,11 @@ public class SolutionPoets extends Activity {
          List<List<String>> goalCouplesPoets = new ArrayList<>();
          goalCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal,goalCouplesPoets));
 
-         //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
          coupleDistance.countPairs(genreCouplesPoets, EnumTables.genrePoet.getEnums());
          coupleDistance.countPairs(topicCouplesPoets,EnumTables.topic.getEnums());
          coupleDistance.countPairs(goalCouplesPoets,EnumTables.goal.getEnums());
         Query_Poet query = new Query_Poet();
-        //String flag = EnumsSingers.poets.getEnums();
+
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),null,
                 poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),needToIncrease);
 
@@ -100,30 +101,37 @@ public class SolutionPoets extends Activity {
             grades=fittingPercents.uniteTwoListd(gradesElement1,gradesElement2);
 
             List<String> resultArray = new ArrayList<>();
-           /* if(poets.size()>10){
-
-            }
-            else{
-                resultArray=poets;
-            }*/
 
             List<Artist> artistList=new ArrayList<>();
-            List<String> gradesArray = new ArrayList<>();
+            List<Double> gradesArray = new ArrayList<>();
+            List<String> sortedGrades = new ArrayList<>();
+            List<String> sortedArtist = new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
                 Artist artist=new Artist(poets.get(i),grade+"%");
                 artistList.add(artist);
-                gradesArray.add(grade+"%");
+                gradesArray.add(grade);
             }
             //HelperLists helperLists=new HelperLists();
             boolean sol=helperLists.checkSizeOfListResults(this,artistList,3,counter);
             if(sol){
-                gradesArray = gradesArray.subList(0,10);
-                resultArray=poets.subList(0,10);
+                if(poets.size()>=10) {
+                    gradesArray = gradesArray.subList(0, 10);
+                    resultArray = poets.subList(0, 10);
+                }else{
+                    Button allSolButton = (Button) findViewById(R.id.btAllSolPoets);
+                    allSolButton.setVisibility(View.GONE);
+                }
+                Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
+                Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+                for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
+                    sortedGrades.add(entry.getValue().toString()+"%");
+                    sortedArtist.add(entry.getKey());
+                }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                        R.layout.activity_listview, resultArray);
+                        R.layout.activity_listview, sortedArtist);
                 ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                        R.layout.activity_listview, gradesArray);
+                        R.layout.activity_listview, sortedGrades);
                 ListView listView = findViewById(R.id.listView);
                 ListView listView2 = findViewById(R.id.listView2);
                 listView.setAdapter(adapter);
@@ -162,15 +170,22 @@ public class SolutionPoets extends Activity {
     public void allSol_click(View view) {
         List<String> resultArray = poets;
         List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
+        List<String> sortedGrades = new ArrayList<>(); /*= grades*/;
+        List<String> sortedArtist = new ArrayList<>(); /*= grades*/;
         for(int i=0;i<grades.size();i++){
             double grade = round(grades.get(i),2);
             gradesArray.add(grade);
         }
-        ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
+        Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
+        Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+        for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
+            sortedGrades.add(entry.getValue().toString()+"%");
+            sortedArtist.add(entry.getKey());
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, resultArray);
-        ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
-                R.layout.activity_listview, gradesArray);
+                R.layout.activity_listview, sortedArtist);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                R.layout.activity_listview, sortedGrades);
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
         listView.setAdapter(adapter);

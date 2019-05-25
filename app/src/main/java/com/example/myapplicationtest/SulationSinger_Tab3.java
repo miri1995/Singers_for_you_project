@@ -30,10 +30,11 @@ public class SulationSinger_Tab3 extends Activity {
         setContentView(R.layout.solution_singers_less_popular);
 
 
-        Map<String,Integer> map= new HashMap<String,Integer>();
-        for(int i = 0; i< SolutionSinger_Tab1.gradesArrayLess.size(); i++){
+        Map<String,Integer> map= helperLists.createMap(SolutionSinger_Tab1.resultArrayLess,SolutionSinger_Tab1.gradesArrayLess);
+       /* for(int i = 0; i< SolutionSinger_Tab1.gradesArrayLess.size(); i++){
             map.put(SolutionSinger_Tab1.resultArrayLess.get(i), SolutionSinger_Tab1.gradesArrayLess.get(i).intValue());
-        }
+        }*/
+
         Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
 
 

@@ -431,4 +431,12 @@ public class HelperLists {
             return true;
         }
    }
+
+   public <T> Map<String,Integer> createMap(List<String> key,List<Double> value){
+       Map<String,Integer> map= new HashMap<String,Integer>();
+       for(int i = 0; i< value.size(); i++){
+           map.put(key.get(i), value.get(i).intValue());
+       }
+       return map;
+   }
 }

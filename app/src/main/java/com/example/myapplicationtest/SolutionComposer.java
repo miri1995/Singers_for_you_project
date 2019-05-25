@@ -18,6 +18,7 @@ import com.example.myapplicationtest.SingersLogic.Priority;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 
@@ -30,6 +31,7 @@ public class SolutionComposer extends Activity {
     public static List<Double> loudness=new ArrayList<>();
     List<Double>grades = new ArrayList<>();
     private int counter=0;
+    HelperLists helperLists = new HelperLists();
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -45,7 +47,7 @@ public class SolutionComposer extends Activity {
         Query_Composser query = new Query_Composser();
        // String flag=EnumsSingers.composer.getEnums();
 
-         HelperLists helperLists = new HelperLists();
+
          helperLists.updateComposersMap(this);
          CoupleDistance coupleDistance = CoupleDistance.getInstance();
          List<List<String>> genreCouplesComposers = new ArrayList<>();
@@ -96,27 +98,39 @@ public class SolutionComposer extends Activity {
             }*/
             List<Artist> artistList = new ArrayList<>();
             List<Double> gradesArray = new ArrayList<>();
+            List<String> sortedGrades = new ArrayList<>();
+            List<String> sortedArtist = new ArrayList<>();
             for (int i = 0; i < grades.size(); i++) {
-                double grade = round(grades.get(i), 2);
+                double grade = round(grades.get(i),2);
                 Artist artist = new Artist(composers.get(i), grade + "%");
                 artistList.add(artist);
                 gradesArray.add(grade);
             }
+
             boolean sol = helperLists.checkSizeOfListResults(this, artistList, 3,counter);
             // if(sol){
             if (sol && composers.size()>=10) {
             resultArray = composers.subList(0, 10);
             gradesArray = gradesArray.subList(0, 10);
             }else{
+                Button allSolButton = (Button) findViewById(R.id.btAllSolComposers);
+                allSolButton.setVisibility(View.GONE);
                 resultArray = composers;
                //gradesArray = gradesArray;
             }
+
+            Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
+            Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+            for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
+                sortedGrades.add(entry.getValue().toString()+"%");
+                sortedArtist.add(entry.getKey());
+            }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                        R.layout.activity_listview, resultArray);
+                        R.layout.activity_listview, sortedArtist);
                 ListView listView = findViewById(R.id.listView);
                 listView.setAdapter(adapter);
-                ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
-                        R.layout.activity_listview, gradesArray);
+                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                        R.layout.activity_listview, sortedGrades);
                 ListView listView2 = findViewById(R.id.listView2);
                 listView2.setAdapter(adapter2);
            // }else if(counter==0){
@@ -151,21 +165,28 @@ public class SolutionComposer extends Activity {
     public void allSol_click(View view) {
         List<String> resultArray = composers;
         List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
+        List<String> sortedGrades = new ArrayList<>();
+        List<String> sortedArtist = new ArrayList<>();
         for(int i=0;i<grades.size();i++){
             double grade = round(grades.get(i),2);
             gradesArray.add(grade);
         }
-        ///ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_main3, resultArray);
+        Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
+        Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+        for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
+            sortedGrades.add(entry.getValue().toString()+"%");
+            sortedArtist.add(entry.getKey());
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, resultArray);
-        ArrayAdapter<Double> adapter2 = new ArrayAdapter<Double>(this,
-                R.layout.activity_listview, gradesArray);
+                R.layout.activity_listview, sortedArtist);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                R.layout.activity_listview, sortedGrades);
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
         listView.setAdapter(adapter);
         listView2.setAdapter(adapter2);
 
-        Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
+        Button allSolButton = (Button) findViewById(R.id.btAllSolComposers);
         allSolButton.setVisibility(View.GONE);
     }
 
