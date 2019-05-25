@@ -104,8 +104,9 @@ public class SolutionPoets extends Activity {
 
             List<Artist> artistList=new ArrayList<>();
             List<Double> gradesArray = new ArrayList<>();
-            List<String> sortedGrades = new ArrayList<>();
-            List<String> sortedArtist = new ArrayList<>();
+           // List<String> sortedGrades = new ArrayList<>();
+          //  List<String> sortedArtist = new ArrayList<>();
+            List<Artist> artistsList=new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
                 Artist artist=new Artist(poets.get(i),grade+"%");
@@ -124,18 +125,22 @@ public class SolutionPoets extends Activity {
                 }
                 Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
                 Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+                artistList.clear();
                 for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
-                    sortedGrades.add(entry.getValue().toString()+"%");
-                    sortedArtist.add(entry.getKey());
+                    //sortedGrades.add(entry.getValue().toString()+"%");
+                    //sortedArtist.add(entry.getKey());
+                    Artist artist=new Artist(entry.getKey(),entry.getValue().toString()+"%");
+                    artistList.add(artist);
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                        R.layout.activity_listview, sortedArtist);
-                ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                        R.layout.activity_listview, sortedGrades);
+              //  ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                //        R.layout.activity_listview, sortedArtist);
+                //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+                  //      R.layout.activity_listview, sortedGrades);
                 ListView listView = findViewById(R.id.listView);
                 ListView listView2 = findViewById(R.id.listView2);
-                listView.setAdapter(adapter);
-                listView2.setAdapter(adapter2);
+                helperLists.updateTwoListView(this, artistsList, listView, listView2);
+                //listView.setAdapter(adapter);
+                //listView2.setAdapter(adapter2);
             }else if(counter==0){
                 counter++;
                 doQueryAndUpdate(true);
@@ -170,8 +175,9 @@ public class SolutionPoets extends Activity {
     public void allSol_click(View view) {
         List<String> resultArray = poets;
         List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
-        List<String> sortedGrades = new ArrayList<>(); /*= grades*/;
-        List<String> sortedArtist = new ArrayList<>(); /*= grades*/;
+       // List<String> sortedGrades = new ArrayList<>(); /*= grades*/;
+      //  List<String> sortedArtist = new ArrayList<>(); /*= grades*/;
+        List<Artist> artistsList=new ArrayList<>();
         for(int i=0;i<grades.size();i++){
             double grade = round(grades.get(i),2);
             gradesArray.add(grade);
@@ -179,17 +185,22 @@ public class SolutionPoets extends Activity {
         Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
         Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
         for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
-            sortedGrades.add(entry.getValue().toString()+"%");
-            sortedArtist.add(entry.getKey());
+           // sortedGrades.add(entry.getValue().toString()+"%");
+           // sortedArtist.add(entry.getKey());
+           Artist artist=new Artist(entry.getKey(),entry.getValue().toString()+"%");
+           artistsList.add(artist);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, sortedArtist);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                R.layout.activity_listview, sortedGrades);
+
+
+       // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+       //         R.layout.activity_listview, sortedArtist);
+       // ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
+        //        R.layout.activity_listview, sortedGrades);
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
-        listView.setAdapter(adapter);
-        listView2.setAdapter(adapter2);
+        helperLists.updateTwoListView(this, artistsList, listView, listView2);
+       // listView.setAdapter(adapter);
+       // listView2.setAdapter(adapter2);
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolPoets);
         allSolButton.setVisibility(View.GONE);
