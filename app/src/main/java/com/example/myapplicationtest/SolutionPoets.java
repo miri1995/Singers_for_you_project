@@ -35,6 +35,9 @@ public class SolutionPoets extends Activity {
     List<Double>gradesElement2 = new ArrayList<>();
     private int counter=0;
     HelperLists helperLists = new HelperLists();
+    private List<Artist> artistList=new ArrayList<>();
+    private List<Double> gradesArray = new ArrayList<>();
+    private List<String> poetsBeforeIncrecement = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,16 +105,25 @@ public class SolutionPoets extends Activity {
 
             List<String> resultArray = new ArrayList<>();
 
-            List<Artist> artistList=new ArrayList<>();
-            List<Double> gradesArray = new ArrayList<>();
+
            // List<String> sortedGrades = new ArrayList<>();
           //  List<String> sortedArtist = new ArrayList<>();
             List<Artist> artistsList=new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
                 Artist artist=new Artist(poets.get(i),grade+"%");
-                artistList.add(artist);
-                gradesArray.add(grade);
+                boolean contains;
+                if(poetsBeforeIncrecement.contains(poets.get(i))){
+                    contains = true;
+                }
+                else {
+                    poetsBeforeIncrecement.add(poets.get(i));
+                    contains = false;
+                }
+                if(!contains) {
+                    artistList.add(artist);
+                    gradesArray.add(grade);
+                }
             }
             //HelperLists helperLists=new HelperLists();
             boolean sol=helperLists.checkSizeOfListResults(this,artistList,3,counter);

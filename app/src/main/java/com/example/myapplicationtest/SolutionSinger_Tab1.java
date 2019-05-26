@@ -31,7 +31,6 @@ public class SolutionSinger_Tab1 extends Activity {
     public static String whichArtist;
     List<Double>grades = new ArrayList<>();
     HelperLists helperLists=new HelperLists();
-
     public static List<String> resultArrayLess=new ArrayList<>();
     public static List<Double> gradesArrayLess=new ArrayList<>();
 

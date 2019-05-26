@@ -29,6 +29,9 @@ public class SolutionComposer extends Activity {
     public static List<String> genres=new ArrayList<>();
     public static List<Double> tempo=new ArrayList<>();
     public static List<Double> loudness=new ArrayList<>();
+    private List<String> composersBeforeIncrecement = new ArrayList<>();
+    private List<Artist> artistList = new ArrayList<>();
+    private List<Double> gradesArray = new ArrayList<>();
     List<Double>grades = new ArrayList<>();
     private int counter=0;
     HelperLists helperLists = new HelperLists();
@@ -96,15 +99,26 @@ public class SolutionComposer extends Activity {
             else{
                 resultArray = composers;
             }*/
-            List<Artist> artistList = new ArrayList<>();
-            List<Double> gradesArray = new ArrayList<>();
+
+
             List<String> sortedGrades = new ArrayList<>();
             List<String> sortedArtist = new ArrayList<>();
             for (int i = 0; i < grades.size(); i++) {
                 double grade = round(grades.get(i),2);
                 Artist artist = new Artist(composers.get(i), grade + "%");
-                artistList.add(artist);
-                gradesArray.add(grade);
+                boolean contains;
+                if(composersBeforeIncrecement.contains(composers.get(i))){
+                    contains = true;
+                }
+                else {
+                    composersBeforeIncrecement.add(composers.get(i));
+                    contains = false;
+                }
+                if(!contains){
+                    artistList.add(artist);
+                    gradesArray.add(grade);
+                }
+
             }
 
             boolean sol = helperLists.checkSizeOfListResults(this, artistList, 3,counter);

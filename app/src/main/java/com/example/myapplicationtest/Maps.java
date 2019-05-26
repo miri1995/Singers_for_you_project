@@ -62,22 +62,27 @@ public class Maps {
     }
 
     public HashMap<String, Double> PutInPriority(String prioLoudness, String prioTempo,boolean needToIncreaseSol) {
-         int tempoMed=0;
+         int tempoMed;
          int tempoHigh=0;
-         int tempoLow=0;
+         int tempoLow;
+         int loudnessLow;
+         int loudnessMed;
+         int loudnessHigh=0;
          if(needToIncreaseSol){
-             tempoMed=35;
-             tempoLow=60;
-             tempoHigh=10;
+             tempoMed=50;
+             tempoLow=100;
+             loudnessLow = 20;
+             loudnessMed = 10;
          }else{
              tempoMed=25;
              tempoLow=50;
-             tempoHigh=0;
+             loudnessLow =10;
+             loudnessMed =5;
          }
 
         switch (EnumsSingers.valueOf(prioLoudness)) {
             case High:
-                priority.put(prioLoudness, (double) 0);
+                priority.put(prioLoudness, (double) loudnessHigh);
                 if (prioTempo.equals(EnumsSingers.Medium.getEnums())) {
                     priority.put(prioTempo, (double) tempoMed);
                 }
@@ -86,7 +91,7 @@ public class Maps {
                 }
                 break;
             case Medium:
-                priority.put(prioLoudness, (double) 5);
+                priority.put(prioLoudness, (double) loudnessMed);
                 if (prioTempo.equals(EnumsSingers.High.getEnums())) {
                     priority.put(prioTempo, (double) tempoHigh);
                 }
@@ -95,7 +100,7 @@ public class Maps {
                 }
                 break;
             case Low:
-                priority.put(prioLoudness, (double) 10);
+                priority.put(prioLoudness, (double) loudnessLow);
                 if (prioTempo.equals(EnumsSingers.High.getEnums())) {
                     priority.put(prioTempo, (double) tempoHigh);
                 }
@@ -116,29 +121,29 @@ public class Maps {
 
         switch (EnumsSingers.valueOf(loudness)) {
             case Weak:
-                if(needToIncreaseSol){
+                /*if(needToIncreaseSol){
                     numLoud[0] = -8;
-                }else{
+                }else{*/
                     numLoud[0] = -16;
-                }
+                //}
 
                 break;
             case Normal:
-                if(needToIncreaseSol){
+                /*if(needToIncreaseSol){
                     numLoud[0] = -40;
                     numLoud[1] = -8;
-                }else{
+                }else{*/
                     numLoud[0] = -32;
                     numLoud[1] = -16;
-                }
+              //  }
 
                 break;
             case Strong:
-                if(needToIncreaseSol){
+               /* if(needToIncreaseSol){
                     numLoud[0] = -40;
-                }else{
+                }else{*/
                     numLoud[0] = -32;
-                }
+               // }
 
         }
         return numLoud;
@@ -181,29 +186,29 @@ public class Maps {
         double numTempo[] = new double[2];
         switch (EnumsSingers.valueOf(tempo)) {
             case Slow:
-                if(needToIncreaseSol){
+               /* if(needToIncreaseSol){
                     numTempo[0] = 65;
-                }else{
+                }else{*/
                     numTempo[0] = 85;
-                }
+               // }
 
                 break;
             case Medium:
-                if(needToIncreaseSol){
+               /* if(needToIncreaseSol){
                     numTempo[0] = 65;
                     numTempo[1] = 180;
-                }else{
+                }else{*/
                     numTempo[0] = 85;
                     numTempo[1] = 170;
-                }
+              //  }
 
                 break;
             case Fast:
-                if(needToIncreaseSol){
+               /* if(needToIncreaseSol){
                     numTempo[0] = 180;
-                }else{
+                }else{*/
                     numTempo[0] = 170;
-                }
+              //  }
 
         }
         return numTempo;
