@@ -213,7 +213,7 @@ public class Query_Poet implements IQuery {
 
 
     public List<String> orderCouples(String genre, String prioGenre,String which,int threshold,boolean needToIncrease){
-        if(needToIncrease){
+       if(needToIncrease){
             threshold/=2;
         }
         Map<String, Integer> map = new HashMap<>();
