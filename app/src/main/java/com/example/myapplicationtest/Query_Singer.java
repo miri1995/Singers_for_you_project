@@ -143,7 +143,7 @@ public class Query_Singer implements IQuery{
         List<String> couples=new ArrayList<>();
         List<String> otherGenre=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderCouples(genre,prioGenre,"genreSinger",20);
+            couples = orderCouples(genre,prioGenre,"genreSinger",20,needToIncreaseSol);
             otherGenre = getOtherElement(couples,genre);
             Maps.getInstance().getFromQuery(otherGenre,"genreSinger");
         }
@@ -194,7 +194,10 @@ public class Query_Singer implements IQuery{
 
 
 
-    public List<String> orderCouples(String genre, String prioGenre,String which,int threshold){
+    public List<String> orderCouples(String genre, String prioGenre,String which,int threshold,boolean needsToIncrease){
+        if(needsToIncrease){
+            threshold/=2;
+        }
         Map<String, Integer> map = new HashMap<>();
         CoupleDistance coupleDistance = CoupleDistance.getInstance();
         if(which.equals("genreSinger")){

@@ -127,9 +127,9 @@ public class Query_Poet implements IQuery {
      * @return q = the matching query
      */
 
-    public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean popular){
+    public String UserInput(String genre, String element2, String element3,String instrument,String prioGenre, String prioElement2, String prioElement3,boolean needToIncrease){
         HashMap<String,Double> priority = new HashMap<>();
-        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3,popular);
+        priority = Maps.getInstance().PutInPriority(prioElement2,prioElement3,needToIncrease);
         List<String> couples=new ArrayList<>();
         List<String> couples2=new ArrayList<>();
         List<String> couples3=new ArrayList<>();
@@ -137,26 +137,26 @@ public class Query_Poet implements IQuery {
         List<String> otherElement2=new ArrayList<>();
         List<String> otherElement3=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderCouples(genre,prioGenre,"genrePoet",12);
+            couples = orderCouples(genre,prioGenre,"genrePoet",12,needToIncrease);
             otherGenre = getOtherElement(couples,genre);
             Maps.getInstance().getFromQuery(otherGenre,"genrePoet");
         }
         if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
 
-                couples2 = orderCouples(element2, prioElement2,"topic",12);
+                couples2 = orderCouples(element2, prioElement2,"topic",12,needToIncrease);
                 otherElement2 = getOtherElement(couples2, element2);
                 Maps.getInstance().getFromQuery(otherElement2, "topic");
 
         }
         if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())){
-                couples3 = orderCouples(element3,prioElement3,"goal",12);
+                couples3 = orderCouples(element3,prioElement3,"goal",12,needToIncrease);
                 otherElement3 = getOtherElement(couples3,element3);
                 Maps.getInstance().getFromQuery(otherElement3,"goal");
         }
         String q="";
         String choose = "SELECT distinct poets.poet_name,poets.song_topic,poets.goal,poets.genre\n" +
                 " FROM poets";
-        q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,popular);
+        q= GetSol(choose,genre,element2,element3,prioGenre,prioElement2,prioElement3,otherGenre,otherElement2,otherElement3,needToIncrease);
 
         Log.d("D","queryPoet "+q);
         return q;
@@ -212,7 +212,10 @@ public class Query_Poet implements IQuery {
 
 
 
-    public List<String> orderCouples(String genre, String prioGenre,String which,int threshold){
+    public List<String> orderCouples(String genre, String prioGenre,String which,int threshold,boolean needToIncrease){
+        if(needToIncrease){
+            threshold/=2;
+        }
         Map<String, Integer> map = new HashMap<>();
         CoupleDistance coupleDistance = CoupleDistance.getInstance();
         if(which.equals("genreSinger")){
