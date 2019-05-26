@@ -432,8 +432,8 @@ public class HelperLists {
         }
    }
 
-   public <T> Map<String,Integer> createMap(List<String> key,List<Double> value){
-       Map<String,Integer> map= new HashMap<String,Integer>();
+   public <T> LinkedHashMap<String,Integer> createMap(List<String> key,List<Double> value){
+       LinkedHashMap<String,Integer> map= new LinkedHashMap<>();
        for(int i = 0; i< value.size(); i++){
            map.put(key.get(i), value.get(i).intValue());
        }

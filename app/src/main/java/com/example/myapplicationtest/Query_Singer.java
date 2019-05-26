@@ -2,6 +2,8 @@ package com.example.myapplicationtest;
 
 
 
+import android.util.Log;
+
 import com.example.myapplicationtest.Enums.EnumsSingers;
 
 import java.util.ArrayList;
@@ -153,6 +155,7 @@ public class Query_Singer implements IQuery{
         q=MapBeat(genre,element2,element3,priority,prioElement2,prioElement3,prioGenre,otherGenre,needToIncreaseSol,
                 null,whichtableloudness,whichtabletempo,whichcolloudness,whichcoltempo);
 
+        Log.d("D","queryComposer "+q);
         return q;
 
     }
@@ -172,7 +175,7 @@ public class Query_Singer implements IQuery{
              hotness=" order by artists.artist_hotness DESC";
      //   }else{
 
-                hotness=" order by artists.artist_hotness ASC";
+                hotness=" order by artists.artist_hotness DESC";
 
       //  }
 
