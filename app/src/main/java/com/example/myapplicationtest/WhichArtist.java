@@ -9,7 +9,7 @@ public class WhichArtist extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choice_singer_or_creator2);
+        setContentView(R.layout.choice_singer_or_songwriter2);
 
         //http
       /*  try {

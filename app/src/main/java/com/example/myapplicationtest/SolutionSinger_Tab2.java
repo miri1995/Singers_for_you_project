@@ -10,7 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-//import assets.pair3.txt;
+//import assets.pair.txt;
 
 public class SolutionSinger_Tab2 extends Activity {
 

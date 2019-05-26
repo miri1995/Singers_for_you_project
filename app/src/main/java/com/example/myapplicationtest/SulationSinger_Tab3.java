@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import assets.pair3.txt;
+//import assets.pair.txt;
 
 public class SulationSinger_Tab3 extends Activity {
 

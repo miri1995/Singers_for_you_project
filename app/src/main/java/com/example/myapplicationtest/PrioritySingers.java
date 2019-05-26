@@ -18,7 +18,7 @@ public class PrioritySingers extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.praiority_singers);
+        setContentView(R.layout.priority_singers);
 
         //categorization
         spinner1 = findViewById(R.id.register_what_you);
@@ -62,7 +62,7 @@ public class PrioritySingers extends AppCompatActivity {
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
         }*/
-        boolean allChoose=helperLists.checkChoise(genreP2,loudnessP2,beatP2);
+        boolean allChoose=helperLists.checkChoice(genreP2,loudnessP2,beatP2);
         boolean diffrentPriority=helperLists.checkPriority(genreP2,loudnessP2,beatP2);
         if(allChoose && diffrentPriority){
             Intent intent = getIntent();

@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
-import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.Maps;
 import com.example.myapplicationtest.R;
@@ -73,7 +72,7 @@ public class ComposerRegistration extends AppCompatActivity {
             musicalInstrumentChoice =spinner4.getSelectedItem().toString();
         }
 
-        boolean allChoose=helperLists.checkChoise(genreChoice,loudness,tempo,musicalInstrumentChoice);
+        boolean allChoose=helperLists.checkChoice(genreChoice,loudness,tempo,musicalInstrumentChoice);
         if(allChoose) { //only if all filter selected
             InsertComposer();
         }else{

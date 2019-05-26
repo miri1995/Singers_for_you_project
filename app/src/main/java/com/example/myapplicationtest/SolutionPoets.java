@@ -15,7 +15,7 @@ import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Poets.PoetsPriority;
 import com.example.myapplicationtest.SingersLogic.Helper;
-//import assets.pair3.txt;
+//import assets.pair.txt;
 
 import java.util.ArrayList;
 import java.util.List;

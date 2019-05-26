@@ -120,7 +120,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="44dp"
         android:fontFamily="serif-monospace"
-        android:text="@string/txtprayority"
+        android:text="@string/txtpriority"
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/colorAccent"

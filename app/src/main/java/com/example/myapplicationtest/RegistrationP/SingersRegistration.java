@@ -1,31 +1,19 @@
 package com.example.myapplicationtest.RegistrationP;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.example.myapplicationtest.AsyncHelper;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumTables;
-import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.Maps;
-import com.example.myapplicationtest.PoetsActivity;
 import com.example.myapplicationtest.R;
 import com.example.myapplicationtest.Registration;
-import com.example.myapplicationtest.SingersLogic.Filters;
-import com.example.myapplicationtest.SolutionPoets;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class SingersRegistration extends AppCompatActivity {
@@ -80,7 +68,7 @@ public class SingersRegistration extends AppCompatActivity {
             beat2 =spinner3.getSelectedItem().toString();
         }
 
-        boolean allChoose=helperLists.checkChoise(genreChoice,loudness2,beat2);
+        boolean allChoose=helperLists.checkChoice(genreChoice,loudness2,beat2);
         if(allChoose) { //only if all filter selected
             try {
                 InsertSinger();

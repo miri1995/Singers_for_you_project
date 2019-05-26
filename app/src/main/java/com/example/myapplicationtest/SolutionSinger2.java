@@ -8,7 +8,7 @@ import android.widget.TabHost;
 
 
 import com.example.myapplicationtest.SingersLogic.Priority;
-//import assets.pair3.txt;
+//import assets.pair.txt;
 
 import static java.lang.StrictMath.round;
 

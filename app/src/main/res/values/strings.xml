@@ -6,7 +6,7 @@
     <string name="imageViewlogo"> logo </string>
 
     <string name="textView">filters</string>
-    <string name="txtprayority">put your prayority</string>
+    <string name="txtpriority">put your priority</string>
     <string name="textView36">Genre:</string>
     <string name="register_what_you">What are you?</string>
     <string name="textView19">Loudness:</string>
@@ -23,25 +23,25 @@
     <string name="btnComposer" translatable="false">Composers</string>
     <string name="btexit">Exit</string>
     <string name="Top5Sol">Top 5 for you:</string>
-    <string name="allSol_button">View all solution</string>
-    <string name="btnPoets">Poets</string>
-    <string name="btMoreSolSingers">All Solution</string>
+    <string name="allSol_button">View all results</string>
+    <string name="btnPoets">SongWriter</string>
+    <string name="btMoreSolSingers">All Results</string>
     <string name="btregistration">Registration</string>
     <string name="txtRegistration">Registration</string>
     <string name="txtName">Name</string>
     <string name="Subject">Subject:</string>
     <string name="Goal">Goal:</string>
-    <string name="main">In this application you can find Singers, Poets and Composers \naccording to your preferences.\nYou can register as a Singer, Poet or Composer and thus increase your chances of success</string>
+    <string name="main">In this application you can find Singers, Songwriters and Composers \naccording to your preferences.\nYou can register as a Singer, SongWriter or Composer and thus increase your chances of success</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
     <string name="search">Search</string>
     <string name="add_video">Add new video</string>
     <string name="settings">Settings</string>
     <string name="register_text">Singer? Song writer? Composer? \n
-        Want to be added to our app and users from around the world can contact you?\n
+        Want register to our app so that users from around the world can contact you?\n
         You came to the right place! Here you can use a few simple steps to be added to our database.\
         Successfully!</string>
     <string name="priority_text">Before viewing your results,
-        please fill in your priority for each filters so we can return the results that work best for you :)
+        please fill in your priority for each filters so we can return the results that are best for you :)
     </string>
     <string name="ID">ID</string>
     <string name="nameColumn">Name</string>

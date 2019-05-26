@@ -5,16 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.Composer.ComposerFilters;
 import com.example.myapplicationtest.Composer.ComposersPriority;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 public class PriorityComposers extends AppCompatActivity {
     ComposersPriority priority;
     Spinner spinner1, spinner2, spinner3, spinner4;
@@ -67,7 +62,7 @@ public class PriorityComposers extends AppCompatActivity {
             beatP2 =spinner3.getSelectedItem().toString();
         }
 
-        boolean allChoose=helperLists.checkChoise(genreP2,loudnessP2,beatP2);
+        boolean allChoose=helperLists.checkChoice(genreP2,loudnessP2,beatP2);
         if(allChoose){
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {

@@ -60,7 +60,7 @@ public class HelperLists {
 
    public String getInstrumentQuery(){ return "select distinct musical_instrument from composers";}
 
-    public boolean checkChoise(String genre2, String loudness2, String beat2){
+    public boolean checkChoice(String genre2, String loudness2, String beat2){
         if(genre2==null || loudness2==null || beat2==null ||
                 genre2.equals(EnumsSingers.select.getEnums()) || loudness2.equals(EnumsSingers.select.getEnums()) ||
                 beat2.equals(EnumsSingers.select.getEnums()) ){
@@ -79,7 +79,7 @@ public class HelperLists {
 
 
 
-    public boolean checkChoise(String genre2, String loudness2, String beat2,String check4){
+    public boolean checkChoice(String genre2, String loudness2, String beat2, String check4){
         if(genre2==null || loudness2==null || beat2==null || check4==null||
                 genre2.equals(EnumsSingers.select.getEnums()) || loudness2.equals(EnumsSingers.select.getEnums()) ||
                 beat2.equals(EnumsSingers.select.getEnums()) || check4.equals(EnumsSingers.select.getEnums())){
@@ -271,8 +271,8 @@ public class HelperLists {
     public void sucsessRegister(Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
-        builder.setTitle("Success In Registration");
-        builder.setMessage("Thanks! \n Your registration has been registered.");
+        builder.setTitle("Successful Registration");
+        builder.setMessage("Thanks! \n You are now registered.");
         builder.setPositiveButton(android.R.string.ok,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -375,12 +375,12 @@ public class HelperLists {
                         " so that the most popular artist appears at the top of the list\n\n";
                 break;
             case 2:
-                message="They are arranged according to the match percentage to you," +
-                        " according to your preferences so that the artist most appropriate to you appears at the top of the list\n\n";
+                message="They are arranged according to the percentage of matching to you," +
+                        " based on your preferences so that the best artist for you will appear at the top of the list\n\n";
                 break;
             case 3:
-                message="They are arranged according to the match percentage to you," +
-                        " according to your preferences so that the artist less appropriate to you appears at the top of the list\n\n";
+                message="They are arranged according to their popularity," +
+                        " so that the least popular artist appears at the top of the list\n\n";
                 break;
         }
 
@@ -416,9 +416,9 @@ public class HelperLists {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setCancelable(true);
             //builder.setTitle("Success In Registration");
-            builder.setMessage("We found "+ String.valueOf(list.size())+" artists that match for you.\n" +
+            builder.setMessage("We have found "+ String.valueOf(list.size())+" artists who are for you.\n" +
                     message
-                    +"Enjoyable use :)");
+                    +"Good luck :)");
             builder.setPositiveButton(android.R.string.ok,
                     new DialogInterface.OnClickListener() {
                         @Override

@@ -63,7 +63,7 @@ public class SingersActivity extends AppCompatActivity {
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
         }*/
-        boolean allChoose=helperLists.checkChoise(genre2,loudness2,beat2);
+        boolean allChoose=helperLists.checkChoice(genre2,loudness2,beat2);
         if(allChoose) { //only if all filter selected
             filters = new Filters(genre2, loudness2, beat2);
             Intent intent1 = new Intent(SingersActivity.this, PrioritySingers.class);
