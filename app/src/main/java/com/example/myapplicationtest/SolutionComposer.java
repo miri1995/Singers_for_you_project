@@ -40,26 +40,26 @@ public class SolutionComposer extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_composer);
-        doQueryAndUpdate(false);
+        doQueryAndUpdate(false,true);
     }
 
-     public void doQueryAndUpdate(boolean needToIncrease){
+     public void doQueryAndUpdate(boolean needToIncrease,boolean firstTime){
          String str_result = null;
         Intent intent2 = getIntent();
         priority = (ComposersPriority) intent2.getSerializableExtra(ComposersPriority.class.getName());
         Query_Composser query = new Query_Composser();
        // String flag=EnumsSingers.composer.getEnums();
 
+        if (firstTime) {
+            helperLists.updateComposersMap(this);
+            CoupleDistance coupleDistance = CoupleDistance.getInstance();
+            List<List<String>> genreCouplesComposers = new ArrayList<>();
+            genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.composerIdGenre, genreCouplesComposers);
 
-         helperLists.updateComposersMap(this);
-         CoupleDistance coupleDistance = CoupleDistance.getInstance();
-         List<List<String>> genreCouplesComposers = new ArrayList<>();
-         genreCouplesComposers=coupleDistance.CreatePairFromMap(HelperLists.composerIdGenre,genreCouplesComposers);
+            //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
+            coupleDistance.countPairs(genreCouplesComposers, EnumTables.genreComposer.getEnums());
 
-         //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
-         coupleDistance.countPairs(genreCouplesComposers, EnumTables.genreComposer.getEnums());
-
-
+        }
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getFilters().getMusical_instrument(),
                 priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),needToIncrease);
 
@@ -150,7 +150,7 @@ public class SolutionComposer extends Activity {
            // }else if(counter==0){
             if(!sol && counter==0){
                 counter++;
-                doQueryAndUpdate(true);
+                doQueryAndUpdate(true,false);
             }
 
         }

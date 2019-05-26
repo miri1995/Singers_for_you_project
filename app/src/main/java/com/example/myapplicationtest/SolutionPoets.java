@@ -3,6 +3,7 @@ package com.example.myapplicationtest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -41,32 +42,32 @@ public class SolutionPoets extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.solution_poets);
-        doQueryAndUpdate(false);
+        doQueryAndUpdate(false,true);
     }
 
-     public void  doQueryAndUpdate(boolean needToIncrease){
+     public void  doQueryAndUpdate(boolean needToIncrease,boolean firstTime){
          String str_result = null;
         Intent intent2 = getIntent();
         poetsPriority = (PoetsPriority) intent2.getSerializableExtra(PoetsPriority.class.getName());
+         Query_Poet query = new Query_Poet();
 
 
-         helperLists.updatePoetMap(this);
-         CoupleDistance coupleDistance = CoupleDistance.getInstance();
-         List<List<String>> genreCouplesPoets = new ArrayList<>();
-         genreCouplesPoets=coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genreCouplesPoets);
-         List<List<String>> topicCouplesPoets = new ArrayList<>();
-         topicCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic,topicCouplesPoets));
-         List<List<String>> goalCouplesPoets = new ArrayList<>();
-         goalCouplesPoets.addAll(coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal,goalCouplesPoets));
+         if(firstTime) {
+        helperLists.updatePoetMap(this);
+        CoupleDistance coupleDistance = CoupleDistance.getInstance();
+        List<List<String>> genreCouplesPoets = new ArrayList<>();
+        genreCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre, genreCouplesPoets);
+        List<List<String>> topicCouplesPoets = new ArrayList<>();
+        topicCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic, topicCouplesPoets);
+        List<List<String>> goalCouplesPoets = new ArrayList<>();
+        goalCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal, goalCouplesPoets);
 
-         coupleDistance.countPairs(genreCouplesPoets, EnumTables.genrePoet.getEnums());
-         coupleDistance.countPairs(topicCouplesPoets,EnumTables.topic.getEnums());
-         coupleDistance.countPairs(goalCouplesPoets,EnumTables.goal.getEnums());
-        Query_Poet query = new Query_Poet();
+        coupleDistance.countPairs(genreCouplesPoets, EnumTables.genrePoet.getEnums());
+        coupleDistance.countPairs(topicCouplesPoets, EnumTables.topic.getEnums());
+        coupleDistance.countPairs(goalCouplesPoets, EnumTables.goal.getEnums());
+    }
 
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),null,
                 poetsPriority.getPrioGenre(),poetsPriority.getPrioSubject(),poetsPriority.getPrioGoal(),needToIncrease);
@@ -87,8 +88,9 @@ public class SolutionPoets extends Activity {
 
 
         if(str_result!=null) {
-            FittingPercents fittingPercents = new FittingPercents(null,poetsPriority,null);
 
+            FittingPercents fittingPercents = new FittingPercents(null,poetsPriority,null);
+            Log.d("D","reach to result"+str_result);
             if(poetsPriority.getPrioGenre().equals(EnumsSingers.High.getEnums())){
                 gradesElement1 = fittingPercents.percentElement("topic");
                 gradesElement2 = fittingPercents.percentElement("goal");
@@ -99,7 +101,9 @@ public class SolutionPoets extends Activity {
             }
             else{
                 gradesElement1 = fittingPercents.percentElement("topic");
+                Log.d("D","reach to topic"+str_result);
                 gradesElement2 = fittingPercents.percentElement("genrePoet");
+                Log.d("D","reach to genre"+str_result);
             }
             grades=fittingPercents.uniteTwoListd(gradesElement1,gradesElement2);
 
@@ -155,7 +159,7 @@ public class SolutionPoets extends Activity {
                 //listView2.setAdapter(adapter2);
             }else if(counter==0){
                 counter++;
-                doQueryAndUpdate(true);
+                doQueryAndUpdate(true,false);
 
             }
 

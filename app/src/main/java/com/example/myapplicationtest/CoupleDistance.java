@@ -12,11 +12,11 @@ import java.util.Map;
 
 public class CoupleDistance {
     private static CoupleDistance single_instance = null;
-    Map<String, Integer> genreSingerMap = new HashMap<>();
-    Map<String, Integer> genrePoetMap = new HashMap<>();
-    Map<String, Integer> genreComposerMap = new HashMap<>();
-    Map<String, Integer> topicMap = new HashMap<>();
-    Map<String, Integer> goalMap = new HashMap<>();
+    private Map<String, Integer> genreSingerMap = new HashMap<>();
+   private Map<String, Integer> genrePoetMap = new HashMap<>();
+    private Map<String, Integer> genreComposerMap = new HashMap<>();
+    private Map<String, Integer> topicMap = new HashMap<>();
+    private Map<String, Integer> goalMap = new HashMap<>();
 
 
     private CoupleDistance(){}

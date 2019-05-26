@@ -137,19 +137,19 @@ public class Query_Poet implements IQuery {
         List<String> otherElement2=new ArrayList<>();
         List<String> otherElement3=new ArrayList<>();
         if (prioGenre.equals(EnumsSingers.Medium.getEnums()) || prioGenre.equals(EnumsSingers.Low.getEnums())){
-            couples = orderCouples(genre,prioGenre,"genrePoet",12,needToIncrease);
+            couples = orderCouples(genre,prioGenre,"genrePoet",4,needToIncrease);
             otherGenre = getOtherElement(couples,genre);
             Maps.getInstance().getFromQuery(otherGenre,"genrePoet");
         }
         if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
 
-                couples2 = orderCouples(element2, prioElement2,"topic",12,needToIncrease);
+                couples2 = orderCouples(element2, prioElement2,"topic",4,needToIncrease);
                 otherElement2 = getOtherElement(couples2, element2);
                 Maps.getInstance().getFromQuery(otherElement2, "topic");
 
         }
         if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())){
-                couples3 = orderCouples(element3,prioElement3,"goal",12,needToIncrease);
+                couples3 = orderCouples(element3,prioElement3,"goal",4,needToIncrease);
                 otherElement3 = getOtherElement(couples3,element3);
                 Maps.getInstance().getFromQuery(otherElement3,"goal");
         }
