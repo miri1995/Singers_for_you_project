@@ -112,7 +112,7 @@ public class SolutionPoets extends Activity {
 
            // List<String> sortedGrades = new ArrayList<>();
           //  List<String> sortedArtist = new ArrayList<>();
-            List<Artist> artistsList=new ArrayList<>();
+            //List<Artist> artistsList=new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
                 Artist artist=new Artist(poets.get(i),grade+"%");
@@ -136,12 +136,13 @@ public class SolutionPoets extends Activity {
                     gradesArray = gradesArray.subList(0, 10);
                     resultArray = poets.subList(0, 10);
                 }else{
+                    resultArray = poets;
                     Button allSolButton = (Button) findViewById(R.id.btAllSolPoets);
                     allSolButton.setVisibility(View.GONE);
                 }
                 Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
                 Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
-                artistList.clear();
+                //artistList.clear();
                 for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
                     //sortedGrades.add(entry.getValue().toString()+"%");
                     //sortedArtist.add(entry.getKey());
@@ -154,7 +155,7 @@ public class SolutionPoets extends Activity {
                   //      R.layout.activity_listview, sortedGrades);
                 ListView listView = findViewById(R.id.listView);
                 ListView listView2 = findViewById(R.id.listView2);
-                helperLists.updateTwoListView(this, artistsList, listView, listView2);
+                helperLists.updateTwoListView(this, artistList, listView, listView2);
                 //listView.setAdapter(adapter);
                 //listView2.setAdapter(adapter2);
             }else if(counter==0){
