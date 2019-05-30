@@ -117,7 +117,7 @@ public class SolutionPoets extends Activity {
             //List<Artist> artistsList=new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
-                Artist artist=new Artist(poets.get(i),grade+"%");
+               // Artist artist=new Artist(poets.get(i),grade+"%");
                 boolean contains;
                 if(poetsBeforeIncrecement.contains(poets.get(i))){
                     contains = true;
@@ -127,30 +127,36 @@ public class SolutionPoets extends Activity {
                     contains = false;
                 }
                 if(!contains) {
-                    artistList.add(artist);
+                   // artistList.add(artist);
                     gradesArray.add(grade);
                 }
             }
+            //sorted that the high percent in the top
+            Map<String,Integer> map= helperLists.createMap(poets,gradesArray);
+            Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+            for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
+                Artist artist=new Artist(entry.getKey(),entry.getValue().toString()+"%");
+                artistList.add(artist);
+            }
+
+
+
+
             //HelperLists helperLists=new HelperLists();
             boolean sol=helperLists.checkSizeOfListResults(this,artistList,3,counter);
             if(sol){
-                if(poets.size()>=10) {
-                    gradesArray = gradesArray.subList(0, 10);
+               /* if(poets.size()>=10) {
+                   // gradesArray = gradesArray.subList(0, 10);
                     resultArray = poets.subList(0, 10);
-                }else{
-                    resultArray = poets;
+                }else{*/
+                if(poets.size()<10){
+                    //resultArray = poets;
                     Button allSolButton = (Button) findViewById(R.id.btAllSolPoets);
                     allSolButton.setVisibility(View.GONE);
                 }
-                Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
-                Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+
                 //artistList.clear();
-                for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
-                    //sortedGrades.add(entry.getValue().toString()+"%");
-                    //sortedArtist.add(entry.getKey());
-                    Artist artist=new Artist(entry.getKey(),entry.getValue().toString()+"%");
-                    artistList.add(artist);
-                }
+
               //  ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 //        R.layout.activity_listview, sortedArtist);
                 //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
