@@ -20,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class HelperLists {
 
@@ -177,11 +178,23 @@ public class HelperLists {
         return musicalInstrument;
     }
 
-    public void updatePoetMap(Context context){
+    public boolean updatePoetMap(Context context){
         //Map<String,List<String>> poetIdGenre2 = new HashMap<>();
+        String result=null;
         String q2= getRelevantPoets();
-        new AsyncLearnedData(context,q2,"poet_id","genre","song_topic","goal",
-                EnumAsync.RelevantPoets.getEnumAsync()).execute(); //async task for getting data from db
+        try {
+            result=new AsyncLearnedData(context,q2,"poet_id","genre","song_topic","goal",
+                    EnumAsync.RelevantPoets.getEnumAsync()).execute().get(); //async task for getting data from db
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(result!=null){
+            return true;
+        }
+        return false;
+
         //poetIdGenre2 = HelperLists.poetIdGenre;
         //return poetIdGenre2;
     }

@@ -55,18 +55,20 @@ public class SolutionPoets extends Activity {
 
 
          if(firstTime) {
-        helperLists.updatePoetMap(this);
-        CoupleDistance coupleDistance = CoupleDistance.getInstance();
-        List<List<String>> genreCouplesPoets = new ArrayList<>();
-        genreCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre, genreCouplesPoets);
-        List<List<String>> topicCouplesPoets = new ArrayList<>();
-        topicCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic, topicCouplesPoets);
-        List<List<String>> goalCouplesPoets = new ArrayList<>();
-        goalCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal, goalCouplesPoets);
+             if(helperLists.updatePoetMap(this)) {
+               //  helperLists.updatePoetMap(this);
+                 CoupleDistance coupleDistance = CoupleDistance.getInstance();
+                 List<List<String>> genreCouplesPoets = new ArrayList<>();
+                 genreCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre, genreCouplesPoets);
+                 List<List<String>> topicCouplesPoets = new ArrayList<>();
+                 topicCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdTopic, topicCouplesPoets);
+                 List<List<String>> goalCouplesPoets = new ArrayList<>();
+                 goalCouplesPoets = coupleDistance.CreatePairFromMap(HelperLists.poetIdGoal, goalCouplesPoets);
 
-        coupleDistance.countPairs(genreCouplesPoets, EnumTables.genrePoet.getEnums());
-        coupleDistance.countPairs(topicCouplesPoets, EnumTables.topic.getEnums());
-        coupleDistance.countPairs(goalCouplesPoets, EnumTables.goal.getEnums());
+                 coupleDistance.countPairs(genreCouplesPoets, EnumTables.genrePoet.getEnums());
+                 coupleDistance.countPairs(topicCouplesPoets, EnumTables.topic.getEnums());
+                 coupleDistance.countPairs(goalCouplesPoets, EnumTables.goal.getEnums());
+             }
     }
 
         String q3= query.UserInput(poetsPriority.getFilters().getGenre(),poetsPriority.getFilters().getSubject(),poetsPriority.getFilters().getGoal(),null,

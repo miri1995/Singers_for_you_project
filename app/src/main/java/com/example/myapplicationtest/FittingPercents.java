@@ -176,35 +176,59 @@ public class FittingPercents {
     public List<Double> percentGenreElse(String prioGenre,List<String>genresList,String genre,
                                          String prioLoudness,String loudness,String tempo,
                                             String prioTempo,List<Double> tempoList,
-                                         List<Double> loudnessList,boolean needToIncreece){
+                                         List<Double> loudnessList,boolean needToIncreece,String which){
         boolean flag = false;
         List<Double> gradesElse = new ArrayList<>();
         List<Double> gradesGenre = new ArrayList<>();
         List<Double> gradesFinal = new ArrayList<>();
         //double gradeElse;
         double gradeGenres=0;
-        double percentGenre = Maps.getInstance().PutInPercents(prioGenre);
-        double maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenreSinger().size());
-        double step = maxGrade/(Maps.getInstance().getSecondGenreSinger().size()-1);
         double gradeOtherGenre;
+        double percentGenre = Maps.getInstance().PutInPercents(prioGenre);
         List<Double> otherGenresGrade = new ArrayList<>();
-        for(int i = 0; i<Maps.getInstance().getSecondGenreSinger().size(); i++){
-            gradeOtherGenre = maxGrade -step * i;
-            otherGenresGrade.add(gradeOtherGenre);
+        if(which.equals("genreSinger")){
+            double maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenreSinger().size());
+            double step = maxGrade/(Maps.getInstance().getSecondGenreSinger().size()-1);
+            for(int i = 0; i<Maps.getInstance().getSecondGenreSinger().size(); i++){
+                gradeOtherGenre = maxGrade -step * i;
+                otherGenresGrade.add(gradeOtherGenre);
+            }
+            for(int i=0;i<genresList.size();i++){
+                if(genresList.get(i).equals(genre)){
+                    gradeGenres = 100 * percentGenre;
+                }
+                else{
+                    for(int j = 0; j<Maps.getInstance().getSecondGenreSinger().size(); j++){
+                        if(genresList.get(i).equals(Maps.getInstance().getSecondGenreSinger().get(j))){
+                            gradeGenres = otherGenresGrade.get(j) * percentGenre;
+                        }
+                    }
+                }
+                gradesGenre.add(gradeGenres);
+            }
         }
-        for(int i=0;i<genresList.size();i++){
-           if(genresList.get(i).equals(genre)){
-               gradeGenres = 100 * percentGenre;
-           }
-           else{
-               for(int j = 0; j<Maps.getInstance().getSecondGenreSinger().size(); j++){
-                   if(genresList.get(i).equals(Maps.getInstance().getSecondGenreSinger().get(j))){
-                       gradeGenres = otherGenresGrade.get(j) * percentGenre;
-                   }
-               }
-           }
-           gradesGenre.add(gradeGenres);
+        else {
+            double maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenreComposer().size());
+            double step = maxGrade/(Maps.getInstance().getSecondGenreComposer().size()-1);
+            for(int i = 0; i<Maps.getInstance().getSecondGenreComposer().size(); i++){
+                gradeOtherGenre = maxGrade -step * i;
+                otherGenresGrade.add(gradeOtherGenre);
+            }
+            for(int i=0;i<genresList.size();i++){
+                if(genresList.get(i).equals(genre)){
+                    gradeGenres = 100 * percentGenre;
+                }
+                else{
+                    for(int j = 0; j<Maps.getInstance().getSecondGenreComposer().size(); j++){
+                        if(genresList.get(i).equals(Maps.getInstance().getSecondGenreComposer().get(j))){
+                            gradeGenres = otherGenresGrade.get(j) * percentGenre;
+                        }
+                    }
+                }
+                gradesGenre.add(gradeGenres);
+            }
         }
+
         if(prioLoudness.equals(EnumsSingers.Medium.getEnums())
                 || prioLoudness.equals(EnumsSingers.Low.getEnums())){
             gradesElse = percentTempoLoudness("loudness",loudness,tempo,prioLoudness,prioTempo,
@@ -221,6 +245,20 @@ public class FittingPercents {
            return gradesFinal;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public List<Double> percentElement(String which){
         List<Double> gradesElement = new ArrayList<>();
         double ElementGrade=0;
@@ -228,8 +266,8 @@ public class FittingPercents {
         double maxGrade=0;
         double step=0;
         double gradeOtherElement;
-        if(which.equals("genreSinger")){
-            percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioGenre());
+        /*if(which.equals("genreSinger")){
+            percentElement = Maps.getInstance().PutInPercents(priority.getPrioGenre());
             maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenreSinger().size());
             step = maxGrade/(Maps.getInstance().getSecondGenreSinger().size()-1);
             List<Double> otherGenresGrade = new ArrayList<>();
@@ -237,20 +275,20 @@ public class FittingPercents {
                 gradeOtherElement = maxGrade -step * i;
                 otherGenresGrade.add(gradeOtherElement);
             }
-            for(int i=0;i<SolutionPoets.genres.size();i++){
-                if(SolutionPoets.genres.get(i).equals(prioirtyPoets.getFilters().getGenre())){
+            for(int i=0;i<SolutionSinger_Tab1.genres.size();i++){
+                if(SolutionSinger_Tab1.genres.get(i).equals(prioirtyPoets.getFilters().getGenre())){
                     ElementGrade = 100 * percentElement;
                 }
                 else{
                     for(int j = 0; j<Maps.getInstance().getSecondGenreSinger().size(); j++){
-                        if(SolutionPoets.genres.get(i).equals(Maps.getInstance().getSecondGenreSinger().get(j))){
+                        if(SolutionSinger_Tab1.genres.get(i).equals(Maps.getInstance().getSecondGenreSinger().get(j))){
                             ElementGrade= otherGenresGrade.get(j) * percentElement;
                         }
                     }
                 }
                 gradesElement.add(ElementGrade);
             }
-        }
+        }*/
 
         if(which.equals("genrePoet")){
             percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioGenre());
@@ -266,7 +304,7 @@ public class FittingPercents {
                     ElementGrade = 100 * percentElement;
                 }
                 else{
-                    for(int j = 0; j<Maps.getInstance().getSecondGenreSinger().size(); j++){
+                    for(int j = 0; j<Maps.getInstance().getSecondGenrePoet().size(); j++){
                         if(SolutionPoets.genres.get(i).equals(Maps.getInstance().getSecondGenrePoet().get(j))){
                             ElementGrade= otherGenresGrade.get(j) * percentElement;
                         }

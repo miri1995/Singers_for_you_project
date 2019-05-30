@@ -143,13 +143,13 @@ public class Query_Poet implements IQuery {
         }
         if(prioElement2.equals(EnumsSingers.Medium.getEnums()) || prioElement2.equals(EnumsSingers.Low.getEnums())) {
 
-                couples2 = orderCouples(element2, prioElement2,"topic",4,needToIncrease);
+                couples2 = orderCouples(element2, prioElement2,"topic",6,needToIncrease);
                 otherElement2 = getOtherElement(couples2, element2);
                 Maps.getInstance().getFromQuery(otherElement2, "topic");
 
         }
         if(prioElement3.equals(EnumsSingers.Medium.getEnums()) || prioElement3.equals(EnumsSingers.Low.getEnums())){
-                couples3 = orderCouples(element3,prioElement3,"goal",4,needToIncrease);
+                couples3 = orderCouples(element3,prioElement3,"goal",6,needToIncrease);
                 otherElement3 = getOtherElement(couples3,element3);
                 Maps.getInstance().getFromQuery(otherElement3,"goal");
         }

@@ -87,7 +87,7 @@ public class SolutionComposer extends Activity {
                 grades = fittingPercents.percentGenreElse(priority.getPrioGenre(),
                         genres, priority.getFilters().getGenre(), priority.getPrioLoudness(),
                         priority.getFilters().getLoudness(), priority.getFilters().getTempo(),
-                        priority.getPrioTempo(), tempo, loudness, needToIncrease);
+                        priority.getPrioTempo(), tempo, loudness, needToIncrease,"genreComposer");
             }
 
             List<String> resultArray = new ArrayList<>();

@@ -76,7 +76,7 @@ public class SolutionSinger_Tab1 extends Activity {
                 grades = fittingPercents.percentGenreElse(priority.getPrioGenre(), genres,
                         priority.getFilters().getGenre(), priority.getPrioLoudness(),
                         priority.getFilters().getLoudness(), priority.getFilters().getTempo(),
-                        priority.getPrioTempo(), tempo, loudness,needToIncreaseSol);
+                        priority.getPrioTempo(), tempo, loudness,needToIncreaseSol,"genreSinger");
             }
 
             resultArrayLess = artists;
