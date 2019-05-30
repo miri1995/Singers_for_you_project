@@ -187,8 +187,8 @@ public class FittingPercents {
         double percentGenre = Maps.getInstance().PutInPercents(prioGenre);
         List<Double> otherGenresGrade = new ArrayList<>();
         if(which.equals("genreSinger")){
-            double maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenreSinger().size());
-            double step = maxGrade/(Maps.getInstance().getSecondGenreSinger().size()-1);
+            double maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenreSinger().size()+1);
+            double step = maxGrade/(Maps.getInstance().getSecondGenreSinger().size());
             for(int i = 0; i<Maps.getInstance().getSecondGenreSinger().size(); i++){
                 gradeOtherGenre = maxGrade -step * i;
                 otherGenresGrade.add(gradeOtherGenre);
@@ -208,8 +208,8 @@ public class FittingPercents {
             }
         }
         else {
-            double maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenreComposer().size());
-            double step = maxGrade/(Maps.getInstance().getSecondGenreComposer().size()-1);
+            double maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenreComposer().size()+1);
+            double step = maxGrade/(Maps.getInstance().getSecondGenreComposer().size());
             for(int i = 0; i<Maps.getInstance().getSecondGenreComposer().size(); i++){
                 gradeOtherGenre = maxGrade -step * i;
                 otherGenresGrade.add(gradeOtherGenre);
@@ -292,8 +292,8 @@ public class FittingPercents {
 
         if(which.equals("genrePoet")){
             percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioGenre());
-            maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenrePoet().size());
-            step = maxGrade/(Maps.getInstance().getSecondGenrePoet().size()-1);
+            maxGrade = 100-(100/(double)Maps.getInstance().getSecondGenrePoet().size()+1);
+            step = maxGrade/(Maps.getInstance().getSecondGenrePoet().size());
             List<Double> otherGenresGrade = new ArrayList<>();
             for(int i = 0; i<Maps.getInstance().getSecondGenrePoet().size(); i++){
                 gradeOtherElement = maxGrade -step * i;
@@ -316,8 +316,8 @@ public class FittingPercents {
         else if(which.equals("topic")) {
             percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioSubject());
             if (Maps.getInstance().getSecondTopic().size() != 0) {
-                maxGrade = 100 - (100 / (double) Maps.getInstance().getSecondTopic().size());
-                step = maxGrade / (Maps.getInstance().getSecondTopic().size() - 1);
+                maxGrade = 100 - (100 / (double) Maps.getInstance().getSecondTopic().size()+1);
+                step = maxGrade / (Maps.getInstance().getSecondTopic().size());
                 List<Double> otherTopicsGrade = new ArrayList<>();
                 for (int i = 0; i < Maps.getInstance().getSecondTopic().size(); i++) {
                     gradeOtherElement = maxGrade - step * i;
@@ -345,8 +345,8 @@ public class FittingPercents {
         else if (which.equals("goal")){
             percentElement = Maps.getInstance().PutInPercents(prioirtyPoets.getPrioGoal());
             if(Maps.getInstance().getSecondGoal().size()!=0) {
-                maxGrade = 100 - (100 / (double) Maps.getInstance().getSecondGoal().size());
-                step = maxGrade / (Maps.getInstance().getSecondGoal().size() - 1);
+                maxGrade = 100 - (100 / (double) Maps.getInstance().getSecondGoal().size()+1);
+                step = maxGrade / (Maps.getInstance().getSecondGoal().size());
                 List<Double> otherGoalsGrade = new ArrayList<>();
                 for (int i = 0; i < Maps.getInstance().getSecondGoal().size(); i++) {
                     gradeOtherElement = maxGrade - step * i;
