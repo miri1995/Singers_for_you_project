@@ -134,9 +134,11 @@ public class SolutionPoets extends Activity {
             //sorted that the high percent in the top
             Map<String,Integer> map= helperLists.createMap(poets,gradesArray);
             Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+            int index=1;
             for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
                 Artist artist=new Artist(entry.getKey(),entry.getValue().toString()+"%");
                 artistList.add(artist);
+                index++;
             }
 
 
@@ -162,8 +164,8 @@ public class SolutionPoets extends Activity {
                 //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
                   //      R.layout.activity_listview, sortedGrades);
                 ListView listView = findViewById(R.id.listView);
-                ListView listView2 = findViewById(R.id.listView2);
-                helperLists.updateTwoListView(this, artistList, listView, listView2);
+
+                helperLists.updateTwoListView(this, artistList, listView);
                 //listView.setAdapter(adapter);
                 //listView2.setAdapter(adapter2);
             }else if(counter==0){
@@ -209,11 +211,13 @@ public class SolutionPoets extends Activity {
         }
         Map<String,Integer> map= helperLists.createMap(resultArray,gradesArray);
         Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
+        int index=1;
         for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
            // sortedGrades.add(entry.getValue().toString()+"%");
            // sortedArtist.add(entry.getKey());
            Artist artist=new Artist(entry.getKey(),entry.getValue().toString()+"%");
            artistsList.add(artist);
+           index++;
         }
 
 
@@ -222,8 +226,8 @@ public class SolutionPoets extends Activity {
        // ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
         //        R.layout.activity_listview, sortedGrades);
         ListView listView = findViewById(R.id.listView);
-        ListView listView2 = findViewById(R.id.listView2);
-        helperLists.updateTwoListView(this, artistsList, listView, listView2);
+        //ListView listView2 = findViewById(R.id.listView2);
+        helperLists.updateTwoListView(this, artistsList, listView);
        // listView.setAdapter(adapter);
        // listView2.setAdapter(adapter2);
 

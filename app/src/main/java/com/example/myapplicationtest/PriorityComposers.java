@@ -79,5 +79,9 @@ public class PriorityComposers extends AppCompatActivity {
             helperLists.ErrorChoice(this);
         }
     }
+    public void explanationClick(View view){
+        //todo open dialog of the range of weak...
+    }
+
 }
 

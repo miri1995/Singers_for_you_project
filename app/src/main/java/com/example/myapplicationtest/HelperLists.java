@@ -109,13 +109,22 @@ public class HelperLists {
     public List<String> updateGenreList(Context context){
         List<String> geners=new ArrayList<>();
         String q3=getGenreQuery();
+        String result=null;
         if(HelperLists.genersHelperLists.size()==0) {
             //async task for getting data from db
-            new AsyncHelper(context, q3, "genre",
-                    null, null, null, EnumAsync.Genre.getEnumAsync()).execute();
-            geners = HelperLists.genersHelperLists;
-            // if(!geners.contains(EnumsSingers.select.getEnums())) {
-            geners.add(0, EnumsSingers.select.getEnums());
+            try {
+                result=new AsyncHelper(context, q3, "genre",
+                        null, null, null, EnumAsync.Genre.getEnumAsync()).execute().get();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(result!=null) {
+                geners = HelperLists.genersHelperLists;
+                // if(!geners.contains(EnumsSingers.select.getEnums())) {
+                geners.add(0, EnumsSingers.select.getEnums());
+            }
         }else{
             geners = HelperLists.genersHelperLists;
         }
@@ -138,11 +147,20 @@ public class HelperLists {
     public List<String> updateTopicList(Context context){
         List<String> topics=new ArrayList<>();
         String q2=getTopicQuery();
+        String result=null;
         if(HelperLists.topicHelperList.size()==0) {
-            new AsyncHelper(context, q2, "song_topic", null, null, null,
-                    EnumAsync.Topic.getEnumAsync()).execute(); //async task for getting data from db
-            topics = HelperLists.topicHelperList;
-            topics.add(0, EnumsSingers.select.getEnums());
+            try {
+                result= new AsyncHelper(context, q2, "song_topic", null, null, null,
+                         EnumAsync.Topic.getEnumAsync()).execute().get(); //async task for getting data from db
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (result!=null) {
+                topics = HelperLists.topicHelperList;
+                topics.add(0, EnumsSingers.select.getEnums());
+            }
         }else{
             topics = HelperLists.topicHelperList;
         }
@@ -151,13 +169,21 @@ public class HelperLists {
 
     public List<String> updateGoalList(Context context){
         List<String> goals=new ArrayList<>();
-
+        String result=null;
         String q=getGoalQuery();
         if(HelperLists.goalHelperList.size()==0) {
-            new AsyncHelper(context, q, "goal", null, null, null,
-                    EnumAsync.Goal.getEnumAsync()).execute(); //async task for getting data from db
-            goals = HelperLists.goalHelperList;
-            goals.add(0, EnumsSingers.select.getEnums());
+            try {
+                result= new AsyncHelper(context, q, "goal", null, null, null,
+                         EnumAsync.Goal.getEnumAsync()).execute().get(); //async task for getting data from db
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(result!=null) {
+                goals = HelperLists.goalHelperList;
+                goals.add(0, EnumsSingers.select.getEnums());
+            }
         }else{
             goals = HelperLists.goalHelperList;
         }
@@ -167,11 +193,20 @@ public class HelperLists {
     public List<String> updateMusicalInstrimentList(Context context){
         List<String> musicalInstrument=new ArrayList<>();
         String q2=getInstrumentQuery();
+        String result=null;
         if(HelperLists.instrumentHelperList.size()==0) {
-            new AsyncHelper(context, q2, "musical_instrument", null, null, null,
-                    EnumAsync.Instrument.getEnumAsync()).execute(); //async task for getting data from db
-            musicalInstrument = HelperLists.instrumentHelperList;
-            musicalInstrument.add(0, EnumsSingers.select.getEnums());
+            try {
+                result= new AsyncHelper(context, q2, "musical_instrument", null, null, null,
+                         EnumAsync.Instrument.getEnumAsync()).execute().get(); //async task for getting data from db
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if(result!=null) {
+                musicalInstrument = HelperLists.instrumentHelperList;
+                musicalInstrument.add(0, EnumsSingers.select.getEnums());
+            }
         }else{
             musicalInstrument = HelperLists.instrumentHelperList;
         }
@@ -199,11 +234,22 @@ public class HelperLists {
         //return poetIdGenre2;
     }
 
-    public void updateComposersMap(Context context){
+    public boolean updateComposersMap(Context context){
         //Map<String,List<String>> poetIdGenre2 = new HashMap<>();
         String q2= getRelevantComposers();
-        new AsyncLearnedData(context,q2,"composer_id","composers_genre",null,null,
-                EnumAsync.RelevantComposers.getEnumAsync()).execute(); //async task for getting data from db
+        String result=null;
+        try {
+            result=new AsyncLearnedData(context,q2,"composer_id","composers_genre",null,null,
+                    EnumAsync.RelevantComposers.getEnumAsync()).execute().get(); //async task for getting data from db
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(result!=null){
+            return true;
+        }
+        return false;
         //poetIdGenre2 = HelperLists.poetIdGenre;
         //return poetIdGenre2;
     }
@@ -366,9 +412,9 @@ public class HelperLists {
      * Update the list view in accordance 2 list input
      * @param context
      * @param listView
-     * @param listView2
+     *
      */
-    public void updateTwoListView(Context context,List<Artist> list, ListView listView, ListView listView2){
+    public void updateTwoListView(Context context,List<Artist> list, ListView listView){
       /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.activity_listview, list1);*/
         /*ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context,
                 R.layout.activity_listview, list2);*/

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorComposers"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
 
@@ -150,5 +151,16 @@
         android:textSize="18dp"
         android:textStyle="bold"
         android:textAlignment="center"/>
+
+    <ImageView
+        android:id="@+id/poets"
+        android:layout_width="29dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="323dp"
+        android:cropToPadding="false"
+        android:onClick="explanationClick"
+        app:srcCompat="@drawable/help" />
 
 </RelativeLayout>

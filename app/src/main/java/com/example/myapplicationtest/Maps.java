@@ -70,8 +70,8 @@ public class Maps {
          int loudnessHigh=0;
          if(needToIncreaseSol){
              tempoMed=50;
-             tempoLow=85;
-             loudnessLow = 16;
+             tempoLow=100;
+             loudnessLow = 20;
              loudnessMed = 10;
          }else{
              tempoMed=25;

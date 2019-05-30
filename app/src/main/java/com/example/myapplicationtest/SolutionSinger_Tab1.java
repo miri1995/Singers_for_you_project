@@ -96,7 +96,7 @@ public class SolutionSinger_Tab1 extends Activity {
                 artistsList = artistsList.subList(0, 10);
                 ListView listView = findViewById(R.id.listView);
                 ListView listView2 = findViewById(R.id.listView2);
-                helperLists.updateTwoListView(this, artistsList, listView, listView2);
+                helperLists.updateTwoListView(this, artistsList, listView);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView parent, View view, int position, long id) {
 
@@ -144,7 +144,7 @@ public class SolutionSinger_Tab1 extends Activity {
         ListView listView = findViewById(R.id.listView);
         ListView listView2 = findViewById(R.id.listView2);
 
-        helperLists.updateTwoListView(this, artistsList, listView, listView2);
+        helperLists.updateTwoListView(this, artistsList, listView);
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
         allSolButton.setVisibility(View.GONE);

@@ -51,7 +51,7 @@ public class SolutionSinger_Tab2 extends Activity {
       /*  if(sol) {
             artistsList = artistsList.subList(0, 10);
         }*/
-        helperLists.updateTwoListView(this,artistsList, listView , listView2);
+        helperLists.updateTwoListView(this,artistsList, listView);
 
     }
 
@@ -70,7 +70,7 @@ public class SolutionSinger_Tab2 extends Activity {
             artistsList.add(artist);
         }
 
-        helperLists.updateTwoListView(this,artistsList, listView , listView2);
+        helperLists.updateTwoListView(this,artistsList, listView);
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
         allSolButton.setVisibility(View.GONE);

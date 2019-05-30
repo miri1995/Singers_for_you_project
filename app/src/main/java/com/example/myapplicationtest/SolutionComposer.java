@@ -51,14 +51,14 @@ public class SolutionComposer extends Activity {
        // String flag=EnumsSingers.composer.getEnums();
 
         if (firstTime) {
-            helperLists.updateComposersMap(this);
-            CoupleDistance coupleDistance = CoupleDistance.getInstance();
-            List<List<String>> genreCouplesComposers = new ArrayList<>();
-            genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.composerIdGenre, genreCouplesComposers);
+           if(helperLists.updateComposersMap(this)) {
+               CoupleDistance coupleDistance = CoupleDistance.getInstance();
+               List<List<String>> genreCouplesComposers = new ArrayList<>();
+               genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.composerIdGenre, genreCouplesComposers);
 
-            //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
-            coupleDistance.countPairs(genreCouplesComposers, EnumTables.genreComposer.getEnums());
-
+               //List<List<String>> genreCouplesComposers = coupleDistance.CreatePairFromMap(HelperLists.poetIdGenre,genre);
+               coupleDistance.countPairs(genreCouplesComposers, EnumTables.genreComposer.getEnums());
+           }
         }
         String q3= query.UserInput(priority.getFilters().getGenre(),priority.getFilters().getLoudness(),priority.getFilters().getTempo(),priority.getFilters().getMusical_instrument(),
                 priority.getPrioGenre(),priority.getPrioLoudness(),priority.getPrioTempo(),needToIncrease);
