@@ -498,4 +498,24 @@ public class HelperLists {
        }
        return map;
    }
+
+   public void openExplationDialog(Context context){
+
+      // context.setContentView(R.v.solution_singers);
+
+       AlertDialog.Builder builder = new AlertDialog.Builder(context);
+       builder.setCancelable(true);
+       builder.setTitle("Explanation priority");
+       builder.setMessage(R.string.explationPriority);
+       builder.setPositiveButton(android.R.string.ok,
+               new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       dialog.dismiss();
+                   }
+               });
+       AlertDialog dialog = builder.create();
+       dialog.show();
+
+   }
 }

@@ -80,7 +80,8 @@ public class PriorityComposers extends AppCompatActivity {
         }
     }
     public void explanationClick(View view){
-        //todo open dialog of the range of weak...
+        helperLists.openExplationDialog(this);
+
     }
 
 }

@@ -68,7 +68,7 @@ public class PrioritySingers extends AppCompatActivity {
             Intent intent = getIntent();
             //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
             Filters filters = (Filters) intent.getSerializableExtra(Filters.class.getName());
-            priority = new Priority(genreP2, loudnessP2, beatP2,filters,true); //todo delete pop
+            priority = new Priority(genreP2, loudnessP2, beatP2,filters,true);
 
             Intent intent1 = new Intent(PrioritySingers.this, SolutionSinger2.class);
             intent1.putExtra(Priority.class.getName(), priority);

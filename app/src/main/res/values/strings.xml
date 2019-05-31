@@ -46,4 +46,5 @@
     <string name="ID">ID</string>
     <string name="nameColumn">Name</string>
     <string name="percentColumn">Match percent</string>
+    <string name="explationPriority">High: This blsl\nMedium: cbdhj</string>
 </resources>
