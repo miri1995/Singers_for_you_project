@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.SolutionSinger_Tab1;
 
 import java.sql.DriverManager;
@@ -146,6 +147,24 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                     } catch (SQLException e) {
                         System.out.println("ERROR executeUpdate - " + e.getMessage());
                         Log.d("D","ERROR executeUpdate - " + e.getMessage());
+                    }
+                    break;
+                case DuplicateId:
+
+                    try (Statement stmt = con.createStatement();
+                         ResultSet rs = stmt.executeQuery(query);) {
+                        Log.d("D","IN LastIdSong"+query);
+                        while (rs.next()) {
+
+                            HelperLists.DuplicateId_Sol.add(rs.getString(colName));
+
+                        }
+                        Log.d("D","result"+ SingersRegistration.lastIDSong);
+                        con.close();
+                        //return "COMPLETE2";
+                    } catch (SQLException e) {
+                        System.out.println("ERROR executeQuery - " + e.getMessage());
+                        Log.d("D","ERROR executeQuery"+ e.getMessage());
                     }
                     break;
 

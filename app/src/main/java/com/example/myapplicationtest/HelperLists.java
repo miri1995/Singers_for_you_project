@@ -10,6 +10,8 @@ import android.widget.Spinner;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
+import com.example.myapplicationtest.RegistrationP.AsyncHelperRegistration;
+import com.example.myapplicationtest.RegistrationP.SingersRegistration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +37,7 @@ public class HelperLists {
     public static Map<String,List<String>> poetIdGoal = new HashMap();
     public static Map<String,List<String>> composerIdGenre = new HashMap();
     //public static List<String> poetGoalList = new ArrayList<>();
-
+    public static List<String> DuplicateId_Sol=new ArrayList<>();
     public HelperLists(){
 
     }
@@ -518,4 +520,57 @@ public class HelperLists {
        dialog.show();
 
    }
+
+   public boolean HasDuplicateId(String id, String schema,Context context){
+       String findStrID_column=schema+"_id";
+       String query="select "+findStrID_column+" from "+schema+"s"+" where "+findStrID_column+"="+id;
+       String str_result=null;
+       //get async result
+       try {
+              str_result = new AsyncHelperRegistration(context, query,
+                      findStrID_column, EnumAsync.DuplicateId.getEnumAsync()).execute().get(); //async task for getting data from db
+
+       } catch (ExecutionException e) {
+           e.printStackTrace();
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
+       if(str_result!=null){
+           if(DuplicateId_Sol.size()==0){
+               return false;
+           }
+       }
+       return true;
+   }
+    public void openDuplicateDialog(Context context){
+
+        // context.setContentView(R.v.solution_singers);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(true);
+        builder.setTitle("Duplication ID");
+        builder.setMessage(R.string.DuplicationID);
+        //todo add cencel artist
+        builder.setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //todo
+                        //להעביר לפונקציה שתכלס רושמת
+                        dialog.dismiss();
+
+                    }
+                });
+        builder.setNegativeButton(android.R.string.no,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
 }

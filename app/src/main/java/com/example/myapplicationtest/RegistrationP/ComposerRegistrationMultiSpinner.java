@@ -1,11 +1,14 @@
 //package com.example.myapplicationtest.RegistrationP;
 //
+//import android.app.AlertDialog;
 //import android.content.Intent;
 //import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 //import android.view.View;
+//import android.widget.Button;
 //import android.widget.EditText;
 //import android.widget.Spinner;
+//import android.widget.TextView;
 //
 //import com.example.myapplicationtest.Enums.EnumAsync;
 //import com.example.myapplicationtest.HelperLists;
@@ -13,6 +16,7 @@
 //import com.example.myapplicationtest.R;
 //import com.example.myapplicationtest.Registration;
 //
+//import java.util.ArrayList;
 //import java.util.concurrent.ExecutionException;
 //
 //public class ComposerRegistrationMultiSpinner extends AppCompatActivity {

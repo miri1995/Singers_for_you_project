@@ -47,4 +47,6 @@
     <string name="nameColumn">Name</string>
     <string name="percentColumn">Match percent</string>
     <string name="explationPriority">High: This blsl\nMedium: cbdhj</string>
+    <string name="DuplicationID">Are you already registered in our database, would you like to register again with other parameters?</string>
+
 </resources>

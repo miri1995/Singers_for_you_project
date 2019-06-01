@@ -73,10 +73,15 @@ public class ComposerRegistration extends AppCompatActivity {
         }
 
         boolean allChoose=helperLists.checkChoice(genreChoice,loudness,tempo,musicalInstrumentChoice);
-        if(allChoose) { //only if all filter selected
+        boolean hasDuplicateId=helperLists.HasDuplicateId(id,"composer",this);
+        if(allChoose && !hasDuplicateId) { //only if all filter selected
             InsertComposer();
         }else{
-            helperLists.ErrorChoice(this);
+            if(hasDuplicateId){
+                helperLists.openDuplicateDialog(this);
+            }else {
+                helperLists.ErrorChoice(this);
+            }
         }
 
     }

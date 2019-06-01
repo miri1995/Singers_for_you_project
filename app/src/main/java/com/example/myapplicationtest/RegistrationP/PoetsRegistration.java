@@ -64,10 +64,15 @@ public class PoetsRegistration extends AppCompatActivity {
         }
 
         boolean allChoose=helperLists.checkChoice(genreChoice,topic,goal);
-        if(allChoose) { //only if all filter selected
+        boolean hasDuplicateId=helperLists.HasDuplicateId(ID,"poet",this);
+        if(allChoose && !hasDuplicateId) { //only if all filter selected
            InsertPoet();
         }else{
-            helperLists.ErrorChoice(this);
+            if(hasDuplicateId){
+                helperLists.openDuplicateDialog(this);
+            }else {
+                helperLists.ErrorChoice(this);
+            }
         }
             finish();
         }
