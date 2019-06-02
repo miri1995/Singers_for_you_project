@@ -1,5 +1,7 @@
 package com.example.myapplicationtest.RegistrationP;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -67,23 +69,40 @@ public class ComposerRegistration extends AppCompatActivity {
 
         name = name_txt.getText().toString();
         id = id_txt.getText().toString();
-        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
-                helperLists.checkSelectedItem(spinner3,this)&& helperLists.checkSelectedItem(spinner4,this)){
-            genreChoice =spinner1.getSelectedItem().toString();
-            loudness =spinner2.getSelectedItem().toString();
-            tempo =spinner3.getSelectedItem().toString();
-            musicalInstrumentChoice =spinner4.getSelectedItem().toString();
+        if(!id.matches("[0-9]+")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setTitle("Incorrect id");
+            builder.setMessage("Incorrect format of id");
+            builder.setPositiveButton(android.R.string.yes,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
+        else {
+            if (helperLists.checkSelectedItem(spinner1, this) && helperLists.checkSelectedItem(spinner2, this) &&
+                    helperLists.checkSelectedItem(spinner3, this) && helperLists.checkSelectedItem(spinner4, this)) {
+                genreChoice = spinner1.getSelectedItem().toString();
+                loudness = spinner2.getSelectedItem().toString();
+                tempo = spinner3.getSelectedItem().toString();
+                musicalInstrumentChoice = spinner4.getSelectedItem().toString();
+            }
 
-        boolean allChoose=helperLists.checkChoice(genreChoice,loudness,tempo,musicalInstrumentChoice);
-        boolean hasDuplicateId=helperLists.HasDuplicateId(id,"composer",this);
-        if(allChoose && !hasDuplicateId) { //only if all filter selected
-            InsertComposer();
-        }else{
-            if(hasDuplicateId){
-                helperLists.openDuplicateDialog(this);
-            }else {
-                helperLists.ErrorChoice(this);
+            boolean allChoose = helperLists.checkChoice(genreChoice, loudness, tempo, musicalInstrumentChoice);
+            boolean hasDuplicateId = helperLists.HasDuplicateId(id, "composer", this);
+            if (allChoose && !hasDuplicateId) { //only if all filter selected
+                InsertComposer();
+            } else {
+                if (hasDuplicateId) {
+                    helperLists.openDuplicateDialog(this);
+                } else {
+                    helperLists.ErrorChoice(this);
+                }
             }
         }
 

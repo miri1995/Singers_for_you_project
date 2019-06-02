@@ -1,5 +1,7 @@
 package com.example.myapplicationtest.RegistrationP;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -60,30 +62,46 @@ public class SingersRegistration extends AppCompatActivity {
 
         name = name_txt.getText().toString();
         id = id_txt.getText().toString();
-
-        if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
-                helperLists.checkSelectedItem(spinner3,this)){
-            genreChoice =spinner1.getSelectedItem().toString();
-            loudness2 =spinner2.getSelectedItem().toString();
-            beat2 =spinner3.getSelectedItem().toString();
+        if(!id.matches("[0-9]+")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setCancelable(true);
+            builder.setTitle("Incorrect id");
+            builder.setMessage("Incorrect format of id");
+            builder.setPositiveButton(android.R.string.yes,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
+        else {
+            if (helperLists.checkSelectedItem(spinner1, this) && helperLists.checkSelectedItem(spinner2, this) &&
+                    helperLists.checkSelectedItem(spinner3, this)) {
+                genreChoice = spinner1.getSelectedItem().toString();
+                loudness2 = spinner2.getSelectedItem().toString();
+                beat2 = spinner3.getSelectedItem().toString();
+            }
 
-        boolean allChoose=helperLists.checkChoice(genreChoice,loudness2,beat2);
-        boolean hasDuplicateId=helperLists.HasDuplicateId(id,"artist",this);
-        if(allChoose && !hasDuplicateId) { //only if all filter selected
-            try {
-                InsertSinger();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
+            boolean allChoose = helperLists.checkChoice(genreChoice, loudness2, beat2);
+            boolean hasDuplicateId = helperLists.HasDuplicateId(id, "artist", this);
+            if (allChoose && !hasDuplicateId) { //only if all filter selected
+                try {
+                    InsertSinger();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (hasDuplicateId) {
+                    helperLists.openDuplicateDialog(this);
+                } else {
+                    helperLists.ErrorChoice(this);
+                }
             }
-        }else{
-            if(hasDuplicateId){
-                helperLists.openDuplicateDialog(this);
-            }else {
-                helperLists.ErrorChoice(this);
-            }
+            // finish();
         }
-           // finish();
 
     }
     public void InsertSinger() throws ExecutionException, InterruptedException {
