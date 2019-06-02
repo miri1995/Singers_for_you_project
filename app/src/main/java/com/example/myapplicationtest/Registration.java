@@ -3,6 +3,7 @@ package com.example.myapplicationtest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 
 
@@ -35,8 +36,11 @@ public class Registration extends AppCompatActivity {
                 startActivity(intent2);
                 break;
             case R.id.composer2:
+            //    Log.d("D","Entered composer");
                 Intent intent3 = new Intent(Registration.this, ComposerRegistration.class);
+              //  Log.d("D","Entered  class composer");
                 startActivity(intent3);
+                Log.d("D","Entered  class composer2");
                 break;
 
             default:

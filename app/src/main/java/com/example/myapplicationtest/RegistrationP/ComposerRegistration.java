@@ -3,6 +3,7 @@ package com.example.myapplicationtest.RegistrationP;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -22,6 +23,7 @@ public class ComposerRegistration extends AppCompatActivity {
     EditText name_txt;
     EditText id_txt;
 
+
    // public static Integer lastID;
 
     public static String genreChoice =null;
@@ -32,12 +34,13 @@ public class ComposerRegistration extends AppCompatActivity {
     private String name=null;
     private String id=null;
     HelperLists helperLists=new HelperLists();
+    //Log.d("D","Entered on create");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.composer_registration);
-
+        Log.d("D","Entered on create");
         //genreSinger
         spinner1 = findViewById(R.id.genre);
 
