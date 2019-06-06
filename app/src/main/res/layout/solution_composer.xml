@@ -36,21 +36,6 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btBackfromSolSinger"
-            android:layout_width="93dp"
-            android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="16dp"
-            android:background="@android:color/background_light"
-            android:onClick="back_click"
-            android:text="@string/back_button"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@android:color/holo_red_light"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
         <TextView
             android:id="@+id/txtResults"
             android:layout_width="180dp"

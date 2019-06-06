@@ -573,4 +573,24 @@ public class HelperLists {
         dialog.show();
 
     }
+
+    public boolean checkValitationID(Context context, String id){
+        if(!id.matches("[0-9]+")){
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setCancelable(true);
+            builder.setTitle("Incorrect id");
+            builder.setMessage("Incorrect format of id.\nPlease check your id is only numbers.");
+            builder.setPositiveButton(android.R.string.yes,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return false;
+        }
+        return true;
+    }
 }

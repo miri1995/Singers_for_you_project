@@ -58,22 +58,7 @@ public class PoetsRegistration extends AppCompatActivity {
 
         name = name_txt.getText().toString();
         ID = id_txt.getText().toString();
-        if(!ID.matches("[0-9]+")){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(true);
-            builder.setTitle("Incorrect id");
-            builder.setMessage("Incorrect format of id");
-            builder.setPositiveButton(android.R.string.yes,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-        else {
+        if(helperLists.checkValitationID(this,ID)){
             if (helperLists.checkSelectedItem(spinner1, this) && helperLists.checkSelectedItem(spinner2, this) &&
                     helperLists.checkSelectedItem(spinner3, this)) {
                 genreChoice = spinner1.getSelectedItem().toString();
@@ -94,7 +79,7 @@ public class PoetsRegistration extends AppCompatActivity {
             }
             finish();
         }
-        }
+    }
 
 
     public void InsertPoet() {

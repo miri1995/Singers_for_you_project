@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/welcome_page"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="599dp"
         android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +25,10 @@
             android:layout_height="130dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="66dp"
             android:layout_marginTop="67dp"
+            android:layout_marginEnd="67dp"
             android:hint="@string/welcome"
             android:text="@string/app_name"
             android:textAlignment="center"
@@ -38,14 +39,19 @@
             app:fontFamily="serif-monospace" />
 
 
-
         <ImageView
             android:id="@+id/poets"
-            android:layout_width="186dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="257dp"
+            android:layout_width="190dp"
+            android:layout_height="109dp"
+            android:layout_above="@+id/singers"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentStart="true"
+
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="20dp"
+            android:adjustViewBounds="true"
             android:cropToPadding="false"
             android:onClick="choiceClick"
             app:srcCompat="@drawable/poets" />
@@ -53,11 +59,15 @@
 
         <ImageView
             android:id="@+id/singers"
-            android:layout_width="181dp"
-            android:layout_height="wrap_content"
+            android:layout_width="190dp"
+            android:layout_height="109dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="120dp"
+
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="100dp"
+            android:adjustViewBounds="true"
             android:contentDescription="TODO"
             android:onClick="choiceClick"
             app:srcCompat="@drawable/singers"
@@ -66,26 +76,39 @@
 
         <ImageView
             android:id="@+id/composer"
-            android:layout_width="173dp"
+            android:layout_width="190dp"
             android:layout_height="109dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="220dp"
+            android:layout_above="@+id/btregistration"
+            android:layout_below="@+id/textView4"
 
 
-            android:layout_marginBottom="316dp"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="215dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="18dp"
+            android:layout_toEndOf="@+id/poets"
+            android:adjustViewBounds="true"
             android:onClick="choiceClick"
             app:srcCompat="@drawable/composers" />
 
         <ImageView
             android:id="@+id/btregistration"
-            android:layout_width="wrap_content"
-            android:layout_height="93dp"
+            android:layout_width="190dp"
+            android:layout_height="109dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="200dp"
 
 
-            android:layout_marginBottom="181dp"
 
+            android:layout_marginLeft="215dp"
+
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="100dp"
+            android:layout_toEndOf="@+id/singers"
+            android:adjustViewBounds="true"
             android:onClick="choiceClick"
             app:srcCompat="@drawable/registration" />
 

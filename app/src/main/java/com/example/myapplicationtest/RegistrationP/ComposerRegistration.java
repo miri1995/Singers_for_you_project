@@ -69,22 +69,8 @@ public class ComposerRegistration extends AppCompatActivity {
 
         name = name_txt.getText().toString();
         id = id_txt.getText().toString();
-        if(!id.matches("[0-9]+")){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setCancelable(true);
-            builder.setTitle("Incorrect id");
-            builder.setMessage("Incorrect format of id");
-            builder.setPositiveButton(android.R.string.yes,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();
-        }
-        else {
+        if(helperLists.checkValitationID(this,id)){
+
             if (helperLists.checkSelectedItem(spinner1, this) && helperLists.checkSelectedItem(spinner2, this) &&
                     helperLists.checkSelectedItem(spinner3, this) && helperLists.checkSelectedItem(spinner4, this)) {
                 genreChoice = spinner1.getSelectedItem().toString();

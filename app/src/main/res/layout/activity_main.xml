@@ -25,9 +25,7 @@
             android:layout_width="278dp"
             android:layout_height="130dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="103dp"
             android:hint="@string/welcome"
             android:text="@string/app_name"
             android:textAlignment="center"
@@ -52,28 +50,13 @@
             android:textSize="30sp"
             android:textStyle="normal|bold" />
 
-        <Button
-            android:id="@+id/btnexit"
-            android:layout_width="132dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="35dp"
-            android:background="@color/colorAccent"
-
-            android:onClick="exit_click"
-            android:text="@string/btexit"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            android:textStyle="normal|bold" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="156dp"
             android:layout_height="113dp"
-            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/imageView2"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="255dp"
+            android:layout_marginEnd="-69dp"
             android:layout_marginBottom="141dp"
             android:contentDescription="@string/imageView"
             app:srcCompat="@drawable/music" />
@@ -82,9 +65,11 @@
             android:id="@+id/imageView2"
             android:layout_width="156dp"
             android:layout_height="113dp"
+            android:layout_below="@+id/textView4"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="186dp"
+            android:layout_marginTop="187dp"
             android:layout_marginBottom="172dp"
             android:contentDescription="@string/imageView"
             app:srcCompat="@drawable/music" />
@@ -101,12 +86,12 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="301dp"
-            android:layout_height="209dp"
-            android:layout_marginStart="65dp"
-            android:layout_marginTop="230dp"
+            android:layout_width="318dp"
+            android:layout_height="231dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="180dp"
             android:text="@string/main"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:typeface="normal"
             app:fontFamily="serif-monospace" />
