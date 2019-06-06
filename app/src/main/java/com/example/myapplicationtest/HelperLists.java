@@ -54,14 +54,14 @@ public class HelperLists {
    }
 
    public String getTopicQuery(){
-        return "select distinct song_topic from poets";
+        return "select topic from topic";
    }
 
    public String getGoalQuery(){
-        return "select distinct goal from poets";
+        return "select goal from goals";
    }
 
-   public String getInstrumentQuery(){ return "select distinct musical_instrument from composers";}
+   public String getInstrumentQuery(){ return "select musical_instrument from musical_instrument";}
 
     public boolean checkChoice(String genre2, String loudness2, String beat2){
         if(genre2==null || loudness2==null || beat2==null ||
@@ -152,7 +152,7 @@ public class HelperLists {
         String result=null;
         if(HelperLists.topicHelperList.size()==0) {
             try {
-                result= new AsyncHelper(context, q2, "song_topic", null, null, null,
+                result= new AsyncHelper(context, q2, "topic", null, null, null,
                          EnumAsync.Topic.getEnumAsync()).execute().get(); //async task for getting data from db
             } catch (ExecutionException e) {
                 e.printStackTrace();
