@@ -66,9 +66,6 @@ public class SulationSinger_Tab3 extends Activity {
 
 
 
-
-
-
     public void allSol_click(View view) {
         ListView listView = findViewById(R.id.listViewLess);
         ListView listView2 = findViewById(R.id.listViewLess2);
@@ -79,7 +76,6 @@ public class SulationSinger_Tab3 extends Activity {
         }
 
         helperLists.updateTwoListView(this,artistsList, listView);
-
         Button allSolButton = (Button) findViewById(R.id.btAllSolSingers);
         allSolButton.setVisibility(View.GONE);
     }
