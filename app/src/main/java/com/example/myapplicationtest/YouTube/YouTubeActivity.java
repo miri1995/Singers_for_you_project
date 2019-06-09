@@ -20,7 +20,7 @@ import retrofit2.Response;
 public class YouTubeActivity  extends YouTubeBaseActivity   {
     private static final String TAG = "TAG";
     private ThumbnailVideoAdapter thumbnailVideoAdapter;
-    private List<JsonVideo> videos;
+    private List<JsonVideo> videos = new ArrayList<>();;
     private RecyclerView recyclerView;
 
     @Override
@@ -30,14 +30,16 @@ public class YouTubeActivity  extends YouTubeBaseActivity   {
       //  youTubePlayerView=findViewById(R.id.youTubePlayer);
       //  button=findViewById(R.id.playYouTube);
        // onInitializedListener=new YouTubePlayer.OnInitializedListener() {
+
+
+
         recyclerView = findViewById(R.id.recycler);
-        videos = new ArrayList<>();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         thumbnailVideoAdapter = new ThumbnailVideoAdapter(YouTubeActivity.this);
         recyclerView.setAdapter(thumbnailVideoAdapter);
-        loadVideo();
 
+        loadVideo();
 
     }
 
@@ -45,10 +47,17 @@ public class YouTubeActivity  extends YouTubeBaseActivity   {
         App.getVideoSearchApi().callback(SolutionSinger_Tab1.whichArtist).enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                Log.d(TAG, "onResponse: ");
-                videos = response.body().getVideos();
-                thumbnailVideoAdapter.setVideos(videos);
+             /*   try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }*/
+                Log.d(TAG, "onResponse: "+response.body().getVideos());
 
+                videos = response.body().getVideos();
+                if(videos!=null) {
+                    thumbnailVideoAdapter.setVideos(videos);
+                }
             }
 
             @Override
