@@ -15,6 +15,7 @@
     <string name="instrument">Musical Instrument:</string>
     <string name="textViewPop">The most popular?</string>
     <string name="button">find!</string>
+    <string name="next">Next Step</string>
     <string name="buttonRegister">Register me!</string>
     <string name="textView3">results</string>
     <string name="back_button">back</string>
@@ -31,7 +32,7 @@
     <string name="txtName">Name</string>
     <string name="Subject">Subject:</string>
     <string name="Goal">Goal:</string>
-    <string name="main">In this application you can find Singers, Songwriters and Composers \naccording to your preferences.\nYou can register as a Singer, SongWriter or Composer and thus increase your chances of success</string>
+    <string name="main">In this application you can find Singers, Songwriters and Composers according to your preferences.\nYou can register as a Singer, SongWriter or Composer and thus increase your chances of success.</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
     <string name="search">Search</string>
     <string name="add_video">Add new video</string>

@@ -4,7 +4,7 @@ public enum EnumAsync {
     LastID("LastID"),LastIdSong("LastIdSong"),GenreId("GenreId"), InsertSinger("InsertSinger"),
     LastIDPoet("LastIDPoet"),LastIDComp("LastIDComp"), //ASYNC REGISTRATION
     Genre("Genre"), Goal("Goal"),Sol("Sol"),Topic("Topic"),Poet("Poet"),Instrument("Instrument"),Composer("Composer"),RelevantPoets("RelevantPoets"),
-    RelevantComposers("RelevantComposers"),DuplicateId("DuplicateId")
+    RelevantComposers("RelevantComposers"),DuplicateId("DuplicateId"), YouTube("YouTube")
 
     ; //ASYNCHELPER
 

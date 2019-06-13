@@ -11,7 +11,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#DFC008C7"
+        android:background="@color/colorSinger"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -53,16 +53,16 @@
 
         <ListView
             android:id="@+id/listView"
-            android:layout_width="200dp"
+            android:layout_width="250dp"
             android:layout_height="561dp"
-            android:layout_marginStart="98dp"
+            android:layout_marginStart="70dp"
             android:layout_marginTop="65dp" />
 
         <ListView
             android:id="@+id/listView2"
             android:layout_width="84dp"
             android:layout_height="561dp"
-            android:layout_marginStart="300dp"
+            android:layout_marginStart="315dp"
             android:layout_marginTop="65dp" />
 
     </RelativeLayout>

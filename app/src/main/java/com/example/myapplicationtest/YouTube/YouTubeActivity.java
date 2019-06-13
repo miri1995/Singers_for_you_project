@@ -47,17 +47,19 @@ public class YouTubeActivity  extends YouTubeBaseActivity   {
         App.getVideoSearchApi().callback(SolutionSinger_Tab1.whichArtist).enqueue(new Callback<JsonResponse>() {
             @Override
             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-             /*   try {
-                    Thread.sleep(1000);
+                try {
+                    Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }*/
-                Log.d(TAG, "onResponse: "+response.body().getVideos());
+                }
+                Log.d(TAG, "onResponse: " + response.body().getVideos());
+                //new Thread() {
 
                 videos = response.body().getVideos();
-                if(videos!=null) {
+                if (videos != null) {
                     thumbnailVideoAdapter.setVideos(videos);
                 }
+           // }.start();
             }
 
             @Override

@@ -9,14 +9,14 @@
     <RelativeLayout
         android:id="@+id/welcome_page"
         android:layout_width="match_parent"
-        android:layout_height="599dp"
+        android:layout_height="587dp"
         android:background="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
 
         <TextView
@@ -41,16 +41,16 @@
 
         <ImageView
             android:id="@+id/poets"
-            android:layout_width="190dp"
-            android:layout_height="109dp"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
             android:layout_above="@+id/singers"
             android:layout_below="@+id/textView4"
             android:layout_alignParentStart="true"
 
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="11dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginBottom="7dp"
             android:adjustViewBounds="true"
             android:cropToPadding="false"
             android:onClick="choiceClick"
@@ -59,14 +59,15 @@
 
         <ImageView
             android:id="@+id/singers"
-            android:layout_width="190dp"
-            android:layout_height="109dp"
+            android:layout_width="203dp"
+            android:layout_height="76dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
 
             android:layout_marginStart="11dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="134dp"
             android:adjustViewBounds="true"
             android:contentDescription="TODO"
             android:onClick="choiceClick"
@@ -76,19 +77,19 @@
 
         <ImageView
             android:id="@+id/composer"
-            android:layout_width="190dp"
-            android:layout_height="109dp"
+            android:layout_width="170dp"
+            android:layout_height="74dp"
             android:layout_above="@+id/btregistration"
             android:layout_below="@+id/textView4"
 
 
             android:layout_alignParentEnd="true"
 
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="20dp"
             android:layout_marginLeft="215dp"
-            android:layout_marginTop="72dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="28dp"
             android:layout_toEndOf="@+id/poets"
             android:adjustViewBounds="true"
             android:onClick="choiceClick"
@@ -96,17 +97,17 @@
 
         <ImageView
             android:id="@+id/btregistration"
-            android:layout_width="190dp"
-            android:layout_height="109dp"
+            android:layout_width="176dp"
+            android:layout_height="72dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
 
 
+            android:layout_marginStart="20dp"
 
             android:layout_marginLeft="215dp"
-
-            android:layout_marginEnd="0dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="138dp"
             android:layout_toEndOf="@+id/singers"
             android:adjustViewBounds="true"
             android:onClick="choiceClick"
@@ -118,4 +119,9 @@
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
+
+    <android.support.constraint.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>
