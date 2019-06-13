@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumTables;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
-
+// android:popupBackground="@color/colorSinger2" todo delete this line
 
 public class SolutionComposer extends Activity {
     ComposersPriority priority = new ComposersPriority();
@@ -177,6 +178,8 @@ public class SolutionComposer extends Activity {
 
 
     public void allSol_click(View view) {
+        TextView textView = (TextView) findViewById(R.id.txtResults);
+        helperLists.updateTextView(R.string.result,textView);
         List<String> resultArray = composers;
         List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
         List<String> sortedGrades = new ArrayList<>();

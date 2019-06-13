@@ -17,7 +17,8 @@
     <string name="button">find!</string>
     <string name="next">Next Step</string>
     <string name="buttonRegister">Register me!</string>
-    <string name="textView3">results</string>
+    <string name="top_10_result">Top 10</string>
+    <string name="result">Results</string>
     <string name="back_button">back</string>
     <string name="button2">finish</string>
     <string name="btnSingers">Singers</string>

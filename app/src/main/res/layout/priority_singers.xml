@@ -42,7 +42,7 @@
             android:id="@+id/register_what_you"
             android:layout_width="120dp"
             android:layout_gravity="fill_horizontal"
-            android:popupBackground="@color/colorSinger"
+           
             android:textSize="36sp" />
 
         <TextView

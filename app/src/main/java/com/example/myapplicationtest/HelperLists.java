@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
@@ -61,7 +62,7 @@ public class HelperLists {
         return "select goal from goals";
    }
 
-   public String getInstrumentQuery(){ return "select musical_instrument from musical_instrument";}
+   public String getInstrumentQuery(){ return "select musical_instrument from musical_instruments";}
 
     public boolean checkChoice(String genre2, String loudness2, String beat2){
         if(genre2==null || loudness2==null || beat2==null ||
@@ -592,5 +593,10 @@ public class HelperLists {
             return false;
         }
         return true;
+    }
+
+    public void updateTextView(int toThis, TextView textView) {
+        //TextView textView = (TextView) findViewById(R.id.textView);
+        textView.setText(toThis);
     }
 }
