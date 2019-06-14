@@ -1,4 +1,4 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Singers.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -9,9 +9,15 @@ import android.widget.Button;
 import android.widget.ListView;
 
 
+import com.example.myapplicationtest.Artist;
+import com.example.myapplicationtest.AsyncHelper;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
-import com.example.myapplicationtest.SingersLogic.Priority;
+import com.example.myapplicationtest.FittingPercents;
+import com.example.myapplicationtest.HelperLists;
+import com.example.myapplicationtest.Singers.Logic.Query_Singer;
+import com.example.myapplicationtest.R;
+import com.example.myapplicationtest.Singers.Logic.Priority;
 import com.example.myapplicationtest.YouTube.YouTubeActivity;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Singers.Activity;
 
 import android.app.Activity;
 import android.app.TabActivity;
@@ -7,8 +7,9 @@ import android.os.Bundle;
 import android.widget.TabHost;
 
 
-import com.example.myapplicationtest.SingersLogic.Priority;
 //import assets.pair.txt;
+
+import com.example.myapplicationtest.Singers.Logic.Priority;
 
 import static java.lang.StrictMath.round;
 

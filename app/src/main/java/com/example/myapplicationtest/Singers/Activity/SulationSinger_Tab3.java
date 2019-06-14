@@ -1,4 +1,4 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Singers.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.myapplicationtest.Artist;
+import com.example.myapplicationtest.HelperLists;
+import com.example.myapplicationtest.R;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

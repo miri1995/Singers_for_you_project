@@ -1,6 +1,4 @@
-package com.example.myapplicationtest.Composer;
-
-import com.example.myapplicationtest.SingersLogic.Filters;
+package com.example.myapplicationtest.Composer.Logic;
 
 import java.io.Serializable;
 

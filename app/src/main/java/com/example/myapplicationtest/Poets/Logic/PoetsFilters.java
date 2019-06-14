@@ -1,4 +1,4 @@
-package com.example.myapplicationtest.Poets;
+package com.example.myapplicationtest.Poets.Logic;
 
 import java.io.Serializable;
 

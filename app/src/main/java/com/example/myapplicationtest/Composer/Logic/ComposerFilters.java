@@ -1,4 +1,4 @@
-package com.example.myapplicationtest.Composer;
+package com.example.myapplicationtest.Composer.Logic;
 
 import java.io.Serializable;
 
@@ -8,7 +8,6 @@ public class ComposerFilters implements Serializable {
     private String loudness;
     private String tempo;
     private String musical_instrument;
-    //  private Priority priority = new Priority("high","medium","low");
 
     public ComposerFilters(String genre, String loudness, String tempo,String musical_instrument)
     {

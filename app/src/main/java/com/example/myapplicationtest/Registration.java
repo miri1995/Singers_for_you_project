@@ -48,10 +48,7 @@ public class Registration extends AppCompatActivity {
         }
 
     }
-    public void back_choice_click(View view) {
-        Intent intent = new Intent(this, WhichArtist.class);
-        startActivity(intent);
-    }
+
 
 
 }

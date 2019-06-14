@@ -13,7 +13,7 @@ import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.HelperLists;
 import com.example.myapplicationtest.R;
 import com.example.myapplicationtest.Registration;
-import com.example.myapplicationtest.SingersLogic.Filters;
+import com.example.myapplicationtest.Singers.Logic.Filters;
 
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;

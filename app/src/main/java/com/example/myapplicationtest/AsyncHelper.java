@@ -7,7 +7,10 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import com.example.myapplicationtest.Composer.Activity.SolutionComposer;
 import com.example.myapplicationtest.Enums.EnumAsync;
+import com.example.myapplicationtest.Poets.Activity.SolutionPoets;
+import com.example.myapplicationtest.Singers.Activity.SolutionSinger_Tab1;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;

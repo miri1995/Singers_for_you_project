@@ -1,10 +1,13 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Singers.Logic;
 
 
 
 import android.util.Log;
 
+import com.example.myapplicationtest.CoupleDistance;
 import com.example.myapplicationtest.Enums.EnumsSingers;
+import com.example.myapplicationtest.IQuery;
+import com.example.myapplicationtest.Maps;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +18,7 @@ import java.util.Map;
 /**
  * Query class - responsible for making the queries.
  */
-public class Query_Singer implements IQuery{
+public class Query_Singer implements IQuery {
 
     /**
      * creates the queries according to the user's choices.

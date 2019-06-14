@@ -1,4 +1,4 @@
-package com.example.myapplicationtest.SingersLogic;
+package com.example.myapplicationtest.Singers.Logic;
 
 
 import java.io.Serializable;
@@ -9,7 +9,7 @@ public class Priority implements Serializable {
     private String priotempo;
     private Filters filters;
     private boolean pop;
-    // private Filters filters = new Filters("genreSinger","loudness","tempo");
+
 
     public Priority(String prioGenre, String prioloudness, String priotempo,Filters filters, boolean pop) {
         this.prioGenre = prioGenre;

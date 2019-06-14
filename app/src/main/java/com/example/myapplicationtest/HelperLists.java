@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
 import com.example.myapplicationtest.RegistrationP.AsyncHelperRegistration;
-import com.example.myapplicationtest.RegistrationP.SingersRegistration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -339,12 +338,9 @@ public class HelperLists {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        try {
-                            dialog.wait(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
                         dialog.cancel();
+                        
+
                     }
                 });
         AlertDialog dialog = builder.create();
@@ -558,7 +554,7 @@ public class HelperLists {
                     public void onClick(DialogInterface dialog, int which) {
                         //todo
                         //להעביר לפונקציה שתכלס רושמת
-                        dialog.dismiss();
+                        dialog.cancel();
 
                     }
                 });
@@ -566,7 +562,7 @@ public class HelperLists {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                        dialog.cancel();
 
                     }
                 });

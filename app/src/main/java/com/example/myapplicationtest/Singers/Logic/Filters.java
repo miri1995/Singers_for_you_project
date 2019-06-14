@@ -1,4 +1,4 @@
-package com.example.myapplicationtest.SingersLogic;
+package com.example.myapplicationtest.Singers.Logic;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ public class Filters implements Serializable {
     private String genre;
     private String loudness;
     private String tempo;
-    //  private Priority priority = new Priority("high","medium","low");
+
 
     public Filters(String genre, String loudness, String tempo)
     {

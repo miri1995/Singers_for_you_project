@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.myapplicationtest.Composer.Activity.ComposersActivity;
+import com.example.myapplicationtest.Poets.Activity.PoetsActivity;
+import com.example.myapplicationtest.Singers.Activity.SingersActivity;
+
 public class WhichArtist extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

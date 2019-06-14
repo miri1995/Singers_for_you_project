@@ -1,6 +1,4 @@
-package com.example.myapplicationtest.Poets;
-
-import com.example.myapplicationtest.SingersLogic.Filters;
+package com.example.myapplicationtest.Poets.Logic;
 
 import java.io.Serializable;
 

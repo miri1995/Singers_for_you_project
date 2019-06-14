@@ -7,7 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 
 import com.example.myapplicationtest.R;
-import com.example.myapplicationtest.SolutionSinger_Tab1;
+import com.example.myapplicationtest.Singers.Activity.SolutionSinger_Tab1;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 
 import java.util.ArrayList;

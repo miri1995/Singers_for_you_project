@@ -1,4 +1,4 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Singers.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
 
-import com.example.myapplicationtest.SingersLogic.Filters;
-import com.example.myapplicationtest.SingersLogic.Priority;
+import com.example.myapplicationtest.HelperLists;
+import com.example.myapplicationtest.R;
+import com.example.myapplicationtest.Singers.Logic.Filters;
+import com.example.myapplicationtest.Singers.Logic.Priority;
 
 public class PrioritySingers extends AppCompatActivity {
     Priority priority;

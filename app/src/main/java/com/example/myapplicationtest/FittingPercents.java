@@ -1,9 +1,10 @@
 package com.example.myapplicationtest;
 
-import com.example.myapplicationtest.Composer.ComposersPriority;
+import com.example.myapplicationtest.Composer.Logic.ComposersPriority;
 import com.example.myapplicationtest.Enums.EnumsSingers;
-import com.example.myapplicationtest.Poets.PoetsPriority;
-import com.example.myapplicationtest.SingersLogic.Priority;
+import com.example.myapplicationtest.Poets.Activity.SolutionPoets;
+import com.example.myapplicationtest.Poets.Logic.PoetsPriority;
+import com.example.myapplicationtest.Singers.Logic.Priority;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -299,7 +300,7 @@ public class FittingPercents {
                 gradeOtherElement = maxGrade -step * i;
                 otherGenresGrade.add(gradeOtherElement);
             }
-            for(int i=0;i<SolutionPoets.genres.size();i++){
+            for(int i = 0; i< SolutionPoets.genres.size(); i++){
                 if(SolutionPoets.genres.get(i).equals(prioirtyPoets.getFilters().getGenre())){
                     ElementGrade = 100 * percentElement;
                 }

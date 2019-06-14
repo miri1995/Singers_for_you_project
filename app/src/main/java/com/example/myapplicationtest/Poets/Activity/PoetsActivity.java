@@ -1,19 +1,15 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Poets.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.myapplicationtest.Enums.EnumTables;
-import com.example.myapplicationtest.Poets.PoetsFilters;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.example.myapplicationtest.HelperLists;
+import com.example.myapplicationtest.Poets.Logic.PoetsFilters;
+import com.example.myapplicationtest.R;
 
 public class PoetsActivity extends AppCompatActivity {
     PoetsFilters filters;

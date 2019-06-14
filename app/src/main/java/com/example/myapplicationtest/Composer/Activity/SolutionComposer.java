@@ -1,4 +1,4 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Composer.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -7,15 +7,20 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.example.myapplicationtest.Artist;
+import com.example.myapplicationtest.AsyncHelper;
+import com.example.myapplicationtest.CoupleDistance;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Enums.EnumsSingers;
-import com.example.myapplicationtest.Composer.ComposersPriority;
-import com.example.myapplicationtest.SingersLogic.Helper;
-import com.example.myapplicationtest.SingersLogic.Priority;
+import com.example.myapplicationtest.Composer.Logic.ComposersPriority;
+import com.example.myapplicationtest.FittingPercents;
+import com.example.myapplicationtest.HelperLists;
+import com.example.myapplicationtest.Composer.Logic.Query_Composser;
+import com.example.myapplicationtest.R;
+
 
 import java.util.ArrayList;
 import java.util.List;

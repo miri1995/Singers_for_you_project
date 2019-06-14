@@ -1,20 +1,26 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Poets.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 
+import com.example.myapplicationtest.Artist;
+import com.example.myapplicationtest.AsyncHelper;
+import com.example.myapplicationtest.CoupleDistance;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumTables;
 import com.example.myapplicationtest.Enums.EnumsSingers;
-import com.example.myapplicationtest.Poets.PoetsPriority;
-import com.example.myapplicationtest.SingersLogic.Helper;
+import com.example.myapplicationtest.FittingPercents;
+import com.example.myapplicationtest.HelperLists;
+import com.example.myapplicationtest.Poets.Logic.Query_Poet;
+import com.example.myapplicationtest.Poets.Logic.PoetsPriority;
+import com.example.myapplicationtest.R;
+
 //import assets.pair.txt;
 
 import java.util.ArrayList;

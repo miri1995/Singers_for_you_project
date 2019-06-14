@@ -1,10 +1,12 @@
+/*
 package com.example.myapplicationtest.SingersLogic;
 
 import java.io.*;
 import java.util.*;
 
 public class ListGenre {
-   /* public static void main(String[] args){
+   */
+/* public static void main(String[] args){
         java.util.List<java.util.List<String>> lines = new ArrayList<>();
         java.util.List<String>l1 = new ArrayList<>();
         l1.add("hip hop");
@@ -55,7 +57,8 @@ public class ListGenre {
         l10.add("rock");
         lines.add(l10);
         System.out.println(countPairs(lines));
-    }*/
+    }*//*
+
     public  List<List<String>> ReadPairFile(){
        List<List<String>> lines = new ArrayList<>();
 
@@ -122,3 +125,4 @@ public class ListGenre {
     }
 
 }
+*/

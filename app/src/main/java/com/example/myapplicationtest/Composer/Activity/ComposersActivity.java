@@ -1,17 +1,18 @@
-package com.example.myapplicationtest;
+package com.example.myapplicationtest.Composer.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.myapplicationtest.Composer.ComposerFilters;
+import com.example.myapplicationtest.Composer.Logic.ComposerFilters;
+import com.example.myapplicationtest.HelperLists;
+import com.example.myapplicationtest.R;
+import com.example.myapplicationtest.WhichArtist;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
