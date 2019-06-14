@@ -93,11 +93,11 @@ public class HelperLists {
         }
     }
 
-    public void ErrorChoice(Context context){
+    public void ErrorChoice(Context context,int msg){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
         builder.setTitle("Error Choose");
-        builder.setMessage("Please select all filters");
+        builder.setMessage(msg);
         builder.setPositiveButton(android.R.string.yes,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -358,7 +358,7 @@ public class HelperLists {
         if(spinner.getSelectedItem()!=null){
             return true;
         }else{
-            ErrorChoice(context);
+            ErrorChoice(context,R.string.errorFilters);
             return false;
         }
     }

@@ -30,7 +30,7 @@ public class PrioirtyPoets extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.priority_poets);
 
-        //categorization
+        //genre
         spinner1 = findViewById(R.id.register_what_you);
 
 
@@ -51,28 +51,35 @@ public class PrioirtyPoets extends AppCompatActivity {
         String genreP2 =null;
         String subjectP2 = null;
         String goalP2=null;
-        boolean pop;
-        //   String location2=null;
 
+        //check if all filters selected
         if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
                 helperLists.checkSelectedItem(spinner3,this)){
             genreP2 =spinner1.getSelectedItem().toString();
             subjectP2 =spinner2.getSelectedItem().toString();
             goalP2 =spinner3.getSelectedItem().toString();
         }
-
+        boolean allChoose=helperLists.checkChoice(genreP2,subjectP2,goalP2);
+        boolean diffrentPriority=helperLists.checkPriority(genreP2,subjectP2,goalP2);
+        if(allChoose && diffrentPriority) {
 
             Intent intent = getIntent();
             PoetsFilters filters = (PoetsFilters) intent.getSerializableExtra(PoetsFilters.class.getName());
-            poetsPriority = new PoetsPriority(genreP2, subjectP2, goalP2,filters);
+            poetsPriority = new PoetsPriority(genreP2, subjectP2, goalP2, filters);
 
             Intent intent1 = new Intent(PrioirtyPoets.this, SolutionPoets.class);
             intent1.putExtra(PoetsPriority.class.getName(), poetsPriority);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
+             finish();
+        }else{
+            if(!diffrentPriority) {
+                helperLists.ErrorChoice(this,R.string.errorPriority);
+            }else{
+                helperLists.ErrorChoice(this,R.string.errorFilters);
+            }
+        }
 
-            finish();
-      //  }
     }
 }
 

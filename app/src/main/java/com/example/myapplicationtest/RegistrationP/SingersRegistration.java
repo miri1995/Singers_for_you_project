@@ -82,7 +82,7 @@ public class SingersRegistration extends AppCompatActivity {
                 if (hasDuplicateId) {
                     helperLists.openDuplicateDialog(this);
                 } else {
-                    helperLists.ErrorChoice(this);
+                    helperLists.ErrorChoice(this,R.string.errorRegistration);
                 }
             }
             // finish();

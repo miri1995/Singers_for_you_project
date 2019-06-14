@@ -72,7 +72,7 @@ public class SingersActivity extends AppCompatActivity {
             startActivity(intent1);
             finish();
         }else{
-           helperLists.ErrorChoice(this);
+           helperLists.ErrorChoice(this,R.string.errorFilters);
         }
 
     }

@@ -20,7 +20,7 @@ public class PrioritySingers extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.priority_singers);
 
-        //categorization
+        //genre
         spinner1 = findViewById(R.id.register_what_you);
 
 
@@ -33,8 +33,7 @@ public class PrioritySingers extends AppCompatActivity {
 
         helperLists.initPariority(this,spinner1,spinner2,spinner3);
 
-        //spinner4
-       // swPopular = findViewById(R.id.swPop);
+
 
 
 
@@ -44,9 +43,8 @@ public class PrioritySingers extends AppCompatActivity {
         String genreP2 =null;
         String loudnessP2 = null;
         String beatP2=null;
-        boolean pop;
-     //   String location2=null;
 
+        //check if all filters selected
         if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
                 helperLists.checkSelectedItem(spinner3,this)){
             genreP2 =spinner1.getSelectedItem().toString();
@@ -54,14 +52,7 @@ public class PrioritySingers extends AppCompatActivity {
             beatP2 =spinner3.getSelectedItem().toString();
         }
 
-      /*  if(swPopular.isChecked()){
-            pop=true;
-        }else{
-            pop=false;
-        }*/
-      /*  if(spinner4.getSelectedItem()!=null){
-            location2 =spinner4.getSelectedItem().toString();
-        }*/
+
         boolean allChoose=helperLists.checkChoice(genreP2,loudnessP2,beatP2);
         boolean diffrentPriority=helperLists.checkPriority(genreP2,loudnessP2,beatP2);
         if(allChoose && diffrentPriority){
@@ -78,7 +69,11 @@ public class PrioritySingers extends AppCompatActivity {
 
             finish();
         }else{
-            helperLists.ErrorChoice(this);
+            if(!diffrentPriority) {
+                helperLists.ErrorChoice(this,R.string.errorPriority);
+            }else{
+                helperLists.ErrorChoice(this,R.string.errorFilters);
+            }
         }
     }
 }

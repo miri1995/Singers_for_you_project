@@ -45,6 +45,10 @@
     <string name="priority_text">Before viewing your results,
         please fill in your priority for each filters so we can return the results that are best for you :)
     </string>
+    <string name="errorFilters">"Please select all filters"</string>
+    <string name="errorPriority">"Please select different priority for each filter"</string>
+
+    <string name="errorRegistration">"All fields must be filled in"</string>
     <string name="ID">ID</string>
     <string name="nameColumn">Name</string>
     <string name="percentColumn">Match percent</string>

@@ -31,19 +31,7 @@ public class PriorityComposers extends AppCompatActivity {
         spinner3 = findViewById(R.id.spinner3);
 
         helperLists.initPariority(this,spinner1,spinner2,spinner3);
-        //spinner4
-        //   List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
-        //  spinner4 = findViewById(R.id.spinner4);
 
-        //   ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
-        //  spinner4.setAdapter(locationAdapter);
-
-        //switch popular
-        // List<String> genresP = new ArrayList<String>(Arrays.asList("select","high","medium","low"));
-       // swPopular = findViewById(R.id.swPop);
-
-       /* ArrayAdapter<String> popularAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,genresP);
-        swPopular.setAdapter(popularAdapter);*/
 
     }
 
@@ -52,8 +40,7 @@ public class PriorityComposers extends AppCompatActivity {
         String genreP2 =null;
         String loudnessP2 = null;
         String beatP2=null;
-        //boolean pop;
-        //   String location2=null;
+
 
         if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
                 helperLists.checkSelectedItem(spinner3,this)){
@@ -63,20 +50,23 @@ public class PriorityComposers extends AppCompatActivity {
         }
 
         boolean allChoose=helperLists.checkChoice(genreP2,loudnessP2,beatP2);
-        if(allChoose){
+
+        boolean diffrentPriority=helperLists.checkPriority(genreP2,loudnessP2,beatP2);
+        if(allChoose && diffrentPriority) {
             Intent intent = getIntent();
-            //   if (intent1.hasExtra("com.example.myapplicationtest.Filters")) {
             ComposerFilters filters = (ComposerFilters) intent.getSerializableExtra(ComposerFilters.class.getName());
             priority = new ComposersPriority(genreP2, loudnessP2, beatP2,filters);
-
             Intent intent1 = new Intent(PriorityComposers.this, SolutionComposer.class);
             intent1.putExtra(ComposersPriority.class.getName(), priority);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
-
             finish();
         }else{
-            helperLists.ErrorChoice(this);
+            if(!diffrentPriority) {
+                helperLists.ErrorChoice(this,R.string.errorPriority);
+            }else{
+                helperLists.ErrorChoice(this,R.string.errorFilters);
+            }
         }
     }
     public void explanationClick(View view){

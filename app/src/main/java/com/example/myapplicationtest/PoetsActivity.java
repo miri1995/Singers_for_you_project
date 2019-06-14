@@ -17,20 +17,15 @@ import java.util.List;
 
 public class PoetsActivity extends AppCompatActivity {
     PoetsFilters filters;
-    Spinner spinner1, spinner2, spinner3, spinner4;
-    public static List<String> genres=new ArrayList<>();
-    public static List<String> goals=new ArrayList<>();
-    public static List<String> topics=new ArrayList<>();
+    Spinner spinner1, spinner2, spinner3;
     HelperLists helperLists=new HelperLists();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.poet_choice);
-        //HelperLists helperLists = new HelperLists();
 
-        //categorization
-
+        //genre
         spinner1 = findViewById(R.id.register_what_you);
 
         //subject
@@ -39,13 +34,9 @@ public class PoetsActivity extends AppCompatActivity {
 
         //goal
         spinner3 = findViewById(R.id.spinner3);
-       helperLists.InitPoetsFilters(this,spinner1,spinner2,spinner3);
 
-        //spinner4
-        /*List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
-        spinner4 = findViewById(R.id.spinner4);
-        ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
-        spinner4.setAdapter(locationAdapter);*/
+        //init filters
+       helperLists.InitPoetsFilters(this,spinner1,spinner2,spinner3);
 
     }
     public void poet_choise_click(View view) {
@@ -53,8 +44,8 @@ public class PoetsActivity extends AppCompatActivity {
         String genre2 =null;
         String subject2 = null;
         String goal2=null;
-        //String location2=null;
 
+        //check if all filters selected
         if(helperLists.checkSelectedItem(spinner1,this)&& helperLists.checkSelectedItem(spinner2,this)&&
                 helperLists.checkSelectedItem(spinner3,this)){
             genre2 =spinner1.getSelectedItem().toString();
@@ -63,7 +54,7 @@ public class PoetsActivity extends AppCompatActivity {
         }
 
 
-         filters= new PoetsFilters(genre2,subject2,goal2);
+        filters= new PoetsFilters(genre2,subject2,goal2);
 
         Intent intent1 = new Intent(PoetsActivity.this, PrioirtyPoets.class);//todo to change this
         intent1.putExtra(PoetsFilters.class.getName(), filters);
@@ -73,8 +64,4 @@ public class PoetsActivity extends AppCompatActivity {
         finish();
     }
 
-    public void backSingerORProduct_click(View view){
-        Intent intent = new Intent(PoetsActivity.this, WhichArtist.class);
-        startActivity(intent);
-    }
 }

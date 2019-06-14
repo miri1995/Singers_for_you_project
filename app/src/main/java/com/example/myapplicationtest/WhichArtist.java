@@ -10,18 +10,6 @@ public class WhichArtist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choice_singer_or_composer_or_songwriter);
-
-        //http
-      /*  try {
-            String sol=new AsyncHTTP(this).execute().get();
-            Log.d("D","SOLLLL "+ sol);
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-            Log.d("D","SOLLLL "+ e.getMessage());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Log.d("D","SOLLLL "+ e.getMessage());
-        }*/
     }
 
     public void choiceClick(View view) {
@@ -48,14 +36,4 @@ public class WhichArtist extends AppCompatActivity {
 
     }
 
-    public void exit_click(View view) {
-        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory( Intent.CATEGORY_HOME );
-        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    }
-
-   /* public void updateTextView() {
-        TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(toThis);
-    }*/
 }
