@@ -41,7 +41,7 @@
             android:fontFamily="serif-monospace"
             android:text="@string/textView36"
             android:textAlignment="textStart"
-            android:textColor="@color/colorText"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -60,7 +60,7 @@
             android:text="@string/textView19"
             android:textAlignment="textStart"
             android:textAllCaps="false"
-            android:textColor="@color/colorText"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -77,7 +77,7 @@
             android:layout_gravity="fill"
             android:fontFamily="serif-monospace"
             android:text="@string/textView38"
-            android:textColor="@color/colorText"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -102,7 +102,7 @@
         android:text="@string/next"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -118,7 +118,7 @@
         android:text="@string/textView"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/colorText"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="30sp"
         android:textStyle="bold" />
 

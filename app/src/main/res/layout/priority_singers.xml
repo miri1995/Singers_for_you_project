@@ -34,7 +34,7 @@
 
             android:padding="10dp"
             android:text="@string/textView36"
-            android:textColor="@color/colorText"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -54,7 +54,7 @@
             android:padding="10dp"
             android:text="@string/textView19"
             android:textAllCaps="false"
-            android:textColor="@color/colorText"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -71,7 +71,7 @@
             android:fontFamily="serif-monospace"
             android:padding="10dp"
             android:text="@string/textView38"
-            android:textColor="@color/colorText"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -95,7 +95,7 @@
         android:text="@string/button"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="24sp"
         android:textStyle="bold"
         android:fontFamily="serif-monospace"/>
@@ -125,7 +125,7 @@
         android:text="@string/txtpriority"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/colorText"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -150,7 +150,7 @@
         android:fontFamily="serif-monospace"
         android:text="@string/priority_text"
         android:textAlignment="center"
-        android:textColor="@color/colorText"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="14sp"
         android:textStyle="bold" />
 
