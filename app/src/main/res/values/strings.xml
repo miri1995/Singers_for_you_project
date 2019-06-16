@@ -54,5 +54,6 @@
     <string name="percentColumn">Match percent</string>
     <string name="explationPriority">High: The match will only include artists with this characteristic \nMedium: The match can include artists with a similar but not identical characteristic \nLow: The match can include artists with a not so similar characteristic  </string>
     <string name="DuplicationID">Are you already registered in our database, would you like to register again with other parameters?</string>
+    <string name="explanationLoudnessTempo">Tempo can get only values between 0 and 300 \nLoudness can get only values between -50 and -1</string>
 
 </resources>

@@ -518,6 +518,29 @@ public class HelperLists {
 
    }
 
+   //TODO Exclamation mark that explains about the loudness and tempo
+    public void openExplationRegistrationDialog(Context context){
+
+        // context.setContentView(R.v.solution_singers);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setCancelable(true);
+        builder.setTitle("Explanation about the tempo & loudness characteristics");
+        builder.setMessage(R.string.explanationLoudnessTempo);
+        builder.setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+
+
    public boolean HasDuplicateId(String id, String schema,Context context){
        String findStrID_column=schema+"_id";
        String query="select "+findStrID_column+" from "+schema+"s"+" where "+findStrID_column+"="+id;
