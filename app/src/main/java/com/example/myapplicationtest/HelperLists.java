@@ -504,7 +504,7 @@ public class HelperLists {
 
        AlertDialog.Builder builder = new AlertDialog.Builder(context);
        builder.setCancelable(true);
-       builder.setTitle("Explanation priority");
+       builder.setTitle("Explanation of the priorities");
        builder.setMessage(R.string.explationPriority);
        builder.setPositiveButton(android.R.string.ok,
                new DialogInterface.OnClickListener() {

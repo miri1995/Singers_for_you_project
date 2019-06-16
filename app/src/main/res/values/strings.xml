@@ -52,7 +52,7 @@
     <string name="ID">ID</string>
     <string name="nameColumn">Name</string>
     <string name="percentColumn">Match percent</string>
-    <string name="explationPriority">High: This blsl\nMedium: cbdhj</string>
+    <string name="explationPriority">High: The match will only include artists with this characteristic \nMedium: The match can include artists with a similar but not identical characteristic \nLow: The match can include artists with a not so similar characteristic  </string>
     <string name="DuplicationID">Are you already registered in our database, would you like to register again with other parameters?</string>
 
 </resources>
