@@ -22,11 +22,11 @@
 
         <Button
             android:id="@+id/btAllSolComposers"
-            android:layout_width="188dp"
-            android:layout_height="77dp"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="67dp"
+            android:layout_marginLeft="255dp"
+            android:layout_marginBottom="15dp"
             android:background="@android:color/background_light"
             android:onClick="allSol_click"
             android:text="@string/btMoreSolSingers"
@@ -34,7 +34,8 @@
             android:textAllCaps="true"
             android:textColor="@android:color/holo_red_light"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:fontFamily="serif-monospace"/>
 
         <TextView
             android:id="@+id/txtResults"
@@ -56,33 +57,44 @@
             android:id="@+id/listView"
             android:layout_width="200dp"
             android:layout_height="561dp"
-            android:layout_marginStart="98dp"
-            android:layout_marginTop="100dp" />
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="serif-monospace"
+            android:textColor="@color/colorText"/>
 
         <ListView
             android:id="@+id/listView2"
             android:layout_width="84dp"
             android:layout_height="561dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="100dp" />
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="serif-monospace"
+            android:textColor="@color/colorText"/>
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="85dp"
+            android:fontFamily="serif-monospace"
             android:text="@string/nameColumn"
-            android:textSize="18dp"/>
+            android:textColor="@color/colorText"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="65dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="85dp"
+            android:fontFamily="serif-monospace"
             android:text="@string/percentColumn"
-            android:textSize="18dp" />
+            android:textColor="@color/colorText"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

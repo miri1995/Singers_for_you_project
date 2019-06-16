@@ -74,13 +74,17 @@ public class ComposersActivity extends AppCompatActivity{
       /*  if(spinner4.getSelectedItem()!=null){
             location2 =spinner4.getSelectedItem().toString();
         }*/
-
-            filters = new ComposerFilters(genre2, loudness2, beat2,instrument2);
+        boolean allChoose=helperLists.checkChoice(genre2,loudness2,beat2);
+        if(allChoose) {
+            filters = new ComposerFilters(genre2, loudness2, beat2, instrument2);
             Intent intent1 = new Intent(ComposersActivity.this, PriorityComposers.class);
             intent1.putExtra(ComposerFilters.class.getName(), filters);
             setResult(Activity.RESULT_OK, intent1);
             startActivity(intent1);
             finish();
+        }else{
+            helperLists.ErrorChoice(this,R.string.errorFilters);
+        }
 
 
     }
