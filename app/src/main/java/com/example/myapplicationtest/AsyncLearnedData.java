@@ -7,6 +7,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import com.example.myapplicationtest.DataBase.DBConfig;
 import com.example.myapplicationtest.Enums.EnumAsync;
 
 import java.sql.DriverManager;
@@ -50,11 +51,12 @@ public class AsyncLearnedData extends AsyncTask<Void, Void, String> {
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected String doInBackground(Void... voids) {
-        final String host = "35.225.34.63";
-        final String port = "3306";
-        final String schema = "dbProject";
-        final String user = "root";
-        final String password = "0542015460mb";
+        DBConfig dbConfig=new DBConfig();
+        final String host = dbConfig.getHost();
+        final String port = dbConfig.getPort();
+        final String schema = dbConfig.getSchema();
+        final String user = dbConfig.getUser();
+        final String password = dbConfig.getPassword();
 
         try {
             Log.d("D","in background");
