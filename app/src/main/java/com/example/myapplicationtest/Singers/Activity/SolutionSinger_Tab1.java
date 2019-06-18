@@ -97,7 +97,7 @@ public class SolutionSinger_Tab1 extends Activity {
                 artistsList.add(artist);
                 //gradesArray.add(grade+"%");
             }
-            boolean sol=helperLists.checkSizeOfListResults(this,artistsList,1,0);
+            boolean sol=helperLists.checkSizeOfListResults(this,artistsList,1,0,"singer");
             if(sol) {
                 artistsList = artistsList.subList(0, 10);
                 ListView listView = findViewById(R.id.listView);

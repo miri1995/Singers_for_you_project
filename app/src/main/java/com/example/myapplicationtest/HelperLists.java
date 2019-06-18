@@ -9,9 +9,12 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.myapplicationtest.Composer.Activity.SolutionComposer;
 import com.example.myapplicationtest.Enums.EnumAsync;
 import com.example.myapplicationtest.Enums.EnumsSingers;
+import com.example.myapplicationtest.Poets.Activity.SolutionPoets;
 import com.example.myapplicationtest.RegistrationP.AsyncHelperRegistration;
+import com.example.myapplicationtest.Singers.Activity.SolutionSinger_Tab1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -424,7 +427,7 @@ public class HelperLists {
 
     }
 
-   public boolean checkSizeOfListResults(Context context, List<Artist> list, int tab,int counter){
+   public boolean checkSizeOfListResults(Context context, List<Artist> list, int tab,int counter,String whichArtist){
         Maps maps=new Maps();
         String message="";
         switch (tab){
@@ -473,8 +476,18 @@ public class HelperLists {
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setCancelable(true);
+            int listSize;
+            if(whichArtist.equals("singer")){
+                listSize = SolutionSinger_Tab1.artists.size();
+            }
+            else if (whichArtist.equals("poet")){
+                listSize = SolutionPoets.poets.size();
+            }
+            else{
+                listSize = SolutionComposer.composers.size();
+            }
             //builder.setTitle("Success In Registration");
-            builder.setMessage("We have found "+ String.valueOf(list.size())+" artists who are for you.\n" +
+            builder.setMessage("We have found "+ String.valueOf(listSize)+" artists who are for you.\n" +
                     message
                     +"Good luck :)");
             builder.setPositiveButton(android.R.string.ok,
