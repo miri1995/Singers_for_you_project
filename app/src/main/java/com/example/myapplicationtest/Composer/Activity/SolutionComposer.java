@@ -127,7 +127,7 @@ public class SolutionComposer extends Activity {
 
             }
 
-            boolean sol = helperLists.checkSizeOfListResults(this, artistList, 3,counter,"composer");
+            boolean sol = helperLists.checkSizeOfListResults(this, artistList, 2,counter,"composer");
             // if(sol){
             if (sol && composers.size()>=10) {
             resultArray = composers.subList(0, 10);

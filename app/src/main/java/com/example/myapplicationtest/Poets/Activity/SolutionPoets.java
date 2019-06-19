@@ -151,7 +151,7 @@ public class SolutionPoets extends Activity {
 
 
             //HelperLists helperLists=new HelperLists();
-            boolean sol=helperLists.checkSizeOfListResults(this,artistList,3,counter,"poet");
+            boolean sol=helperLists.checkSizeOfListResults(this,artistList,2,counter,"poet");
             if(sol){
                /* if(poets.size()>=10) {
                    // gradesArray = gradesArray.subList(0, 10);
