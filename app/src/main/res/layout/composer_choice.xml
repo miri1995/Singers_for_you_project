@@ -23,7 +23,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="142dp"
+        android:layout_marginBottom="130dp"
         android:columnCount="2"
         android:layoutDirection="ltr"
         android:orientation="horizontal"
@@ -109,17 +109,18 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
         android:background="@android:color/background_light"
+        android:fontFamily="serif-monospace"
         android:onClick="composers_choice_click"
         android:text="@string/next"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@color/colorComposers"
         android:textSize="24sp"
         android:textStyle="bold" />
 

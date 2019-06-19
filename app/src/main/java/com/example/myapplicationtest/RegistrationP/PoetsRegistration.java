@@ -126,6 +126,11 @@ public class PoetsRegistration extends AppCompatActivity {
         Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
     }
+
+    public void explanationClick(View view){
+        helperLists.openExplationDialog(this);
+
+    }
 }
 
 

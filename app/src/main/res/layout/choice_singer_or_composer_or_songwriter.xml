@@ -41,8 +41,8 @@
 
         <ImageView
             android:id="@+id/poets"
-            android:layout_width="203dp"
-            android:layout_height="wrap_content"
+            android:layout_width="170dp"
+            android:layout_height="74dp"
             android:layout_above="@+id/singers"
             android:layout_below="@+id/textView4"
             android:layout_alignParentStart="true"
@@ -59,12 +59,12 @@
 
         <ImageView
             android:id="@+id/singers"
-            android:layout_width="203dp"
-            android:layout_height="76dp"
+            android:layout_width="170dp"
+            android:layout_height="74dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
 
-            android:layout_marginStart="11dp"
+            android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="134dp"
@@ -88,7 +88,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginLeft="215dp"
             android:layout_marginTop="81dp"
-            android:layout_marginEnd="7dp"
+            android:layout_marginEnd="11dp"
             android:layout_marginBottom="28dp"
             android:layout_toEndOf="@+id/poets"
             android:adjustViewBounds="true"
@@ -97,17 +97,17 @@
 
         <ImageView
             android:id="@+id/btregistration"
-            android:layout_width="176dp"
-            android:layout_height="72dp"
+            android:layout_width="170dp"
+            android:layout_height="74dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
 
 
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="15dp"
 
             android:layout_marginLeft="215dp"
-            android:layout_marginEnd="7dp"
-            android:layout_marginBottom="138dp"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="136dp"
             android:layout_toEndOf="@+id/singers"
             android:adjustViewBounds="true"
             android:onClick="choiceClick"

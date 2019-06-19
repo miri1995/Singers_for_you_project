@@ -150,5 +150,8 @@ public class SingersRegistration extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void explanationClick(View view){
+        helperLists.openExplationDialog(this);
 
+    }
 }

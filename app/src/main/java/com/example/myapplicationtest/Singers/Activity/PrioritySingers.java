@@ -78,4 +78,9 @@ public class PrioritySingers extends AppCompatActivity {
             }
         }
     }
+
+    public void explanationClick(View view){
+        helperLists.openExplationDialog(this);
+
+    }
 }
