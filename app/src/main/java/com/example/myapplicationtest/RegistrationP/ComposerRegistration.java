@@ -138,7 +138,7 @@ public class ComposerRegistration extends AppCompatActivity {
         startActivity(intent);
     }
     public void explanationClick(View view){
-        helperLists.openExplationDialog(this);
+        helperLists.openExplationRegistrationDialog(this);
 
     }
 

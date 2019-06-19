@@ -151,7 +151,7 @@ public class SingersRegistration extends AppCompatActivity {
     }
 
     public void explanationClick(View view){
-        helperLists.openExplationDialog(this);
+        helperLists.openExplationRegistrationDialog(this);
 
     }
 }
