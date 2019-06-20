@@ -414,16 +414,20 @@ public class HelperLists {
      *
      */
     public void updateTwoListView(Context context,List<Artist> list, ListView listView){
-      /*  ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, R.layout.activity_listview, list1);*/
-        /*ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(context,
-                R.layout.activity_listview, list2);*/
-     //   listView.setAdapter(adapter);
-
         ArtistsListAdapter adapter = new ArtistsListAdapter(context, R.layout.adapter_view_layout, list);
         listView.setAdapter(adapter);
 
     }
 
+    /**
+     * check Size Of the List Results and show message about how the result sorted
+     * @param context
+     * @param list
+     * @param tab
+     * @param counter
+     * @param whichArtist
+     * @return
+     */
    public boolean checkSizeOfListResults(Context context, List<Artist> list, int tab,int counter,String whichArtist){
         Maps maps=new Maps();
         String message="";
@@ -474,6 +478,13 @@ public class HelperLists {
         }
    }
 
+    /**
+     * create sorted map
+     * @param key
+     * @param value
+     * @param <T>
+     * @return
+     */
    public <T> LinkedHashMap<String,Integer> createMap(List<String> key,List<Double> value){
        LinkedHashMap<String,Integer> map= new LinkedHashMap<>();
        for(int i = 0; i< key.size(); i++){
@@ -482,9 +493,11 @@ public class HelperLists {
        return map;
    }
 
+    /**
+     * show Explation about the priority
+     * @param context
+     */
    public void openExplationDialog(Context context){
-
-      // context.setContentView(R.v.solution_singers);
 
        AlertDialog.Builder builder = new AlertDialog.Builder(context);
        builder.setCancelable(true);
@@ -502,7 +515,10 @@ public class HelperLists {
 
    }
 
-   //TODO Exclamation mark that explains about the loudness and tempo
+    /**
+     * show Explation about the Registration
+     * @param context
+     */
     public void openExplationRegistrationDialog(Context context){
 
         // context.setContentView(R.v.solution_singers);
@@ -524,7 +540,13 @@ public class HelperLists {
     }
 
 
-
+    /**
+     * check to the Registration if has Duplicate Id and return boolean
+     * @param id
+     * @param schema
+     * @param context
+     * @return
+     */
    public boolean HasDuplicateId(String id, String schema,Context context){
        String findStrID_column=schema+"_id";
        String query="select "+findStrID_column+" from "+schema+"s"+" where "+findStrID_column+"="+id;
@@ -546,6 +568,11 @@ public class HelperLists {
        }
        return true;
    }
+
+    /**
+     * show Dialog that have Duplicate id
+     * @param context
+     */
     public void openDuplicateDialog(Context context){
 
         // context.setContentView(R.v.solution_singers);
@@ -599,7 +626,7 @@ public class HelperLists {
     }
 
     public void updateTextView(int toThis, TextView textView) {
-        //TextView textView = (TextView) findViewById(R.id.textView);
+
         textView.setText(toThis);
     }
 }

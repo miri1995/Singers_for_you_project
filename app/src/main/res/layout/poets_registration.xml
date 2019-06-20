@@ -153,15 +153,6 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/singersI"
-        android:layout_width="29dp"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="57dp"
-        android:cropToPadding="false"
-        android:onClick="explanationClick"
-        app:srcCompat="@drawable/help" />
+
 
 </RelativeLayout>

@@ -107,15 +107,6 @@ public class PoetsRegistration extends AppCompatActivity {
 
     }
 
-    public void back_registration_click(View view){
-        Intent intent = new Intent(this, Registration.class);
-        startActivity(intent);
-    }
-
-    public void explanationClick(View view){
-        helperLists.openExplationRegistrationDialog(this);
-
-    }
 }
 
 

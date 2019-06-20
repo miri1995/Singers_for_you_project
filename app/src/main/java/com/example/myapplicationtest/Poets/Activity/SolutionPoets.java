@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.example.myapplicationtest.Artist;
@@ -142,33 +143,19 @@ public class SolutionPoets extends Activity {
                 index++;
             }
 
-
-
-
-            //HelperLists helperLists=new HelperLists();
             boolean sol=helperLists.checkSizeOfListResults(this,artistList,2,counter,"poet");
             if(sol){
-               /* if(poets.size()>=10) {
-                   // gradesArray = gradesArray.subList(0, 10);
-                    resultArray = poets.subList(0, 10);
-                }else{*/
                 if(poets.size()<10){
                     //resultArray = poets;
                     Button allSolButton = (Button) findViewById(R.id.btAllSolPoets);
                     allSolButton.setVisibility(View.GONE);
                 }
 
-                //artistList.clear();
 
-              //  ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                //        R.layout.activity_listview, sortedArtist);
-                //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-                  //      R.layout.activity_listview, sortedGrades);
                 ListView listView = findViewById(R.id.listView);
 
                 helperLists.updateTwoListView(this, artistList, listView);
-                //listView.setAdapter(adapter);
-                //listView2.setAdapter(adapter2);
+
             }else if(counter==0){
                 counter++;
                 doQueryAndUpdate(true,false);
@@ -201,10 +188,11 @@ public class SolutionPoets extends Activity {
 
 
     public void allSol_click(View view) {
+        TextView textView = (TextView) findViewById(R.id.txtResults);
+        helperLists.updateTextView(R.string.result,textView);
         List<String> resultArray = poets;
         List<Double> gradesArray = new ArrayList<>(); /*= grades*/;
-       // List<String> sortedGrades = new ArrayList<>(); /*= grades*/;
-      //  List<String> sortedArtist = new ArrayList<>(); /*= grades*/;
+
         List<Artist> artistsList=new ArrayList<>();
         for(int i=0;i<grades.size();i++){
             double grade = round(grades.get(i),2);
@@ -222,23 +210,14 @@ public class SolutionPoets extends Activity {
         }
 
 
-       // ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-       //         R.layout.activity_listview, sortedArtist);
-       // ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,
-        //        R.layout.activity_listview, sortedGrades);
         ListView listView = findViewById(R.id.listView);
-        //ListView listView2 = findViewById(R.id.listView2);
         helperLists.updateTwoListView(this, artistsList, listView);
-       // listView.setAdapter(adapter);
-       // listView2.setAdapter(adapter2);
+
 
         Button allSolButton = (Button) findViewById(R.id.btAllSolPoets);
         allSolButton.setVisibility(View.GONE);
     }
 
-    public void back_click(View view){
-        Intent intent = new Intent(SolutionPoets.this, PoetsActivity.class);
-        startActivity(intent);
-    }
+
 }
 

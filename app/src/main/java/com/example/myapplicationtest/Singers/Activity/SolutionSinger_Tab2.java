@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.myapplicationtest.Artist;
 import com.example.myapplicationtest.HelperLists;
@@ -65,6 +66,8 @@ public class SolutionSinger_Tab2 extends Activity {
 
 
     public void allSol_click(View view) {
+        TextView textView = (TextView) findViewById(R.id.txtResults);
+        helperLists.updateTextView(R.string.result,textView);
         ListView listView = findViewById(R.id.listViewLess);
         ListView listView2 = findViewById(R.id.listViewLess2);
 
@@ -80,8 +83,5 @@ public class SolutionSinger_Tab2 extends Activity {
         allSolButton.setVisibility(View.GONE);
     }
 
-    public void back_click(View view){
-        Intent intent = new Intent(SolutionSinger_Tab2.this, SingersActivity.class);
-        startActivity(intent);
-    }
+
 }

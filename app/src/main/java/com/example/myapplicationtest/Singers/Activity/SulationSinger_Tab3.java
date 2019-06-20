@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.myapplicationtest.Artist;
 import com.example.myapplicationtest.HelperLists;
@@ -34,13 +35,7 @@ public class SulationSinger_Tab3 extends Activity {
 
 
         Map<String,Integer> map= helperLists.createMap(SolutionSinger_Tab1.resultArrayLess,SolutionSinger_Tab1.gradesArrayLess);
-       /* for(int i = 0; i< SolutionSinger_Tab1.gradesArrayLess.size(); i++){
-            map.put(SolutionSinger_Tab1.resultArrayLess.get(i), SolutionSinger_Tab1.gradesArrayLess.get(i).intValue());
-        }*/
-
         Map<String, Integer> sortedMap= helperLists.sortMapByValue(map);
-
-
 
         for (Map.Entry<String,Integer> entry : sortedMap.entrySet()) {
             sortedGrades.add(entry.getValue().toString()+"%");
@@ -52,7 +47,6 @@ public class SulationSinger_Tab3 extends Activity {
         List<String> gradeTop10= sortedGrades.subList(0,10);
 
         ListView listView = findViewById(R.id.listViewLess);
-        ListView listView2 = findViewById(R.id.listViewLess2);
 
         List<Artist> artistsList=new ArrayList<>();
         for(int i=0;i<listTop10.size();i++) {
@@ -70,8 +64,10 @@ public class SulationSinger_Tab3 extends Activity {
 
 
     public void allSol_click(View view) {
+        TextView textView = (TextView) findViewById(R.id.txtResults);
+        helperLists.updateTextView(R.string.result,textView);
         ListView listView = findViewById(R.id.listViewLess);
-        ListView listView2 = findViewById(R.id.listViewLess2);
+
         List<Artist> artistsList=new ArrayList<>();
         for(int i=0;i<sortedListArtists.size();i++) {
             Artist artist=new Artist(sortedListArtists.get(i),sortedGrades.get(i));
@@ -83,8 +79,5 @@ public class SulationSinger_Tab3 extends Activity {
         allSolButton.setVisibility(View.GONE);
     }
 
-    public void back_click(View view){
-        Intent intent = new Intent(SulationSinger_Tab3.this, SingersActivity.class);
-        startActivity(intent);
-    }
+
 }

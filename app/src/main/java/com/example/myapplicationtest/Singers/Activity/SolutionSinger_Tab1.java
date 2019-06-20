@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 
 import com.example.myapplicationtest.Artist;
@@ -139,6 +140,8 @@ public class SolutionSinger_Tab1 extends Activity {
 
 
     public void allSol_click(View view) {
+        TextView textView = (TextView) findViewById(R.id.txtResults);
+        helperLists.updateTextView(R.string.result,textView);
         List<String> resultArray = artists;
         List<String> gradesArray = new ArrayList<>(); /*= grades*/;
         List<Artist> artistsList= new ArrayList<>();
