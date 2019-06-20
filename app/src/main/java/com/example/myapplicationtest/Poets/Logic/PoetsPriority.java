@@ -7,7 +7,6 @@ public class PoetsPriority implements Serializable {
     private String prioSubject;
     private String prioGoal;
     private PoetsFilters filters;
-   // private boolean pop;
 
 
     public PoetsPriority(String prioGenre, String prioSubject, String prioGoal, PoetsFilters filters) {
@@ -15,8 +14,7 @@ public class PoetsPriority implements Serializable {
         this.prioSubject = prioSubject;
         this.prioGoal = prioGoal;
         this.filters=filters;
-    //    this.pop=pop;
-        //initialize();
+
 
     }
 
@@ -49,7 +47,5 @@ public class PoetsPriority implements Serializable {
         return prioGoal;
     }
 
-   /* public boolean getPopular(){
-        return this.pop;
-    }*/
+
 }

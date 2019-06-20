@@ -169,7 +169,6 @@ public class CoupleDistance {
         return genreComposerMap;
     }
 
-   // return topicMap;
     }
 
 }

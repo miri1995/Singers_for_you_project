@@ -95,18 +95,6 @@ public class ComposerRegistration extends AppCompatActivity {
     }
 
     public void InsertComposer(){
-      /*  String str_result=null;
-        String getLastId="select "+ EnumTables.composer_id.getEnums()+" from composers order by composer_id desc limit 1";
-        //get id
-        try {
-            str_result =new AsyncHelperRegistration(ComposerRegistration.this,getLastId,"composer_id",
-                    EnumAsync.LastIDComp.getEnumAsync()).execute().get();
-        }catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-
         //if(str_result!=null) {
             Maps maps=new Maps();
             maps.middleLoudness(loudness);

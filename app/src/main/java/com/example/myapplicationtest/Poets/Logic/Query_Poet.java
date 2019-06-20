@@ -34,8 +34,6 @@ public class Query_Poet implements IQuery {
         int temp=0;
         String q="";
         String mapGenre="";
-            //"WHERE artists.artist_id IN ";
-            // check that this features are not null
             String notNull = " AND "+whichtableloudness + " IS NOT NULL AND "+whichtabletempo+ " IS NOT NULL";
             double num_tempo;
             double num_loudness;

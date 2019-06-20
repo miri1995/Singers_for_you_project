@@ -7,20 +7,13 @@ public class ComposersPriority implements Serializable {
     private String prioloudness;
     private String priotempo;
     private ComposerFilters filters;
-    //private String prioMusical_instrument;
-   // private boolean pop;
-    // private Filters filters = new Filters("genreSinger","loudness","tempo");
 
     public ComposersPriority(String prioGenre, String prioloudness, String priotempo,
                              ComposerFilters filters) {
         this.prioGenre = prioGenre;
         this.prioloudness = prioloudness;
         this.priotempo = priotempo;
-       // this.prioMusical_instrument=prioMusical_instrument;
         this.filters=filters;
-      //  this.pop=pop;
-        //initialize();
-
     }
 
     public ComposersPriority() {

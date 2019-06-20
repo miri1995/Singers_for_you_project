@@ -33,8 +33,6 @@ public class HelperLists {
     public static List<String> goalHelperList=new ArrayList<>();
     public static List<String> topicHelperList=new ArrayList<>();
     public static List<String> instrumentHelperList = new ArrayList<>();
-   // public static List<String> composerIDHelperList = new ArrayList<>();
-    //public static List<String> composerGenreHelperList = new ArrayList<>();
     public static Map<String,List<String>> poetIdTopic = new HashMap();
     public static Map<String,List<String>> poetIdGenre = new HashMap();
     public static Map<String,List<String>> poetIdGoal = new HashMap();
@@ -255,8 +253,7 @@ public class HelperLists {
             return true;
         }
         return false;
-        //poetIdGenre2 = HelperLists.poetIdGenre;
-        //return poetIdGenre2;
+
     }
 
     public void initPariority(Context context,Spinner spinner,Spinner spinner2,Spinner spinner3){
@@ -446,32 +443,6 @@ public class HelperLists {
         }
 
         if(list.size()<10 && counter==0){
-           /* AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setCancelable(true);
-            //builder.setTitle("Success In Registration");
-            builder.setMessage("Sorry we found only "+ String.valueOf(list.size())+" artists for you.\n " +
-                    "Do you want that we increase the filter and get back artists with a wider match range?");
-            builder.setPositiveButton(android.R.string.ok,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //todo change the function with range
-                            dialog.cancel();
-
-                        }
-                    });
-            builder.setNegativeButton(android.R.string.no,
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-
-                        }
-                    });
-            AlertDialog dialog = builder.create();
-            dialog.show();*/
-           // Intent intent1 = new Intent(context, WhichArtist.class);
-           // context.startActivity(intent1);
             return false;
         }else{
             AlertDialog.Builder builder = new AlertDialog.Builder(context);

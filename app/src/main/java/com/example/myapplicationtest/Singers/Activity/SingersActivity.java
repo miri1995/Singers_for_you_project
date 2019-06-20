@@ -38,12 +38,6 @@ public class SingersActivity extends AppCompatActivity {
         //init all spinner
         helperLists.InitSingerFilters(this,spinner1,spinner2,spinner3);
 
-        //spinner4
-     //   List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
-     //   spinner4 = findViewById(R.id.spinner4);
-
-     //   ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
-     //   spinner4.setAdapter(locationAdapter);
 
     }
 
@@ -63,9 +57,7 @@ public class SingersActivity extends AppCompatActivity {
             beat2 =spinner3.getSelectedItem().toString();
         }
 
-      /*  if(spinner4.getSelectedItem()!=null){
-            location2 =spinner4.getSelectedItem().toString();
-        }*/
+
         boolean allChoose=helperLists.checkChoice(genre2,loudness2,beat2);
         if(allChoose) { //only if all filter selected
             filters = new Filters(genre2, loudness2, beat2);

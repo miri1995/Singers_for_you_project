@@ -19,9 +19,6 @@ public class SolutionSinger2 extends TabActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //setContentView(R.layout.activity_main);
-
         TabHost mTabHost = getTabHost();
 
 
@@ -45,12 +42,5 @@ public class SolutionSinger2 extends TabActivity {
         mTabHost.addTab(mTabHost.newTabSpec("tab2").setIndicator("Less Popular").setContent(intent2));
         mTabHost.addTab(mTabHost.newTabSpec("tab3").setIndicator("The Best For You").setContent(intent3));
         mTabHost.setCurrentTab(0);
-
-
-        // Intent intent2 = new Intent(PrioritySingers.this, SolutionSinger2.class);
-       // startActivity(intent1);
-
-       // finish();
-
     }
 }

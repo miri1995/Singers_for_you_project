@@ -13,10 +13,7 @@ public enum EnumTables {
     song_id("song_id"),song_name("song_name"),song_tempo("song_tempo"),song_loudness("song_loudness"),song_artist_id("song_artist_id"),
 
     //genreartists
-    /*artist_id*/ genre_id("genre_id"),
-
-    //genreSinger
-    /*genre_id*/ /*genreSinger("genreSinger")*/
+    genre_id("genre_id"),
 
     //poets
     poet_id("poet_id"),poet_name("poet_name"),song_topic("song_topic"),/*goal("goal")*/

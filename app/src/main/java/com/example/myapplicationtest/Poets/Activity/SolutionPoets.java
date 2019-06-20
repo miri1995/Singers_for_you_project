@@ -116,11 +116,6 @@ public class SolutionPoets extends Activity {
             grades=fittingPercents.uniteTwoListd(gradesElement1,gradesElement2);
 
             List<String> resultArray = new ArrayList<>();
-
-
-           // List<String> sortedGrades = new ArrayList<>();
-          //  List<String> sortedArtist = new ArrayList<>();
-            //List<Artist> artistsList=new ArrayList<>();
             for(int i=0;i<grades.size();i++){
                 double grade = round(grades.get(i),2);
                // Artist artist=new Artist(poets.get(i),grade+"%");

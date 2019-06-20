@@ -64,9 +64,6 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
             Log.d("D","in background");
             Class.forName("com.mysql.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Israel", user, password);
-           // Log.d("D","in background"+con);
-           // Log.d("D",query);
-           // Log.d("D",colName1);
             Log.d("D","NEW FLAG"+flag);
             switch (EnumAsync.valueOf(flag)){
 
@@ -195,88 +192,6 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                         Log.d("D","ERROR executeQuery composerSol");
                     }
                     break;
-                /*case RelevantPoets:
-                    try (Statement stmt = con.createStatement();
-                         ResultSet rs = stmt.executeQuery(query);) {
-                        while (rs.next()) {
-                            String key=rs.getString(colName1);
-                            if(HelperLists.poetIdGenre.containsKey(key)){
-                                List<String> values1=HelperLists.poetIdGenre.get(key);
-                                if(values1!=null && !values1.contains(rs.getString(colName2))){
-                                    values1.add(rs.getString(colName2));
-                                    HelperLists.poetIdGenre.put(key,values1);
-                                   // HelperLists.poetIdGenre.put(key,values1);
-                                }
-                            }
-                            else{
-                                List<String> values1 = new ArrayList<>();
-                                values1.add(rs.getString(colName2));
-                                HelperLists.poetIdGenre.put(key,values1);
-                            }
-
-                            if(HelperLists.poetIdTopic.containsKey(key)){
-                                List<String> values2=HelperLists.poetIdTopic.get(key);
-                                if(values2!=null && !values2.contains(rs.getString(colName3))){
-                                    values2.add(rs.getString(colName3));
-                                    HelperLists.poetIdTopic.put(key,values2);
-                                }
-                            }
-                            else{
-                                List<String> values2 = new ArrayList<>();
-                                values2.add(rs.getString(colName3));
-                                HelperLists.poetIdTopic.put(key,values2);
-                            }
-
-                            if(HelperLists.poetIdGoal.containsKey(key)){
-                                List<String> values3=HelperLists.poetIdGoal.get(key);
-                                if(values3!=null && !values3.contains(rs.getString(colName4))){
-                                    values3.add(rs.getString(colName4));
-                                    HelperLists.poetIdGoal.put(key,values3);
-                                }
-                            }
-                            else{
-                                List<String> values3 = new ArrayList<>();
-                                values3.add(rs.getString(colName4));
-                                HelperLists.poetIdGoal.put(key,values3);
-                            }
-                        }
-                        Log.d("D","map" + HelperLists.poetIdGenre.toString());
-                        con.close();
-                        //return "COMPLETE2";
-                    } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - RelevantPoets " + e.getMessage());
-                        Log.d("D","ERROR executeQuery - RlevantPoets");
-                    }
-                    break;
-                case RelevantComposers:
-                    try (Statement stmt = con.createStatement();
-                         ResultSet rs = stmt.executeQuery(query);) {
-                        while (rs.next()) {
-                            //Log.d("D","col1" + colName1);
-                            //Log.d("D","col1" + colName2);
-                            String key=rs.getString(colName1);
-                            if(HelperLists.composerIdGenre.containsKey(key)){
-                                List<String> values=HelperLists.composerIdGenre.get(key);
-                                if(values!=null && !values.contains(rs.getString(colName2))){
-                                    values.add(rs.getString(colName2));
-                                  //  HelperLists.composerIdGenre.put(key,values);
-                                    HelperLists.composerIdGenre.put(key,values);
-                                }
-                            }
-                            else{
-                                List<String> values = new ArrayList<>();
-                                values.add(rs.getString(colName2));
-                                HelperLists.composerIdGenre.put(key,values);
-                            }
-                        }
-                        Log.d("D","map" + HelperLists.composerIdGenre.toString());
-                        con.close();
-                        //return "COMPLETE2";
-                    } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - RelevantComposers" + e.getMessage());
-                        Log.d("D","ERROR executeQuery RelevantComposers");
-                    }
-                    break;*/
 
             }
 
@@ -304,7 +219,7 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
 
         if (result!=null) {
             mProgressDialog.dismiss();
-            //result= SingersActivity.geners.get(1).toString();
+
         }
 
     }

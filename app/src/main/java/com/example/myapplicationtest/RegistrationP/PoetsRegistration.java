@@ -85,21 +85,6 @@ public class PoetsRegistration extends AppCompatActivity {
     public void InsertPoet() {
         String succsess=null;
         String str_result=null;
-        //String getLastId="select "+ EnumTables.poet_id.getEnums()+" from poets order by poet_id desc limit 1";
-
-
-        //get id
-       /* try {
-            str_result =new AsyncHelperRegistration(PoetsRegistration.this,getLastId,"poet_id",
-                    EnumAsync.LastIDPoet.getEnumAsync()).execute().get();
-        }catch (ExecutionException e) {
-            e.printStackTrace();
-            Log.d("D","1: "+e.getMessage());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            Log.d("D","2: "+e.getMessage());
-        }*/
-
        // if(str_result!=null) {
             String q1 = ("INSERT INTO poets " +
                     "VALUES(\"" + Integer.parseInt(ID) + "\",\"" + name + "\",\"" + genreChoice + "\",\"" + topic + "\",\"" + goal + "\")");

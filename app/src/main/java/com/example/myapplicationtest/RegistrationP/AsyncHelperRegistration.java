@@ -54,25 +54,6 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
             Log.d("D","query:"+con);
             int result;
             switch (EnumAsync.valueOf(flag)){
-               /* case LastID:
-                    Log.d("D","IN LASTID");
-                    try (Statement stmt = con.createStatement();
-
-                         ResultSet rs = stmt.executeQuery(query);) {
-                        Log.d("D","IN LASTID"+query);
-                        while (rs.next()) {
-
-                            SingersRegistration.lastID=Integer.parseInt(rs.getString(colName))+1;
-
-                        }
-                        Log.d("D","result"+ SingersRegistration.lastID);
-                        con.close();
-                        //return "COMPLETE2";
-                    } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery"+ e.getMessage());
-                    }
-                    break;*/
                 case LastIdSong:
                     Log.d("D","IN LastIdSong");
                     try (Statement stmt = con.createStatement();
@@ -99,43 +80,13 @@ public class AsyncHelperRegistration extends AsyncTask<Void, Void, String> {
                         }
                         Log.d("D","result"+ SingersRegistration.lastIDSong);
                         con.close();
-                        //return "COMPLETE2";
                     } catch (SQLException e) {
                         System.out.println("ERROR executeQuery - " + e.getMessage());
                         Log.d("D","ERROR executeQuery"+ e.getMessage());
                     }
 
                     break;
-                /*case LastIDPoet:
-                    try (Statement stmt = con.createStatement();
-                         ResultSet rs = stmt.executeQuery(query);) {
-                        while (rs.next()) {
-                            PoetsRegistration.lastID=Integer.parseInt(rs.getString(colName))+1;
-                        }
-                        Log.d("D","result"+  PoetsRegistration.lastID);
-                        con.close();
-                        //return "COMPLETE2";
-                    } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery"+ e.getMessage());
-                    }
 
-                    break;*/
-               /* case LastIDComp:
-                    try (Statement stmt = con.createStatement();
-                         ResultSet rs = stmt.executeQuery(query);) {
-                        while (rs.next()) {
-                            ComposerRegistration.lastID=Integer.parseInt(rs.getString(colName))+1;
-                        }
-                        Log.d("D","result"+  PoetsRegistration.lastID);
-                        con.close();
-                        //return "COMPLETE2";
-                    } catch (SQLException e) {
-                        System.out.println("ERROR executeQuery - " + e.getMessage());
-                        Log.d("D","ERROR executeQuery"+ e.getMessage());
-                    }
-
-                    break;*/
                 case InsertSinger:
                     //  Thread.sleep(10000);
                     try (Statement stmt = con.createStatement();) {

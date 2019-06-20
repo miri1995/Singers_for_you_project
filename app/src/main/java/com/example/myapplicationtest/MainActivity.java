@@ -24,9 +24,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         CoupleDistance coupleDistance = CoupleDistance.getInstance();
         readFile("pair.txt", EnumTables.genreSinger.getEnums(),coupleDistance);
-       // readFile("topics.txt",EnumTables.topic.getEnums());
-        //readFile("goal.txt",EnumTables.goal.getEnums());
-
     }
 
     public void readFile(String fileName,String flag,CoupleDistance coupleDistance){

@@ -97,16 +97,6 @@ public class SolutionComposer extends Activity {
             }
 
             List<String> resultArray = new ArrayList<>();
-            // HelperLists helperLists =new HelperLists();
-
-           /* if(composers.size()>10){
-                resultArray = composers.subList(0,10);
-            }
-            else{
-                resultArray = composers;
-            }*/
-
-
             List<String> sortedGrades = new ArrayList<>();
             List<String> sortedArtist = new ArrayList<>();
             for (int i = 0; i < grades.size(); i++) {

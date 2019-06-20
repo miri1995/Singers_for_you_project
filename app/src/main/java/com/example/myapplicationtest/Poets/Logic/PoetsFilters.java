@@ -7,7 +7,7 @@ public class PoetsFilters implements Serializable {
     private String genre;
     private String subject;
     private String goal;
-    //  private Priority priority = new Priority("high","medium","low");
+
 
     public PoetsFilters(String genre, String subject, String goal)
     {

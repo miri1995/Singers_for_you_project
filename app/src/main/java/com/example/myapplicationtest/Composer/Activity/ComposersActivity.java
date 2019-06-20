@@ -44,13 +44,6 @@ public class ComposersActivity extends AppCompatActivity{
 
         helperLists.InitComposersFilters(this,spinner1,spinner2,spinner3,spinner4);
 
-        //spinner5
-       // List<String> location = new ArrayList<String>(Arrays.asList("select","l1","l2", "l3","l4","l5","l6","l7"));
-       // spinner5 = findViewById(R.id.spinner5);
-
-       // ArrayAdapter<String> locationAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item,location);
-      //  spinner5.setAdapter(locationAdapter);
-
     }
 
 

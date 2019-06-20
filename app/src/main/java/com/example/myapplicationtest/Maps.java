@@ -121,29 +121,18 @@ public class Maps {
 
         switch (EnumsSingers.valueOf(loudness)) {
             case Weak:
-                /*if(needToIncreaseSol){
-                    numLoud[0] = -8;
-                }else{*/
                     numLoud[0] = -16;
-                //}
+
 
                 break;
             case Normal:
-                /*if(needToIncreaseSol){
-                    numLoud[0] = -40;
-                    numLoud[1] = -8;
-                }else{*/
                     numLoud[0] = -32;
                     numLoud[1] = -16;
-              //  }
+
 
                 break;
             case Strong:
-               /* if(needToIncreaseSol){
-                    numLoud[0] = -40;
-                }else{*/
                     numLoud[0] = -32;
-               // }
 
         }
         return numLoud;
@@ -186,29 +175,18 @@ public class Maps {
         double numTempo[] = new double[2];
         switch (EnumsSingers.valueOf(tempo)) {
             case Slow:
-               /* if(needToIncreaseSol){
-                    numTempo[0] = 65;
-                }else{*/
                     numTempo[0] = 85;
-               // }
 
                 break;
             case Medium:
-               /* if(needToIncreaseSol){
-                    numTempo[0] = 65;
-                    numTempo[1] = 180;
-                }else{*/
                     numTempo[0] = 85;
                     numTempo[1] = 170;
-              //  }
+
 
                 break;
             case Fast:
-               /* if(needToIncreaseSol){
-                    numTempo[0] = 180;
-                }else{*/
                     numTempo[0] = 170;
-              //  }
+
 
         }
         return numTempo;
