@@ -43,8 +43,6 @@ public class HelperLists {
 
     }
 
-   // public String getComposerId(){return "select composers.composer_id from composers";}
-    //public String getComposerGenre(){return "select composers.composers_genre from composers";}
 
     public String getRelevantPoets() {return "select poet_id,genre,song_topic,goal FROM poets order by poet_id";}
 
