@@ -233,8 +233,6 @@ public class HelperLists {
         }
         return false;
 
-        //poetIdGenre2 = HelperLists.poetIdGenre;
-        //return poetIdGenre2;
     }
 
     public boolean updateComposersMap(Context context){
@@ -256,6 +254,13 @@ public class HelperLists {
 
     }
 
+    /**
+     *  init the Priority of Singers- take the data from the data base
+     * @param context
+     * @param spinner
+     * @param spinner2
+     * @param spinner3
+     */
     public void initPariority(Context context,Spinner spinner,Spinner spinner2,Spinner spinner3){
         List<String> pr = new ArrayList<String>(Arrays.asList(EnumsSingers.select.getEnums(), EnumsSingers.High.getEnums(),
                 EnumsSingers.Medium.getEnums(),EnumsSingers.Low.getEnums()));
@@ -266,6 +271,13 @@ public class HelperLists {
 
     }
 
+    /**
+     * init the filters of Singers- take the data from the data base
+     * @param context
+     * @param spinner
+     * @param spinner2
+     * @param spinner3
+     */
     public void InitSingerFilters(Context context, Spinner spinner,Spinner spinner2,Spinner spinner3){
         List<String> geners=new ArrayList<>();
         //genreSinger
@@ -285,6 +297,13 @@ public class HelperLists {
         spinner3.setAdapter(beatAdapter);
     }
 
+    /**
+     * init the filters of Poets- take the data from the data base
+     * @param context
+     * @param spinner1
+     * @param spinner2
+     * @param spinner3
+     */
     public void InitPoetsFilters(Context context, Spinner spinner1,Spinner spinner2,Spinner spinner3){
         List<String> geners=new ArrayList<>();
         List<String> topics=new ArrayList<>();
@@ -305,6 +324,14 @@ public class HelperLists {
         spinner3.setAdapter(beatAdapter);
     }
 
+    /**
+     * init the filters of Composers- take the data from the data base
+     * @param context
+     * @param spinner1
+     * @param spinner2
+     * @param spinner3
+     * @param spinner4
+     */
     public void InitComposersFilters(Context context, Spinner spinner1,Spinner spinner2,Spinner spinner3,Spinner spinner4){
          List<String> geners=new ArrayList<>();
          List<String> musicalInstrument =new ArrayList<>();
@@ -329,6 +356,10 @@ public class HelperLists {
         spinner4.setAdapter(AudienceAdapter);
     }
 
+    /**
+     * show dialog that the Registration success
+     * @param context
+     */
     public void sucsessRegister(Context context){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
@@ -350,6 +381,12 @@ public class HelperLists {
 
     }
 
+    /**
+     * check if all the filters are selected and return boolean
+     * @param spinner
+     * @param context
+     * @return
+     */
     public boolean checkSelectedItem(Spinner spinner,Context context){
         if(spinner.getSelectedItem()!=null){
             return true;
@@ -360,7 +397,7 @@ public class HelperLists {
     }
 
     /**
-     *
+     * make the reverse of the array list
      * @param alist
      * @return reverse of a list
      */
@@ -605,6 +642,12 @@ public class HelperLists {
 
     }
 
+    /**
+     * check Valitation ID in the Registration
+     * @param context
+     * @param id
+     * @return
+     */
     public boolean checkValitationID(Context context, String id){
         if(!id.matches("[0-9]+")){
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -626,7 +669,6 @@ public class HelperLists {
     }
 
     public void updateTextView(int toThis, TextView textView) {
-
         textView.setText(toThis);
     }
 }
