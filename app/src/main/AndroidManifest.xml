@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplicationtest">
+    package="com.example.ArtistsForYou">
     <uses-permission android:name="android.permission.INTERNET"/>
 
 
@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".YouTube.App">
-        <activity android:name=".MainActivity">
+        android:name="com.example.ArtistsForYou.YouTube.App">
+        <activity android:name="com.example.ArtistsForYou.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,126 +20,126 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WhichArtist"
+            android:name="com.example.ArtistsForYou.WhichArtist"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.MainActivity" />
         </activity>
         <activity
-            android:name=".Singers.Activity.SingersActivity"
+            android:name="com.example.ArtistsForYou.Singers.Activity.SingersActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.ChoiceSingerOrProduct" />
         </activity>
         <activity
-            android:name=".Poets.Activity.PoetsActivity"
+            android:name="com.example.ArtistsForYou.Poets.Activity.PoetsActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
 
         </activity>
         <activity
-            android:name=".Registration"
+            android:name="com.example.ArtistsForYou.Registration"
             android:label="@string/app_name"
-            android:parentActivityName=".WhichArtist">
+            android:parentActivityName="com.example.ArtistsForYou.WhichArtist">
         </activity>
         <activity
-            android:name=".RegistrationP.SingersRegistration"
+            android:name="com.example.ArtistsForYou.RegistrationP.SingersRegistration"
             android:label="@string/app_name"
-            android:parentActivityName=".Registration">
+            android:parentActivityName="com.example.ArtistsForYou.Registration">
         </activity>
 
         <activity
-            android:name=".RegistrationP.PoetsRegistration"
+            android:name="com.example.ArtistsForYou.RegistrationP.PoetsRegistration"
             android:label="@string/app_name"
-            android:parentActivityName=".Registration">
+            android:parentActivityName="com.example.ArtistsForYou.Registration">
         </activity>
         <activity
-            android:name=".RegistrationP.ComposerRegistration"
+            android:name="com.example.ArtistsForYou.RegistrationP.ComposerRegistration"
             android:label="@string/app_name"
-            android:parentActivityName=".Registration">
+            android:parentActivityName="com.example.ArtistsForYou.Registration">
         </activity>
         <activity
-            android:name=".Singers.Activity.PrioritySingers"
+            android:name="com.example.ArtistsForYou.Singers.Activity.PrioritySingers"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.SingersActivity" />
         </activity>
         <activity
-            android:name=".Singers.Activity.SolutionSinger_Tab1"
+            android:name="com.example.ArtistsForYou.Singers.Activity.SolutionSinger_Tab1"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.ParioritySingers" />
         </activity>
         <activity
-            android:name=".Singers.Activity.SolutionSinger_Tab2"
+            android:name="com.example.ArtistsForYou.Singers.Activity.SolutionSinger_Tab2"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.ParioritySingers" />
         </activity>
         <activity
-            android:name=".Singers.Activity.SulationSinger_Tab3"
+            android:name="com.example.ArtistsForYou.Singers.Activity.SulationSinger_Tab3"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
         </activity>
         <activity
-            android:name=".Singers.Activity.SolutionSinger2"
+            android:name="com.example.ArtistsForYou.Singers.Activity.SolutionSinger2"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
         </activity>
         <activity
-            android:name=".Poets.Activity.PrioirtyPoets"
+            android:name="com.example.ArtistsForYou.Poets.Activity.PrioirtyPoets"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.PoetsActivity" />
         </activity>
         <activity
-            android:name=".Poets.Activity.SolutionPoets"
+            android:name="com.example.ArtistsForYou.Poets.Activity.SolutionPoets"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.PriorityPoets" />
         </activity>
         <activity
-            android:name=".Composer.Activity.ComposersActivity"
+            android:name="com.example.ArtistsForYou.Composer.Activity.ComposersActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.ChoiceSingerOrProduct" />
         </activity>
         <activity
-            android:name=".Composer.Activity.PriorityComposers"
+            android:name="com.example.ArtistsForYou.Composer.Activity.PriorityComposers"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.ComposersActivity" />
         </activity>
         <activity
-            android:name=".Composer.Activity.SolutionComposer"
+            android:name="com.example.ArtistsForYou.Composer.Activity.SolutionComposer"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
             <meta-data
                 android:name="android.intent.action.MAIN"
                 android:value="com.example.myapplicationtest.PriorityComposers" />
         </activity>
         <activity
-            android:name=".YouTube.YouTubeActivity"
+            android:name="com.example.ArtistsForYou.YouTube.YouTubeActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName="com.example.ArtistsForYou.MainActivity">
         </activity>
     </application>
 
