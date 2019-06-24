@@ -153,8 +153,12 @@ public class SolutionPoets extends Activity {
 
 
                 ListView listView = findViewById(R.id.listView);
+                if(artistList.size()>10){
+                    helperLists.updateTwoListView(this, artistList.subList(0,10), listView);
+                }else{
+                    helperLists.updateTwoListView(this, artistList, listView);
+                }
 
-                helperLists.updateTwoListView(this, artistList, listView);
 
             }else if(counter==0){
                 counter++;
