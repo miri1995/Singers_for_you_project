@@ -177,7 +177,9 @@ public class AsyncHelper extends AsyncTask<Void, Void, String> {
                     try (Statement stmt = con.createStatement();
                          ResultSet rs = stmt.executeQuery(query);) {
                         while (rs.next()) {
-                            if(!SolutionComposer.moreThanOnce(SolutionComposer.composers,rs.getString(colName1))) {
+                            String comp =rs.getString(colName3);
+                            String comp2 =rs.getString(colName2);
+                            if(!SolutionComposer.moreThanOnce(SolutionComposer.composers,rs.getString(colName1)) && !comp.equals("-32") && !comp.equals("-16") &&!comp2.equals("85") &&!comp2.equals("170") ) {
                                 SolutionComposer.composers.add(rs.getString(colName1));
                                 SolutionComposer.tempo.add(rs.getDouble(colName2));
                                 SolutionComposer.loudness.add(rs.getDouble(colName3));
