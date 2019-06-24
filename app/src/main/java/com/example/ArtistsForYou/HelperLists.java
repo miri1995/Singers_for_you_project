@@ -367,15 +367,14 @@ public class HelperLists {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
 
 
                     }
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
-        Intent intent1 = new Intent(context, WhichArtist.class);
-        context.startActivity(intent1);
+      //  Intent intent1 = new Intent(context, WhichArtist.class);
+      //  context.startActivity(intent1);
 
     }
 
