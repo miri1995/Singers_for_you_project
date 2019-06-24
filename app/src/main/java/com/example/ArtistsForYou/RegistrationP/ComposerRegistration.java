@@ -117,7 +117,7 @@ public class ComposerRegistration extends AppCompatActivity {
             }
        // }
 
-        finish();
+      //  finish();
     }
     public void back_registration_click(View view){
         Intent intent = new Intent(this, Registration.class);

@@ -367,8 +367,6 @@ public class HelperLists {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-
                     }
                 });
         AlertDialog dialog = builder.create();

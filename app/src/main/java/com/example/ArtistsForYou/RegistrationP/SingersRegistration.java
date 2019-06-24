@@ -132,11 +132,7 @@ public class SingersRegistration extends AppCompatActivity {
             str_result3Final=new AsyncHelperRegistration(SingersRegistration.this, q3,
                     "artist_id", EnumAsync.InsertSinger.getEnumAsync()).execute().get();
         }else{
-            try {
-                Thread.sleep(5000);//todo check if need this
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
         }
         if(str_resultFinal!=null && str_result2Final!=null && str_result3Final!=null) {
             helperLists.sucsessRegister(this);

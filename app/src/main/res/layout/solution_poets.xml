@@ -70,11 +70,12 @@
             android:layout_marginTop="120dp"
             android:fontFamily="serif-monospace"
             android:textColor="@color/colorText"/>
+
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
+            android:layout_marginStart="70dp"
             android:layout_marginTop="85dp"
             android:fontFamily="serif-monospace"
             android:text="@string/nameColumn"
@@ -86,14 +87,14 @@
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="240dp"
+            android:layout_marginStart="170dp"
             android:layout_marginTop="85dp"
             android:fontFamily="serif-monospace"
             android:text="@string/percentColumn"
+            android:textAlignment="center"
             android:textColor="@color/colorText"
             android:textSize="18dp"
-            android:textStyle="bold"
-            android:textAlignment="center"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

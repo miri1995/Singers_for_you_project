@@ -72,7 +72,7 @@ public class PoetsRegistration extends AppCompatActivity {
                     helperLists.ErrorChoice(this,R.string.errorRegistration);
                 }
             }
-            finish();
+           // finish();
         }
     }
 
