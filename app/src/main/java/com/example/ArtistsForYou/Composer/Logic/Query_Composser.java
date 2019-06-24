@@ -61,18 +61,18 @@ public class Query_Composser implements IQuery {
                     num_loudness = numLoud[0] - (double) priority.get(prioLoudness);
                     if (temp == 1) {
                         num_tempo = numTempo[0] + (double) priority.get(prioTempo);
-                        q = mapGenre + "WHERE "+whichcoltempo  + "<\"" + num_tempo + "\"" + "AND "+whichcolloudness+ ">\"" + num_loudness + "\"" +
+                        q = mapGenre + "WHERE "+whichcoltempo  + "<=\"" + num_tempo + "\"" + "AND "+whichcolloudness+ ">=\"" + num_loudness + "\"" +
                                 notNull;
                     } else if (temp == 2) {
                         num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
                         double num_tempo2 = numTempo[1] + ((double) priority.get(prioTempo) / 2);
                         q = mapGenre +
-                                "WHERE "+whichcoltempo + " between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND "+whichcolloudness+">\"" + num_loudness + "\"" +
+                                "WHERE "+whichcoltempo + " between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND "+whichcolloudness+">=\"" + num_loudness + "\"" +
                                 notNull;
                     } else {
                         num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE "+whichcoltempo+">\"" + num_tempo + "\"" + "AND "+whichcolloudness+">\"" + num_loudness + "\"" +
+                                "WHERE "+whichcoltempo+">=\"" + num_tempo + "\"" + "AND "+whichcolloudness+">=\"" + num_loudness + "\"" +
                                 notNull;
                     }
                     break;
@@ -82,7 +82,7 @@ public class Query_Composser implements IQuery {
                     if (temp == 1) {
                         num_tempo = numTempo[0] + (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE "+whichcoltempo  +"<\"" + num_tempo + "\"" + " AND "+whichcolloudness+" BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                                "WHERE "+whichcoltempo  +"<=\"" + num_tempo + "\"" + " AND "+whichcolloudness+" BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
                                 notNull;
                     } else if (temp == 2) {
                         num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
@@ -93,7 +93,7 @@ public class Query_Composser implements IQuery {
                     } else {
                         num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE "+whichcoltempo  +">\"" + num_tempo + "\"" + "AND "+whichcolloudness+ " BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
+                                "WHERE "+whichcoltempo  +">=\"" + num_tempo + "\"" + "AND "+whichcolloudness+ " BETWEEN \"" + num_loudness + "\"" + "and \"" + num_loudness2 + "\"" +
                                 notNull;
                     }
                     break;
@@ -102,18 +102,18 @@ public class Query_Composser implements IQuery {
                     if (temp == 1) {
                         num_tempo = numTempo[0] + (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE "+whichcoltempo  +"<\"" + num_tempo + "\"" + " AND "+whichcolloudness+ "<\"" + num_loudness + "\"" +
+                                "WHERE "+whichcoltempo  +"<=\"" + num_tempo + "\"" + " AND "+whichcolloudness+ "<=\"" + num_loudness + "\"" +
                                 notNull;
                     } else if (temp == 2) {
                         num_tempo = numTempo[0] - ((double) priority.get(prioTempo) / 2);
                         double num_tempo2 = numTempo[1] + ((double) priority.get(prioTempo) / 2);
                         q = mapGenre +
-                                "WHERE "+whichcoltempo  + " between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND "+whichcolloudness+ "<\"" + num_loudness + "\"" +
+                                "WHERE "+whichcoltempo  + " between \"" + num_tempo + "\"" + "and \"" + num_tempo2 + "\"" + "AND "+whichcolloudness+ "<=\"" + num_loudness + "\"" +
                                 notNull;
                     } else {
                         num_tempo = numTempo[0] - (double) priority.get(prioTempo);
                         q = mapGenre +
-                                "WHERE "+whichcoltempo  +">\"" + num_tempo + "\"" + "AND "+whichcolloudness+"<\"" + num_loudness + "\"" +
+                                "WHERE "+whichcoltempo  +">=\"" + num_tempo + "\"" + "AND "+whichcolloudness+"<=\"" + num_loudness + "\"" +
                                 notNull;
                     }
                     break;
