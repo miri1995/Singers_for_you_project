@@ -93,7 +93,8 @@ public class SolutionSinger_Tab1 extends Activity {
 
             List<Artist> artistsList= new ArrayList<>();
             for(int i=0;i<grades.size();i++){
-                double grade = round(grades.get(i),1);
+                double grade=Math.round(grades.get(i));
+                //double grade = round(grades.get(i),0);
                 Artist artist=new Artist(artists.get(i),grade+"%");
                 artistsList.add(artist);
                 //gradesArray.add(grade+"%");
@@ -146,7 +147,7 @@ public class SolutionSinger_Tab1 extends Activity {
         List<String> gradesArray = new ArrayList<>(); /*= grades*/;
         List<Artist> artistsList= new ArrayList<>();
         for(int i=0;i<grades.size();i++){
-          double grade = round(grades.get(i),1);
+          double grade = Math.round(grades.get(i));
             Artist artist=new Artist(artists.get(i),grade+"%");
             artistsList.add(artist);
         }

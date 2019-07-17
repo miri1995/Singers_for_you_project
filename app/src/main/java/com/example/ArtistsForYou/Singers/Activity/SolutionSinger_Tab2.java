@@ -37,7 +37,8 @@ public class SolutionSinger_Tab2 extends Activity {
         List<String> strings = new ArrayList<String>();
         for (Double d : SolutionSinger_Tab1.gradesArrayLess) {
             // Apply formatting to the string if necessary
-            strings.add(d.toString()+"%");
+            Double dround= Double.valueOf(Math.round(d));
+            strings.add(dround.toString()+"%");
         }
 
         reverseGrade=  helperLists.reverseArrayList(strings);
