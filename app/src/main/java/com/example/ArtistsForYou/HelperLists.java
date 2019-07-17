@@ -157,7 +157,7 @@ public class HelperLists {
                 e.printStackTrace();
             } catch (InterruptedException e) {
                 e.printStackTrace();
-                
+
             }
             if (result!=null) {
                 topics = HelperLists.topicHelperList;
