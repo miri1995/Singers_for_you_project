@@ -232,10 +232,10 @@ public class Query_Composser implements IQuery {
                         }
                         break;
                     case Low:
-                        if (entry.getValue() < threshold) {
+                       // if (entry.getValue() < threshold) {
                             miniMap.put(entry.getKey(), entry.getValue());
                             vals.add(entry.getValue());
-                        }
+                      //  }
                         break;
 
                 }

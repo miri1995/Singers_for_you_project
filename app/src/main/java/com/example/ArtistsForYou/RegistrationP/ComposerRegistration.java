@@ -30,6 +30,7 @@ public class ComposerRegistration extends AppCompatActivity {
     public static String loudness =null;
     public static String tempo =null;
     public static String musicalInstrumentChoice=null;
+    public static int count=0;
 
     private String name=null;
     private String id=null;
@@ -82,12 +83,15 @@ public class ComposerRegistration extends AppCompatActivity {
             if (allChoose && !hasDuplicateId) { //only if all filter selected
                 InsertComposer();
             } else {
-                if (hasDuplicateId) {
-                    helperLists.openDuplicateDialog(this);
-                } else {
+                if (hasDuplicateId && count==0) {
+                   // helperLists.openDuplicateDialog(this);
+                   // count++;
+                    InsertComposer();
+                } else if(!hasDuplicateId) {
                     helperLists.ErrorChoice(this,R.string.errorRegistration);
                 }
             }
+
         }
 
     }

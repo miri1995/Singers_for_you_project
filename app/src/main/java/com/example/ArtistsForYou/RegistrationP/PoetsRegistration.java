@@ -67,7 +67,10 @@ public class PoetsRegistration extends AppCompatActivity {
                 InsertPoet();
             } else {
                 if (hasDuplicateId) {
-                    helperLists.openDuplicateDialog(this);
+                    //helperLists.openDuplicateDialog(this);
+
+                        InsertPoet();
+
                 } else {
                     helperLists.ErrorChoice(this,R.string.errorRegistration);
                 }
